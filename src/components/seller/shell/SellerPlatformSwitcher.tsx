@@ -1,14 +1,15 @@
 import { Link } from '@/lib/router-compat';
-import { Store, Truck, Warehouse } from 'lucide-react';
+import { Handshake, Store, Truck, Warehouse } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export const tejaraaPlatforms = [
   { label: 'Shop', to: '/', icon: Store, id: 'shop' },
   { label: 'Dropshipping & Selling Services', to: '/selling', icon: Truck, id: 'selling' },
   { label: 'Wholesalers and Suppliers', to: '/partners', icon: Warehouse, id: 'suppliers' },
+  { label: 'Agencies & VAs', to: '/agency', icon: Handshake, id: 'agencies' },
 ] as const;
 
-export type TejaraaPlatformId = 'shop' | 'selling' | 'suppliers';
+export type TejaraaPlatformId = 'shop' | 'selling' | 'suppliers' | 'agencies';
 
 interface SellerPlatformSwitcherProps {
   /** Which experience is currently open. */

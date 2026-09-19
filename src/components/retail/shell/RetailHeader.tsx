@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ChevronRight, CircleHelp, Globe2, Heart, Home,
+  ChevronRight, CircleHelp, Globe2, Handshake, Heart, Home,
   List, LogOut, Menu, MessageCircle, Package, Search, ShoppingCart, Store, User, Wallet, Warehouse,
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from '@/lib/router-compat';
@@ -36,6 +36,7 @@ const platformLinks = [
   { label: 'Shop', to: '/', icon: ShoppingCart },
   { label: 'Dropshipping & Selling Services', to: '/selling', icon: Store },
   { label: 'Wholesalers and Suppliers', to: '/partners', icon: Warehouse },
+  { label: 'Agencies & VAs', to: '/agency', icon: Handshake },
 ];
 
 export function RetailHeader() {
