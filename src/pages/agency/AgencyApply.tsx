@@ -236,23 +236,7 @@ export default function AgencyApply() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">WhatsApp / phone *</Label>
-                  <div className="flex overflow-hidden rounded-md border border-input bg-transparent shadow-xs">
-                    <span className="flex h-9 items-center justify-center border-r border-input bg-muted px-3 text-sm font-medium text-muted-foreground">{dial}</span>
-                    <Input id="phone" className="w-full rounded-none border-0 shadow-none focus-visible:ring-0" value={form.phone} onChange={(e) => set('phone', e.target.value.replace(/[^\d\s-]/g, ''))} placeholder="5x xxx xxxx" required />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="country">Country *</Label>
-                  <Select value={form.country} onValueChange={(v) => set('country', v)}>
-                    <SelectTrigger id="country" className="w-full">
-                      <SelectValue placeholder="Select your country" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {GCC_COUNTRIES.map((c) => (
-                        <SelectItem key={c.name} value={c.name}>{c.name}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Input id="phone" className="w-full" type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value.replace(/[^\d\s+()-]/g, ''))} placeholder="+966 5x xxx xxxx" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
