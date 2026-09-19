@@ -1,7 +1,7 @@
-import { Link } from '@/lib/router-compat';
-import { Button } from '@/components/ui/button';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
+import { AgencyBreadcrumbs, AgencyCTA, AgencyPageHero } from '@/components/agency/sections';
+import { ServiceFAQ } from '@/components/seller/service';
+import { HelpCircle } from 'lucide-react';
 
 const faqs = [
   { q: 'Does it cost anything to join?', a: 'No. The programme is completely free and there is no minimum number of sellers you have to bring.' },
@@ -19,31 +19,26 @@ const faqs = [
 export default function AgencyFaq() {
   return (
     <AgencyPublicShell>
-      <section className="border-b border-retail-border bg-retail-card">
-        <div className="mx-auto max-w-4xl px-4 py-16 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green">FAQ</p>
-          <h1 className="mt-3 text-4xl font-black text-retail-dark-green md:text-5xl">Questions partners ask</h1>
-        </div>
-      </section>
+      <AgencyBreadcrumbs items={[{ label: 'FAQ' }]} />
+      <AgencyPageHero
+        icon={HelpCircle}
+        eyebrow="FAQ"
+        title="Questions partners ask"
+        lead="Everything about joining, attribution, commission and payouts in one place."
+        tags={['Joining', 'Commission', 'Payouts']}
+      />
 
-      <section className="mx-auto max-w-3xl px-4 py-14">
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((item, index) => (
-            <AccordionItem key={item.q} value={`item-${index}`}>
-              <AccordionTrigger className="text-left text-base font-bold">{item.q}</AccordionTrigger>
-              <AccordionContent className="text-sm leading-6 text-muted-foreground">{item.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+      <ServiceFAQ items={faqs} title="Frequently asked questions" />
 
-        <div className="mt-10 rounded-2xl border border-retail-border bg-retail-card p-8 text-center">
-          <h2 className="text-xl font-black text-retail-dark-green">Still have a question?</h2>
-          <div className="mt-5 flex flex-wrap justify-center gap-3">
-            <Button asChild><Link to="/agency/contact">Talk to partnerships</Link></Button>
-            <Button asChild variant="outline"><Link to="/agency/apply">Apply to join</Link></Button>
-          </div>
-        </div>
-      </section>
+      <AgencyCTA
+        variant="dark"
+        title="Still have a question?"
+        text="Our partnerships team is happy to walk you through the programme before you apply."
+        primaryLabel="Talk to partnerships"
+        primaryTo="/agency/contact"
+        secondaryLabel="Apply to join"
+        secondaryTo="/agency/apply"
+      />
     </AgencyPublicShell>
   );
 }

@@ -2,13 +2,21 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
+import { AgencyBreadcrumbs, AgencyPageHero } from '@/components/agency/sections';
+import { SellerContainer } from '@/components/seller/common/SellerContainer';
+import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHeading';
 import { supabase } from '@/integrations/supabase/client';
 import { Loader2, MessageSquare } from 'lucide-react';
+
+const helpTopics = [
+  ['Commission and rates', 'How your share is calculated and when it unlocks.'],
+  ['Onboarding sellers', 'Best ways to share your link and get sellers started.'],
+  ['Larger agencies', 'Custom arrangements for teams onboarding at volume.'],
+];
 
 export default function AgencyContact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -32,21 +40,20 @@ export default function AgencyContact() {
 
   return (
     <AgencyPublicShell>
-      <section className="border-b border-retail-border bg-retail-card">
-        <div className="mx-auto max-w-4xl px-4 py-16 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green">Partnerships</p>
-          <h1 className="mt-3 text-4xl font-black text-retail-dark-green md:text-5xl">Talk to the partnerships team</h1>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-retail-muted">
-            Questions about commission, onboarding your sellers, or a custom arrangement for a larger
-            agency? Send us a note.
-          </p>
-        </div>
-      </section>
+      <AgencyBreadcrumbs items={[{ label: 'Contact' }]} />
+      <AgencyPageHero
+        icon={MessageSquare}
+        eyebrow="Partnerships"
+        title="Talk to the partnerships team"
+        lead="Questions about commission, onboarding your sellers, or a custom arrangement for a larger agency? Send us a note."
+        tags={['Reply by email', 'Two working days']}
+      />
 
-      <section className="mx-auto max-w-3xl px-4 py-14">
-        <Card className="border-border/60">
-          <CardContent className="p-6 sm:p-8">
-            <form onSubmit={submit} className="space-y-4">
+      <section className="py-9 lg:py-11">
+        <SellerContainer className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.75fr)] lg:items-start">
+          <div className="min-w-0 border-t-2 border-retail-green bg-white p-5 sm:p-6">
+            <SellerSectionHeading eyebrow="Enquiry" title="Send a message" as="h2" />
+            <form onSubmit={submit} className="mt-5 space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="name">Your name</Label>
@@ -65,16 +72,35 @@ export default function AgencyContact() {
                 <Label htmlFor="message">Message</Label>
                 <Textarea id="message" rows={6} required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
               </div>
-              <Button type="submit" className="w-full" disabled={submitting}>
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-retail-green font-semibold text-white hover:bg-retail-dark-green"
+                disabled={submitting}
+              >
                 {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <MessageSquare className="mr-2 h-4 w-4" />}
                 Send message
               </Button>
             </form>
-            <p className="mt-4 text-center text-xs text-muted-foreground">
-              Ready to start? <Link to="/agency/apply" className="underline">Apply to the programme</Link> instead — it takes two minutes.
+            <p className="mt-4 text-center text-xs text-retail-muted">
+              Ready to start?{' '}
+              <Link to="/agency/apply" className="font-bold text-retail-green hover:underline">Apply to the programme</Link>{' '}
+              instead — it takes two minutes.
             </p>
-          </CardContent>
-        </Card>
+          </div>
+
+          <div className="min-w-0">
+            <SellerSectionHeading eyebrow="What we can help with" title="Common topics" as="h2" />
+            <ul className="mt-5 grid gap-4">
+              {helpTopics.map(([title, text]) => (
+                <li key={title} className="border-t-2 border-retail-green pt-4">
+                  <h3 className="text-sm font-bold text-retail-dark-green">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-retail-muted">{text}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </SellerContainer>
       </section>
     </AgencyPublicShell>
   );
