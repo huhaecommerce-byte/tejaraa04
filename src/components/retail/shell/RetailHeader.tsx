@@ -96,6 +96,7 @@ export function RetailHeader() {
   }, [location.pathname]);
 
   const isDropshippingPortal = location.pathname.startsWith('/dropshipping') || location.pathname.startsWith('/dashboard');
+  const isArabic = location.pathname === '/ar' || location.pathname.startsWith('/ar/');
   const hideShopNav = Boolean(user) && isDropshippingPortal;
   const hidePortalHeader = Boolean(user) && isDropshippingPortal;
 
@@ -128,16 +129,32 @@ export function RetailHeader() {
               <span className="pb-2 font-bold sm:hidden">Tejaraa Shop</span>
             </div>
             <nav aria-label="Language" className="flex shrink-0 items-center rounded-full border border-primary-foreground/25 bg-primary-foreground/10 p-0.5 shadow-inner">
-              <Link
-                to="/ar"
-                className="flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-primary-foreground/75 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
-              >
-                <Globe2 className="h-3.5 w-3.5" />
-                العربية
-              </Link>
-              <span className="flex items-center gap-1.5 rounded-full bg-retail-card px-3 py-1 text-[11px] font-bold text-retail-dark-green shadow-sm">
-                English
-              </span>
+              {isArabic ? (
+                <span className="flex items-center gap-1.5 rounded-full bg-retail-card px-3 py-1 text-[11px] font-bold text-retail-dark-green shadow-sm">
+                  <Globe2 className="h-3.5 w-3.5" />
+                  العربية
+                </span>
+              ) : (
+                <Link
+                  to="/ar"
+                  className="flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-primary-foreground/75 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                >
+                  <Globe2 className="h-3.5 w-3.5" />
+                  العربية
+                </Link>
+              )}
+              {isArabic ? (
+                <Link
+                  to="/"
+                  className="flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-primary-foreground/75 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                >
+                  English
+                </Link>
+              ) : (
+                <span className="flex items-center gap-1.5 rounded-full bg-retail-card px-3 py-1 text-[11px] font-bold text-retail-dark-green shadow-sm">
+                  English
+                </span>
+              )}
             </nav>
           </RetailContainer>
         </div>
@@ -288,6 +305,8 @@ function CategoryMegaMenu({ categories, onClose }: { categories: CategoryGroup[]
 
 
 function MobileMenu({ categories, user, accountHref, logout }: { categories: CategoryGroup[]; user: ReturnType<typeof useAuth>['user']; accountHref: string; logout: () => Promise<void> }) {
+  const { pathname } = useLocation();
+  const isArabic = pathname === '/ar' || pathname.startsWith('/ar/');
   const [activeCategory, setActiveCategory] = useState<CategoryGroup | null>(null);
   const wholesale = useWholesaleAccess();
   return <div className="min-h-full bg-retail-card">
@@ -295,7 +314,7 @@ function MobileMenu({ categories, user, accountHref, logout }: { categories: Cat
     {activeCategory ? <div className="p-4"><Button type="button" variant="ghost" onClick={() => setActiveCategory(null)} className="mb-4 gap-2 px-0 text-sm font-bold text-retail-green"><ChevronRight className="h-4 w-4 rotate-180" />All Categories</Button><h2 className="mb-2 font-display text-lg font-bold">{activeCategory.name}</h2><nav className="divide-y divide-retail-border">{activeCategory.children.map((child) => <SheetClose asChild key={child}><Link to={`/catalog?q=${encodeURIComponent(child)}`} className="block py-3 text-sm">{child}</Link></SheetClose>)}<SheetClose asChild><Link to={`/catalog?q=${encodeURIComponent(activeCategory.name)}`} className="block py-3 text-sm font-bold text-retail-green">View all {activeCategory.name}</Link></SheetClose></nav></div> : <div className="p-4">
       <div className="grid grid-cols-2 gap-2">{platformLinks.map((item) => <SheetClose asChild key={item.label}><Link to={item.to} className={`flex items-center gap-2 rounded-md border p-3 text-xs font-bold ${item.to === '/' ? 'border-retail-green bg-retail-light-green text-retail-green' : 'border-retail-border'}`}><item.icon className="h-4 w-4" />{item.label}</Link></SheetClose>)}</div>
       <section className="mt-5"><div className="flex items-center justify-between"><h2 className="text-xs font-bold uppercase text-retail-muted">Categories</h2><SheetClose asChild><Link to="/category" className="text-xs font-bold text-retail-green">View all</Link></SheetClose></div><div className="mt-2 divide-y divide-retail-border">{categories.slice(0, 10).map((category) => <Button key={category.name} type="button" variant="ghost" onClick={() => setActiveCategory(category)} className="flex h-auto w-full justify-between rounded-none py-3 text-left text-sm font-semibold"><span className="truncate">{category.name}</span><ChevronRight className="h-4 w-4 shrink-0 text-retail-muted" /></Button>)}</div></section>
-      <nav className="mt-5 border-t border-retail-border pt-3">{user ? <><SheetClose asChild><Link to={accountHref} className="flex items-center gap-3 py-3 text-sm"><User className="h-5 w-5" />My Account</Link></SheetClose><SheetClose asChild><Link to="/account/orders" className="flex items-center gap-3 py-3 text-sm"><Package className="h-5 w-5" />Orders</Link></SheetClose><SheetClose asChild><Link to="/account/wishlist" className="flex items-center gap-3 py-3 text-sm"><Heart className="h-5 w-5" />Wishlist</Link></SheetClose>{wholesale.hasAccess && <SheetClose asChild><Link to={wholesale.portalHref} className="flex items-center gap-3 py-3 text-sm font-bold text-retail-green"><Warehouse className="h-5 w-5" />{wholesale.isConsole ? 'Admin Portal' : 'Wholesale Portal'}</Link></SheetClose>}<SheetClose asChild><Button type="button" variant="ghost" onClick={() => void logout()} className="px-0 text-sm text-retail-sale hover:text-retail-sale">Sign out</Button></SheetClose></> : <div className="grid grid-cols-2 gap-2"><SheetClose asChild><Button asChild><Link to="/shop/signin">Sign in</Link></Button></SheetClose><SheetClose asChild><Button asChild variant="outline"><Link to="/shop/signup">Create account</Link></Button></SheetClose></div>}<SheetClose asChild><Link to="/contact" className="mt-3 flex items-center gap-3 py-3 text-sm"><CircleHelp className="h-5 w-5" />Help Center</Link></SheetClose><SheetClose asChild><Link to="/ar" className="flex items-center gap-3 py-3 text-sm"><Globe2 className="h-5 w-5" />العربية</Link></SheetClose></nav>
+      <nav className="mt-5 border-t border-retail-border pt-3">{user ? <><SheetClose asChild><Link to={accountHref} className="flex items-center gap-3 py-3 text-sm"><User className="h-5 w-5" />My Account</Link></SheetClose><SheetClose asChild><Link to="/account/orders" className="flex items-center gap-3 py-3 text-sm"><Package className="h-5 w-5" />Orders</Link></SheetClose><SheetClose asChild><Link to="/account/wishlist" className="flex items-center gap-3 py-3 text-sm"><Heart className="h-5 w-5" />Wishlist</Link></SheetClose>{wholesale.hasAccess && <SheetClose asChild><Link to={wholesale.portalHref} className="flex items-center gap-3 py-3 text-sm font-bold text-retail-green"><Warehouse className="h-5 w-5" />{wholesale.isConsole ? 'Admin Portal' : 'Wholesale Portal'}</Link></SheetClose>}<SheetClose asChild><Button type="button" variant="ghost" onClick={() => void logout()} className="px-0 text-sm text-retail-sale hover:text-retail-sale">Sign out</Button></SheetClose></> : <div className="grid grid-cols-2 gap-2"><SheetClose asChild><Button asChild><Link to="/shop/signin">Sign in</Link></Button></SheetClose><SheetClose asChild><Button asChild variant="outline"><Link to="/shop/signup">Create account</Link></Button></SheetClose></div>}<SheetClose asChild><Link to="/contact" className="mt-3 flex items-center gap-3 py-3 text-sm"><CircleHelp className="h-5 w-5" />Help Center</Link></SheetClose><SheetClose asChild>{isArabic ? <Link to="/" className="flex items-center gap-3 py-3 text-sm"><Globe2 className="h-5 w-5" />English</Link> : <Link to="/ar" className="flex items-center gap-3 py-3 text-sm"><Globe2 className="h-5 w-5" />العربية</Link>}</SheetClose></nav>
     </div>}
   </div>;
 }
