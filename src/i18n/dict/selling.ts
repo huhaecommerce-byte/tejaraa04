@@ -128,6 +128,8 @@ export const en = {
   'selling.channels.marketplace': "Marketplace channel",
   'selling.channels.manual': "Register manually",
   'selling.channels.other': "Other channels",
+  'selling.servicesGrid.eyebrow': "Services",
+  'selling.servicesGrid.title': "Everything you need to sell online.",
 } as const;
 
 export const ar: Partial<Record<keyof typeof en, string>> = {
@@ -259,4 +261,6 @@ export const ar: Partial<Record<keyof typeof en, string>> = {
   'selling.channels.marketplace': "قناة منصة",
   'selling.channels.manual': "تسجيل يدوي",
   'selling.channels.other': "قنوات أخرى",
+  'selling.servicesGrid.eyebrow': "الخدمات",
+  'selling.servicesGrid.title': "كل ما تحتاجه للبيع أونلاين.",
 };
