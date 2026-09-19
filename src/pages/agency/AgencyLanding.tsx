@@ -22,27 +22,28 @@ const benefits = [
 export default function AgencyLanding() {
   return (
     <AgencyPublicShell>
-      <section className="relative overflow-hidden bg-gradient-to-br from-[hsl(152_45%_14%)] via-[hsl(152_40%_18%)] to-[hsl(152_35%_22%)] text-white">
-        <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider">
+      <section className="hero-surface relative overflow-hidden text-primary-foreground">
+        <div className="hero-grid pointer-events-none absolute inset-0 opacity-10" />
+        <div className="relative mx-auto max-w-6xl px-4 py-20 md:py-28">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
             <Handshake className="h-4 w-4" /> Agency &amp; VA Programme
           </span>
           <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight md:text-6xl">
             Grow your income every time your sellers sell
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-white/80">
+          <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
             Bring dropshippers onto Tejaraa and earn a share of our profit on every order they ever
             place. Ten active sellers means ten income streams that keep paying, month after month.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="bg-white text-[hsl(152_45%_18%)] hover:bg-white/90">
+            <Button asChild size="lg" variant="secondary">
               <Link to="/agency/apply">Apply to join <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
+            <Button asChild size="lg" variant="outline" className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
               <Link to="/agency/signin">Partner sign in</Link>
             </Button>
           </div>
-          <div className="mt-10 flex flex-wrap gap-6 text-sm text-white/70">
+          <div className="mt-10 flex flex-wrap gap-6 text-sm text-primary-foreground/70">
             {['Lifetime earnings', 'No cost to join', 'Paid in SAR'].map((t) => (
               <span key={t} className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> {t}</span>
             ))}

@@ -4,12 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
-import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
+import { AgencyAuthShell } from '@/components/agency/auth/AgencyAuthShell';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
-import { CheckCircle2, Handshake, Loader2, MailCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Loader2, MailCheck } from 'lucide-react';
 import { sendSignupOtp, verifySignupOtp } from '@/lib/signupOtp.functions';
 
 const empty = {
@@ -150,48 +149,41 @@ export default function AgencyApply() {
 
   if (isLoading || checking) {
     return (
-      <AgencyPublicShell>
-        <div className="flex min-h-[50vh] items-center justify-center">
+      <AgencyAuthShell eyebrow="Partner application" title="Preparing your application" subtitle="One moment while we check your account.">
+        <div className="flex min-h-48 items-center justify-center">
           <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
         </div>
-      </AgencyPublicShell>
+      </AgencyAuthShell>
     );
   }
 
   if (done) {
     return (
-      <AgencyPublicShell>
-        <div className="mx-auto max-w-lg px-4 py-24 text-center">
-          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+      <AgencyAuthShell eyebrow="Application complete" title="You’re in the review queue" subtitle="Our partnerships team reviews applications within two working days.">
+        <div className="text-center">
+          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-retail-light-green text-retail-green">
             <CheckCircle2 className="h-7 w-7" />
           </div>
-          <h1 className="text-2xl font-black">Application received</h1>
-          <p className="mt-3 text-muted-foreground">
-            Our partnerships team reviews applications within two working days. You will get an email
-            the moment you are approved, along with your personal invite link.
+          <p className="text-sm leading-6 text-retail-muted">
+            You will receive an email as soon as you are approved, together with access to your personal invite link.
           </p>
-          <div className="mt-8 flex justify-center gap-3">
-            <Button asChild><Link to="/agency/portal">Go to my partner area</Link></Button>
-            <Button asChild variant="outline"><Link to="/">Back to Tejaraa</Link></Button>
+          <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <Button asChild className="bg-retail-green hover:bg-retail-dark-green"><Link to="/agency/portal">Open partner area</Link></Button>
+            <Button asChild variant="outline" className="border-retail-border"><Link to="/agency">Programme home</Link></Button>
           </div>
         </div>
-      </AgencyPublicShell>
+      </AgencyAuthShell>
     );
   }
 
   if (step === 'otp') {
     return (
-      <AgencyPublicShell>
-        <div className="mx-auto max-w-md px-4 py-20 text-center">
-          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+      <AgencyAuthShell eyebrow="Secure verification" title="Confirm your email" subtitle={`Enter the 4-digit code we sent to ${form.email.trim()}.`}>
+        <div className="text-center">
+          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-retail-light-green text-retail-green">
             <MailCheck className="h-7 w-7" />
           </div>
-          <h1 className="text-2xl font-black">Confirm your email</h1>
-          <p className="mt-3 text-muted-foreground">
-            We sent a 4-digit code to <strong>{form.email.trim()}</strong>. Enter it to finish your
-            application.
-          </p>
-          <div className="mt-8 space-y-4">
+          <div className="space-y-4">
             <Input
               value={code}
               onChange={(e) => {
@@ -201,15 +193,16 @@ export default function AgencyApply() {
               }}
               inputMode="numeric"
               placeholder="0000"
-              className="mx-auto max-w-[180px] text-center text-2xl tracking-[0.5em]"
+              aria-label="Verification code"
+              className="mx-auto h-14 max-w-[190px] text-center text-2xl tracking-[0.5em]"
             />
-            <Button className="w-full" size="lg" disabled={verifying || code.length !== 4} onClick={() => handleVerify()}>
+            <Button className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={verifying || code.length !== 4} onClick={() => handleVerify()}>
               {verifying ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
               Confirm and send application
             </Button>
             <button
               type="button"
-              className="text-xs text-muted-foreground underline"
+              className="text-xs font-semibold text-retail-green hover:underline"
               onClick={async () => {
                 try {
                   await sendSignupOtp({ data: { email: form.email.trim() } });
@@ -223,25 +216,18 @@ export default function AgencyApply() {
             </button>
           </div>
         </div>
-      </AgencyPublicShell>
+      </AgencyAuthShell>
     );
   }
 
   return (
-    <AgencyPublicShell>
-      <div className="mx-auto max-w-2xl px-4 py-14">
-        <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <Handshake className="h-6 w-6" />
-          </div>
-          <h1 className="text-3xl font-black">Apply as an agency or VA</h1>
-          <p className="mt-2 text-muted-foreground">
-            Tell us a little about you. Approval usually takes under two working days.
-          </p>
-        </div>
-
-        <Card>
-          <CardContent className="p-6">
+    <AgencyAuthShell
+      eyebrow="Agency & VA programme"
+      title="Create your partner account"
+      subtitle="Tell us about your business and audience. Approval usually takes under two working days."
+      wide
+      footer={<>Already a partner? <Link to="/agency/signin" className="font-semibold text-retail-green hover:underline">Sign in to your portal</Link></>}
+    >
             <form onSubmit={submit} className="space-y-5">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
@@ -282,17 +268,11 @@ export default function AgencyApply() {
                 <Textarea id="audience" rows={4} value={form.audience} onChange={(e) => set('audience', e.target.value)} placeholder="Tell us about your audience, community size, client base or the services you offer sellers." />
               </div>
 
-              <Button type="submit" className="w-full" size="lg" disabled={submitting}>
+              <Button type="submit" className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={submitting}>
                 {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                Send my application
+                Send my application {!submitting ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
               </Button>
-              <p className="text-center text-xs text-muted-foreground">
-                Already a partner? <Link to="/agency/signin" className="underline">Sign in</Link>
-              </p>
             </form>
-          </CardContent>
-        </Card>
-      </div>
-    </AgencyPublicShell>
+    </AgencyAuthShell>
   );
 }

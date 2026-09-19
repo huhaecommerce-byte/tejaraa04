@@ -9,6 +9,6 @@
 - [x] Show product image in Noon publishing queue
 - [x] Fix Noon category loading — all 7,250 categories now load (paged past the 1,000-row API cap)
 - [x] Move Store Integrations from the Fulfillment sub-tabs to its own sidebar page
-- [ ] Align the Agency & VA public pages and partner workspace with the Selling visual system
-- [ ] Give agency sign-in, application/sign-up, email verification, and password reset a dedicated auth design
-- [ ] Verify agency public, auth, and portal layouts on desktop and mobile
+- [x] Align the Agency & VA public pages and partner workspace with the Selling visual system
+- [x] Give agency sign-in, application/sign-up, email verification, and password reset a dedicated auth design
+- [x] Verify agency public and auth layouts on desktop and mobile; portal code verified, signed-in preview awaits a partner account

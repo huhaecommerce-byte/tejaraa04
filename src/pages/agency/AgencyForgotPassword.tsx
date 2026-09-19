@@ -2,12 +2,11 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
+import { AgencyAuthShell } from '@/components/agency/auth/AgencyAuthShell';
 import { supabase } from '@/integrations/supabase/client';
-import { KeyRound, Loader2, MailCheck } from 'lucide-react';
+import { ArrowRight, Loader2, MailCheck } from 'lucide-react';
 
 export default function AgencyForgotPassword() {
   const [email, setEmail] = useState('');
@@ -31,43 +30,32 @@ export default function AgencyForgotPassword() {
   };
 
   return (
-    <AgencyPublicShell>
-      <div className="mx-auto max-w-md px-4 py-20">
-        <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            {sent ? <MailCheck className="h-6 w-6" /> : <KeyRound className="h-6 w-6" />}
+    <AgencyAuthShell
+      eyebrow="Account recovery"
+      title={sent ? 'Check your inbox' : 'Reset your password'}
+      subtitle={sent ? 'We have sent password reset instructions if this email belongs to a partner account.' : 'Enter the email linked to your agency or VA partner account.'}
+      footer={<><Link to="/agency/signin" className="font-semibold text-retail-green hover:underline">Back to sign in</Link><span className="mx-2">·</span><Link to="/agency/signup" className="font-semibold text-retail-green hover:underline">Create an account</Link></>}
+    >
+      {sent ? (
+        <div className="space-y-5 text-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-retail-light-green text-retail-green">
+            <MailCheck className="h-6 w-6" />
           </div>
-          <h1 className="text-2xl font-black">Reset your partner password</h1>
-          <p className="mt-2 text-sm text-muted-foreground">Agencies and virtual assistants</p>
+          <p className="text-sm leading-6 text-retail-muted">If an account exists for <span className="font-semibold text-retail-text">{email}</span>, a reset link is on its way.</p>
+          <Button asChild variant="outline" className="h-11 w-full border-retail-border"><Link to="/agency/signin">Return to sign in</Link></Button>
         </div>
-        <Card>
-          <CardContent className="p-6">
-            {sent ? (
-              <div className="space-y-4 text-center">
-                <p className="text-sm text-muted-foreground">
-                  If an account exists for <span className="font-semibold">{email}</span>, a reset link is on its way.
-                </p>
-                <Button asChild variant="outline" className="w-full"><Link to="/agency/signin">Back to sign in</Link></Button>
-              </div>
-            ) : (
-              <form onSubmit={submit} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <Button type="submit" className="w-full" disabled={submitting}>
-                  {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  Send reset link
-                </Button>
-                <div className="flex justify-between text-xs text-muted-foreground">
-                  <Link to="/agency/signin" className="underline">Back to sign in</Link>
-                  <Link to="/agency/apply" className="underline">Apply to join</Link>
-                </div>
-              </form>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    </AgencyPublicShell>
+      ) : (
+        <form onSubmit={submit} className="space-y-5">
+          <div className="space-y-2">
+            <Label htmlFor="email">Email address</Label>
+            <Input id="email" type="email" autoComplete="email" placeholder="you@agency.com" required value={email} onChange={(e) => setEmail(e.target.value)} className="h-11" />
+          </div>
+          <Button type="submit" className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={submitting}>
+            {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+            Send reset link {!submitting ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
+          </Button>
+        </form>
+      )}
+    </AgencyAuthShell>
   );
 }
