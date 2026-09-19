@@ -91,8 +91,7 @@ export default function AgencyApply() {
         company_name: form.company_name.trim(),
         contact_name: form.contact_name.trim(),
         email: form.email.trim(),
-        phone: `${dial}${form.phone.replace(/[\s-]/g, '')}` || null,
-        country: form.country.trim() || null,
+        phone: form.phone.trim() || null,
         invite_code: '',
       } as never);
       if (insertError) throw insertError;
