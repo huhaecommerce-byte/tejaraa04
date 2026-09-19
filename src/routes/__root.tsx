@@ -21,6 +21,7 @@ import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import NotFound from "@/pages/NotFound";
 import { installFunctionsCompat } from "@/lib/functions-compat";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
+import { LocaleProvider } from "@/i18n/LocaleProvider";
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
