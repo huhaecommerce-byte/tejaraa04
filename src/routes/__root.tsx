@@ -119,20 +119,22 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AuthProvider>
-          <AnnouncementProvider>
-            <CartProvider>
-              <Toaster />
-              <Sonner />
-              {/* Required: nested routes render here. */}
-              <Outlet />
-              <MobileBottomNav />
-              <PageViewTracker />
-            </CartProvider>
-          </AnnouncementProvider>
-        </AuthProvider>
-      </TooltipProvider>
+      <LocaleProvider>
+        <TooltipProvider>
+          <AuthProvider>
+            <AnnouncementProvider>
+              <CartProvider>
+                <Toaster />
+                <Sonner />
+                {/* Required: nested routes render here. */}
+                <Outlet />
+                <MobileBottomNav />
+                <PageViewTracker />
+              </CartProvider>
+            </AnnouncementProvider>
+          </AuthProvider>
+        </TooltipProvider>
+      </LocaleProvider>
     </QueryClientProvider>
   );
 }
