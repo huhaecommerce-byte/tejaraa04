@@ -3,11 +3,10 @@ import { Link, useNavigate } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent } from '@/components/ui/card';
-import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
+import { AgencyAuthShell } from '@/components/agency/auth/AgencyAuthShell';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
-import { Handshake, Loader2 } from 'lucide-react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 
 export default function AgencySignIn() {
   const { login, user, isLoading } = useAuth();
@@ -34,38 +33,29 @@ export default function AgencySignIn() {
   };
 
   return (
-    <AgencyPublicShell>
-      <div className="mx-auto max-w-md px-4 py-20">
-        <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <Handshake className="h-6 w-6" />
-          </div>
-          <h1 className="text-2xl font-black">Partner sign in</h1>
-          <p className="mt-2 text-sm text-muted-foreground">Agencies and virtual assistants</p>
+    <AgencyAuthShell
+      eyebrow="Partner access"
+      title="Welcome back"
+      subtitle="Sign in to manage your dropshippers, earnings, and payouts."
+      footer={<>New to the programme? <Link to="/agency/signup" className="font-semibold text-retail-green hover:underline">Create a partner account</Link></>}
+    >
+      <form onSubmit={submit} className="space-y-5">
+        <div className="space-y-2">
+          <Label htmlFor="email">Email address</Label>
+          <Input id="email" type="email" autoComplete="email" placeholder="you@agency.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-11" />
         </div>
-        <Card>
-          <CardContent className="p-6">
-            <form onSubmit={submit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-              </div>
-              <Button type="submit" className="w-full" disabled={submitting}>
-                {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                Sign in
-              </Button>
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <Link to="/agency/forgot-password" className="underline">Forgot password?</Link>
-                <Link to="/agency/apply" className="underline">Apply to join</Link>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    </AgencyPublicShell>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between gap-3">
+            <Label htmlFor="password">Password</Label>
+            <Link to="/agency/forgot-password" className="text-xs font-semibold text-retail-green hover:underline">Forgot password?</Link>
+          </div>
+          <Input id="password" type="password" autoComplete="current-password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required className="h-11" />
+        </div>
+        <Button type="submit" className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={submitting}>
+          {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+          Sign in to portal {!submitting ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
+        </Button>
+      </form>
+    </AgencyAuthShell>
   );
 }
