@@ -5,6 +5,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { useAgency } from '@/hooks/useAgency';
+import { useAccessTier } from '@/hooks/useAccessTier';
+
 import { agencyNavigation } from '@/config/navigation';
 import { CommandDeck } from '@/components/layout/CommandDeck';
 import { Menu } from 'lucide-react';
@@ -31,11 +33,12 @@ const StatusCard = ({
 const AgencyLayout = () => {
   const { user, isLoading } = useAuth();
   const { agency, isLoading: agencyLoading } = useAgency();
+  const access = useAccessTier();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  if (isLoading || agencyLoading) {
+  if (isLoading || agencyLoading || access.loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="space-y-4 w-64">
@@ -48,40 +51,47 @@ const AgencyLayout = () => {
 
   if (!user) return <Navigate to="/agency/signin" replace />;
 
-  if (!agency?.ok) {
-    return (
-      <StatusCard
-        icon={<ShieldAlert className="h-6 w-6" />}
-        title="No partner account yet"
-        text="You are signed in, but this account is not registered as a Tejaraa agency partner."
-        action={<Button asChild><Link to="/agency/apply">Apply to the programme</Link></Button>}
-      />
-    );
-  }
+  // Supplier / internal accounts sit on the top tier: they may browse the
+  // partner portal even without an agency profile of their own.
+  const supplierBrowsing = !agency?.ok && access.canUseSupplier;
 
-  if (agency.status === 'pending') {
-    return (
-      <StatusCard
-        icon={<Clock className="h-6 w-6" />}
-        title="Application under review"
-        text="Our team is reviewing your application. You will get an email as soon as it is approved, and your invite link appears here straight away."
-        action={<Button variant="outline" asChild><Link to="/">Back to Tejaraa</Link></Button>}
-      />
-    );
-  }
+  if (!supplierBrowsing) {
+    if (!agency?.ok) {
+      return (
+        <StatusCard
+          icon={<ShieldAlert className="h-6 w-6" />}
+          title="No partner account yet"
+          text="You are signed in with a shop / dropshipping account. The Agencies & VAs portal needs a partner account."
+          action={<Button asChild><Link to="/agency/apply">Create a partner account</Link></Button>}
+        />
+      );
+    }
 
-  if (agency.status === 'rejected' || agency.status === 'suspended') {
-    return (
-      <StatusCard
-        icon={<XCircle className="h-6 w-6" />}
-        title={agency.status === 'rejected' ? 'Application not approved' : 'Account suspended'}
-        text="Please contact the Tejaraa partnerships team if you think this is a mistake."
-        action={<Button variant="outline" asChild><Link to="/contact">Contact us</Link></Button>}
-      />
-    );
+    if (agency.status === 'pending') {
+      return (
+        <StatusCard
+          icon={<Clock className="h-6 w-6" />}
+          title="Application under review"
+          text="Our team is reviewing your application. You will get an email as soon as it is approved, and your invite link appears here straight away."
+          action={<Button variant="outline" asChild><Link to="/">Back to Tejaraa</Link></Button>}
+        />
+      );
+    }
+
+    if (agency.status === 'rejected' || agency.status === 'suspended') {
+      return (
+        <StatusCard
+          icon={<XCircle className="h-6 w-6" />}
+          title={agency.status === 'rejected' ? 'Application not approved' : 'Account suspended'}
+          text="Please contact the Tejaraa partnerships team if you think this is a mistake."
+          action={<Button variant="outline" asChild><Link to="/contact">Contact us</Link></Button>}
+        />
+      );
+    }
   }
 
   return (
+
     <div className="dashboard-with-retail-header retail-theme min-h-screen w-full bg-retail-page" key={location.pathname}>
       <div className="sticky top-0 z-50">
         <AgencyPortalHeader />
@@ -104,8 +114,14 @@ const AgencyLayout = () => {
       <div className={`${collapsed ? 'lg:ml-[64px]' : 'lg:ml-[260px]'} flex flex-col min-h-screen transition-[margin] duration-300`}>
         <main className="flex-1 px-3 pb-24 pt-16 md:px-6 md:pb-8 lg:pt-6">
           <div className="mx-auto max-w-[1400px] space-y-4 md:space-y-6">
+            {supplierBrowsing ? (
+              <div className="rounded-lg border border-retail-border bg-retail-light-green/50 px-4 py-3 text-sm text-retail-dark-green">
+                You are browsing the partner portal with a supplier / staff account. No partner earnings are linked to this login.
+              </div>
+            ) : null}
             <Outlet />
           </div>
+
         </main>
       </div>
     </div>
