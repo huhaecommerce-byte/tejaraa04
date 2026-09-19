@@ -11,4 +11,4 @@
 - [x] Move Store Integrations from the Fulfillment sub-tabs to its own sidebar page
 - [x] Align the Agency & VA public pages and partner workspace with the Selling visual system
 - [x] Give agency sign-in, application/sign-up, email verification, and password reset a dedicated auth design
-- [ ] Verify agency public, auth, and portal layouts on desktop and mobile
+- [x] Verify agency public and auth layouts on desktop and mobile; portal code verified, signed-in preview awaits a partner account
