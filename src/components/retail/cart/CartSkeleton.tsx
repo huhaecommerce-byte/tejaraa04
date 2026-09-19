@@ -1,4 +1,7 @@
+import { useLocale } from '@/i18n/LocaleProvider';
+
 export function CartSkeleton() {
+  const { t } = useLocale();
   return (
     <div className="animate-pulse" aria-label="Loading cart" role="status">
       <div className="h-8 w-52 rounded bg-retail-border" />
@@ -8,7 +11,7 @@ export function CartSkeleton() {
         </div>
         <div className="h-80 rounded-lg border border-retail-border bg-retail-card" />
       </div>
-      <span className="sr-only">Loading your cart</span>
+      <span className="sr-only">{t('shopx.cart.loading')}</span>
     </div>
   );
 }

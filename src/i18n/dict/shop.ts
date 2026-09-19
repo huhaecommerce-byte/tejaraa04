@@ -430,6 +430,42 @@ export const en = {
   'shopx.account.wishlistEmptyTitle': 'Your wishlist is empty',
   'shopx.account.wishlistEmptyDescription': 'Tap the heart on any product to save it here.',
   'shopx.account.browseCategories': 'Browse categories',
+  // ---------- shared error/retry ----------
+  'shopx.common.somethingWentWrong': 'Something went wrong',
+  'shopx.common.couldNotLoadContent': "We couldn't load this content.",
+  'shopx.common.tryAgain': 'Try again',
+
+  // ---------- category components ----------
+  'shopx.category.browseCategoriesNav': 'Browse Categories',
+  'shopx.category.exploreCategory': 'Explore {name}',
+  'shopx.category.viewAll': 'View all',
+  'shopx.category.productsSuffix': 'products',
+
+  // ---------- product components (extra) ----------
+  'shopx.product.reviewsLower': 'reviews',
+
+  // ---------- checkout (subscription) ----------
+  'shopx.subscribe.loadErrorTitle': "We couldn't load the secure checkout.",
+  'shopx.subscribe.loadErrorDescription': 'Please refresh the page, or contact support if it keeps happening.',
+  'shopx.subscribe.backToPricing': 'Back to pricing',
+  'shopx.subscribe.completeSubscription': 'Complete your {plan} subscription',
+  'shopx.subscribe.billing': '{cycle} billing — ',
+  'shopx.subscribe.secureCheckout': 'Secure checkout powered by Stripe.',
+  'shopx.subscribe.preparing': 'Preparing secure checkout…',
+  'shopx.subscribe.noSession': 'No session found',
+  'shopx.subscribe.noSessionDescription': 'It looks like something went wrong. Please try again or contact support.',
+  'shopx.subscribe.verifying': 'Verifying your subscription…',
+  'shopx.subscribe.verifyingDescription': 'Please hold on while we activate your plan. This usually takes a few seconds.',
+  'shopx.subscribe.welcome': 'Welcome to {plan}! 🎉',
+  'shopx.subscribe.successDescription': 'Your subscription is now active. Enjoy your upgraded access.',
+  'shopx.subscribe.goToDashboard': 'Go to Dashboard',
+  'shopx.subscribe.browseCatalog': 'Browse Catalog',
+  'shopx.subscribe.pendingTitle': 'Payment is processing',
+  'shopx.subscribe.pendingDescription': "Your payment is taking longer than usual to confirm. Refresh in a minute, or contact support if the issue persists — we'll activate your plan as soon as payment clears.",
+  'shopx.subscribe.checkAgain': 'Check again',
+  'shopx.subscribe.contactSupport': 'Contact support',
+  'shopx.subscribe.errorTitle': "We couldn't verify your payment",
+  'shopx.subscribe.errorDescription': 'Something went wrong while activating your subscription. If you were charged, please contact support.',
 } as const;
 
 export const ar: Partial<Record<keyof typeof en, string>> = {
@@ -863,4 +899,40 @@ export const ar: Partial<Record<keyof typeof en, string>> = {
   'shopx.account.wishlistEmptyTitle': 'قائمة المفضلة فارغة',
   'shopx.account.wishlistEmptyDescription': 'اضغط على أيقونة القلب في أي منتج لحفظه هنا.',
   'shopx.account.browseCategories': 'تصفح الأقسام',
+  // ---------- shared error/retry ----------
+  'shopx.common.somethingWentWrong': 'حدث خطأ ما',
+  'shopx.common.couldNotLoadContent': 'تعذر تحميل هذا المحتوى.',
+  'shopx.common.tryAgain': 'إعادة المحاولة',
+
+  // ---------- category components ----------
+  'shopx.category.browseCategoriesNav': 'تصفح الأقسام',
+  'shopx.category.exploreCategory': 'اكتشف {name}',
+  'shopx.category.viewAll': 'عرض الكل',
+  'shopx.category.productsSuffix': 'منتج',
+
+  // ---------- product components (extra) ----------
+  'shopx.product.reviewsLower': 'تقييم',
+
+  // ---------- checkout (subscription) ----------
+  'shopx.subscribe.loadErrorTitle': 'تعذر تحميل صفحة الدفع الآمن.',
+  'shopx.subscribe.loadErrorDescription': 'يرجى تحديث الصفحة، أو التواصل مع الدعم إذا استمرت المشكلة.',
+  'shopx.subscribe.backToPricing': 'العودة إلى الأسعار',
+  'shopx.subscribe.completeSubscription': 'أكمل اشتراكك في خطة {plan}',
+  'shopx.subscribe.billing': 'الفوترة {cycle} — ',
+  'shopx.subscribe.secureCheckout': 'دفع آمن بواسطة Stripe.',
+  'shopx.subscribe.preparing': 'جارٍ تجهيز الدفع الآمن…',
+  'shopx.subscribe.noSession': 'لم يتم العثور على الجلسة',
+  'shopx.subscribe.noSessionDescription': 'يبدو أن هناك خطأ ما. يرجى المحاولة مرة أخرى أو التواصل مع الدعم.',
+  'shopx.subscribe.verifying': 'جارٍ التحقق من اشتراكك…',
+  'shopx.subscribe.verifyingDescription': 'يرجى الانتظار بينما نقوم بتفعيل خطتك. عادة ما يستغرق ذلك بضع ثوانٍ.',
+  'shopx.subscribe.welcome': 'مرحباً بك في خطة {plan}! 🎉',
+  'shopx.subscribe.successDescription': 'تم تفعيل اشتراكك الآن. استمتع بالوصول المطور.',
+  'shopx.subscribe.goToDashboard': 'الانتقال إلى لوحة التحكم',
+  'shopx.subscribe.browseCatalog': 'تصفح الكتالوج',
+  'shopx.subscribe.pendingTitle': 'الدفع قيد المعالجة',
+  'shopx.subscribe.pendingDescription': 'يستغرق تأكيد دفعتك وقتاً أطول من المعتاد. حدّث الصفحة بعد دقيقة، أو تواصل مع الدعم إذا استمرت المشكلة — سنقوم بتفعيل خطتك بمجرد اكتمال الدفع.',
+  'shopx.subscribe.checkAgain': 'تحقق مرة أخرى',
+  'shopx.subscribe.contactSupport': 'تواصل مع الدعم',
+  'shopx.subscribe.errorTitle': 'تعذر التحقق من دفعتك',
+  'shopx.subscribe.errorDescription': 'حدث خطأ ما أثناء تفعيل اشتراكك. إذا تم خصم المبلغ، يرجى التواصل مع الدعم.',
 };

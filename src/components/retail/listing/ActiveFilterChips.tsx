@@ -1,8 +1,10 @@
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export interface ActiveFilterChip { key: string; label: string }
 export function ActiveFilterChips({ chips, onRemove, onClear }: { chips: ActiveFilterChip[]; onRemove: (key: string) => void; onClear: () => void }) {
+  const { t } = useLocale();
   if (!chips.length) return null;
-  return <div className="flex flex-wrap items-center gap-2" aria-label="Active filters">{chips.map((chip) => <Button key={chip.key} type="button" variant="outline" size="sm" onClick={() => onRemove(chip.key)} className="h-8 gap-1 rounded-full px-3 text-xs">{chip.label}<X className="h-3 w-3" /></Button>)}<Button type="button" variant="ghost" size="sm" onClick={onClear} className="h-8 text-xs text-retail-green">Clear all</Button></div>;
+  return <div className="flex flex-wrap items-center gap-2" aria-label="Active filters">{chips.map((chip) => <Button key={chip.key} type="button" variant="outline" size="sm" onClick={() => onRemove(chip.key)} className="h-8 gap-1 rounded-full px-3 text-xs">{chip.label}<X className="h-3 w-3" /></Button>)}<Button type="button" variant="ghost" size="sm" onClick={onClear} className="h-8 text-xs text-retail-green">{t('shopx.listing.clearAll')}</Button></div>;
 }
