@@ -26,24 +26,25 @@ export function AgencyHeader() {
         </RetailContainer>
       </div>
 
-      <RetailContainer className="flex min-h-[64px] items-center justify-between gap-3 py-2 lg:min-h-[72px]">
-        <Link to="/agency" className="flex items-center gap-2">
-          <BrandLogo />
+      <RetailContainer className="flex h-16 items-center gap-4">
+        <Link to="/agency" aria-label="Tejaraa Agencies and VAs home" className="flex shrink-0 items-center gap-2">
+          <BrandLogo variant="storefront" />
           <span className="hidden text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green sm:inline">
             Agencies &amp; VAs
           </span>
         </Link>
 
-        <nav aria-label="Agency programme" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Agency programme" className="ml-2 hidden items-center gap-1 lg:flex">
           {agencyNavLinks.map((link) => {
             const active = location.pathname === link.to;
             return (
               <Link
                 key={link.to}
                 to={link.to}
+                aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'rounded-md px-3 py-2 text-sm font-semibold transition-colors',
-                  active ? 'bg-retail-light-green text-retail-dark-green' : 'text-retail-muted hover:text-retail-dark-green',
+                  'rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-retail-light-green hover:text-retail-dark-green',
+                  active ? 'bg-retail-light-green text-retail-dark-green' : 'text-retail-text',
                 )}
               >
                 {link.label}
@@ -52,11 +53,11 @@ export function AgencyHeader() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <Button asChild variant="outline" size="sm" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex">
+        <div className="ml-auto flex items-center gap-2">
+          <Button asChild variant="outline" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex">
             <Link to="/agency/signin">Partner sign in</Link>
           </Button>
-          <Button asChild size="sm" className="bg-retail-green font-semibold text-primary-foreground hover:bg-retail-dark-green">
+          <Button asChild className="bg-retail-green font-semibold text-primary-foreground hover:bg-retail-dark-green">
             <Link to="/agency/apply">Apply to join</Link>
           </Button>
 

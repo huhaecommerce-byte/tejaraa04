@@ -2,6 +2,7 @@ import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
+import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import {
   Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, ArrowRight,
 } from 'lucide-react';
@@ -22,27 +23,33 @@ const benefits = [
 export default function AgencyLanding() {
   return (
     <AgencyPublicShell>
-      <section className="hero-surface relative overflow-hidden text-primary-foreground">
-        <div className="hero-grid pointer-events-none absolute inset-0 opacity-10" />
-        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:py-12 lg:py-14">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
-            <Handshake className="h-4 w-4" /> Agency &amp; VA Programme
-          </span>
-          <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.08] sm:text-5xl">
-            Grow your income every time your sellers sell
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-primary-foreground/80 sm:text-lg">
-            Earn a share of our profit on every order your sellers ever place.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild size="lg" variant="secondary">
-              <Link to="/agency/apply">Apply to join <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-              <Link to="/agency/signin">Partner sign in</Link>
-            </Button>
+      <section className="hero-surface relative overflow-hidden text-white">
+        <div aria-hidden className="hero-grid pointer-events-none absolute inset-0 opacity-15" />
+        <SellerContainer className="relative py-10 sm:py-12 lg:py-14">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-bold text-white/90">
+              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-retail-gold" />
+              Agency &amp; VA programme in Saudi Arabia
+            </span>
+            <h1 className="mt-4 text-4xl font-extrabold leading-[1.08] sm:text-5xl">
+              Grow your income every time <span className="text-retail-gold">your sellers sell.</span>
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/80 sm:text-lg">
+              Earn a share of our profit on every order your sellers ever place.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="bg-retail-gold font-bold text-retail-dark-green hover:bg-retail-gold/90">
+                <Link to="/agency/apply">
+                  Apply to join
+                  <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white/30 bg-transparent font-semibold text-white hover:bg-white/10 hover:text-white">
+                <Link to="/agency/signin">Partner sign in</Link>
+              </Button>
+            </div>
           </div>
-        </div>
+        </SellerContainer>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16">
