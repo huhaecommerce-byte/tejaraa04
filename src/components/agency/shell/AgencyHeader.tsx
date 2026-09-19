@@ -15,10 +15,10 @@ export function AgencyHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-retail-border bg-retail-card font-sans">
-      <div className="hidden bg-retail-dark-green text-primary-foreground md:flex">
+      <div className="bg-retail-dark-green text-primary-foreground">
         <RetailContainer className="flex h-11 w-full items-center justify-between gap-3 text-xs">
           <SellerPlatformSwitcher current="agencies" />
-          <nav aria-label="Utility links" className="flex shrink-0 items-center gap-3 text-primary-foreground/80">
+          <nav aria-label="Utility links" className="hidden shrink-0 items-center gap-3 font-medium text-primary-foreground/80 sm:flex">
             <Link to="/agency/contact" className="hover:text-primary-foreground">Talk to partnerships</Link>
             <Link to="/ar/agency" className="hover:text-primary-foreground">العربية</Link>
             <span className="hidden sm:inline">English</span>
