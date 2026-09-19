@@ -17,6 +17,7 @@ import { RetailContainer } from '@/components/retail/common/RetailContainer';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
 import { NotificationBell } from '@/components/NotificationBell';
 import { useWholesaleAccess } from '@/hooks/useWholesaleAccess';
+import { translateCategory } from '@/i18n/categoryNames';
 import { useLocale } from '@/i18n/LocaleProvider';
 import type { TranslationKey } from '@/i18n/dictionary';
 
