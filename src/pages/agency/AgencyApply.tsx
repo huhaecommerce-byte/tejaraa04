@@ -239,16 +239,16 @@ export default function AgencyApply() {
                   <Input id="contact" value={form.contact_name} onChange={(e) => set('contact_name', e.target.value)} placeholder="Sara Al-Otaibi" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input id="email" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} disabled={Boolean(user)} required />
-                </div>
-                <div className="space-y-2">
                   <Label htmlFor="phone">WhatsApp / phone *</Label>
                   <Input id="phone" value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+966 5x xxx xxxx" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="country">Country *</Label>
                   <Input id="country" value={form.country} onChange={(e) => set('country', e.target.value)} required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email *</Label>
+                  <Input id="email" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} disabled={Boolean(user)} required />
                 </div>
               </div>
 
