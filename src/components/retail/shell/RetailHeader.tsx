@@ -172,7 +172,7 @@ export function RetailHeader() {
                   <Wallet className="h-5 w-5 text-retail-gold" />
                   <span className="flex flex-col items-start leading-tight">
                     <span className="text-[9px] font-semibold uppercase tracking-tighter text-primary-foreground/70">{t("common.wallet")}</span>
-                    <span className="text-sm font-bold text-primary-foreground">SAR {walletBalance !== null ? walletBalance.toFixed(2) : '—'}</span>
+                    <span className="text-sm font-bold text-primary-foreground">{t('common.currency')} {walletBalance !== null ? walletBalance.toFixed(2) : '—'}</span>
                   </span>
                 </Link>
 
