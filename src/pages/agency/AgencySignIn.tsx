@@ -5,6 +5,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AgencyAuthShell } from '@/components/agency/auth/AgencyAuthShell';
 import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { canAccess, loadAccessProfile } from '@/lib/access-tiers';
+
 import { toast } from 'sonner';
 import { ArrowRight, Loader2 } from 'lucide-react';
 
