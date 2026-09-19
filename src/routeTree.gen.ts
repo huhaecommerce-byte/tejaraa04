@@ -172,6 +172,7 @@ import { Route as ApiPublicSitemapRouteImport } from './routes/api/public/sitema
 import { Route as ApiPublicSunskyCallbackRouteImport } from './routes/api/public/sunsky-callback'
 import { Route as ApiPublicWahooksTicketWebhookRouteImport } from './routes/api/public/wahooks-ticket-webhook'
 import { Route as ApiPublicWebhookPingRouteImport } from './routes/api/public/webhook-ping'
+import { Route as ArCategoryIndexRouteImport } from './routes/ar/category/index'
 import { Route as ArCategoryTopRouteImport } from './routes/ar/category/$top'
 import { Route as ArProductIdRouteImport } from './routes/ar/product/$id'
 import { Route as CategoryTopSubRouteImport } from './routes/category/$top.$sub'
@@ -1082,6 +1083,11 @@ const ApiPublicWebhookPingRoute = ApiPublicWebhookPingRouteImport.update({
   path: '/api/public/webhook-ping',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArCategoryIndexRoute = ArCategoryIndexRouteImport.update({
+  id: '/ar/category/',
+  path: '/ar/category/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArCategoryTopRoute = ArCategoryTopRouteImport.update({
   id: '/ar/category/$top',
   path: '/ar/category/$top',
@@ -1610,6 +1616,7 @@ export interface FileRoutesByFullPath {
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/admin/products/': typeof AdminProductsIndexRoute
+  '/ar/category/': typeof ArCategoryIndexRoute
   '/checkout/shop/': typeof CheckoutShopIndexRoute
   '/dropshipping/catalog/': typeof DropshippingCatalogIndexRoute
   '/dropshipping/integrations/': typeof DropshippingIntegrationsIndexRoute
@@ -1829,6 +1836,7 @@ export interface FileRoutesByTo {
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
   '/admin/products': typeof AdminProductsIndexRoute
+  '/ar/category': typeof ArCategoryIndexRoute
   '/checkout/shop': typeof CheckoutShopIndexRoute
   '/dropshipping/catalog': typeof DropshippingCatalogIndexRoute
   '/dropshipping/integrations': typeof DropshippingIntegrationsIndexRoute
@@ -2057,6 +2065,7 @@ export interface FileRoutesById {
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/admin/products/': typeof AdminProductsIndexRoute
+  '/ar/category/': typeof ArCategoryIndexRoute
   '/checkout/shop/': typeof CheckoutShopIndexRoute
   '/dropshipping/catalog/': typeof DropshippingCatalogIndexRoute
   '/dropshipping/integrations/': typeof DropshippingIntegrationsIndexRoute
@@ -2285,6 +2294,7 @@ export interface FileRouteTypes {
     | '/admin/customers/'
     | '/admin/orders/'
     | '/admin/products/'
+    | '/ar/category/'
     | '/checkout/shop/'
     | '/dropshipping/catalog/'
     | '/dropshipping/integrations/'
@@ -2504,6 +2514,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/products'
+    | '/ar/category'
     | '/checkout/shop'
     | '/dropshipping/catalog'
     | '/dropshipping/integrations'
@@ -2731,6 +2742,7 @@ export interface FileRouteTypes {
     | '/admin/customers/'
     | '/admin/orders/'
     | '/admin/products/'
+    | '/ar/category/'
     | '/checkout/shop/'
     | '/dropshipping/catalog/'
     | '/dropshipping/integrations/'
@@ -2860,6 +2872,7 @@ export interface RootRouteChildren {
   ArProductIdRoute: typeof ArProductIdRoute
   CheckoutShopThankYouRoute: typeof CheckoutShopThankYouRoute
   WalletTopupReturnRoute: typeof WalletTopupReturnRoute
+  ArCategoryIndexRoute: typeof ArCategoryIndexRoute
   CheckoutShopIndexRoute: typeof CheckoutShopIndexRoute
   ApiPublicNoonEventsRoute: typeof ApiPublicNoonEventsRoute
   ApiPublicNoonRunJobsRoute: typeof ApiPublicNoonRunJobsRoute
@@ -4019,6 +4032,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicWebhookPingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ar/category/': {
+      id: '/ar/category/'
+      path: '/ar/category'
+      fullPath: '/ar/category/'
+      preLoaderRoute: typeof ArCategoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ar/category/$top': {
       id: '/ar/category/$top'
       path: '/ar/category/$top'
@@ -4937,6 +4957,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArProductIdRoute: ArProductIdRoute,
   CheckoutShopThankYouRoute: CheckoutShopThankYouRoute,
   WalletTopupReturnRoute: WalletTopupReturnRoute,
+  ArCategoryIndexRoute: ArCategoryIndexRoute,
   CheckoutShopIndexRoute: CheckoutShopIndexRoute,
   ApiPublicNoonEventsRoute: ApiPublicNoonEventsRoute,
   ApiPublicNoonRunJobsRoute: ApiPublicNoonRunJobsRoute,
