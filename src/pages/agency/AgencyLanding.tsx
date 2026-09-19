@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
 import {
-  Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, ArrowRight, CheckCircle2,
+  Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, ArrowRight,
 } from 'lucide-react';
 
 const steps = [
