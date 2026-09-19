@@ -13,5 +13,5 @@
 - [x] Give agency sign-in, application/sign-up, email verification, and password reset a dedicated auth design
 - [x] Verify agency public and auth layouts on desktop and mobile; portal code verified, signed-in preview awaits a partner account
 - [x] Place Agencies & VAs third in the platform switcher and match the Selling top banner size
-- [ ] Agency signup: GCC country dropdown + per-country phone code prefix
-- [ ] Agency signup: email field placeholder/full-width confirm
+- [x] Agency signup: GCC country dropdown + per-country phone code prefix
+- [x] Agency signup: email field placeholder/full-width confirm
