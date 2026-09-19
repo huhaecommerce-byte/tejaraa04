@@ -112,8 +112,6 @@ export default function AgencyApply() {
       email: form.email.trim(),
       phone: form.phone.trim() || null,
       country: form.country.trim() || null,
-      website: form.website.trim() || null,
-      audience: form.audience.trim() || null,
       invite_code: '',
     } as never);
     if (error) throw error;
