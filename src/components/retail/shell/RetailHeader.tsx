@@ -128,8 +128,6 @@ export function RetailHeader() {
               <span className="pb-2 font-bold sm:hidden">Tejaraa Shop</span>
             </div>
             <nav aria-label="Utility links" className="flex shrink-0 items-center gap-3 text-primary-foreground/80">
-              <Link to="/account/orders" className="hidden hover:text-primary-foreground md:inline">Track order</Link>
-              <Link to="/contact" className="hidden hover:text-primary-foreground sm:inline">Help Center</Link>
               <Link to="/ar" className="hover:text-primary-foreground">العربية</Link>
               <span className="hidden sm:inline">English</span>
             </nav>
