@@ -1,9 +1,10 @@
 /**
  * Central UI string dictionary for Tejaraa.
  *
- * Keys are namespaced by section: `common.*`, `shop.*`, `selling.*`,
- * `agency.*`, `supplier.*`. English is the source of truth; every key MUST
- * have an Arabic counterpart. Missing Arabic falls back to English at runtime.
+ * Keys are namespaced by section: `common.*`, `platform.*`, `shop.*`,
+ * `selling.*`, `agency.*`, `supplier.*`. English is the source of truth;
+ * every key SHOULD have an Arabic counterpart — missing Arabic falls back
+ * to English at runtime.
  */
 export type Locale = 'en' | 'ar';
 
@@ -58,8 +59,40 @@ export const en = {
   'shop.mobileNavAria': 'Mobile shop navigation',
   'shop.account': 'Account',
 
-  // ---------- shop footer ----------
-  'shop.footer.language': 'Language',
+  // ---------- shop footer: trust bar ----------
+  'shop.trust.deliveryTitle': 'Delivery across Saudi Arabia',
+  'shop.trust.deliveryDesc': 'Local and imported products',
+  'shop.trust.checkoutTitle': 'Secure checkout',
+  'shop.trust.checkoutDesc': 'Protected payment experience',
+  'shop.trust.returnsTitle': 'Easy returns',
+  'shop.trust.returnsDesc': 'Clear returns support process',
+  'shop.trust.supportTitle': 'Customer support',
+  'shop.trust.supportDesc': 'Arabic and English assistance',
+
+  // ---------- shop footer: link groups ----------
+  'shop.footer.blurb':
+    'Everyday shopping across Saudi Arabia — thousands of products, local delivery and secure checkout.',
+  'shop.footer.shop': 'Shop',
+  'shop.footer.allCategories': 'All categories',
+  'shop.footer.allProducts': 'Shop all products',
+  'shop.footer.readyToShip': 'Ready to ship in Saudi Arabia',
+  'shop.footer.searchProducts': 'Search products',
+  'shop.footer.customerService': 'Customer service',
+  'shop.footer.contactUs': 'Contact us',
+  'shop.footer.trackOrder': 'Track your order',
+  'shop.footer.returns': 'Returns',
+  'shop.footer.yourCart': 'Your cart',
+  'shop.footer.aboutTejaraa': 'About Tejaraa',
+  'shop.footer.ourServices': 'Our services',
+  'shop.footer.guides': 'Guides & articles',
+  'shop.footer.wishlist': 'Wishlist',
+  'shop.footer.forBusiness': 'For business',
+  'shop.footer.sellerServices': 'Seller services',
+  'shop.footer.suppliers': 'Suppliers',
+  'shop.footer.agencies': 'Agencies & VAs',
+  'shop.footer.pricing': 'Pricing',
+  'shop.footer.copyright': '© 2026 Tejaraa. All rights reserved.',
+  'shop.footer.payments': 'Card payments and cash on delivery',
 } as const;
 
 export type TranslationKey = keyof typeof en;
@@ -115,8 +148,40 @@ export const ar: Partial<Record<TranslationKey, string>> = {
   'shop.mobileNavAria': 'قائمة التنقل للمتجر',
   'shop.account': 'الحساب',
 
-  // ---------- shop footer ----------
-  'shop.footer.language': 'اللغة',
+  // ---------- shop footer: trust bar ----------
+  'shop.trust.deliveryTitle': 'التوصيل في جميع أنحاء السعودية',
+  'shop.trust.deliveryDesc': 'منتجات محلية ومستوردة',
+  'shop.trust.checkoutTitle': 'دفع آمن',
+  'shop.trust.checkoutDesc': 'تجربة دفع محمية',
+  'shop.trust.returnsTitle': 'إرجاع سهل',
+  'shop.trust.returnsDesc': 'إجراءات إرجاع واضحة ودعم مستمر',
+  'shop.trust.supportTitle': 'دعم العملاء',
+  'shop.trust.supportDesc': 'مساعدة بالعربية والإنجليزية',
+
+  // ---------- shop footer: link groups ----------
+  'shop.footer.blurb':
+    'تسوق يومي في جميع أنحاء السعودية — آلاف المنتجات، توصيل محلي، ودفع آمن.',
+  'shop.footer.shop': 'المتجر',
+  'shop.footer.allCategories': 'كل الأقسام',
+  'shop.footer.allProducts': 'تصفح كل المنتجات',
+  'shop.footer.readyToShip': 'جاهز للشحن داخل السعودية',
+  'shop.footer.searchProducts': 'البحث عن المنتجات',
+  'shop.footer.customerService': 'خدمة العملاء',
+  'shop.footer.contactUs': 'تواصل معنا',
+  'shop.footer.trackOrder': 'تتبع طلبك',
+  'shop.footer.returns': 'الإرجاع',
+  'shop.footer.yourCart': 'سلة التسوق',
+  'shop.footer.aboutTejaraa': 'عن تجارة',
+  'shop.footer.ourServices': 'خدماتنا',
+  'shop.footer.guides': 'أدلة ومقالات',
+  'shop.footer.wishlist': 'المفضلة',
+  'shop.footer.forBusiness': 'للأعمال',
+  'shop.footer.sellerServices': 'خدمات البائعين',
+  'shop.footer.suppliers': 'الموردون',
+  'shop.footer.agencies': 'الوكالات والمساعدون الافتراضيون',
+  'shop.footer.pricing': 'الأسعار',
+  'shop.footer.copyright': '© 2026 تجارة. جميع الحقوق محفوظة.',
+  'shop.footer.payments': 'الدفع بالبطاقة والدفع عند الاستلام',
 };
 
 export const dictionaries: Record<Locale, Partial<Record<TranslationKey, string>>> = {
