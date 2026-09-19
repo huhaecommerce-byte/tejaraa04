@@ -69,7 +69,7 @@ export function AgencyAuthShell({ eyebrow, title, subtitle, children, footer, wi
           </div>
           <div className="flex flex-1 items-center justify-center py-8 lg:py-10">
             <div className={wide ? 'w-full max-w-2xl' : 'w-full max-w-md'}>
-              <Link to="/agency" className="mb-7 hidden w-fit items-center gap-2 text-sm font-semibold text-retail-muted hover:text-retail-dark-green lg:inline-flex">
+              <Link to="/agency" className="mb-7 inline-flex w-fit items-center gap-2 rounded-lg bg-primary px-3 py-2 text-xs font-bold text-primary-foreground shadow-button transition-transform hover:-translate-y-0.5">
                 <ArrowLeft className="h-4 w-4" /> Back to programme
               </Link>
               <div className="mb-6">
