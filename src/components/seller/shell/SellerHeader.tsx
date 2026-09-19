@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from '@/lib/router-compat';
-import { ChevronDown, Menu, PhoneCall } from 'lucide-react';
+import { ChevronDown, Menu } from 'lucide-react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
