@@ -2640,6 +2640,8 @@ export type Database = {
           access_token_ciphertext: string
           api_version: string
           auto_sync: boolean
+          client_id: string | null
+          client_secret_ciphertext: string | null
           created_at: string
           currency: string
           id: string
@@ -2659,6 +2661,7 @@ export type Database = {
           shop_name: string | null
           status: string
           store_integration_id: string | null
+          token_expires_at: string | null
           updated_at: string
           user_id: string
           webhook_secret_hash: string | null
@@ -2668,6 +2671,8 @@ export type Database = {
           access_token_ciphertext: string
           api_version?: string
           auto_sync?: boolean
+          client_id?: string | null
+          client_secret_ciphertext?: string | null
           created_at?: string
           currency?: string
           id?: string
@@ -2687,6 +2692,7 @@ export type Database = {
           shop_name?: string | null
           status?: string
           store_integration_id?: string | null
+          token_expires_at?: string | null
           updated_at?: string
           user_id: string
           webhook_secret_hash?: string | null
@@ -2696,6 +2702,8 @@ export type Database = {
           access_token_ciphertext?: string
           api_version?: string
           auto_sync?: boolean
+          client_id?: string | null
+          client_secret_ciphertext?: string | null
           created_at?: string
           currency?: string
           id?: string
@@ -2715,6 +2723,7 @@ export type Database = {
           shop_name?: string | null
           status?: string
           store_integration_id?: string | null
+          token_expires_at?: string | null
           updated_at?: string
           user_id?: string
           webhook_secret_hash?: string | null
