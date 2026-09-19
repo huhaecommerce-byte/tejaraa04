@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { RetailContainer } from '@/components/retail/common/RetailContainer';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import { agencyNavLinks } from '@/data/agencyProgramme';
 import { cn } from '@/lib/utils';
 

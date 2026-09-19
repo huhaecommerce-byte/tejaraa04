@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
@@ -96,7 +97,6 @@ export function RetailHeader() {
   }, [location.pathname]);
 
   const isDropshippingPortal = location.pathname.startsWith('/dropshipping') || location.pathname.startsWith('/dashboard');
-  const isArabic = location.pathname === '/ar' || location.pathname.startsWith('/ar/');
   const hideShopNav = Boolean(user) && isDropshippingPortal;
   const hidePortalHeader = Boolean(user) && isDropshippingPortal;
 

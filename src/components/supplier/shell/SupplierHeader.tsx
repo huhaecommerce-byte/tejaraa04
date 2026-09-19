@@ -7,6 +7,7 @@ import {
   Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger,
 } from '@/components/ui/sheet';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import { SupplierContainer } from '@/components/supplier/common/SupplierContainer';
 import { supplierApplyPath, supplierSignInPath } from '@/data/supplierPartners';
 

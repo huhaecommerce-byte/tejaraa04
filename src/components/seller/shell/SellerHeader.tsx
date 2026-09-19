@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/sheet';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerPlatformSwitcher } from './SellerPlatformSwitcher';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import { servicePages } from '@/data/sellerServicePages';
 
 const navItems = [
