@@ -241,7 +241,7 @@ export function RetailHeader() {
                 <Link to={user ? accountHref : '/login'} className="hidden h-auto min-w-14 items-center gap-2 px-2 py-1 text-left text-retail-text hover:text-retail-green md:inline-flex">
                   <User className="h-5 w-5 shrink-0" />
                   <span className="hidden text-[10px] leading-tight xl:block">
-                    <span className="block text-retail-muted">{user ? `Hello, ${user.name.split(' ')[0]}` : 'Hello, sign in'}</span>
+                    <span className="block text-retail-muted">{user ? t('shop.hello', { name: user.name.split(' ')[0] }) : t('shop.helloSignIn')}</span>
                     <strong className="text-xs">{t("common.myAccount")}</strong>
                   </span>
                 </Link>
