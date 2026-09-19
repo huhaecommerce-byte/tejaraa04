@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
@@ -96,7 +97,6 @@ export function RetailHeader() {
   }, [location.pathname]);
 
   const isDropshippingPortal = location.pathname.startsWith('/dropshipping') || location.pathname.startsWith('/dashboard');
-  const isArabic = location.pathname === '/ar' || location.pathname.startsWith('/ar/');
   const hideShopNav = Boolean(user) && isDropshippingPortal;
   const hidePortalHeader = Boolean(user) && isDropshippingPortal;
 
@@ -128,34 +128,7 @@ export function RetailHeader() {
               <SellerPlatformSwitcher current={activePlatform === '/partners' ? 'suppliers' : activePlatform === '/agency' ? 'agencies' : activePlatform === '/selling' ? 'selling' : 'shop'} />
               <span className="pb-2 font-bold sm:hidden">Tejaraa Shop</span>
             </div>
-            <nav aria-label="Language" className="flex shrink-0 items-center rounded-full border border-primary-foreground/25 bg-primary-foreground/10 p-0.5 shadow-inner">
-              {isArabic ? (
-                <span className="flex items-center gap-1.5 rounded-full bg-retail-card px-3 py-1 text-[11px] font-bold text-retail-dark-green shadow-sm">
-                  <Globe2 className="h-3.5 w-3.5" />
-                  العربية
-                </span>
-              ) : (
-                <Link
-                  to="/ar"
-                  className="flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-primary-foreground/75 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
-                >
-                  <Globe2 className="h-3.5 w-3.5" />
-                  العربية
-                </Link>
-              )}
-              {isArabic ? (
-                <Link
-                  to="/"
-                  className="flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-primary-foreground/75 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground"
-                >
-                  English
-                </Link>
-              ) : (
-                <span className="flex items-center gap-1.5 rounded-full bg-retail-card px-3 py-1 text-[11px] font-bold text-retail-dark-green shadow-sm">
-                  English
-                </span>
-              )}
-            </nav>
+            <LanguageToggle />
           </RetailContainer>
         </div>
 

@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/sheet';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerPlatformSwitcher } from './SellerPlatformSwitcher';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import { servicePages } from '@/data/sellerServicePages';
 
 const navItems = [
@@ -48,6 +49,7 @@ export function SellerHeader() {
       <div className="bg-retail-dark-green text-white">
         <SellerContainer className="flex h-11 items-center justify-between gap-3">
           <SellerPlatformSwitcher />
+          <LanguageToggle />
         </SellerContainer>
       </div>
 
