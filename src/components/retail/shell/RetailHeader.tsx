@@ -17,6 +17,8 @@ import { RetailContainer } from '@/components/retail/common/RetailContainer';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
 import { NotificationBell } from '@/components/NotificationBell';
 import { useWholesaleAccess } from '@/hooks/useWholesaleAccess';
+import { useLocale } from '@/i18n/LocaleProvider';
+import type { TranslationKey } from '@/i18n/dictionary';
 
 interface CategoryRow { top_category: string; sub_category: string; cnt: number }
 interface CategoryGroup { name: string; count: number; children: string[] }
