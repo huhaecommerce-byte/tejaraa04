@@ -5,6 +5,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { useAgency } from '@/hooks/useAgency';
+import { useAccessTier } from '@/hooks/useAccessTier';
+
 import { agencyNavigation } from '@/config/navigation';
 import { CommandDeck } from '@/components/layout/CommandDeck';
 import { Menu } from 'lucide-react';
