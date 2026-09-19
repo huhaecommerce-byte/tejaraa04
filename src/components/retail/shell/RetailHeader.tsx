@@ -35,14 +35,15 @@ const establishedCategoryFallbacks: CategoryGroup[] = [
   { name: 'Daily needs', count: 0, children: [] },
 ];
 
-const platformLinks = [
-  { label: 'Shop', to: '/', icon: ShoppingCart },
-  { label: 'Dropshipping & Selling Services', to: '/selling', icon: Store },
-  { label: 'Wholesalers and Suppliers', to: '/partners', icon: Warehouse },
-  { label: 'Agencies & VAs', to: '/agency', icon: Handshake },
+const platformLinks: { label: TranslationKey; to: string; icon: typeof ShoppingCart }[] = [
+  { label: 'platform.shop', to: '/', icon: ShoppingCart },
+  { label: 'platform.selling', to: '/selling', icon: Store },
+  { label: 'platform.suppliers', to: '/partners', icon: Warehouse },
+  { label: 'platform.agencies', to: '/agency', icon: Handshake },
 ];
 
 export function RetailHeader() {
+  const { t } = useLocale();
   const { user, logout } = useAuth();
   const { count } = useCart();
   const navigate = useNavigate();
