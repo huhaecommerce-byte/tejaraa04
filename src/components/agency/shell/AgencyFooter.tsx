@@ -31,7 +31,6 @@ const groups: FooterGroup[] = [
     title: 'Resources',
     links: [
       { label: 'Frequently asked questions', to: '/agency/faq' },
-      { label: 'Talk to partnerships', to: '/agency/contact' },
       { label: 'Guides & articles', to: '/blog' },
       { label: 'بالعربية', to: '/ar/agency' },
     ],

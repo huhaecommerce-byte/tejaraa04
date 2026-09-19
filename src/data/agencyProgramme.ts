@@ -6,7 +6,6 @@ export const agencyNavLinks = [
   { label: 'Commission', to: '/agency/commission' },
   { label: 'Who can join', to: '/agency/who-can-join' },
   { label: 'FAQ', to: '/agency/faq' },
-  { label: 'Contact', to: '/agency/contact' },
 ] as const;
 
 export const agencyApplyPath = '/agency/apply';
