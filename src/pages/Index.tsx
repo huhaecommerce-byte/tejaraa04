@@ -5,6 +5,7 @@ import { CategoryRail, FeaturedDepartmentSection, ProductRail, PromotionGrid, Re
 import type { HomepageCategory, HomepageProduct, HomepageRating, HomepageViewCount } from '@/components/retail/home';
 import { supabase } from '@/integrations/supabase/client';
 import { JsonLd } from '@/components/JsonLd';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 const LIST_COLUMNS = 'id,sku,name,slug,top_category,sub_category,source,images,price_sar,price_usd,cost_usd,moq,weight_kg,stock_qty,track_inventory,is_featured,created_at';
 const fallbackCategories = ['Mobiles & tablets', 'Electronics', 'Home & kitchen', 'Fashion', 'Beauty & care', 'Health', 'Sports', 'Automotive', 'Daily needs'];
