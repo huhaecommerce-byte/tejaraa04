@@ -5328,7 +5328,7 @@ export type Database = {
         Returns: number
       }
       agency_request_payout: {
-        Args: { _amount: number; _method?: string; _note?: string }
+        Args: { _amount?: number; _method?: string; _note?: string }
         Returns: Json
       }
       analytics_session_timeline: {

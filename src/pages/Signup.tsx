@@ -18,6 +18,19 @@ import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
 
 type Audience = 'shop' | 'dropshipping';
 
+
+/**
+ * Applies an invite code from the URL. Agency codes and customer referral codes
+ * live in separate programmes, so we try both — only one can ever match.
+ */
+async function applyInviteCode(code: string): Promise<{ message?: string } | null> {
+  const upper = code.toUpperCase();
+  const { data: agencyResult } = await (supabase as any).rpc('apply_agency_code', { _code: upper });
+  if (agencyResult?.ok) return { message: `You were referred by ${agencyResult.agency}` };
+  const { data } = await (supabase as any).rpc('apply_referral_code', { _code: upper });
+  return data?.ok ? data : null;
+}
+
 const Signup = ({ audience = 'shop' }: { audience?: Audience }) => {
   const isDropship = audience === 'dropshipping';
   const homeDest = isDropship ? '/dropshipping' : '/account';
@@ -63,8 +76,8 @@ const Signup = ({ audience = 'shop' }: { audience?: Audience }) => {
     if (!isLoading && user && step === 'form') {
       // If a ref code was on the URL, try to apply it before redirecting
       if (refCode) {
-        supabase.rpc('apply_referral_code', { _code: refCode.toUpperCase() }).then(({ data }: any) => {
-          if (data?.ok) toast.success(data.message);
+        applyInviteCode(refCode).then((res) => {
+          if (res?.message) toast.success(res.message);
         });
       }
       navigate(homeDest, { replace: true });
@@ -83,7 +96,7 @@ const Signup = ({ audience = 'shop' }: { audience?: Audience }) => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
         // Email confirmation is disabled — account is already active
-        if (refCode) await supabase.rpc('apply_referral_code', { _code: refCode.toUpperCase() });
+        if (refCode) await applyInviteCode(refCode);
         celebrateSignup();
         toast.success('🎉 Welcome to Tejaraa! Your seller account is ready.');
         setShowWelcome(true);
@@ -116,7 +129,7 @@ const Signup = ({ audience = 'shop' }: { audience?: Audience }) => {
 
 
       if (refCode) {
-        await supabase.rpc('apply_referral_code', { _code: refCode.toUpperCase() });
+        await applyInviteCode(refCode);
       }
       celebrateSignup();
       toast.success('🎉 Email verified! Your seller account is ready.');

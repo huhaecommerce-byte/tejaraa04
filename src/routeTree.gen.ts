@@ -34,6 +34,7 @@ import { Route as AccountOrdersRouteImport } from './routes/account/orders'
 import { Route as AccountProfileRouteImport } from './routes/account/profile'
 import { Route as AccountWishlistRouteImport } from './routes/account/wishlist'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAgencyPayoutsRouteImport } from './routes/admin/agency-payouts'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin/analytics'
 import { Route as AdminAuditLogRouteImport } from './routes/admin/audit-log'
 import { Route as AdminCatalogHubRouteImport } from './routes/admin/catalog-hub'
@@ -65,6 +66,7 @@ import { Route as AgencyApplyRouteImport } from './routes/agency/apply'
 import { Route as AgencyPortalRouteRouteImport } from './routes/agency/portal/route'
 import { Route as AgencySigninRouteImport } from './routes/agency/signin'
 import { Route as ArIndexRouteImport } from './routes/ar/index'
+import { Route as ArAgencyRouteImport } from './routes/ar/agency'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogAmazonFbaLabelingRequirementsGuideRouteImport } from './routes/blog/amazon-fba-labeling-requirements-guide'
 import { Route as BlogAmazonFbaVsNoonFbnSaudiArabiaRouteImport } from './routes/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
@@ -139,6 +141,8 @@ import { Route as SellingWarehousingRouteImport } from './routes/selling.warehou
 import { Route as ShopForgotPasswordRouteImport } from './routes/shop.forgot-password'
 import { Route as ShopSigninRouteImport } from './routes/shop.signin'
 import { Route as ShopSignupRouteImport } from './routes/shop.signup'
+import { Route as AdminAgenciesIndexRouteImport } from './routes/admin/agencies/index'
+import { Route as AdminAgenciesIdRouteImport } from './routes/admin/agencies/$id'
 import { Route as AdminCustomersIndexRouteImport } from './routes/admin/customers/index'
 import { Route as AdminCustomersIdRouteImport } from './routes/admin/customers/$id'
 import { Route as AdminOrdersIndexRouteImport } from './routes/admin/orders/index'
@@ -168,6 +172,7 @@ import { Route as ApiFnSunskyProxyRouteImport } from './routes/api/fn/sunsky-pro
 import { Route as ApiFnTryotoProxyRouteImport } from './routes/api/fn/tryoto-proxy'
 import { Route as ApiFnVerifyCheckoutSessionRouteImport } from './routes/api/fn/verify-checkout-session'
 import { Route as ApiFnWalletTopupCheckoutRouteImport } from './routes/api/fn/wallet-topup-checkout'
+import { Route as ApiPublicApproveAgencyCommissionsRouteImport } from './routes/api/public/approve-agency-commissions'
 import { Route as ApiPublicAuthEmailHookRouteImport } from './routes/api/public/auth-email-hook'
 import { Route as ApiPublicHandleEmailSuppressionRouteImport } from './routes/api/public/handle-email-suppression'
 import { Route as ApiPublicHandleEmailUnsubscribeRouteImport } from './routes/api/public/handle-email-unsubscribe'
@@ -371,6 +376,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRouteRoute,
 } as any)
+const AdminAgencyPayoutsRoute = AdminAgencyPayoutsRouteImport.update({
+  id: '/agency-payouts',
+  path: '/agency-payouts',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
@@ -524,6 +534,11 @@ const AgencySigninRoute = AgencySigninRouteImport.update({
 const ArIndexRoute = ArIndexRouteImport.update({
   id: '/ar/',
   path: '/ar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArAgencyRoute = ArAgencyRouteImport.update({
+  id: '/ar/agency',
+  path: '/ar/agency',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -913,6 +928,16 @@ const ShopSignupRoute = ShopSignupRouteImport.update({
   path: '/shop/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAgenciesIndexRoute = AdminAgenciesIndexRouteImport.update({
+  id: '/agencies/',
+  path: '/agencies/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminAgenciesIdRoute = AdminAgenciesIdRouteImport.update({
+  id: '/agencies/$id',
+  path: '/agencies/$id',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const AdminCustomersIndexRoute = AdminCustomersIndexRouteImport.update({
   id: '/customers/',
   path: '/customers/',
@@ -1061,6 +1086,12 @@ const ApiFnWalletTopupCheckoutRoute =
   ApiFnWalletTopupCheckoutRouteImport.update({
     id: '/api/fn/wallet-topup-checkout',
     path: '/api/fn/wallet-topup-checkout',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicApproveAgencyCommissionsRoute =
+  ApiPublicApproveAgencyCommissionsRouteImport.update({
+    id: '/api/public/approve-agency-commissions',
+    path: '/api/public/approve-agency-commissions',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ApiPublicAuthEmailHookRoute = ApiPublicAuthEmailHookRouteImport.update({
@@ -1512,6 +1543,7 @@ export interface FileRoutesByFullPath {
   '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/agency-payouts': typeof AdminAgencyPayoutsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/catalog-hub': typeof AdminCatalogHubRoute
@@ -1540,6 +1572,7 @@ export interface FileRoutesByFullPath {
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/signin': typeof AgencySigninRoute
+  '/ar/agency': typeof ArAgencyRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
   '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
@@ -1617,6 +1650,7 @@ export interface FileRoutesByFullPath {
   '/dropshipping/': typeof DropshippingIndexRoute
   '/partners/': typeof PartnersIndexRoute
   '/selling/': typeof SellingIndexRoute
+  '/admin/agencies/$id': typeof AdminAgenciesIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
@@ -1642,6 +1676,7 @@ export interface FileRoutesByFullPath {
   '/api/fn/tryoto-proxy': typeof ApiFnTryotoProxyRoute
   '/api/fn/verify-checkout-session': typeof ApiFnVerifyCheckoutSessionRoute
   '/api/fn/wallet-topup-checkout': typeof ApiFnWalletTopupCheckoutRoute
+  '/api/public/approve-agency-commissions': typeof ApiPublicApproveAgencyCommissionsRoute
   '/api/public/auth-email-hook': typeof ApiPublicAuthEmailHookRoute
   '/api/public/handle-email-suppression': typeof ApiPublicHandleEmailSuppressionRoute
   '/api/public/handle-email-unsubscribe': typeof ApiPublicHandleEmailUnsubscribeRoute
@@ -1682,6 +1717,7 @@ export interface FileRoutesByFullPath {
   '/partners/admin/suppliers': typeof PartnersAdminSuppliersRouteWithChildren
   '/partners/admin/team': typeof PartnersAdminTeamRoute
   '/wallet/topup/return': typeof WalletTopupReturnRoute
+  '/admin/agencies/': typeof AdminAgenciesIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/admin/products/': typeof AdminProductsIndexRoute
@@ -1744,6 +1780,7 @@ export interface FileRoutesByTo {
   '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/agency-payouts': typeof AdminAgencyPayoutsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/catalog-hub': typeof AdminCatalogHubRoute
@@ -1772,6 +1809,7 @@ export interface FileRoutesByTo {
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/signin': typeof AgencySigninRoute
+  '/ar/agency': typeof ArAgencyRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
   '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
@@ -1847,6 +1885,7 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutIndexRoute
   '/dropshipping': typeof DropshippingIndexRoute
   '/selling': typeof SellingIndexRoute
+  '/admin/agencies/$id': typeof AdminAgenciesIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
@@ -1872,6 +1911,7 @@ export interface FileRoutesByTo {
   '/api/fn/tryoto-proxy': typeof ApiFnTryotoProxyRoute
   '/api/fn/verify-checkout-session': typeof ApiFnVerifyCheckoutSessionRoute
   '/api/fn/wallet-topup-checkout': typeof ApiFnWalletTopupCheckoutRoute
+  '/api/public/approve-agency-commissions': typeof ApiPublicApproveAgencyCommissionsRoute
   '/api/public/auth-email-hook': typeof ApiPublicAuthEmailHookRoute
   '/api/public/handle-email-suppression': typeof ApiPublicHandleEmailSuppressionRoute
   '/api/public/handle-email-unsubscribe': typeof ApiPublicHandleEmailUnsubscribeRoute
@@ -1911,6 +1951,7 @@ export interface FileRoutesByTo {
   '/partners/admin/supplier-integrations': typeof PartnersAdminSupplierIntegrationsRoute
   '/partners/admin/team': typeof PartnersAdminTeamRoute
   '/wallet/topup/return': typeof WalletTopupReturnRoute
+  '/admin/agencies': typeof AdminAgenciesIndexRoute
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
   '/admin/products': typeof AdminProductsIndexRoute
@@ -1979,6 +2020,7 @@ export interface FileRoutesById {
   '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/agency-payouts': typeof AdminAgencyPayoutsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/catalog-hub': typeof AdminCatalogHubRoute
@@ -2007,6 +2049,7 @@ export interface FileRoutesById {
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/signin': typeof AgencySigninRoute
+  '/ar/agency': typeof ArAgencyRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
   '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
@@ -2085,6 +2128,7 @@ export interface FileRoutesById {
   '/dropshipping/': typeof DropshippingIndexRoute
   '/partners/': typeof PartnersIndexRoute
   '/selling/': typeof SellingIndexRoute
+  '/admin/agencies/$id': typeof AdminAgenciesIdRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/admin/products/$id': typeof AdminProductsIdRoute
@@ -2110,6 +2154,7 @@ export interface FileRoutesById {
   '/api/fn/tryoto-proxy': typeof ApiFnTryotoProxyRoute
   '/api/fn/verify-checkout-session': typeof ApiFnVerifyCheckoutSessionRoute
   '/api/fn/wallet-topup-checkout': typeof ApiFnWalletTopupCheckoutRoute
+  '/api/public/approve-agency-commissions': typeof ApiPublicApproveAgencyCommissionsRoute
   '/api/public/auth-email-hook': typeof ApiPublicAuthEmailHookRoute
   '/api/public/handle-email-suppression': typeof ApiPublicHandleEmailSuppressionRoute
   '/api/public/handle-email-unsubscribe': typeof ApiPublicHandleEmailUnsubscribeRoute
@@ -2150,6 +2195,7 @@ export interface FileRoutesById {
   '/partners/admin/suppliers': typeof PartnersAdminSuppliersRouteWithChildren
   '/partners/admin/team': typeof PartnersAdminTeamRoute
   '/wallet/topup/return': typeof WalletTopupReturnRoute
+  '/admin/agencies/': typeof AdminAgenciesIndexRoute
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/admin/products/': typeof AdminProductsIndexRoute
@@ -2219,6 +2265,7 @@ export interface FileRouteTypes {
     | '/account/orders'
     | '/account/profile'
     | '/account/wishlist'
+    | '/admin/agency-payouts'
     | '/admin/analytics'
     | '/admin/audit-log'
     | '/admin/catalog-hub'
@@ -2247,6 +2294,7 @@ export interface FileRouteTypes {
     | '/admin/whatsapp-logs'
     | '/agency/apply'
     | '/agency/signin'
+    | '/ar/agency'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
     | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
@@ -2324,6 +2372,7 @@ export interface FileRouteTypes {
     | '/dropshipping/'
     | '/partners/'
     | '/selling/'
+    | '/admin/agencies/$id'
     | '/admin/customers/$id'
     | '/admin/orders/$id'
     | '/admin/products/$id'
@@ -2349,6 +2398,7 @@ export interface FileRouteTypes {
     | '/api/fn/tryoto-proxy'
     | '/api/fn/verify-checkout-session'
     | '/api/fn/wallet-topup-checkout'
+    | '/api/public/approve-agency-commissions'
     | '/api/public/auth-email-hook'
     | '/api/public/handle-email-suppression'
     | '/api/public/handle-email-unsubscribe'
@@ -2389,6 +2439,7 @@ export interface FileRouteTypes {
     | '/partners/admin/suppliers'
     | '/partners/admin/team'
     | '/wallet/topup/return'
+    | '/admin/agencies/'
     | '/admin/customers/'
     | '/admin/orders/'
     | '/admin/products/'
@@ -2451,6 +2502,7 @@ export interface FileRouteTypes {
     | '/account/orders'
     | '/account/profile'
     | '/account/wishlist'
+    | '/admin/agency-payouts'
     | '/admin/analytics'
     | '/admin/audit-log'
     | '/admin/catalog-hub'
@@ -2479,6 +2531,7 @@ export interface FileRouteTypes {
     | '/admin/whatsapp-logs'
     | '/agency/apply'
     | '/agency/signin'
+    | '/ar/agency'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
     | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
@@ -2554,6 +2607,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/dropshipping'
     | '/selling'
+    | '/admin/agencies/$id'
     | '/admin/customers/$id'
     | '/admin/orders/$id'
     | '/admin/products/$id'
@@ -2579,6 +2633,7 @@ export interface FileRouteTypes {
     | '/api/fn/tryoto-proxy'
     | '/api/fn/verify-checkout-session'
     | '/api/fn/wallet-topup-checkout'
+    | '/api/public/approve-agency-commissions'
     | '/api/public/auth-email-hook'
     | '/api/public/handle-email-suppression'
     | '/api/public/handle-email-unsubscribe'
@@ -2618,6 +2673,7 @@ export interface FileRouteTypes {
     | '/partners/admin/supplier-integrations'
     | '/partners/admin/team'
     | '/wallet/topup/return'
+    | '/admin/agencies'
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/products'
@@ -2685,6 +2741,7 @@ export interface FileRouteTypes {
     | '/account/orders'
     | '/account/profile'
     | '/account/wishlist'
+    | '/admin/agency-payouts'
     | '/admin/analytics'
     | '/admin/audit-log'
     | '/admin/catalog-hub'
@@ -2713,6 +2770,7 @@ export interface FileRouteTypes {
     | '/admin/whatsapp-logs'
     | '/agency/apply'
     | '/agency/signin'
+    | '/ar/agency'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
     | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
@@ -2791,6 +2849,7 @@ export interface FileRouteTypes {
     | '/dropshipping/'
     | '/partners/'
     | '/selling/'
+    | '/admin/agencies/$id'
     | '/admin/customers/$id'
     | '/admin/orders/$id'
     | '/admin/products/$id'
@@ -2816,6 +2875,7 @@ export interface FileRouteTypes {
     | '/api/fn/tryoto-proxy'
     | '/api/fn/verify-checkout-session'
     | '/api/fn/wallet-topup-checkout'
+    | '/api/public/approve-agency-commissions'
     | '/api/public/auth-email-hook'
     | '/api/public/handle-email-suppression'
     | '/api/public/handle-email-unsubscribe'
@@ -2856,6 +2916,7 @@ export interface FileRouteTypes {
     | '/partners/admin/suppliers'
     | '/partners/admin/team'
     | '/wallet/topup/return'
+    | '/admin/agencies/'
     | '/admin/customers/'
     | '/admin/orders/'
     | '/admin/products/'
@@ -2922,6 +2983,7 @@ export interface RootRouteChildren {
   AgencyPortalRouteRoute: typeof AgencyPortalRouteRouteWithChildren
   AgencyApplyRoute: typeof AgencyApplyRoute
   AgencySigninRoute: typeof AgencySigninRoute
+  ArAgencyRoute: typeof ArAgencyRoute
   BlogAmazonFbaLabelingRequirementsGuideRoute: typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   BlogAmazonFbaVsNoonFbnSaudiArabiaRoute: typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
   BlogCashOnDeliveryEcommerceSaudiArabiaRoute: typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
@@ -2976,6 +3038,7 @@ export interface RootRouteChildren {
   ApiFnTryotoProxyRoute: typeof ApiFnTryotoProxyRoute
   ApiFnVerifyCheckoutSessionRoute: typeof ApiFnVerifyCheckoutSessionRoute
   ApiFnWalletTopupCheckoutRoute: typeof ApiFnWalletTopupCheckoutRoute
+  ApiPublicApproveAgencyCommissionsRoute: typeof ApiPublicApproveAgencyCommissionsRoute
   ApiPublicAuthEmailHookRoute: typeof ApiPublicAuthEmailHookRoute
   ApiPublicHandleEmailSuppressionRoute: typeof ApiPublicHandleEmailSuppressionRoute
   ApiPublicHandleEmailUnsubscribeRoute: typeof ApiPublicHandleEmailUnsubscribeRoute
@@ -3186,6 +3249,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/agency-payouts': {
+      id: '/admin/agency-payouts'
+      path: '/agency-payouts'
+      fullPath: '/admin/agency-payouts'
+      preLoaderRoute: typeof AdminAgencyPayoutsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/analytics': {
@@ -3403,6 +3473,13 @@ declare module '@tanstack/react-router' {
       path: '/ar'
       fullPath: '/ar/'
       preLoaderRoute: typeof ArIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ar/agency': {
+      id: '/ar/agency'
+      path: '/ar/agency'
+      fullPath: '/ar/agency'
+      preLoaderRoute: typeof ArAgencyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -3923,6 +4000,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopSignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/agencies/': {
+      id: '/admin/agencies/'
+      path: '/agencies'
+      fullPath: '/admin/agencies/'
+      preLoaderRoute: typeof AdminAgenciesIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/agencies/$id': {
+      id: '/admin/agencies/$id'
+      path: '/agencies/$id'
+      fullPath: '/admin/agencies/$id'
+      preLoaderRoute: typeof AdminAgenciesIdRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/admin/customers/': {
       id: '/admin/customers/'
       path: '/customers'
@@ -4124,6 +4215,13 @@ declare module '@tanstack/react-router' {
       path: '/api/fn/wallet-topup-checkout'
       fullPath: '/api/fn/wallet-topup-checkout'
       preLoaderRoute: typeof ApiFnWalletTopupCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/approve-agency-commissions': {
+      id: '/api/public/approve-agency-commissions'
+      path: '/api/public/approve-agency-commissions'
+      fullPath: '/api/public/approve-agency-commissions'
+      preLoaderRoute: typeof ApiPublicApproveAgencyCommissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/auth-email-hook': {
@@ -4689,6 +4787,7 @@ const AccountRouteRouteWithChildren = AccountRouteRoute._addFileChildren(
 )
 
 interface AdminRouteRouteChildren {
+  AdminAgencyPayoutsRoute: typeof AdminAgencyPayoutsRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminAuditLogRoute: typeof AdminAuditLogRoute
   AdminCatalogHubRoute: typeof AdminCatalogHubRoute
@@ -4716,17 +4815,20 @@ interface AdminRouteRouteChildren {
   AdminWarehouseRoute: typeof AdminWarehouseRoute
   AdminWhatsappLogsRoute: typeof AdminWhatsappLogsRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminAgenciesIdRoute: typeof AdminAgenciesIdRoute
   AdminCustomersIdRoute: typeof AdminCustomersIdRoute
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminProductsIdRoute: typeof AdminProductsIdRoute
   AdminProductsImportRoute: typeof AdminProductsImportRoute
   AdminProductsNewRoute: typeof AdminProductsNewRoute
+  AdminAgenciesIndexRoute: typeof AdminAgenciesIndexRoute
   AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
   AdminProductsIndexRoute: typeof AdminProductsIndexRoute
 }
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminAgencyPayoutsRoute: AdminAgencyPayoutsRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminAuditLogRoute: AdminAuditLogRoute,
   AdminCatalogHubRoute: AdminCatalogHubRoute,
@@ -4754,11 +4856,13 @@ const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminWarehouseRoute: AdminWarehouseRoute,
   AdminWhatsappLogsRoute: AdminWhatsappLogsRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminAgenciesIdRoute: AdminAgenciesIdRoute,
   AdminCustomersIdRoute: AdminCustomersIdRoute,
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminProductsIdRoute: AdminProductsIdRoute,
   AdminProductsImportRoute: AdminProductsImportRoute,
   AdminProductsNewRoute: AdminProductsNewRoute,
+  AdminAgenciesIndexRoute: AdminAgenciesIndexRoute,
   AdminCustomersIndexRoute: AdminCustomersIndexRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
   AdminProductsIndexRoute: AdminProductsIndexRoute,
@@ -5089,6 +5193,7 @@ const rootRouteChildren: RootRouteChildren = {
   AgencyPortalRouteRoute: AgencyPortalRouteRouteWithChildren,
   AgencyApplyRoute: AgencyApplyRoute,
   AgencySigninRoute: AgencySigninRoute,
+  ArAgencyRoute: ArAgencyRoute,
   BlogAmazonFbaLabelingRequirementsGuideRoute:
     BlogAmazonFbaLabelingRequirementsGuideRoute,
   BlogAmazonFbaVsNoonFbnSaudiArabiaRoute:
@@ -5155,6 +5260,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiFnTryotoProxyRoute: ApiFnTryotoProxyRoute,
   ApiFnVerifyCheckoutSessionRoute: ApiFnVerifyCheckoutSessionRoute,
   ApiFnWalletTopupCheckoutRoute: ApiFnWalletTopupCheckoutRoute,
+  ApiPublicApproveAgencyCommissionsRoute:
+    ApiPublicApproveAgencyCommissionsRoute,
   ApiPublicAuthEmailHookRoute: ApiPublicAuthEmailHookRoute,
   ApiPublicHandleEmailSuppressionRoute: ApiPublicHandleEmailSuppressionRoute,
   ApiPublicHandleEmailUnsubscribeRoute: ApiPublicHandleEmailUnsubscribeRoute,
