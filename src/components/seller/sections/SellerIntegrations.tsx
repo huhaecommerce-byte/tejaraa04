@@ -4,20 +4,22 @@ import { Button } from '@/components/ui/button';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHeading';
 import { sellerChannels } from '@/data/sellerServices';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SellerIntegrations() {
+  const { t } = useLocale();
   return (
     <section id="integrations" className="scroll-mt-28 border-y border-retail-border bg-white py-11 lg:py-14">
       <SellerContainer className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:items-center">
         <div className="min-w-0">
           <SellerSectionHeading
-            eyebrow="Integrations"
-            title="Connect your sales channels"
-            description="Register the stores and marketplace accounts you already sell on so your Tejaraa operations sit next to your channels. Automatic syncing depends on your plan — check the plan details before relying on it."
+            eyebrow={t('selling.integrationsSection.eyebrow')}
+            title={t('selling.integrationsSection.title')}
+            description={t('selling.integrationsSection.desc')}
           />
           <Button asChild variant="outline" className="mt-6 border-retail-green/35 font-semibold text-retail-dark-green hover:bg-retail-light-green">
             <Link to="/selling/integrations">
-              Explore integrations
+              {t('selling.integrationsSection.explore')}
               <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden />
             </Link>
           </Button>
@@ -31,7 +33,7 @@ export function SellerIntegrations() {
               </span>
               <span className="min-w-0">
                 <span className="block truncate text-sm font-bold text-retail-dark-green">{channel.label}</span>
-                <span className="block text-xs text-retail-muted">{channel.note}</span>
+                <span className="block text-xs text-retail-muted">{t(channel.noteKey)}</span>
               </span>
             </li>
           ))}

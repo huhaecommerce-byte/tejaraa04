@@ -29,6 +29,8 @@ import {
   DrawerTitle,
   DrawerDescription,
 } from "@/components/ui/drawer";
+import { useLocale } from "@/i18n/LocaleProvider";
+import type { TranslationKey } from "@/i18n/dictionary";
 
 /**
  * Native-app style bottom tab bar.
@@ -38,6 +40,7 @@ export const MobileBottomNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { t } = useLocale();
   const [moreOpen, setMoreOpen] = useState(false);
 
   const inAdmin = location.pathname.startsWith("/admin");
@@ -204,20 +207,20 @@ export const MobileBottomNav = () => {
   // Hide bottom nav on public pages for logged-out visitors — only show for authenticated users
   if (!user) return null;
 
-  const tabs = inDashboard
+  const tabs: { to: string; label: TranslationKey; icon: typeof Home; end: boolean }[] = inDashboard
     ? [
-        { to: "/dropshipping", label: "Home", icon: LayoutDashboard, end: true },
-        { to: "/dropshipping/catalog", label: "Products", icon: ShoppingBag, end: false },
-        { to: "/dropshipping/orders", label: "Orders", icon: Package, end: false },
-        { to: "/dropshipping/profile", label: "Account", icon: User, end: false },
+        { to: "/dropshipping", label: "common.home", icon: LayoutDashboard, end: true },
+        { to: "/dropshipping/catalog", label: "common.products", icon: ShoppingBag, end: false },
+        { to: "/dropshipping/orders", label: "common.orders", icon: Package, end: false },
+        { to: "/dropshipping/profile", label: "common.account", icon: User, end: false },
       ]
     : [
-        { to: "/", label: "Home", icon: Home, end: true },
-        { to: "/services", label: "Services", icon: ShoppingBag, end: false },
-        { to: "/dropshipping/catalog", label: "Sourcing", icon: Package, end: false },
+        { to: "/", label: "common.home", icon: Home, end: true },
+        { to: "/services", label: "common.services", icon: ShoppingBag, end: false },
+        { to: "/dropshipping/catalog", label: "common.sourcing", icon: Package, end: false },
         {
           to: user.role === "admin" ? "/admin" : "/dropshipping",
-          label: "Account",
+          label: "common.account",
           icon: User,
           end: false,
         },
@@ -227,14 +230,14 @@ export const MobileBottomNav = () => {
     <nav
       className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-xl border-t border-[hsl(152_40%_88%/0.7)] shadow-[0_-4px_20px_-4px_hsl(152_69%_31%/0.12)]"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-      aria-label="Primary mobile navigation"
+      aria-label={t("common.primaryNavAria")}
     >
       <ul className="grid grid-cols-4">
-        {tabs.map((t) => (
-          <li key={t.label}>
+        {tabs.map((tab) => (
+          <li key={tab.label}>
             <NavLink
-              to={t.to}
-              end={t.end}
+              to={tab.to}
+              end={tab.end}
               className={({ isActive }) =>
                 `relative flex flex-col items-center justify-center gap-1 py-2 text-[11px] font-medium transition-all active:scale-90 touch-manipulation ${
                   isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
@@ -250,9 +253,9 @@ export const MobileBottomNav = () => {
                         : ""
                     }`}
                   >
-                    <t.icon className="h-[22px] w-[22px]" strokeWidth={isActive ? 2.5 : 2} />
+                    <tab.icon className="h-[22px] w-[22px]" strokeWidth={isActive ? 2.5 : 2} />
                   </span>
-                  <span className="leading-none">{t.label}</span>
+                  <span className="leading-none">{t(tab.label)}</span>
                   {isActive && (
                     <span className="absolute top-1 right-[28%] w-1.5 h-1.5 rounded-full bg-[hsl(45_90%_55%)] shadow-[0_0_8px_hsl(45_90%_55%/0.7)]" />
                   )}

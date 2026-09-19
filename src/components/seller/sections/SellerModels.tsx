@@ -3,15 +3,17 @@ import { Link } from '@/lib/router-compat';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHeading';
 import { sellerModels } from '@/data/sellerServices';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SellerModels() {
+  const { t } = useLocale();
   return (
     <section id="service-models" className="scroll-mt-28 py-11 lg:py-14">
       <SellerContainer>
         <SellerSectionHeading
-          eyebrow="Compare"
-          title="Choose the right service for your business"
-          description="The three most common ways sellers work with Tejaraa. You can combine them as your business grows."
+          eyebrow={t('selling.models.eyebrow')}
+          title={t('selling.models.title')}
+          description={t('selling.models.desc')}
           align="center"
         />
         <div className="mt-7 grid gap-4 lg:grid-cols-3">
@@ -20,13 +22,13 @@ export function SellerModels() {
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-retail-light-green text-retail-green">
                 <model.icon className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="mt-4 text-lg font-bold text-retail-dark-green">{model.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-retail-muted">{model.best}</p>
+              <h3 className="mt-4 text-lg font-bold text-retail-dark-green">{t(model.titleKey)}</h3>
+              <p className="mt-2 text-sm leading-6 text-retail-muted">{t(model.bestKey)}</p>
               <ul className="mt-4 space-y-2.5 border-t border-retail-border pt-4">
-                {model.points.map((point) => (
-                  <li key={point} className="flex items-start gap-2.5 text-sm leading-6 text-retail-text">
+                {model.pointKeys.map((pointKey) => (
+                  <li key={pointKey} className="flex items-start gap-2.5 text-sm leading-6 text-retail-text">
                     <Check className="mt-1 h-4 w-4 shrink-0 text-retail-medium-green" aria-hidden />
-                    <span className="min-w-0">{point}</span>
+                    <span className="min-w-0">{t(pointKey)}</span>
                   </li>
                 ))}
               </ul>
@@ -34,7 +36,7 @@ export function SellerModels() {
                 to={model.to}
                 className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-retail-green hover:underline"
               >
-                See the service
+                {t('selling.models.seeService')}
                 <ArrowRight className="h-3.5 w-3.5" aria-hidden />
               </Link>
             </div>
