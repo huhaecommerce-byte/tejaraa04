@@ -89,6 +89,7 @@ export function RetailHeader() {
   const activePlatform = useMemo(() => {
     const p = location.pathname;
     if (p.startsWith('/partners')) return '/partners';
+    if (p.startsWith('/agency')) return '/agency';
     if (p.startsWith('/selling')) return '/selling';
     if (p.startsWith('/dropshipping') || p.startsWith('/dashboard')) return '/selling';
     return '/';
@@ -123,7 +124,7 @@ export function RetailHeader() {
         <div className="hidden bg-retail-dark-green text-primary-foreground md:flex">
           <RetailContainer className="flex h-11 w-full items-center justify-between gap-3 text-xs">
             <div className="flex min-w-0 items-center gap-2 self-stretch">
-              <SellerPlatformSwitcher current={activePlatform === '/partners' ? 'suppliers' : activePlatform === '/selling' ? 'selling' : 'shop'} />
+              <SellerPlatformSwitcher current={activePlatform === '/partners' ? 'suppliers' : activePlatform === '/agency' ? 'agencies' : activePlatform === '/selling' ? 'selling' : 'shop'} />
               <span className="pb-2 font-bold sm:hidden">Tejaraa Shop</span>
             </div>
             <nav aria-label="Utility links" className="flex shrink-0 items-center gap-3 text-primary-foreground/80">
