@@ -4780,6 +4780,10 @@ export type Database = {
     }
     Functions: {
       __import_exec: { Args: { sql: string }; Returns: undefined }
+      __import_exec_as: {
+        Args: { _role: string; sql: string }
+        Returns: undefined
+      }
       accept_team_invite: { Args: { _token: string }; Returns: Json }
       admin_adjust_inventory: {
         Args: { _inventory_id: string; _qty_change: number; _reason: string }
