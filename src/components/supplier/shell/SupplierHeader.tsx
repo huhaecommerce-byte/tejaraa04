@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from '@/lib/router-compat';
-import { Menu, PhoneCall } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { Button } from '@/components/ui/button';
 import {
