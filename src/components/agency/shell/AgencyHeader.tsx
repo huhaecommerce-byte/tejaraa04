@@ -9,10 +9,12 @@ import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatform
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { agencyNavLinks } from '@/data/agencyProgramme';
 import { cn } from '@/lib/utils';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function AgencyHeader() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  const { t } = useLocale();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-retail-border bg-retail-card font-sans">
@@ -24,14 +26,14 @@ export function AgencyHeader() {
       </div>
 
       <RetailContainer className="flex h-16 items-center gap-4">
-        <Link to="/agency" aria-label="Tejaraa Agencies and VAs home" className="flex shrink-0 items-center gap-2">
+        <Link to="/agency" aria-label={t('agency.header.homeAria')} className="flex shrink-0 items-center gap-2">
           <BrandLogo variant="storefront" />
           <span className="hidden text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green sm:inline">
-            Agencies &amp; VAs
+            {t('agency.header.badge')}
           </span>
         </Link>
 
-        <nav aria-label="Agency programme" className="ml-2 hidden items-center gap-1 lg:flex">
+        <nav aria-label={t('agency.header.navAria')} className="ml-2 hidden items-center gap-1 lg:flex">
           {agencyNavLinks.map((link) => {
             const active = location.pathname === link.to;
             return (
@@ -44,7 +46,7 @@ export function AgencyHeader() {
                   active ? 'bg-retail-light-green text-retail-dark-green' : 'text-retail-text',
                 )}
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             );
           })}
@@ -52,27 +54,27 @@ export function AgencyHeader() {
 
         <div className="ml-auto flex items-center gap-2">
           <Button asChild variant="outline" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex">
-            <Link to="/agency/signin">Partner sign in</Link>
+            <Link to="/agency/signin">{t('agency.header.partnerSignIn')}</Link>
           </Button>
           <Button asChild className="bg-retail-green font-semibold text-primary-foreground hover:bg-retail-dark-green">
-            <Link to="/agency/apply">Apply to join</Link>
+            <Link to="/agency/apply">{t('agency.header.applyToJoin')}</Link>
           </Button>
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Open menu" className="lg:hidden">
+              <Button variant="ghost" size="icon" aria-label={t('agency.header.openMenu')} className="lg:hidden">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px]">
               <SheetHeader>
-                <SheetTitle>Agency &amp; VA programme</SheetTitle>
+                <SheetTitle>{t('agency.header.sheetTitle')}</SheetTitle>
               </SheetHeader>
               <div className="mt-4 grid gap-1">
                 {agencyNavLinks.map((link) => (
                   <SheetClose asChild key={link.to}>
                     <Link to={link.to} className="rounded-md px-3 py-2 text-sm font-semibold text-retail-dark-green hover:bg-retail-light-green">
-                      {link.label}
+                      {t(link.key)}
                     </Link>
                   </SheetClose>
                 ))}
