@@ -24,14 +24,14 @@ export default function AgencyLanding() {
     <AgencyPublicShell>
       <section className="hero-surface relative overflow-hidden text-primary-foreground">
         <div className="hero-grid pointer-events-none absolute inset-0 opacity-10" />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 md:py-28">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
+        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:py-12 lg:py-14">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
             <Handshake className="h-4 w-4" /> Agency &amp; VA Programme
           </span>
-          <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight md:text-6xl">
+          <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.08] sm:text-5xl">
             Grow your income every time your sellers sell
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-primary-foreground/80 sm:text-lg">
             Bring dropshippers onto Tejaraa and earn a share of our profit on every order they ever
             place. Ten active sellers means ten income streams that keep paying, month after month.
           </p>
