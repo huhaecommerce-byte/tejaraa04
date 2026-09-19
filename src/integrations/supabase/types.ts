@@ -14,36 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      __import_fail: {
-        Row: {
-          err: string | null
-          id: number | null
-        }
-        Insert: {
-          err?: string | null
-          id?: number | null
-        }
-        Update: {
-          err?: string | null
-          id?: number | null
-        }
-        Relationships: []
-      }
-      __import_payload: {
-        Row: {
-          body: string | null
-          id: number
-        }
-        Insert: {
-          body?: string | null
-          id: number
-        }
-        Update: {
-          body?: string | null
-          id?: number
-        }
-        Relationships: []
-      }
       audit_log: {
         Row: {
           action: string
@@ -4788,11 +4758,6 @@ export type Database = {
       }
     }
     Functions: {
-      __import_exec: { Args: { sql: string }; Returns: undefined }
-      __import_exec_as: {
-        Args: { _role: string; sql: string }
-        Returns: undefined
-      }
       accept_team_invite: { Args: { _token: string }; Returns: Json }
       admin_adjust_inventory: {
         Args: { _inventory_id: string; _qty_change: number; _reason: string }
