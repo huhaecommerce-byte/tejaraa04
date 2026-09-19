@@ -13,14 +13,17 @@ import { AgencyPortalHeader } from '@/components/agency/shell/AgencyPortalHeader
 const StatusCard = ({
   icon, title, text, action,
 }: { icon: React.ReactNode; title: string; text: string; action?: React.ReactNode }) => (
-  <div className="min-h-screen flex items-center justify-center bg-[hsl(var(--muted)/0.4)] px-4">
-    <div className="max-w-md w-full rounded-2xl border bg-card p-8 text-center shadow-sm">
-      <div className="mx-auto h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
-        {icon}
+  <div className="retail-theme flex min-h-screen flex-col bg-retail-page">
+    <AgencyPortalHeader />
+    <div className="flex flex-1 items-center justify-center px-4 py-16">
+      <div className="w-full max-w-md rounded-lg border border-retail-border bg-retail-card p-8 text-center shadow-sm">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-retail-light-green text-retail-green">
+          {icon}
+        </div>
+        <h2 className="mb-2 font-display text-xl font-bold text-retail-dark-green">{title}</h2>
+        <p className="mb-6 text-sm leading-6 text-retail-muted">{text}</p>
+        {action}
       </div>
-      <h2 className="text-lg font-bold mb-2">{title}</h2>
-      <p className="text-sm text-muted-foreground mb-6">{text}</p>
-      {action}
     </div>
   </div>
 );
