@@ -44,7 +44,7 @@ const platformLinks: { label: TranslationKey; to: string; icon: typeof ShoppingC
 ];
 
 export function RetailHeader() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const { user, logout } = useAuth();
   const { count } = useCart();
   const navigate = useNavigate();
