@@ -49,8 +49,14 @@ export default function AgencyApply() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.company_name.trim() || !form.contact_name.trim() || !form.email.trim()) {
-      toast.error('Please fill in your name, company and email.');
+    if (
+      !form.company_name.trim() ||
+      !form.contact_name.trim() ||
+      !form.phone.trim() ||
+      !form.country.trim() ||
+      !form.email.trim()
+    ) {
+      toast.error('Please fill in every field — all fields are required.');
       return;
     }
     if (!user && form.password.length < 8) {
@@ -237,12 +243,12 @@ export default function AgencyApply() {
                   <Input id="email" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} disabled={Boolean(user)} required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="phone">WhatsApp / phone</Label>
-                  <Input id="phone" value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+966 5x xxx xxxx" />
+                  <Label htmlFor="phone">WhatsApp / phone *</Label>
+                  <Input id="phone" value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+966 5x xxx xxxx" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="country">Country</Label>
-                  <Input id="country" value={form.country} onChange={(e) => set('country', e.target.value)} />
+                  <Label htmlFor="country">Country *</Label>
+                  <Input id="country" value={form.country} onChange={(e) => set('country', e.target.value)} required />
                 </div>
               </div>
 
