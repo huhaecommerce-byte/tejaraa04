@@ -47,6 +47,7 @@ const groups: FooterGroup[] = [
     links: [
       { label: 'Seller services', to: '/selling' },
       { label: 'Suppliers', to: '/partners' },
+      { label: 'Agencies & VAs', to: '/agency' },
       { label: 'Pricing', to: '/pricing' },
     ],
   },
