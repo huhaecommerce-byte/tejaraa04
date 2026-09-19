@@ -9,6 +9,16 @@ import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import { ArrowRight, CheckCircle2, Loader2, MailCheck } from 'lucide-react';
 import { sendSignupOtp, verifySignupOtp } from '@/lib/signupOtp.functions';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+const GCC_COUNTRIES = [
+  { name: 'Saudi Arabia', dial: '+966' },
+  { name: 'United Arab Emirates', dial: '+971' },
+  { name: 'Kuwait', dial: '+965' },
+  { name: 'Qatar', dial: '+974' },
+  { name: 'Bahrain', dial: '+973' },
+  { name: 'Oman', dial: '+968' },
+] as const;
 
 const empty = {
   company_name: '',
@@ -46,6 +56,8 @@ export default function AgencyApply() {
   }, [user, isLoading, navigate]);
 
   const set = (k: keyof typeof empty, v: string) => setForm((f) => ({ ...f, [k]: v }));
+
+  const dial = GCC_COUNTRIES.find((c) => c.name === form.country)?.dial ?? '+966';
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,7 +105,7 @@ export default function AgencyApply() {
         company_name: form.company_name.trim(),
         contact_name: form.contact_name.trim(),
         email: form.email.trim(),
-        phone: form.phone.trim() || null,
+        phone: `${dial}${form.phone.replace(/[\s-]/g, '')}` || null,
         country: form.country.trim() || null,
         invite_code: '',
       } as never);
@@ -115,7 +127,7 @@ export default function AgencyApply() {
       company_name: form.company_name.trim(),
       contact_name: form.contact_name.trim(),
       email: form.email.trim(),
-      phone: form.phone.trim() || null,
+      phone: `${dial}${form.phone.replace(/[\s-]/g, '')}` || null,
       country: form.country.trim() || null,
       invite_code: '',
     } as never);
@@ -240,15 +252,27 @@ export default function AgencyApply() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">WhatsApp / phone *</Label>
-                  <Input id="phone" className="w-full" value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+966 5x xxx xxxx" required />
+                  <div className="flex overflow-hidden rounded-md border border-input bg-transparent shadow-xs">
+                    <span className="flex h-9 items-center justify-center border-r border-input bg-muted px-3 text-sm font-medium text-muted-foreground">{dial}</span>
+                    <Input id="phone" className="w-full rounded-none border-0 shadow-none focus-visible:ring-0" value={form.phone} onChange={(e) => set('phone', e.target.value.replace(/[^\d\s-]/g, ''))} placeholder="5x xxx xxxx" required />
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="country">Country *</Label>
-                  <Input id="country" className="w-full" value={form.country} onChange={(e) => set('country', e.target.value)} required />
+                  <Select value={form.country} onValueChange={(v) => set('country', v)}>
+                    <SelectTrigger id="country" className="w-full">
+                      <SelectValue placeholder="Select your country" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {GCC_COUNTRIES.map((c) => (
+                        <SelectItem key={c.name} value={c.name}>{c.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
-                  <Input id="email" className="w-full" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} disabled={Boolean(user)} required />
+                  <Input id="email" className="w-full" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder="you@company.com" disabled={Boolean(user)} required />
                 </div>
               </div>
 
