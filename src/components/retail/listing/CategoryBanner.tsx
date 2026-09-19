@@ -1,0 +1,5 @@
+import { categoryImageFor } from '@/components/retail/category';
+
+export function CategoryBanner({ name, description }: { name: string; description: string }) {
+  return <section className="relative min-h-[145px] overflow-hidden rounded-lg border border-retail-border bg-retail-light-green p-5 sm:min-h-[170px] sm:p-7"><div className="relative z-10 max-w-xl"><p className="text-xs font-bold uppercase text-retail-green">Shop department</p><h2 className="mt-1 font-display text-2xl font-bold text-retail-dark-green">{name}</h2><p className="mt-2 text-sm text-retail-muted">{description}</p></div><img src={categoryImageFor(name)} alt="" width={420} height={260} className="absolute inset-y-0 right-0 hidden h-full w-[38%] object-cover [mask-image:linear-gradient(to_right,transparent,black_30%)] sm:block" /></section>;
+}

@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.get_user_plan_limit(uuid, text) FROM PUBLIC, anon, authenticated;

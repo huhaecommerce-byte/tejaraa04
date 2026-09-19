@@ -1,0 +1,1 @@
+ALTER TABLE public.noon_connections ADD COLUMN IF NOT EXISTS setup_completed_at timestamptz;

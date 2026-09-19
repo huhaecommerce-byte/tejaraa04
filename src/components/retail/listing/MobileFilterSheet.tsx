@@ -1,0 +1,8 @@
+import type { ReactNode } from 'react';
+import { SlidersHorizontal } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+
+export function MobileFilterSheet({ children, count, resultLabel, hasFilters, onClear }: { children: ReactNode; count?: number; resultLabel: string; hasFilters: boolean; onClear: () => void }) {
+  return <Sheet><SheetTrigger asChild><Button type="button" variant="outline" className="h-10 flex-1 lg:hidden"><SlidersHorizontal className="h-4 w-4" />Filters{count ? <span className="rounded bg-retail-light-green px-1.5 text-xs text-retail-green">{count}</span> : null}</Button></SheetTrigger><SheetContent side="left" className="flex h-[100dvh] w-[340px] max-w-[92vw] flex-col p-0"><SheetHeader className="border-b border-retail-border px-4 py-4 text-left"><div className="flex items-center justify-between pr-8"><SheetTitle>Filters</SheetTitle>{hasFilters && <Button type="button" variant="ghost" size="sm" onClick={onClear} className="h-8 text-retail-green">Clear all</Button>}</div></SheetHeader><div className="flex-1 overflow-y-auto px-4">{children}</div><SheetFooter className="border-t border-retail-border p-4"><SheetClose asChild><Button type="button" className="w-full">Show {resultLabel}</Button></SheetClose></SheetFooter></SheetContent></Sheet>;
+}

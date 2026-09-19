@@ -1,24 +1,34 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import Index from "@/pages/Index";
+import { getCurrentHost, isSupplierHost } from "@/lib/siteHosts";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Tejaraa — Shop Products Online Across Saudi Arabia";
+const description =
+  "Shop products for delivery across Saudi Arabia, or access dedicated Tejaraa services for online sellers and wholesale suppliers.";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  beforeLoad: async () => {
+    const host = await getCurrentHost();
+    if (isSupplierHost(host)) {
+      throw redirect({ to: "/partners" });
+    }
+  },
+
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:url", content: "https://tejaraa01.lovable.app/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://tejaraa01.lovable.app/" }],
+  }),
+  component: RouteComponent,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+function RouteComponent() {
+  return <Index />;
 }

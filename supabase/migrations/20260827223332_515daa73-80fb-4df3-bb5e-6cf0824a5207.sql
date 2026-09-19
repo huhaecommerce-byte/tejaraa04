@@ -1,0 +1,1 @@
+GRANT EXECUTE ON FUNCTION public.has_module_access(uuid, text) TO authenticated;

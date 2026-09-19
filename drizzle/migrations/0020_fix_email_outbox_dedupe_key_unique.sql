@@ -1,0 +1,1 @@
+create unique index if not exists email_outbox_dedupe_key_key on public.email_outbox (dedupe_key) where dedupe_key is not null;

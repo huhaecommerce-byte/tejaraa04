@@ -1,0 +1,4 @@
+ALTER TABLE public.wl_products
+  ADD COLUMN IF NOT EXISTS name_ar TEXT,
+  ADD COLUMN IF NOT EXISTS brand_ar TEXT,
+  ADD COLUMN IF NOT EXISTS description_ar TEXT;

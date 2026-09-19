@@ -1,0 +1,23 @@
+# Tejaraa.com
+
+> Tejaraa.com is a complete B2B sourcing, labelling and fulfillment platform for Amazon and Noon sellers in Saudi Arabia.
+
+Tejaraa.com helps e-commerce sellers in KSA source thousands of vetted products from local and international suppliers, place bulk or dropship orders, prepare and label inventory to Amazon FBA / Noon FBN standards, store products in KSA warehouses, and ship across Saudi Arabia.
+
+## Pages
+
+- [Home](/): Sourcing, fulfillment and delivery platform overview for Amazon and Noon sellers in KSA.
+- [Services](/services): Product sourcing, bulk and dropship orders, FBA/FBN labelling, warehousing, last-mile delivery.
+- [Pricing](/pricing): Subscription plans for sellers — Starter, Growth and Enterprise tiers.
+- [Contact](/contact): Talk to a sourcing specialist or support team.
+
+## Account
+
+- [Sign up](/signup): Create a free seller account.
+- [Log in](/login): Existing seller login.
+
+## Optional
+
+- [Forgot password](/forgot-password)
+- [Reset password](/reset-password)
+- [Unsubscribe](/unsubscribe)
