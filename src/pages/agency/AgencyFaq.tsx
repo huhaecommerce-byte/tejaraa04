@@ -33,11 +33,9 @@ export default function AgencyFaq() {
       <AgencyCTA
         variant="dark"
         title="Still have a question?"
-        text="Our partnerships team is happy to walk you through the programme before you apply."
-        primaryLabel="Talk to partnerships"
-        primaryTo="/agency/contact"
-        secondaryLabel="Apply to join"
-        secondaryTo="/agency/apply"
+        text="Apply to the programme and our partnerships team will walk you through everything before you go live."
+        primaryLabel="Apply to join"
+        primaryTo="/agency/apply"
       />
     </AgencyPublicShell>
   );

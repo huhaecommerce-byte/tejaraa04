@@ -140,7 +140,7 @@ interface AgencyCTAProps {
 export function AgencyCTA({
   title, text,
   primaryLabel = 'Apply to join', primaryTo = '/agency/apply',
-  secondaryLabel = 'Talk to partnerships', secondaryTo = '/agency/contact',
+  secondaryLabel, secondaryTo,
   variant = 'light',
 }: AgencyCTAProps) {
   const dark = variant === 'dark';
@@ -164,14 +164,16 @@ export function AgencyCTA({
               <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden />
             </Link>
           </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className={cn('font-semibold', dark ? 'border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white' : 'border-retail-green/35 bg-white text-retail-dark-green hover:bg-white/70')}
-          >
-            <Link to={secondaryTo}>{secondaryLabel}</Link>
-          </Button>
+          {secondaryLabel && secondaryTo && (
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className={cn('font-semibold', dark ? 'border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white' : 'border-retail-green/35 bg-white text-retail-dark-green hover:bg-white/70')}
+            >
+              <Link to={secondaryTo}>{secondaryLabel}</Link>
+            </Button>
+          )}
         </div>
       </SellerContainer>
     </section>
