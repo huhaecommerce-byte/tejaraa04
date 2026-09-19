@@ -1,4 +1,5 @@
 import { MapPin, Truck, WalletCards } from "lucide-react";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { CheckoutSection } from "./CheckoutSection";
 
 export function CheckoutReview({
@@ -16,33 +17,34 @@ export function CheckoutReview({
   courierName?: string;
   payment: "cod" | "card";
 }) {
+  const { t } = useLocale();
   const destination = [address, city, region].filter(Boolean).join(", ");
   const rows = [
     {
       icon: MapPin,
-      label: "Deliver to",
+      label: t("shopx.checkout.deliverTo"),
       value: destination
         ? `${name ? `${name} — ` : ""}${destination}`
-        : "Complete your shipping address",
+        : t("shopx.checkout.completeAddress"),
     },
     {
       icon: Truck,
-      label: "Delivery",
+      label: t("shopx.checkout.deliveryRow"),
       value:
         courierName ||
-        (city.trim().length >= 3 ? "Standard delivery" : "Add your city to confirm delivery"),
+        (city.trim().length >= 3 ? t("shopx.checkout.standardDeliveryTitle") : t("shopx.checkout.addCityToConfirm")),
     },
     {
       icon: WalletCards,
-      label: "Payment",
-      value: payment === "card" ? "Card payment" : "Cash on delivery",
+      label: t("shopx.checkout.paymentRow"),
+      value: payment === "card" ? t("shopx.checkout.card") : t("shopx.checkout.cod"),
     },
   ];
   return (
     <CheckoutSection
       number={5}
-      title="Review"
-      description="Check your delivery and payment details before placing the order."
+      title={t("shopx.checkout.reviewTitle")}
+      description={t("shopx.checkout.reviewDescription")}
       complete={Boolean(destination)}
     >
       <dl className="divide-y divide-retail-border rounded-md border border-retail-border">

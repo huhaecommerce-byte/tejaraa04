@@ -4,8 +4,10 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/router-compat";
 import { RetailContainer } from "@/components/retail/common/RetailContainer";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export function CheckoutShell({ children }: { children: ReactNode }) {
+  const { t } = useLocale();
   return (
     <div className="checkout-shell retail-theme flex min-h-screen flex-col bg-retail-page text-retail-text">
       <header className="sticky top-0 z-40 border-b border-retail-border bg-retail-card/95 backdrop-blur">
@@ -16,7 +18,7 @@ export function CheckoutShell({ children }: { children: ReactNode }) {
               variant="ghost"
               size="icon"
               className="h-10 w-10 shrink-0"
-              aria-label="Back to cart"
+              aria-label={t("shopx.checkout.backToCartAria")}
             >
               <Link to="/cart">
                 <ArrowLeft className="h-5 w-5" />
@@ -28,19 +30,19 @@ export function CheckoutShell({ children }: { children: ReactNode }) {
           </div>
           <div className="flex shrink-0 items-center gap-2 text-xs font-semibold text-retail-dark-green sm:text-sm">
             <LockKeyhole className="h-4 w-4" />
-            <span>Secure Checkout</span>
+            <span>{t("shopx.checkout.secureCheckout")}</span>
           </div>
         </RetailContainer>
       </header>
       <div className="flex-1">{children}</div>
       <footer className="mt-8 border-t border-retail-border bg-retail-card">
         <RetailContainer className="flex min-h-16 flex-col items-center justify-between gap-2 py-4 text-xs text-retail-muted sm:flex-row">
-          <p>© Tejaraa</p>
+          <p>{t("shopx.checkout.copyright")}</p>
           <Link
             to="/contact"
             className="font-semibold text-retail-dark-green hover:text-retail-green"
           >
-            Need help? Contact us
+            {t("shopx.checkout.needHelp")}
           </Link>
         </RetailContainer>
       </footer>

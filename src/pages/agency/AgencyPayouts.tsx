@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAgency, sar, num } from '@/hooks/useAgency';
 import { toast } from 'sonner';
 import { Wallet } from 'lucide-react';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 interface PayoutRow {
   id: string;
@@ -30,6 +31,7 @@ const tone: Record<string, string> = {
 };
 
 export default function AgencyPayoutsPage() {
+  const { t } = useLocale();
   const { agency, reload } = useAgency();
   const [rows, setRows] = useState<PayoutRow[]>([]);
   const [amount, setAmount] = useState('');
@@ -61,20 +63,20 @@ export default function AgencyPayoutsPage() {
       const res = data as { ok: boolean; error?: string; minimum?: number; available?: number; amount?: number };
       if (!res?.ok) {
         const messages: Record<string, string> = {
-          below_minimum: `The minimum withdrawal is ${sar(res?.minimum ?? min)}.`,
-          insufficient_balance: `You can withdraw up to ${sar(res?.available ?? available)}.`,
-          nothing_to_pay: 'There are no unlocked earnings to withdraw yet.',
-          not_an_agency: 'Your partner account is not active.',
+          below_minimum: t('agency.payouts.errorBelowMinimum', { amount: sar(res?.minimum ?? min) }),
+          insufficient_balance: t('agency.payouts.errorInsufficientBalance', { amount: sar(res?.available ?? available) }),
+          nothing_to_pay: t('agency.payouts.errorNothingToPay'),
+          not_an_agency: t('agency.payouts.errorNotAnAgency'),
         };
-        toast.error(messages[res?.error || ''] || 'Could not create the request.');
+        toast.error(messages[res?.error || ''] || t('agency.payouts.errorGeneric'));
         return;
       }
-      toast.success(`Withdrawal of ${sar(res.amount)} requested.`);
+      toast.success(t('agency.payouts.requestSuccess', { amount: sar(res.amount) }));
       setAmount('');
       setNote('');
       await Promise.all([load(), reload()]);
     } catch (err: any) {
-      toast.error(err?.message || 'Could not create the request.');
+      toast.error(err?.message || t('agency.payouts.errorGeneric'));
     } finally {
       setSubmitting(false);
     }
@@ -83,29 +85,29 @@ export default function AgencyPayoutsPage() {
   return (
     <>
       <PageHeader
-        title="Payouts"
-        highlight="Payouts"
-        subtitle="Withdraw your unlocked earnings. Our finance team reviews each request and confirms once paid."
+        title={t('agency.payouts.title')}
+        highlight={t('agency.payouts.highlight')}
+        subtitle={t('agency.payouts.subtitle')}
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
         <Card className="lg:col-span-1">
           <CardContent className="space-y-4 p-6">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Available now</div>
+              <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t('agency.payouts.availableNow')}</div>
               <div className="mt-1 text-3xl font-black text-emerald-600">{sar(available)}</div>
-              <p className="mt-1 text-xs text-muted-foreground">Minimum withdrawal {sar(min)}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{t('agency.payouts.minimumWithdrawal', { amount: sar(min) })}</p>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="amount">Amount (leave blank for everything)</Label>
+              <Label htmlFor="amount">{t('agency.payouts.amountLabel')}</Label>
               <Input id="amount" type="number" min={0} value={amount} onChange={(e) => setAmount(e.target.value)} placeholder={String(available)} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="note">Note for our finance team</Label>
-              <Textarea id="note" rows={3} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Bank details, IBAN or preferred transfer method" />
+              <Label htmlFor="note">{t('agency.payouts.noteLabel')}</Label>
+              <Textarea id="note" rows={3} value={note} onChange={(e) => setNote(e.target.value)} placeholder={t('agency.payouts.notePlaceholder')} />
             </div>
             <Button className="w-full" onClick={request} disabled={submitting || available <= 0}>
-              <Wallet className="mr-2 h-4 w-4" /> Request withdrawal
+              <Wallet className="mr-2 h-4 w-4" /> {t('agency.payouts.requestButton')}
             </Button>
           </CardContent>
         </Card>
@@ -113,15 +115,15 @@ export default function AgencyPayoutsPage() {
         <Card className="lg:col-span-2">
           <CardContent className="p-0">
             {rows.length === 0 ? (
-              <p className="p-12 text-center text-sm text-muted-foreground">No withdrawal requests yet.</p>
+              <p className="p-12 text-center text-sm text-muted-foreground">{t('agency.payouts.empty')}</p>
             ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Requested</TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Reference</TableHead>
+                    <TableHead>{t('agency.payouts.colRequested')}</TableHead>
+                    <TableHead className="text-right">{t('agency.payouts.colAmount')}</TableHead>
+                    <TableHead>{t('agency.payouts.colStatus')}</TableHead>
+                    <TableHead>{t('agency.payouts.colReference')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

@@ -1,5 +1,6 @@
 import type { ChangeEvent } from "react";
 import { Building2, UserRound } from "lucide-react";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,30 +18,6 @@ export interface CheckoutFormValue {
 }
 export type CheckoutField = keyof CheckoutFormValue;
 
-const requiredFields: Array<{
-  key: CheckoutField;
-  label: string;
-  type?: string;
-  placeholder: string;
-  autoComplete: string;
-}> = [
-  { key: "name", label: "Full name", placeholder: "Your full name", autoComplete: "name" },
-  {
-    key: "phone",
-    label: "Mobile number",
-    type: "tel",
-    placeholder: "05XXXXXXXX",
-    autoComplete: "tel",
-  },
-  {
-    key: "email",
-    label: "Email",
-    type: "email",
-    placeholder: "you@example.com",
-    autoComplete: "email",
-  },
-];
-
 export function CheckoutContactAddress({
   form,
   buyerType,
@@ -56,6 +33,30 @@ export function CheckoutContactAddress({
     field: CheckoutField,
   ) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }) {
+  const { t } = useLocale();
+  const requiredFields: Array<{
+    key: CheckoutField;
+    label: string;
+    type?: string;
+    placeholder: string;
+    autoComplete: string;
+  }> = [
+    { key: "name", label: t("shopx.checkout.fullName"), placeholder: t("shopx.checkout.fullNamePlaceholder"), autoComplete: "name" },
+    {
+      key: "phone",
+      label: t("shopx.checkout.mobileNumber"),
+      type: "tel",
+      placeholder: "05XXXXXXXX",
+      autoComplete: "tel",
+    },
+    {
+      key: "email",
+      label: t("shopx.checkout.email"),
+      type: "email",
+      placeholder: "you@example.com",
+      autoComplete: "email",
+    },
+  ];
   const error = (field: CheckoutField) => attempted && !form[field].trim();
   const inputProps = (field: CheckoutField) => ({
     "aria-invalid": error(field),
@@ -68,13 +69,13 @@ export function CheckoutContactAddress({
     <>
       <CheckoutSection
         number={1}
-        title="Contact Information"
-        description="We’ll use these details for order and delivery updates."
+        title={t("shopx.checkout.contactTitle")}
+        description={t("shopx.checkout.contactDescription")}
         complete={contactComplete}
       >
         <div className="mb-4">
-          <Label className="mb-2 block">I am buying as</Label>
-          <div className="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Buyer type">
+          <Label className="mb-2 block">{t("shopx.checkout.buyingAs")}</Label>
+          <div className="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label={t("shopx.checkout.buyerTypeAria")}>
             <Button
               type="button"
               variant="outline"
@@ -85,9 +86,9 @@ export function CheckoutContactAddress({
             >
               <UserRound className="h-4 w-4" />
               <span>
-                <strong className="block text-sm">Individual</strong>
+                <strong className="block text-sm">{t("shopx.checkout.individual")}</strong>
                 <span className="block text-xs font-normal text-retail-muted">
-                  Personal purchase
+                  {t("shopx.checkout.personalPurchase")}
                 </span>
               </span>
             </Button>
@@ -101,9 +102,9 @@ export function CheckoutContactAddress({
             >
               <Building2 className="h-4 w-4" />
               <span>
-                <strong className="block text-sm">Business</strong>
+                <strong className="block text-sm">{t("shopx.checkout.business")}</strong>
                 <span className="block text-xs font-normal text-retail-muted">
-                  Business or bulk order
+                  {t("shopx.checkout.businessBulk")}
                 </span>
               </span>
             </Button>
@@ -130,7 +131,7 @@ export function CheckoutContactAddress({
               />
               {error(field.key) && (
                 <p id={`${field.key}-error`} className="mt-1 text-xs text-retail-sale">
-                  Please enter your {field.label.toLowerCase()}.
+                  {t("shopx.checkout.pleaseEnterField", { field: field.label.toLowerCase() })}
                 </p>
               )}
             </div>
@@ -140,14 +141,14 @@ export function CheckoutContactAddress({
 
       <CheckoutSection
         number={2}
-        title="Shipping Address"
-        description="Enter the address where you want your order delivered."
+        title={t("shopx.checkout.shippingAddressTitle")}
+        description={t("shopx.checkout.shippingAddressDescription")}
         complete={addressComplete}
       >
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <Label htmlFor="co-address">
-              Street address{" "}
+              {t("shopx.checkout.streetAddress")}{" "}
               <span aria-hidden="true" className="text-retail-sale">
                 *
               </span>
@@ -156,20 +157,20 @@ export function CheckoutContactAddress({
               id="co-address"
               value={form.address}
               onChange={onChange("address")}
-              placeholder="Street, building, district"
+              placeholder={t("shopx.checkout.streetAddressPlaceholder")}
               autoComplete="street-address"
               className="mt-1.5 h-11"
               {...inputProps("address")}
             />
             {error("address") && (
               <p id="address-error" className="mt-1 text-xs text-retail-sale">
-                Please enter your delivery address.
+                {t("shopx.checkout.pleaseEnterAddress")}
               </p>
             )}
           </div>
           <div>
             <Label htmlFor="co-city">
-              City{" "}
+              {t("shopx.checkout.city")}{" "}
               <span aria-hidden="true" className="text-retail-sale">
                 *
               </span>
@@ -178,20 +179,20 @@ export function CheckoutContactAddress({
               id="co-city"
               value={form.city}
               onChange={onChange("city")}
-              placeholder="Riyadh"
+              placeholder={t("shopx.checkout.cityPlaceholder")}
               autoComplete="address-level2"
               className="mt-1.5 h-11"
               {...inputProps("city")}
             />
             {error("city") && (
               <p id="city-error" className="mt-1 text-xs text-retail-sale">
-                Please enter your city.
+                {t("shopx.checkout.pleaseEnterCity")}
               </p>
             )}
           </div>
           <div>
             <Label htmlFor="co-region">
-              Region <span className="text-xs font-normal text-retail-muted">(optional)</span>
+              {t("shopx.checkout.region")} <span className="text-xs font-normal text-retail-muted">{t("shopx.checkout.optional")}</span>
             </Label>
             <Input
               id="co-region"
@@ -203,7 +204,7 @@ export function CheckoutContactAddress({
           </div>
           <div className="sm:col-span-2">
             <Label htmlFor="co-notes">
-              Order notes <span className="text-xs font-normal text-retail-muted">(optional)</span>
+              {t("shopx.checkout.orderNotes")} <span className="text-xs font-normal text-retail-muted">{t("shopx.checkout.optional")}</span>
             </Label>
             <Textarea
               id="co-notes"
@@ -211,7 +212,7 @@ export function CheckoutContactAddress({
               onChange={onChange("notes")}
               rows={3}
               className="mt-1.5"
-              placeholder="Delivery notes or other information"
+              placeholder={t("shopx.checkout.orderNotesPlaceholder")}
             />
           </div>
         </div>

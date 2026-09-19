@@ -3,6 +3,7 @@ import {
   Layers, PackageSearch, ScrollText, Store, Truck, UserRound, Warehouse,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import type { TranslationKey } from '@/i18n/dictionary';
 import catElectronics from '@/assets/partners/cat-electronics.jpg';
 import catMobile from '@/assets/partners/cat-mobile.jpg';
 import catHome from '@/assets/partners/cat-home.jpg';
@@ -25,253 +26,122 @@ export const supplierSignInPath = '/partners/signin';
 
 export interface SupplierItem {
   icon: LucideIcon;
-  title: string;
-  text: string;
+  title: TranslationKey;
+  text: TranslationKey;
 }
 
 /** Business types the supplier registration form actually accepts. */
 export const supplierTypes: SupplierItem[] = [
-  {
-    icon: Factory,
-    title: 'Manufacturers',
-    text: 'Supply the products you make directly, and put them in front of the e-commerce demand Tejaraa works with.',
-  },
-  {
-    icon: Truck,
-    title: 'Distributors',
-    text: 'Supply the brands and product lines you already distribute across your market.',
-  },
-  {
-    icon: Warehouse,
-    title: 'Wholesalers',
-    text: 'Offer a broader catalogue and competitive supply for the categories Tejaraa reviews.',
-  },
-  {
-    icon: Globe2,
-    title: 'Importers',
-    text: 'Supply products you already bring in through your own import and distribution network.',
-  },
-  {
-    icon: UserRound,
-    title: 'Individual traders',
-    text: 'Registering as an individual or freelancer is supported — upload a licence if you have one.',
-  },
+  { icon: Factory, title: 'supplier.types.manufacturers.title', text: 'supplier.types.manufacturers.text' },
+  { icon: Truck, title: 'supplier.types.distributors.title', text: 'supplier.types.distributors.text' },
+  { icon: Warehouse, title: 'supplier.types.wholesalers.title', text: 'supplier.types.wholesalers.text' },
+  { icon: Globe2, title: 'supplier.types.importers.title', text: 'supplier.types.importers.text' },
+  { icon: UserRound, title: 'supplier.types.individualTraders.title', text: 'supplier.types.individualTraders.text' },
 ];
 
 export const supplierBenefits: SupplierItem[] = [
-  {
-    icon: Store,
-    title: 'Access to e-commerce demand',
-    text: 'Approved products can be offered through the Tejaraa channels that fit them, instead of one storefront at a time.',
-  },
-  {
-    icon: Boxes,
-    title: 'Catalogue expansion',
-    text: 'Add more of your range to the Tejaraa catalogue for review as your assortment grows.',
-  },
-  {
-    icon: ClipboardCheck,
-    title: 'A structured review process',
-    text: 'Your company, documents and products go through a clear review — you always know which stage you are at.',
-  },
-  {
-    icon: Layers,
-    title: 'One supplier workspace',
-    text: 'Manage your products, incoming orders and payout requests from a single supplier account.',
-  },
-  {
-    icon: Handshake,
-    title: 'Long-term supply relationships',
-    text: 'We look for suppliers we can keep buying from, where product, price and service levels line up.',
-  },
-  {
-    icon: BadgeCheck,
-    title: 'Regional market experience',
-    text: 'Our team works with Saudi and wider Gulf e-commerce every day, so product conversations stay practical.',
-  },
+  { icon: Store, title: 'supplier.benefitsList.ecommerceDemand.title', text: 'supplier.benefitsList.ecommerceDemand.text' },
+  { icon: Boxes, title: 'supplier.benefitsList.catalogueExpansion.title', text: 'supplier.benefitsList.catalogueExpansion.text' },
+  { icon: ClipboardCheck, title: 'supplier.benefitsList.structuredReview.title', text: 'supplier.benefitsList.structuredReview.text' },
+  { icon: Layers, title: 'supplier.benefitsList.oneWorkspace.title', text: 'supplier.benefitsList.oneWorkspace.text' },
+  { icon: Handshake, title: 'supplier.benefitsList.longTerm.title', text: 'supplier.benefitsList.longTerm.text' },
+  { icon: BadgeCheck, title: 'supplier.benefitsList.regionalExperience.title', text: 'supplier.benefitsList.regionalExperience.text' },
 ];
 
 export interface SupplierStep {
   icon: LucideIcon;
-  title: string;
-  text: string;
+  title: TranslationKey;
+  text: TranslationKey;
 }
 
 /** Mirrors the real registration form and the review that follows it. */
 export const supplierProcess: SupplierStep[] = [
-  {
-    icon: ClipboardCheck,
-    title: 'Apply',
-    text: 'Register your company, business type and contact details in the supplier application.',
-  },
-  {
-    icon: FileText,
-    title: 'Send your documents',
-    text: 'Upload your trade licence and owner ID, plus VAT or brand authorisation where they apply.',
-  },
-  {
-    icon: Warehouse,
-    title: 'Add your warehouse',
-    text: 'Tell us where your stock is held so supply and collection can be planned.',
-  },
-  {
-    icon: PackageSearch,
-    title: 'Business and product review',
-    text: 'Our team reviews your business, then looks at which of your products fit current demand and categories.',
-  },
-  {
-    icon: ScrollText,
-    title: 'Commercial agreement',
-    text: 'Pricing, supply terms and the conditions that apply to your products are agreed with our team.',
-  },
-  {
-    icon: Boxes,
-    title: 'Product onboarding',
-    text: 'Approved products are prepared for the Tejaraa workflow that suits them.',
-  },
-  {
-    icon: Truck,
-    title: 'Supply and orders',
-    text: 'Supply begins against agreed requirements, and you follow orders and payouts in your supplier account.',
-  },
+  { icon: ClipboardCheck, title: 'supplier.processSteps.apply.title', text: 'supplier.processSteps.apply.text' },
+  { icon: FileText, title: 'supplier.processSteps.sendDocuments.title', text: 'supplier.processSteps.sendDocuments.text' },
+  { icon: Warehouse, title: 'supplier.processSteps.addWarehouse.title', text: 'supplier.processSteps.addWarehouse.text' },
+  { icon: PackageSearch, title: 'supplier.processSteps.businessReview.title', text: 'supplier.processSteps.businessReview.text' },
+  { icon: ScrollText, title: 'supplier.processSteps.commercialAgreement.title', text: 'supplier.processSteps.commercialAgreement.text' },
+  { icon: Boxes, title: 'supplier.processSteps.productOnboarding.title', text: 'supplier.processSteps.productOnboarding.text' },
+  { icon: Truck, title: 'supplier.processSteps.supplyOrders.title', text: 'supplier.processSteps.supplyOrders.text' },
 ];
 
 export interface SupplyModel {
   icon: LucideIcon;
-  title: string;
-  best: string;
-  points: string[];
+  title: TranslationKey;
+  best: TranslationKey;
+  points: TranslationKey[];
 }
 
 export const supplyModels: SupplyModel[] = [
   {
     icon: Warehouse,
-    title: 'Wholesale supply',
-    best: 'For suppliers who can supply approved products in agreed quantities.',
-    points: ['Supply against agreed commercial requirements', 'Order volumes confirmed with our team', 'Stock held in your own warehouse'],
+    title: 'supplier.supplyModelsList.wholesale.title',
+    best: 'supplier.supplyModelsList.wholesale.best',
+    points: ['supplier.supplyModelsList.wholesale.point1', 'supplier.supplyModelsList.wholesale.point2', 'supplier.supplyModelsList.wholesale.point3'],
   },
   {
     icon: Truck,
-    title: 'Brand and distributor supply',
-    best: 'For distributors and brand owners with authorised product lines.',
-    points: ['Supply recognised brands you are authorised to sell', 'Brand authorisation reviewed where it applies', 'Product ranges agreed line by line'],
+    title: 'supplier.supplyModelsList.brand.title',
+    best: 'supplier.supplyModelsList.brand.best',
+    points: ['supplier.supplyModelsList.brand.point1', 'supplier.supplyModelsList.brand.point2', 'supplier.supplyModelsList.brand.point3'],
   },
   {
     icon: Boxes,
-    title: 'Catalogue partnership',
-    best: 'For suppliers with a wide range who want us to find the fit.',
-    points: ['Share a broader catalogue for review', 'We identify items that match current demand', 'Add more products over time'],
+    title: 'supplier.supplyModelsList.catalogue.title',
+    best: 'supplier.supplyModelsList.catalogue.best',
+    points: ['supplier.supplyModelsList.catalogue.point1', 'supplier.supplyModelsList.catalogue.point2', 'supplier.supplyModelsList.catalogue.point3'],
   },
 ];
 
 export interface SupplierCategory {
-  name: string;
-  text: string;
+  name: TranslationKey;
+  text: TranslationKey;
   image: string;
 }
 
 /** Categories reviewed today — interest, not a demand promise. */
 export const supplierCategories: SupplierCategory[] = [
-  { name: 'Electronics', text: 'Consumer electronics and accessories.', image: catElectronics },
-  { name: 'Mobile accessories', text: 'Cases, cables, chargers and audio.', image: catMobile },
-  { name: 'Home & kitchen', text: 'Household, kitchen and small appliances.', image: catHome },
-  { name: 'Health & beauty', text: 'Personal care and beauty products.', image: catBeauty },
-  { name: 'Fashion accessories', text: 'Bags, watches and everyday accessories.', image: catFashion },
-  { name: 'Automotive accessories', text: 'Car care and in-car accessories.', image: catAutomotive },
-  { name: 'Food & beverage', text: 'Packaged food and drink lines.', image: catFood },
-  { name: 'Packaging & supplies', text: 'Packaging, labels and operational supplies.', image: catPackaging },
+  { name: 'supplier.categoriesList.electronics.name', text: 'supplier.categoriesList.electronics.text', image: catElectronics },
+  { name: 'supplier.categoriesList.mobile.name', text: 'supplier.categoriesList.mobile.text', image: catMobile },
+  { name: 'supplier.categoriesList.home.name', text: 'supplier.categoriesList.home.text', image: catHome },
+  { name: 'supplier.categoriesList.beauty.name', text: 'supplier.categoriesList.beauty.text', image: catBeauty },
+  { name: 'supplier.categoriesList.fashion.name', text: 'supplier.categoriesList.fashion.text', image: catFashion },
+  { name: 'supplier.categoriesList.automotive.name', text: 'supplier.categoriesList.automotive.text', image: catAutomotive },
+  { name: 'supplier.categoriesList.food.name', text: 'supplier.categoriesList.food.text', image: catFood },
+  { name: 'supplier.categoriesList.packaging.name', text: 'supplier.categoriesList.packaging.text', image: catPackaging },
 ];
 
 export const supplierRequirements: SupplierItem[] = [
-  {
-    icon: Building2,
-    title: 'A registered business',
-    text: 'A trade licence or company registration, with your owner or authorised person ID. Individual traders can apply too.',
-  },
-  {
-    icon: FileText,
-    title: 'Documents where they apply',
-    text: 'VAT certificate and brand authorisation are asked for when relevant, and a bank document before your first payout.',
-  },
-  {
-    icon: PackageSearch,
-    title: 'A relevant product catalogue',
-    text: 'Product details we can review: names, specifications, images and barcodes where you have them.',
-  },
-  {
-    icon: Warehouse,
-    title: 'Reliable supply capability',
-    text: 'Stock you can supply consistently from a warehouse address you can confirm.',
-  },
-  {
-    icon: ScrollText,
-    title: 'Workable commercial terms',
-    text: 'Supply pricing that works for e-commerce selling. Terms are agreed during review, not published here.',
-  },
+  { icon: Building2, title: 'supplier.requirementsList.registeredBusiness.title', text: 'supplier.requirementsList.registeredBusiness.text' },
+  { icon: FileText, title: 'supplier.requirementsList.documents.title', text: 'supplier.requirementsList.documents.text' },
+  { icon: PackageSearch, title: 'supplier.requirementsList.catalogue.title', text: 'supplier.requirementsList.catalogue.text' },
+  { icon: Warehouse, title: 'supplier.requirementsList.supplyCapability.title', text: 'supplier.requirementsList.supplyCapability.text' },
+  { icon: ScrollText, title: 'supplier.requirementsList.commercialTerms.title', text: 'supplier.requirementsList.commercialTerms.text' },
 ];
 
 export const supplierChannels: SupplierItem[] = [
-  {
-    icon: Store,
-    title: 'Tejaraa Shop',
-    text: 'Approved products can be offered to retail customers on the Tejaraa storefront.',
-  },
-  {
-    icon: Truck,
-    title: 'Sellers we supply',
-    text: 'Products can be supplied to e-commerce sellers who use Tejaraa sourcing and fulfilment.',
-  },
-  {
-    icon: Globe2,
-    title: 'Business buyers',
-    text: 'Wholesale quantities can be offered to business buyers in the markets we serve.',
-  },
+  { icon: Store, title: 'supplier.channelsList.shop.title', text: 'supplier.channelsList.shop.text' },
+  { icon: Truck, title: 'supplier.channelsList.sellers.title', text: 'supplier.channelsList.sellers.text' },
+  { icon: Globe2, title: 'supplier.channelsList.businessBuyers.title', text: 'supplier.channelsList.businessBuyers.text' },
 ];
 
 export const supplierTrust: SupplierItem[] = [
-  { icon: BadgeCheck, title: 'E-commerce experience', text: 'Our team works with online retail and marketplace supply day to day.' },
-  { icon: ClipboardCheck, title: 'Structured product review', text: 'Products are reviewed for commercial and operational fit before onboarding.' },
-  { icon: ScrollText, title: 'Clear commercial process', text: 'Pricing and supply terms are agreed in writing with your company.' },
-  { icon: Handshake, title: 'Partnership focus', text: 'We aim for repeat supply relationships rather than one-off purchases.' },
+  { icon: BadgeCheck, title: 'supplier.trustList.experience.title', text: 'supplier.trustList.experience.text' },
+  { icon: ClipboardCheck, title: 'supplier.trustList.structuredReview.title', text: 'supplier.trustList.structuredReview.text' },
+  { icon: ScrollText, title: 'supplier.trustList.clearProcess.title', text: 'supplier.trustList.clearProcess.text' },
+  { icon: Handshake, title: 'supplier.trustList.partnershipFocus.title', text: 'supplier.trustList.partnershipFocus.text' },
 ];
 
-export interface SupplierFaq { q: string; a: string }
+export interface SupplierFaq { q: TranslationKey; a: TranslationKey }
 
 export const supplierFaqs: SupplierFaq[] = [
-  {
-    q: 'Who can become a Tejaraa supplier?',
-    a: 'Manufacturers, distributors, wholesalers, importers and individual traders can all apply. You pick your business type in the application.',
-  },
-  {
-    q: 'Do I need to be a manufacturer?',
-    a: 'No. Distributors, wholesalers and importers are welcome. What matters is that you can supply the products consistently.',
-  },
-  {
-    q: 'Which product categories do you review?',
-    a: 'The categories on this page are what we look at today. If your range sits close to one of them, send it in.',
-  },
-  {
-    q: 'What documents do you ask for?',
-    a: 'Trade licence or company registration and the owner or authorised person ID. VAT certificate, brand authorisation and a bank document where they apply.',
-  },
-  {
-    q: 'Do I need brand authorisation?',
-    a: 'Only for branded products where the brand requires it. Own-brand and unbranded products do not need it.',
-  },
-  {
-    q: 'How do I share my catalogue?',
-    a: 'Send it during the review conversation with our team, or add products in your supplier account once your business is approved.',
-  },
-  {
-    q: 'Does becoming an approved supplier guarantee orders?',
-    a: 'No. Approval means we can work with your company. What we buy, and when, depends on category fit, demand and agreed terms.',
-  },
-  {
-    q: 'What are the payment and order terms?',
-    a: 'Commercial terms depend on the products and supply model, so they are agreed with your company during review.',
-  },
-  {
-    q: 'How do I get started?',
-    a: 'Start the supplier application, add your company details and documents, and our team will take it from there.',
-  },
+  { q: 'supplier.faqList.who.q', a: 'supplier.faqList.who.a' },
+  { q: 'supplier.faqList.manufacturer.q', a: 'supplier.faqList.manufacturer.a' },
+  { q: 'supplier.faqList.categories.q', a: 'supplier.faqList.categories.a' },
+  { q: 'supplier.faqList.documents.q', a: 'supplier.faqList.documents.a' },
+  { q: 'supplier.faqList.brandAuth.q', a: 'supplier.faqList.brandAuth.a' },
+  { q: 'supplier.faqList.shareCatalogue.q', a: 'supplier.faqList.shareCatalogue.a' },
+  { q: 'supplier.faqList.guaranteeOrders.q', a: 'supplier.faqList.guaranteeOrders.a' },
+  { q: 'supplier.faqList.paymentTerms.q', a: 'supplier.faqList.paymentTerms.a' },
+  { q: 'supplier.faqList.getStarted.q', a: 'supplier.faqList.getStarted.a' },
 ];

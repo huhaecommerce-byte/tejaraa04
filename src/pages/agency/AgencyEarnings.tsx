@@ -5,6 +5,7 @@ import { PageHeader } from '@/components/customer/aux/PageHeader';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { supabase } from '@/integrations/supabase/client';
 import { sar } from '@/hooks/useAgency';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 interface Row {
   id: string;
@@ -25,14 +26,14 @@ const tone: Record<string, string> = {
   reversed: 'bg-rose-100 text-rose-800',
 };
 
-const label: Record<string, string> = {
-  pending: 'Pending delivery',
-  approved: 'Ready to withdraw',
-  paid: 'Paid',
-  reversed: 'Reversed',
-};
-
 export default function AgencyEarnings() {
+  const { t } = useLocale();
+  const label: Record<string, string> = {
+    pending: t('agency.earnings.statusPending'),
+    approved: t('agency.earnings.statusApproved'),
+    paid: t('agency.earnings.statusPaid'),
+    reversed: t('agency.earnings.statusReversed'),
+  };
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -51,28 +52,28 @@ export default function AgencyEarnings() {
   return (
     <>
       <PageHeader
-        title="Earnings ledger"
-        highlight="Earnings"
-        subtitle="Every order your dropshippers placed, the profit it made and your share of it."
+        title={t('agency.earnings.title')}
+        highlight={t('agency.earnings.highlight')}
+        subtitle={t('agency.earnings.subtitle')}
       />
       <Card>
         <CardContent className="p-0">
           {loading ? (
-            <p className="p-8 text-center text-sm text-muted-foreground">Loading…</p>
+            <p className="p-8 text-center text-sm text-muted-foreground">{t('agency.earnings.loading')}</p>
           ) : rows.length === 0 ? (
-            <p className="p-12 text-center text-sm text-muted-foreground">No earnings recorded yet.</p>
+            <p className="p-12 text-center text-sm text-muted-foreground">{t('agency.earnings.empty')}</p>
           ) : (
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Order</TableHead>
-                    <TableHead className="text-right">Order value</TableHead>
-                    <TableHead className="text-right">Tejaraa profit</TableHead>
-                    <TableHead className="text-right">Rate</TableHead>
-                    <TableHead className="text-right">You earned</TableHead>
-                    <TableHead>Status</TableHead>
+                    <TableHead>{t('agency.earnings.colDate')}</TableHead>
+                    <TableHead>{t('agency.earnings.colOrder')}</TableHead>
+                    <TableHead className="text-right">{t('agency.earnings.colOrderValue')}</TableHead>
+                    <TableHead className="text-right">{t('agency.earnings.colProfit')}</TableHead>
+                    <TableHead className="text-right">{t('agency.earnings.colRate')}</TableHead>
+                    <TableHead className="text-right">{t('agency.earnings.colEarned')}</TableHead>
+                    <TableHead>{t('agency.earnings.colStatus')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
