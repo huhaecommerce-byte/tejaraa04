@@ -305,6 +305,8 @@ function CategoryMegaMenu({ categories, onClose }: { categories: CategoryGroup[]
 
 
 function MobileMenu({ categories, user, accountHref, logout }: { categories: CategoryGroup[]; user: ReturnType<typeof useAuth>['user']; accountHref: string; logout: () => Promise<void> }) {
+  const { pathname } = useLocation();
+  const isArabic = pathname === '/ar' || pathname.startsWith('/ar/');
   const [activeCategory, setActiveCategory] = useState<CategoryGroup | null>(null);
   const wholesale = useWholesaleAccess();
   return <div className="min-h-full bg-retail-card">
