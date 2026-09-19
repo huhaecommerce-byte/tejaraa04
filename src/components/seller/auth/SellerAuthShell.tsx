@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { ArrowLeft, CheckCircle2, ShieldCheck, Sparkles, Users, Zap } from 'lucide-react';
 import { Link } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
-import sellerWorkspaceImage from '@/assets/seller/seller-auth-workspace.jpg';
+import sellerWorkspaceImage from '@/assets/seller/seller-auth-warehouse.jpg';
 
 interface SellerAuthShellProps {
   eyebrow: string;
