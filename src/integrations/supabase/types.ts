@@ -2807,97 +2807,77 @@ export type Database = {
         }
         Relationships: []
       }
-      wl_channel_connections: {
+      wl_applications: {
         Row: {
+          account_country: string
+          business_name: string
+          business_type: string
+          city: string
+          contact_email: string
+          contact_mobile: string
+          contact_name: string
+          country: string
           created_at: string
-          enabled: boolean
+          documents: Json
           id: string
-          key_hash: string
-          key_prefix: string
-          last_order_at: string | null
-          last_push_at: string | null
-          name: string
-          notes: string
-          orders_pull_secret: string
-          orders_pull_url: string
-          push_secret: string
-          push_url: string
-          slug: string
+          review_notes: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: Database["public"]["Enums"]["wl_application_status"]
+          submitted_at: string
+          trading_name: string
           updated_at: string
+          user_id: string
+          warehouses: Json
+          website: string
         }
         Insert: {
+          account_country?: string
+          business_name?: string
+          business_type?: string
+          city?: string
+          contact_email?: string
+          contact_mobile?: string
+          contact_name?: string
+          country?: string
           created_at?: string
-          enabled?: boolean
+          documents?: Json
           id?: string
-          key_hash?: string
-          key_prefix?: string
-          last_order_at?: string | null
-          last_push_at?: string | null
-          name: string
-          notes?: string
-          orders_pull_secret?: string
-          orders_pull_url?: string
-          push_secret?: string
-          push_url?: string
-          slug: string
+          review_notes?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["wl_application_status"]
+          submitted_at?: string
+          trading_name?: string
           updated_at?: string
+          user_id: string
+          warehouses?: Json
+          website?: string
         }
         Update: {
+          account_country?: string
+          business_name?: string
+          business_type?: string
+          city?: string
+          contact_email?: string
+          contact_mobile?: string
+          contact_name?: string
+          country?: string
           created_at?: string
-          enabled?: boolean
+          documents?: Json
           id?: string
-          key_hash?: string
-          key_prefix?: string
-          last_order_at?: string | null
-          last_push_at?: string | null
-          name?: string
-          notes?: string
-          orders_pull_secret?: string
-          orders_pull_url?: string
-          push_secret?: string
-          push_url?: string
-          slug?: string
+          review_notes?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["wl_application_status"]
+          submitted_at?: string
+          trading_name?: string
           updated_at?: string
+          user_id?: string
+          warehouses?: Json
+          website?: string
         }
         Relationships: []
-      }
-      wl_channel_sync_log: {
-        Row: {
-          connection_id: string | null
-          created_at: string
-          detail: Json
-          direction: string
-          event: string
-          id: string
-          status: string
-        }
-        Insert: {
-          connection_id?: string | null
-          created_at?: string
-          detail?: Json
-          direction?: string
-          event?: string
-          id?: string
-          status?: string
-        }
-        Update: {
-          connection_id?: string | null
-          created_at?: string
-          detail?: Json
-          direction?: string
-          event?: string
-          id?: string
-          status?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "wl_channel_sync_log_connection_id_fkey"
-            columns: ["connection_id"]
-            isOneToOne: false
-            referencedRelation: "wl_channel_connections"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       wl_market_flags: {
         Row: {
@@ -2926,6 +2906,321 @@ export type Database = {
           note?: string
           sort_order?: number
           updated_at?: string
+        }
+        Relationships: []
+      }
+      wl_orders: {
+        Row: {
+          buyer_country: string
+          channel: string
+          created_at: string
+          currency: string
+          id: string
+          order_value: number
+          product_summary: string
+          quantity: number
+          reference: string
+          shipping: string
+          status: string
+          supplier_id: string
+          updated_at: string
+        }
+        Insert: {
+          buyer_country?: string
+          channel?: string
+          created_at?: string
+          currency?: string
+          id?: string
+          order_value?: number
+          product_summary?: string
+          quantity?: number
+          reference?: string
+          shipping?: string
+          status?: string
+          supplier_id: string
+          updated_at?: string
+        }
+        Update: {
+          buyer_country?: string
+          channel?: string
+          created_at?: string
+          currency?: string
+          id?: string
+          order_value?: number
+          product_summary?: string
+          quantity?: number
+          reference?: string
+          shipping?: string
+          status?: string
+          supplier_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      wl_partner_profiles: {
+        Row: {
+          country: string
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          mobile: string
+          updated_at: string
+        }
+        Insert: {
+          country?: string
+          created_at?: string
+          email?: string
+          first_name?: string
+          id: string
+          last_name?: string
+          mobile?: string
+          updated_at?: string
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          mobile?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      wl_payout_detail_history: {
+        Row: {
+          action: string
+          actor_id: string | null
+          bank_account_name: string
+          bank_iban: string
+          bank_name: string
+          created_at: string
+          document_name: string
+          document_path: string
+          id: string
+          note: string
+          status: string
+          supplier_id: string
+        }
+        Insert: {
+          action?: string
+          actor_id?: string | null
+          bank_account_name?: string
+          bank_iban?: string
+          bank_name?: string
+          created_at?: string
+          document_name?: string
+          document_path?: string
+          id?: string
+          note?: string
+          status?: string
+          supplier_id: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          bank_account_name?: string
+          bank_iban?: string
+          bank_name?: string
+          created_at?: string
+          document_name?: string
+          document_path?: string
+          id?: string
+          note?: string
+          status?: string
+          supplier_id?: string
+        }
+        Relationships: []
+      }
+      wl_payout_requests: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string
+          id: string
+          note: string
+          status: string
+          supplier_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          currency?: string
+          id?: string
+          note?: string
+          status?: string
+          supplier_id: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string
+          id?: string
+          note?: string
+          status?: string
+          supplier_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      wl_products: {
+        Row: {
+          brand: string
+          category: string
+          created_at: string
+          currency: string
+          description: string
+          dropship_price: number
+          id: string
+          images: Json
+          is_active: boolean
+          moq: number
+          name: string
+          review_notes: string
+          sku: string
+          status: Database["public"]["Enums"]["wl_product_status"]
+          stock: number
+          supplier_id: string
+          updated_at: string
+          warehouse: string
+          wholesale_price: number
+        }
+        Insert: {
+          brand?: string
+          category?: string
+          created_at?: string
+          currency?: string
+          description?: string
+          dropship_price?: number
+          id?: string
+          images?: Json
+          is_active?: boolean
+          moq?: number
+          name: string
+          review_notes?: string
+          sku?: string
+          status?: Database["public"]["Enums"]["wl_product_status"]
+          stock?: number
+          supplier_id: string
+          updated_at?: string
+          warehouse?: string
+          wholesale_price?: number
+        }
+        Update: {
+          brand?: string
+          category?: string
+          created_at?: string
+          currency?: string
+          description?: string
+          dropship_price?: number
+          id?: string
+          images?: Json
+          is_active?: boolean
+          moq?: number
+          name?: string
+          review_notes?: string
+          sku?: string
+          status?: Database["public"]["Enums"]["wl_product_status"]
+          stock?: number
+          supplier_id?: string
+          updated_at?: string
+          warehouse?: string
+          wholesale_price?: number
+        }
+        Relationships: []
+      }
+      wl_settings: {
+        Row: {
+          bank_account_name: string
+          bank_iban: string
+          bank_name: string
+          channels: Json
+          created_at: string
+          default_currency: string
+          dropship_enabled: boolean
+          dropship_uplift: number
+          low_stock_threshold: number
+          min_order_value: number
+          order_notifications: boolean
+          payout_document: string
+          payout_document_name: string
+          payout_review_notes: string
+          payout_reviewed_at: string | null
+          payout_status: string
+          payout_submitted_at: string | null
+          stock_notifications: boolean
+          supplier_id: string
+          updated_at: string
+        }
+        Insert: {
+          bank_account_name?: string
+          bank_iban?: string
+          bank_name?: string
+          channels?: Json
+          created_at?: string
+          default_currency?: string
+          dropship_enabled?: boolean
+          dropship_uplift?: number
+          low_stock_threshold?: number
+          min_order_value?: number
+          order_notifications?: boolean
+          payout_document?: string
+          payout_document_name?: string
+          payout_review_notes?: string
+          payout_reviewed_at?: string | null
+          payout_status?: string
+          payout_submitted_at?: string | null
+          stock_notifications?: boolean
+          supplier_id: string
+          updated_at?: string
+        }
+        Update: {
+          bank_account_name?: string
+          bank_iban?: string
+          bank_name?: string
+          channels?: Json
+          created_at?: string
+          default_currency?: string
+          dropship_enabled?: boolean
+          dropship_uplift?: number
+          low_stock_threshold?: number
+          min_order_value?: number
+          order_notifications?: boolean
+          payout_document?: string
+          payout_document_name?: string
+          payout_review_notes?: string
+          payout_reviewed_at?: string | null
+          payout_status?: string
+          payout_submitted_at?: string | null
+          stock_notifications?: boolean
+          supplier_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      wl_user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["wl_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["wl_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["wl_role"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -2961,10 +3256,9 @@ export type Database = {
     }
     Functions: {
       __import_exec: { Args: { sql: string }; Returns: undefined }
-      accept_team_invite: { Args: { _token: string }; Returns: Json }
-      admin_adjust_inventory: {
-        Args: { _inventory_id: string; _qty_change: number; _reason: string }
-        Returns: Json
+      __import_exec_as: {
+        Args: { _role: string; sql: string }
+        Returns: undefined
       }
       admin_list_customers: {
         Args: { _limit?: number; _offset?: number; _search?: string }
@@ -2982,93 +3276,10 @@ export type Database = {
           wallet_balance: number
         }[]
       }
-      admin_product_add_stats: { Args: { _days?: number }; Returns: Json }
-      admin_send_notification: {
-        Args: { _body: string; _link: string; _title: string; _user_id: string }
-        Returns: Json
-      }
-      analytics_session_timeline: {
-        Args: { _session_id: string }
-        Returns: {
-          at: string
-          detail: string
-          kind: string
-          label: string
-        }[]
-      }
-      analytics_sessions: {
-        Args: { _days?: number; _limit?: number; _search?: string }
-        Returns: {
-          browser: string
-          converted: boolean
-          country: string
-          device_type: string
-          display_name: string
-          email: string
-          first_seen: string
-          landing_page: string
-          last_page: string
-          last_seen: string
-          page_views: number
-          referrer: string
-          session_id: string
-          user_id: string
-          visitor_id: string
-        }[]
-      }
-      analytics_summary: { Args: { _days?: number }; Returns: Json }
-      apply_pricing_formula:
-        | { Args: never; Returns: number }
-        | {
-            Args: { _cost_usd?: number; _source?: string; _weight_kg?: number }
-            Returns: number
-          }
-      apply_referral_code: { Args: { _code: string }; Returns: Json }
-      broadcast_notification: {
-        Args: {
-          _audience?: string
-          _body: string
-          _link: string
-          _title: string
-        }
-        Returns: number
-      }
-      build_zatca_qr: {
-        Args: {
-          _seller_name: string
-          _seller_vat: string
-          _timestamp: string
-          _total: number
-          _vat: number
-        }
-        Returns: string
-      }
-      claim_guest_shop_orders: { Args: never; Returns: Json }
-      create_notification: {
-        Args: {
-          _body: string
-          _link: string
-          _metadata?: Json
-          _title: string
-          _type: string
-          _user_id: string
-        }
-        Returns: undefined
-      }
-      gen_referral_code: { Args: never; Returns: string }
-      generate_invoice_for_order: {
-        Args: { _order_id: string }
-        Returns: string
-      }
-      generate_invoice_number: { Args: never; Returns: string }
       get_team_owner: { Args: { _user_id: string }; Returns: string }
       get_user_plan_limit: {
         Args: { _limit_key: string; _user_id: string }
         Returns: number
-      }
-      has_active_subscription: {
-        Args: { check_env?: string; user_uuid: string }
-        Returns: boolean
       }
       has_module_access: {
         Args: { _module: string; _user_id: string }
@@ -3081,197 +3292,69 @@ export type Database = {
         }
         Returns: boolean
       }
-      hunt_catalog_products:
-        | {
-            Args: {
-              _category?: string
-              _in_stock?: boolean
-              _limit?: number
-              _max_price?: number
-              _min_price?: number
-              _offset?: number
-              _relaxed?: boolean
-              _source?: string
-              _terms: string[]
-            }
-            Returns: {
-              bulk_price: number
-              bulk_price_usd: number
-              cost_usd: number
-              created_at: string
-              detailed_category: string
-              dropship_price: number
-              dropship_price_usd: number
-              estimated_delivery: string
-              id: string
-              images: string[]
-              is_featured: boolean
-              labelling_available: boolean
-              match_score: number
-              moq: number
-              name: string
-              name_ar: string
-              platforms: string[]
-              price_sar: number
-              price_usd: number
-              sku: string
-              source: string
-              stock_qty: number
-              sub_category: string
-              top_category: string
-              total_count: number
-              track_inventory: boolean
-              weight_kg: number
-            }[]
-          }
-        | {
-            Args: {
-              _category?: string
-              _in_stock?: boolean
-              _limit?: number
-              _max_price?: number
-              _min_price?: number
-              _offset?: number
-              _relaxed?: boolean
-              _source?: string
-              _terms: string[]
-            }
-            Returns: {
-              bulk_price: number
-              bulk_price_usd: number
-              cost_usd: number
-              created_at: string
-              detailed_category: string
-              dropship_price: number
-              dropship_price_usd: number
-              estimated_delivery: string
-              id: string
-              images: string[]
-              is_featured: boolean
-              labelling_available: boolean
-              match_score: number
-              moq: number
-              name: string
-              name_ar: string
-              platforms: string[]
-              price_sar: number
-              price_usd: number
-              sku: string
-              source: string
-              stock_qty: number
-              sub_category: string
-              top_category: string
-              total_count: number
-              track_inventory: boolean
-              weight_kg: number
-            }[]
-          }
+      hunt_catalog_products: {
+        Args: {
+          _category?: string
+          _in_stock?: boolean
+          _limit?: number
+          _max_price?: number
+          _min_price?: number
+          _offset?: number
+          _relaxed?: boolean
+          _source?: string
+          _terms: string[]
+        }
+        Returns: {
+          bulk_price: number
+          bulk_price_usd: number
+          cost_usd: number
+          created_at: string
+          detailed_category: string
+          dropship_price: number
+          dropship_price_usd: number
+          estimated_delivery: string
+          id: string
+          images: string[]
+          is_featured: boolean
+          labelling_available: boolean
+          match_score: number
+          moq: number
+          name: string
+          name_ar: string
+          platforms: string[]
+          price_sar: number
+          price_usd: number
+          sku: string
+          source: string
+          stock_qty: number
+          sub_category: string
+          top_category: string
+          total_count: number
+          track_inventory: boolean
+          weight_kg: number
+        }[]
+      }
       is_admin: { Args: never; Returns: boolean }
       is_staff_or_admin: { Args: { _user_id: string }; Returns: boolean }
-      notify_admins: {
-        Args: {
-          _body: string
-          _link: string
-          _metadata?: Json
-          _title: string
-          _type: string
-        }
-        Returns: undefined
-      }
-      pricing_setting: {
-        Args: { _default: number; _key: string }
-        Returns: number
-      }
       product_digest_stats: {
         Args: { _limit?: number; _since: string }
         Returns: Json
       }
-      queue_email:
-        | {
-            Args: {
-              _dedupe_key?: string
-              _payload: Json
-              _recipient_email?: string
-              _template_name: string
-              _user_id: string
-            }
-            Returns: string
-          }
-        | {
-            Args: {
-              _dedupe_key?: string
-              _payload: Json
-              _recipient_email?: string
-              _template_name: string
-              _user_id: string
-            }
-            Returns: string
-          }
       record_page_duration: {
         Args: { _id: string; _ms: number }
         Returns: undefined
       }
-      redeem_promo_code: { Args: { _code: string }; Returns: Json }
       refresh_category_counts_cache: { Args: never; Returns: number }
-      refresh_category_counts_if_dirty: { Args: never; Returns: Json }
-      reprice_products_batch: {
-        Args: { _batch_size?: number }
-        Returns: number
-      }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
-      slugify: { Args: { _txt: string }; Returns: string }
       team_can_buy: { Args: { _user_id: string }; Returns: boolean }
-      track_referral_visit: {
-        Args: { _code: string; _meta?: Json }
-        Returns: Json
-      }
-      validate_promo_code: {
-        Args: { _code: string; _order_total: number }
-        Returns: Json
-      }
-      wallet_admin_adjust: {
+      wl_has_role: {
         Args: {
-          _amount: number
-          _description: string
-          _type: string
+          _role: Database["public"]["Enums"]["wl_role"]
           _user_id: string
         }
-        Returns: Json
-      }
-      wallet_apply: {
-        Args: {
-          _amount: number
-          _description: string
-          _stripe_session_id?: string
-          _type: string
-          _user_id: string
-        }
-        Returns: Json
-      }
-      wallet_credit_from_payment: {
-        Args: {
-          _amount: number
-          _description: string
-          _stripe_session_id: string
-          _user_id: string
-        }
-        Returns: Json
-      }
-      wallet_debit_for_order: {
-        Args: { _amount: number; _order_id: string }
-        Returns: Json
-      }
-      wallet_debit_for_release: {
-        Args: { _amount: number; _release_id: string }
-        Returns: Json
-      }
-      wallet_get_balance: { Args: never; Returns: number }
-      wants_notification: {
-        Args: { _type: string; _user_id: string }
         Returns: boolean
       }
-      weight_fee_in_price: { Args: { _source: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user" | "staff"
