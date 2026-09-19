@@ -1,0 +1,76 @@
+import { useEffect, useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { PageHeader } from '@/components/customer/aux/PageHeader';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { supabase } from '@/integrations/supabase/client';
+import { sar } from '@/hooks/useAgency';
+import { Users } from 'lucide-react';
+
+interface ClientRow {
+  client_user_id: string;
+  display_name: string;
+  email_masked: string | null;
+  joined_at: string;
+  orders: number;
+  earned: number;
+}
+
+export default function AgencyClients() {
+  const [rows, setRows] = useState<ClientRow[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.rpc('agency_list_clients' as never).then(({ data }) => {
+      setRows((data as ClientRow[]) || []);
+      setLoading(false);
+    });
+  }, []);
+
+  return (
+    <>
+      <PageHeader
+        title="My dropshippers"
+        highlight="dropshippers"
+        subtitle="Everyone who joined Tejaraa through your invite link."
+      />
+      <Card>
+        <CardContent className="p-0">
+          {loading ? (
+            <p className="p-8 text-center text-sm text-muted-foreground">Loading…</p>
+          ) : rows.length === 0 ? (
+            <div className="p-12 text-center">
+              <Users className="mx-auto mb-3 h-8 w-8 text-muted-foreground" />
+              <p className="text-sm text-muted-foreground">
+                No dropshippers yet. Share your invite link to get started.
+              </p>
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Dropshipper</TableHead>
+                  <TableHead>Joined</TableHead>
+                  <TableHead className="text-right">Orders</TableHead>
+                  <TableHead className="text-right">You earned</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {rows.map((r) => (
+                  <TableRow key={r.client_user_id}>
+                    <TableCell>
+                      <div className="font-medium">{r.display_name}</div>
+                      <div className="text-xs text-muted-foreground">{r.email_masked || '—'}</div>
+                    </TableCell>
+                    <TableCell>{new Date(r.joined_at).toLocaleDateString()}</TableCell>
+                    <TableCell className="text-right">{r.orders}</TableCell>
+                    <TableCell className="text-right font-semibold">{sar(r.earned)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </CardContent>
+      </Card>
+    </>
+  );
+}

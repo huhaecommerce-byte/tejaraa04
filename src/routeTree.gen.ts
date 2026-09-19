@@ -60,6 +60,10 @@ import { Route as AdminSuppliersRouteImport } from './routes/admin/suppliers'
 import { Route as AdminTicketsRouteImport } from './routes/admin/tickets'
 import { Route as AdminWarehouseRouteImport } from './routes/admin/warehouse'
 import { Route as AdminWhatsappLogsRouteImport } from './routes/admin/whatsapp-logs'
+import { Route as AgencyIndexRouteImport } from './routes/agency/index'
+import { Route as AgencyApplyRouteImport } from './routes/agency/apply'
+import { Route as AgencyPortalRouteRouteImport } from './routes/agency/portal/route'
+import { Route as AgencySigninRouteImport } from './routes/agency/signin'
 import { Route as ArIndexRouteImport } from './routes/ar/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogAmazonFbaLabelingRequirementsGuideRouteImport } from './routes/blog/amazon-fba-labeling-requirements-guide'
@@ -143,6 +147,12 @@ import { Route as AdminProductsIndexRouteImport } from './routes/admin/products/
 import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
 import { Route as AdminProductsImportRouteImport } from './routes/admin/products/import'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
+import { Route as AgencyPortalIndexRouteImport } from './routes/agency/portal/index'
+import { Route as AgencyPortalClientsRouteImport } from './routes/agency/portal/clients'
+import { Route as AgencyPortalEarningsRouteImport } from './routes/agency/portal/earnings'
+import { Route as AgencyPortalLinkRouteImport } from './routes/agency/portal/link'
+import { Route as AgencyPortalPayoutsRouteImport } from './routes/agency/portal/payouts'
+import { Route as AgencyPortalProfileRouteImport } from './routes/agency/portal/profile'
 import { Route as ApiFnCatalogExportRouteImport } from './routes/api/fn/catalog-export'
 import { Route as ApiFnCreateCheckoutRouteImport } from './routes/api/fn/create-checkout'
 import { Route as ApiFnCreatePortalSessionRouteImport } from './routes/api/fn/create-portal-session'
@@ -490,6 +500,26 @@ const AdminWhatsappLogsRoute = AdminWhatsappLogsRouteImport.update({
   id: '/whatsapp-logs',
   path: '/whatsapp-logs',
   getParentRoute: () => AdminRouteRoute,
+} as any)
+const AgencyIndexRoute = AgencyIndexRouteImport.update({
+  id: '/agency/',
+  path: '/agency/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgencyApplyRoute = AgencyApplyRouteImport.update({
+  id: '/agency/apply',
+  path: '/agency/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgencyPortalRouteRoute = AgencyPortalRouteRouteImport.update({
+  id: '/agency/portal',
+  path: '/agency/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgencySigninRoute = AgencySigninRouteImport.update({
+  id: '/agency/signin',
+  path: '/agency/signin',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ArIndexRoute = ArIndexRouteImport.update({
   id: '/ar/',
@@ -922,6 +952,36 @@ const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
   id: '/products/new',
   path: '/products/new',
   getParentRoute: () => AdminRouteRoute,
+} as any)
+const AgencyPortalIndexRoute = AgencyPortalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AgencyPortalRouteRoute,
+} as any)
+const AgencyPortalClientsRoute = AgencyPortalClientsRouteImport.update({
+  id: '/clients',
+  path: '/clients',
+  getParentRoute: () => AgencyPortalRouteRoute,
+} as any)
+const AgencyPortalEarningsRoute = AgencyPortalEarningsRouteImport.update({
+  id: '/earnings',
+  path: '/earnings',
+  getParentRoute: () => AgencyPortalRouteRoute,
+} as any)
+const AgencyPortalLinkRoute = AgencyPortalLinkRouteImport.update({
+  id: '/link',
+  path: '/link',
+  getParentRoute: () => AgencyPortalRouteRoute,
+} as any)
+const AgencyPortalPayoutsRoute = AgencyPortalPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => AgencyPortalRouteRoute,
+} as any)
+const AgencyPortalProfileRoute = AgencyPortalProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AgencyPortalRouteRoute,
 } as any)
 const ApiFnCatalogExportRoute = ApiFnCatalogExportRouteImport.update({
   id: '/api/fn/catalog-export',
@@ -1447,6 +1507,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/unsubscribe': typeof UnsubscribeRoute
+  '/agency/portal': typeof AgencyPortalRouteRouteWithChildren
   '/account/addresses': typeof AccountAddressesRoute
   '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
@@ -1477,6 +1538,8 @@ export interface FileRoutesByFullPath {
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/agency/apply': typeof AgencyApplyRoute
+  '/agency/signin': typeof AgencySigninRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
   '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
@@ -1546,6 +1609,7 @@ export interface FileRoutesByFullPath {
   '/shop/signup': typeof ShopSignupRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/agency/': typeof AgencyIndexRoute
   '/ar/': typeof ArIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/category/': typeof CategoryIndexRoute
@@ -1558,6 +1622,11 @@ export interface FileRoutesByFullPath {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/agency/portal/clients': typeof AgencyPortalClientsRoute
+  '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
+  '/agency/portal/link': typeof AgencyPortalLinkRoute
+  '/agency/portal/payouts': typeof AgencyPortalPayoutsRoute
+  '/agency/portal/profile': typeof AgencyPortalProfileRoute
   '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
   '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
   '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
@@ -1616,6 +1685,7 @@ export interface FileRoutesByFullPath {
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/admin/products/': typeof AdminProductsIndexRoute
+  '/agency/portal/': typeof AgencyPortalIndexRoute
   '/ar/category/': typeof ArCategoryIndexRoute
   '/checkout/shop/': typeof CheckoutShopIndexRoute
   '/dropshipping/catalog/': typeof DropshippingCatalogIndexRoute
@@ -1700,6 +1770,8 @@ export interface FileRoutesByTo {
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/agency/apply': typeof AgencyApplyRoute
+  '/agency/signin': typeof AgencySigninRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
   '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
@@ -1768,6 +1840,7 @@ export interface FileRoutesByTo {
   '/shop/signup': typeof ShopSignupRoute
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
+  '/agency': typeof AgencyIndexRoute
   '/ar': typeof ArIndexRoute
   '/blog': typeof BlogIndexRoute
   '/category': typeof CategoryIndexRoute
@@ -1779,6 +1852,11 @@ export interface FileRoutesByTo {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/agency/portal/clients': typeof AgencyPortalClientsRoute
+  '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
+  '/agency/portal/link': typeof AgencyPortalLinkRoute
+  '/agency/portal/payouts': typeof AgencyPortalPayoutsRoute
+  '/agency/portal/profile': typeof AgencyPortalProfileRoute
   '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
   '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
   '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
@@ -1836,6 +1914,7 @@ export interface FileRoutesByTo {
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
   '/admin/products': typeof AdminProductsIndexRoute
+  '/agency/portal': typeof AgencyPortalIndexRoute
   '/ar/category': typeof ArCategoryIndexRoute
   '/checkout/shop': typeof CheckoutShopIndexRoute
   '/dropshipping/catalog': typeof DropshippingCatalogIndexRoute
@@ -1895,6 +1974,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/unsubscribe': typeof UnsubscribeRoute
+  '/agency/portal': typeof AgencyPortalRouteRouteWithChildren
   '/account/addresses': typeof AccountAddressesRoute
   '/account/orders': typeof AccountOrdersRoute
   '/account/profile': typeof AccountProfileRoute
@@ -1925,6 +2005,8 @@ export interface FileRoutesById {
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/agency/apply': typeof AgencyApplyRoute
+  '/agency/signin': typeof AgencySigninRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
   '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
@@ -1995,6 +2077,7 @@ export interface FileRoutesById {
   '/shop/signup': typeof ShopSignupRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/agency/': typeof AgencyIndexRoute
   '/ar/': typeof ArIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/category/': typeof CategoryIndexRoute
@@ -2007,6 +2090,11 @@ export interface FileRoutesById {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/agency/portal/clients': typeof AgencyPortalClientsRoute
+  '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
+  '/agency/portal/link': typeof AgencyPortalLinkRoute
+  '/agency/portal/payouts': typeof AgencyPortalPayoutsRoute
+  '/agency/portal/profile': typeof AgencyPortalProfileRoute
   '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
   '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
   '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
@@ -2065,6 +2153,7 @@ export interface FileRoutesById {
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/admin/products/': typeof AdminProductsIndexRoute
+  '/agency/portal/': typeof AgencyPortalIndexRoute
   '/ar/category/': typeof ArCategoryIndexRoute
   '/checkout/shop/': typeof CheckoutShopIndexRoute
   '/dropshipping/catalog/': typeof DropshippingCatalogIndexRoute
@@ -2125,6 +2214,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/sitemap.xml'
     | '/unsubscribe'
+    | '/agency/portal'
     | '/account/addresses'
     | '/account/orders'
     | '/account/profile'
@@ -2155,6 +2245,8 @@ export interface FileRouteTypes {
     | '/admin/tickets'
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
+    | '/agency/apply'
+    | '/agency/signin'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
     | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
@@ -2224,6 +2316,7 @@ export interface FileRouteTypes {
     | '/shop/signup'
     | '/account/'
     | '/admin/'
+    | '/agency/'
     | '/ar/'
     | '/blog/'
     | '/category/'
@@ -2236,6 +2329,11 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
+    | '/agency/portal/clients'
+    | '/agency/portal/earnings'
+    | '/agency/portal/link'
+    | '/agency/portal/payouts'
+    | '/agency/portal/profile'
     | '/api/fn/catalog-export'
     | '/api/fn/create-checkout'
     | '/api/fn/create-portal-session'
@@ -2294,6 +2392,7 @@ export interface FileRouteTypes {
     | '/admin/customers/'
     | '/admin/orders/'
     | '/admin/products/'
+    | '/agency/portal/'
     | '/ar/category/'
     | '/checkout/shop/'
     | '/dropshipping/catalog/'
@@ -2378,6 +2477,8 @@ export interface FileRouteTypes {
     | '/admin/tickets'
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
+    | '/agency/apply'
+    | '/agency/signin'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
     | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
@@ -2446,6 +2547,7 @@ export interface FileRouteTypes {
     | '/shop/signup'
     | '/account'
     | '/admin'
+    | '/agency'
     | '/ar'
     | '/blog'
     | '/category'
@@ -2457,6 +2559,11 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
+    | '/agency/portal/clients'
+    | '/agency/portal/earnings'
+    | '/agency/portal/link'
+    | '/agency/portal/payouts'
+    | '/agency/portal/profile'
     | '/api/fn/catalog-export'
     | '/api/fn/create-checkout'
     | '/api/fn/create-portal-session'
@@ -2514,6 +2621,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/products'
+    | '/agency/portal'
     | '/ar/category'
     | '/checkout/shop'
     | '/dropshipping/catalog'
@@ -2572,6 +2680,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/sitemap.xml'
     | '/unsubscribe'
+    | '/agency/portal'
     | '/account/addresses'
     | '/account/orders'
     | '/account/profile'
@@ -2602,6 +2711,8 @@ export interface FileRouteTypes {
     | '/admin/tickets'
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
+    | '/agency/apply'
+    | '/agency/signin'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
     | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
@@ -2672,6 +2783,7 @@ export interface FileRouteTypes {
     | '/shop/signup'
     | '/account/'
     | '/admin/'
+    | '/agency/'
     | '/ar/'
     | '/blog/'
     | '/category/'
@@ -2684,6 +2796,11 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
+    | '/agency/portal/clients'
+    | '/agency/portal/earnings'
+    | '/agency/portal/link'
+    | '/agency/portal/payouts'
+    | '/agency/portal/profile'
     | '/api/fn/catalog-export'
     | '/api/fn/create-checkout'
     | '/api/fn/create-portal-session'
@@ -2742,6 +2859,7 @@ export interface FileRouteTypes {
     | '/admin/customers/'
     | '/admin/orders/'
     | '/admin/products/'
+    | '/agency/portal/'
     | '/ar/category/'
     | '/checkout/shop/'
     | '/dropshipping/catalog/'
@@ -2801,6 +2919,9 @@ export interface RootRouteChildren {
   SignupRoute: typeof SignupRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
+  AgencyPortalRouteRoute: typeof AgencyPortalRouteRouteWithChildren
+  AgencyApplyRoute: typeof AgencyApplyRoute
+  AgencySigninRoute: typeof AgencySigninRoute
   BlogAmazonFbaLabelingRequirementsGuideRoute: typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   BlogAmazonFbaVsNoonFbnSaudiArabiaRoute: typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
   BlogCashOnDeliveryEcommerceSaudiArabiaRoute: typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
@@ -2834,6 +2955,7 @@ export interface RootRouteChildren {
   ShopForgotPasswordRoute: typeof ShopForgotPasswordRoute
   ShopSigninRoute: typeof ShopSigninRoute
   ShopSignupRoute: typeof ShopSignupRoute
+  AgencyIndexRoute: typeof AgencyIndexRoute
   ArIndexRoute: typeof ArIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
   CategoryIndexRoute: typeof CategoryIndexRoute
@@ -3247,6 +3369,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/whatsapp-logs'
       preLoaderRoute: typeof AdminWhatsappLogsRouteImport
       parentRoute: typeof AdminRouteRoute
+    }
+    '/agency/': {
+      id: '/agency/'
+      path: '/agency'
+      fullPath: '/agency/'
+      preLoaderRoute: typeof AgencyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agency/apply': {
+      id: '/agency/apply'
+      path: '/agency/apply'
+      fullPath: '/agency/apply'
+      preLoaderRoute: typeof AgencyApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agency/portal': {
+      id: '/agency/portal'
+      path: '/agency/portal'
+      fullPath: '/agency/portal'
+      preLoaderRoute: typeof AgencyPortalRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agency/signin': {
+      id: '/agency/signin'
+      path: '/agency/signin'
+      fullPath: '/agency/signin'
+      preLoaderRoute: typeof AgencySigninRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/ar/': {
       id: '/ar/'
@@ -3828,6 +3978,48 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/products/new'
       preLoaderRoute: typeof AdminProductsNewRouteImport
       parentRoute: typeof AdminRouteRoute
+    }
+    '/agency/portal/': {
+      id: '/agency/portal/'
+      path: '/'
+      fullPath: '/agency/portal/'
+      preLoaderRoute: typeof AgencyPortalIndexRouteImport
+      parentRoute: typeof AgencyPortalRouteRoute
+    }
+    '/agency/portal/clients': {
+      id: '/agency/portal/clients'
+      path: '/clients'
+      fullPath: '/agency/portal/clients'
+      preLoaderRoute: typeof AgencyPortalClientsRouteImport
+      parentRoute: typeof AgencyPortalRouteRoute
+    }
+    '/agency/portal/earnings': {
+      id: '/agency/portal/earnings'
+      path: '/earnings'
+      fullPath: '/agency/portal/earnings'
+      preLoaderRoute: typeof AgencyPortalEarningsRouteImport
+      parentRoute: typeof AgencyPortalRouteRoute
+    }
+    '/agency/portal/link': {
+      id: '/agency/portal/link'
+      path: '/link'
+      fullPath: '/agency/portal/link'
+      preLoaderRoute: typeof AgencyPortalLinkRouteImport
+      parentRoute: typeof AgencyPortalRouteRoute
+    }
+    '/agency/portal/payouts': {
+      id: '/agency/portal/payouts'
+      path: '/payouts'
+      fullPath: '/agency/portal/payouts'
+      preLoaderRoute: typeof AgencyPortalPayoutsRouteImport
+      parentRoute: typeof AgencyPortalRouteRoute
+    }
+    '/agency/portal/profile': {
+      id: '/agency/portal/profile'
+      path: '/profile'
+      fullPath: '/agency/portal/profile'
+      preLoaderRoute: typeof AgencyPortalProfileRouteImport
+      parentRoute: typeof AgencyPortalRouteRoute
     }
     '/api/fn/catalog-export': {
       id: '/api/fn/catalog-export'
@@ -4806,6 +4998,27 @@ const PartnersRouteWithChildren = PartnersRoute._addFileChildren(
   PartnersRouteChildren,
 )
 
+interface AgencyPortalRouteRouteChildren {
+  AgencyPortalClientsRoute: typeof AgencyPortalClientsRoute
+  AgencyPortalEarningsRoute: typeof AgencyPortalEarningsRoute
+  AgencyPortalLinkRoute: typeof AgencyPortalLinkRoute
+  AgencyPortalPayoutsRoute: typeof AgencyPortalPayoutsRoute
+  AgencyPortalProfileRoute: typeof AgencyPortalProfileRoute
+  AgencyPortalIndexRoute: typeof AgencyPortalIndexRoute
+}
+
+const AgencyPortalRouteRouteChildren: AgencyPortalRouteRouteChildren = {
+  AgencyPortalClientsRoute: AgencyPortalClientsRoute,
+  AgencyPortalEarningsRoute: AgencyPortalEarningsRoute,
+  AgencyPortalLinkRoute: AgencyPortalLinkRoute,
+  AgencyPortalPayoutsRoute: AgencyPortalPayoutsRoute,
+  AgencyPortalProfileRoute: AgencyPortalProfileRoute,
+  AgencyPortalIndexRoute: AgencyPortalIndexRoute,
+}
+
+const AgencyPortalRouteRouteWithChildren =
+  AgencyPortalRouteRoute._addFileChildren(AgencyPortalRouteRouteChildren)
+
 interface CategoryTopSubRouteChildren {
   CategoryTopSubDetailRoute: typeof CategoryTopSubDetailRoute
 }
@@ -4873,6 +5086,9 @@ const rootRouteChildren: RootRouteChildren = {
   SignupRoute: SignupRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UnsubscribeRoute: UnsubscribeRoute,
+  AgencyPortalRouteRoute: AgencyPortalRouteRouteWithChildren,
+  AgencyApplyRoute: AgencyApplyRoute,
+  AgencySigninRoute: AgencySigninRoute,
   BlogAmazonFbaLabelingRequirementsGuideRoute:
     BlogAmazonFbaLabelingRequirementsGuideRoute,
   BlogAmazonFbaVsNoonFbnSaudiArabiaRoute:
@@ -4918,6 +5134,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopForgotPasswordRoute: ShopForgotPasswordRoute,
   ShopSigninRoute: ShopSigninRoute,
   ShopSignupRoute: ShopSignupRoute,
+  AgencyIndexRoute: AgencyIndexRoute,
   ArIndexRoute: ArIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
   CategoryIndexRoute: CategoryIndexRoute,

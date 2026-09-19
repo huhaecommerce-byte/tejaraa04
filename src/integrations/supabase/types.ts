@@ -14,6 +14,334 @@ export type Database = {
   }
   public: {
     Tables: {
+      agency_clients: {
+        Row: {
+          agency_id: string
+          client_user_id: string
+          created_at: string
+          id: string
+          joined_at: string
+          source: string
+          updated_at: string
+        }
+        Insert: {
+          agency_id: string
+          client_user_id: string
+          created_at?: string
+          id?: string
+          joined_at?: string
+          source?: string
+          updated_at?: string
+        }
+        Update: {
+          agency_id?: string
+          client_user_id?: string
+          created_at?: string
+          id?: string
+          joined_at?: string
+          source?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agency_clients_agency_id_fkey"
+            columns: ["agency_id"]
+            isOneToOne: false
+            referencedRelation: "agency_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agency_commissions: {
+        Row: {
+          agency_id: string
+          amount_sar: number
+          approved_at: string | null
+          client_user_id: string
+          created_at: string
+          id: string
+          order_id: string
+          order_ref: string | null
+          order_total_sar: number
+          paid_at: string | null
+          payout_request_id: string | null
+          profit_base_sar: number
+          rate_percent: number
+          reversal_reason: string | null
+          status: string
+          updated_at: string
+          usd_to_sar_rate: number | null
+        }
+        Insert: {
+          agency_id: string
+          amount_sar?: number
+          approved_at?: string | null
+          client_user_id: string
+          created_at?: string
+          id?: string
+          order_id: string
+          order_ref?: string | null
+          order_total_sar?: number
+          paid_at?: string | null
+          payout_request_id?: string | null
+          profit_base_sar?: number
+          rate_percent?: number
+          reversal_reason?: string | null
+          status?: string
+          updated_at?: string
+          usd_to_sar_rate?: number | null
+        }
+        Update: {
+          agency_id?: string
+          amount_sar?: number
+          approved_at?: string | null
+          client_user_id?: string
+          created_at?: string
+          id?: string
+          order_id?: string
+          order_ref?: string | null
+          order_total_sar?: number
+          paid_at?: string | null
+          payout_request_id?: string | null
+          profit_base_sar?: number
+          rate_percent?: number
+          reversal_reason?: string | null
+          status?: string
+          updated_at?: string
+          usd_to_sar_rate?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agency_commissions_agency_id_fkey"
+            columns: ["agency_id"]
+            isOneToOne: false
+            referencedRelation: "agency_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agency_commissions_payout_request_id_fkey"
+            columns: ["payout_request_id"]
+            isOneToOne: false
+            referencedRelation: "agency_payout_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agency_ledger_adjustments: {
+        Row: {
+          agency_id: string
+          amount_sar: number
+          created_at: string
+          created_by: string | null
+          id: string
+          payout_request_id: string | null
+          reason: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          agency_id: string
+          amount_sar: number
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payout_request_id?: string | null
+          reason: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          agency_id?: string
+          amount_sar?: number
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payout_request_id?: string | null
+          reason?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agency_ledger_adjustments_agency_id_fkey"
+            columns: ["agency_id"]
+            isOneToOne: false
+            referencedRelation: "agency_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agency_ledger_adjustments_payout_request_id_fkey"
+            columns: ["payout_request_id"]
+            isOneToOne: false
+            referencedRelation: "agency_payout_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agency_payout_items: {
+        Row: {
+          adjustment_id: string | null
+          amount_sar: number
+          commission_id: string | null
+          created_at: string
+          id: string
+          payout_request_id: string
+        }
+        Insert: {
+          adjustment_id?: string | null
+          amount_sar?: number
+          commission_id?: string | null
+          created_at?: string
+          id?: string
+          payout_request_id: string
+        }
+        Update: {
+          adjustment_id?: string | null
+          amount_sar?: number
+          commission_id?: string | null
+          created_at?: string
+          id?: string
+          payout_request_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agency_payout_items_commission_id_fkey"
+            columns: ["commission_id"]
+            isOneToOne: false
+            referencedRelation: "agency_commissions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agency_payout_items_payout_request_id_fkey"
+            columns: ["payout_request_id"]
+            isOneToOne: false
+            referencedRelation: "agency_payout_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agency_payout_requests: {
+        Row: {
+          admin_note: string | null
+          agency_id: string
+          amount_sar: number
+          created_at: string
+          decided_at: string | null
+          decided_by: string | null
+          id: string
+          method: string | null
+          note: string | null
+          paid_at: string | null
+          reference: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          admin_note?: string | null
+          agency_id: string
+          amount_sar: number
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          id?: string
+          method?: string | null
+          note?: string | null
+          paid_at?: string | null
+          reference?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          admin_note?: string | null
+          agency_id?: string
+          amount_sar?: number
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          id?: string
+          method?: string | null
+          note?: string | null
+          paid_at?: string | null
+          reference?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agency_payout_requests_agency_id_fkey"
+            columns: ["agency_id"]
+            isOneToOne: false
+            referencedRelation: "agency_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agency_profiles: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          audience: string | null
+          commission_rate: number | null
+          company_name: string
+          contact_name: string
+          country: string | null
+          created_at: string
+          email: string
+          id: string
+          invite_code: string
+          payout_details: Json
+          payout_method: string | null
+          phone: string | null
+          rejection_reason: string | null
+          status: string
+          updated_at: string
+          user_id: string
+          website: string | null
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          audience?: string | null
+          commission_rate?: number | null
+          company_name: string
+          contact_name: string
+          country?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          invite_code: string
+          payout_details?: Json
+          payout_method?: string | null
+          phone?: string | null
+          rejection_reason?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+          website?: string | null
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          audience?: string | null
+          commission_rate?: number | null
+          company_name?: string
+          contact_name?: string
+          country?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          invite_code?: string
+          payout_details?: Json
+          payout_method?: string | null
+          phone?: string | null
+          rejection_reason?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       audit_log: {
         Row: {
           action: string
@@ -4906,6 +5234,37 @@ export type Database = {
         Args: { _inventory_id: string; _qty_change: number; _reason: string }
         Returns: Json
       }
+      admin_agency_clients: {
+        Args: { _agency_id: string }
+        Returns: {
+          client_user_id: string
+          display_name: string
+          earned: number
+          email: string
+          joined_at: string
+          orders: number
+        }[]
+      }
+      admin_list_agencies: {
+        Args: { _search?: string; _status?: string }
+        Returns: {
+          available: number
+          clients: number
+          commission_rate: number
+          company_name: string
+          contact_name: string
+          country: string
+          created_at: string
+          email: string
+          id: string
+          invite_code: string
+          lifetime: number
+          pending: number
+          phone: string
+          status: string
+          user_id: string
+        }[]
+      }
       admin_list_customers: {
         Args: { _limit?: number; _offset?: number; _search?: string }
         Returns: {
@@ -4925,6 +5284,51 @@ export type Database = {
       admin_product_add_stats: { Args: { _days?: number }; Returns: Json }
       admin_send_notification: {
         Args: { _body: string; _link: string; _title: string; _user_id: string }
+        Returns: Json
+      }
+      agency_admin_adjust: {
+        Args: { _agency_id: string; _amount: number; _reason: string }
+        Returns: Json
+      }
+      agency_admin_decide_payout: {
+        Args: {
+          _action: string
+          _admin_note?: string
+          _id: string
+          _reference?: string
+        }
+        Returns: Json
+      }
+      agency_admin_set_status: {
+        Args: {
+          _agency_id: string
+          _rate?: number
+          _reason?: string
+          _status: string
+        }
+        Returns: Json
+      }
+      agency_approve_due_commissions: { Args: never; Returns: number }
+      agency_balance: { Args: { _agency_id: string }; Returns: Json }
+      agency_dashboard: { Args: never; Returns: Json }
+      agency_id_for_user: { Args: { _user_id: string }; Returns: string }
+      agency_list_clients: {
+        Args: never
+        Returns: {
+          client_user_id: string
+          display_name: string
+          earned: number
+          email_masked: string
+          joined_at: string
+          orders: number
+        }[]
+      }
+      agency_order_profit: {
+        Args: { _items: Json; _rate: number }
+        Returns: number
+      }
+      agency_request_payout: {
+        Args: { _amount: number; _method?: string; _note?: string }
         Returns: Json
       }
       analytics_session_timeline: {
@@ -4957,6 +5361,7 @@ export type Database = {
         }[]
       }
       analytics_summary: { Args: { _days?: number }; Returns: Json }
+      apply_agency_code: { Args: { _code: string }; Returns: Json }
       apply_pricing_formula:
         | { Args: never; Returns: number }
         | {
@@ -5003,6 +5408,7 @@ export type Database = {
         Args: { payload: Json; queue_name: string }
         Returns: number
       }
+      gen_agency_code: { Args: never; Returns: string }
       gen_referral_code: { Args: never; Returns: string }
       generate_invoice_for_order: {
         Args: { _order_id: string }
@@ -5072,6 +5478,7 @@ export type Database = {
         }[]
       }
       is_admin: { Args: never; Returns: boolean }
+      is_approved_agency: { Args: { _user_id: string }; Returns: boolean }
       is_staff_or_admin: { Args: { _user_id: string }; Returns: boolean }
       move_to_dlq: {
         Args: {
@@ -5211,7 +5618,7 @@ export type Database = {
       wl_sync_product_to_catalog: { Args: { _wl_id: string }; Returns: string }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user" | "staff"
+      app_role: "admin" | "moderator" | "user" | "staff" | "agency"
       team_invite_status: "pending" | "accepted" | "revoked"
       team_member_role: "owner" | "admin" | "member" | "viewer" | "buyer"
       wl_application_status: "pending" | "approved" | "rejected"
@@ -5349,7 +5756,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "moderator", "user", "staff"],
+      app_role: ["admin", "moderator", "user", "staff", "agency"],
       team_invite_status: ["pending", "accepted", "revoked"],
       team_member_role: ["owner", "admin", "member", "viewer", "buyer"],
       wl_application_status: ["pending", "approved", "rejected"],
