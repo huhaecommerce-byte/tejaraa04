@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { categoryPath } from '@/lib/seo/slug';
 import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
 import { RetailBreadcrumbs, RetailContainer, RetailEmptyState } from '@/components/retail/common';
@@ -19,6 +20,7 @@ const cleanDescription = (raw: string) =>
     .trim();
 
 const ProductDetail = ({ initialProduct }: { initialProduct: SeoProduct | null }) => {
+  const { t } = useLocale();
   const detailRows = useProductDetailRows();
   const product = initialProduct;
 
@@ -35,11 +37,11 @@ const ProductDetail = ({ initialProduct }: { initialProduct: SeoProduct | null }
       <main>
         <RetailContainer className="py-3 sm:py-4">
           {!product ? (
-            <RetailEmptyState title="Product not found" description="This product may no longer be available." actionLabel="Continue Shopping" actionHref="/catalog" />
+            <RetailEmptyState title={t('shopx.product.notFoundTitle')} description={t('shopx.product.notFoundDescription')} actionLabel={t('shopx.product.continueShopping')} actionHref="/catalog" />
           ) : (
             <>
               <RetailBreadcrumbs items={[
-                { label: 'Home', to: '/' },
+                { label: t('shopx.category.home'), to: '/' },
                 { label: product.top_category, to: categoryPath(product.top_category) },
                 ...(product.sub_category ? [{ label: product.sub_category, to: categoryPath(product.top_category, product.sub_category) }] : []),
                 ...(product.detailed_category ? [{ label: product.detailed_category, to: categoryPath(product.top_category, product.sub_category, product.detailed_category) }] : []),
@@ -51,7 +53,7 @@ const ProductDetail = ({ initialProduct }: { initialProduct: SeoProduct | null }
                 <div className="lg:col-span-2 xl:col-span-1"><ProductBuyBox product={product} price={sellingPrice} /></div>
               </div>
               <section className="mt-7 bg-retail-card px-3 sm:px-5"><ProductInformation product={product} description={descriptionText} rows={detailRows} /></section>
-              {product.related_products && product.related_products.length > 0 && <div className="mt-6"><ProductRail title="Similar Products" description={`More from ${product.sub_category || product.top_category}`} products={product.related_products as never} ratings={ratings as never} /></div>}
+              {product.related_products && product.related_products.length > 0 && <div className="mt-6"><ProductRail title={t('shopx.product.similarProducts')} description={t('shopx.product.moreFrom', { category: product.sub_category || product.top_category })} products={product.related_products as never} ratings={ratings as never} /></div>}
             </>
           )}
         </RetailContainer>
@@ -61,4 +63,3 @@ const ProductDetail = ({ initialProduct }: { initialProduct: SeoProduct | null }
 };
 
 export default ProductDetail;
-

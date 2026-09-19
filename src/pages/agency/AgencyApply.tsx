@@ -100,7 +100,7 @@ export default function AgencyApply() {
 
       await refreshUser();
       setDone(true);
-      toast.success('Your partner account is ready.');
+      toast.success(t('agency.apply.toastAccountReady'));
     } catch (err: any) {
       toast.error(err?.message || t('agency.apply.errorSendApplication'));
     } finally {
