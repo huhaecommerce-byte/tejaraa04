@@ -151,6 +151,7 @@ import { Route as AgencyPortalIndexRouteImport } from './routes/agency/portal/in
 import { Route as AgencyPortalClientsRouteImport } from './routes/agency/portal/clients'
 import { Route as AgencyPortalEarningsRouteImport } from './routes/agency/portal/earnings'
 import { Route as AgencyPortalLinkRouteImport } from './routes/agency/portal/link'
+import { Route as AgencyPortalPayoutsRouteImport } from './routes/agency/portal/payouts'
 import { Route as ApiFnCatalogExportRouteImport } from './routes/api/fn/catalog-export'
 import { Route as ApiFnCreateCheckoutRouteImport } from './routes/api/fn/create-checkout'
 import { Route as ApiFnCreatePortalSessionRouteImport } from './routes/api/fn/create-portal-session'
@@ -971,6 +972,11 @@ const AgencyPortalLinkRoute = AgencyPortalLinkRouteImport.update({
   path: '/link',
   getParentRoute: () => AgencyPortalRouteRoute,
 } as any)
+const AgencyPortalPayoutsRoute = AgencyPortalPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => AgencyPortalRouteRoute,
+} as any)
 const ApiFnCatalogExportRoute = ApiFnCatalogExportRouteImport.update({
   id: '/api/fn/catalog-export',
   path: '/api/fn/catalog-export',
@@ -1613,6 +1619,7 @@ export interface FileRoutesByFullPath {
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
+  '/agency/portal/payouts': typeof AgencyPortalPayoutsRoute
   '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
   '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
   '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
@@ -1841,6 +1848,7 @@ export interface FileRoutesByTo {
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
+  '/agency/portal/payouts': typeof AgencyPortalPayoutsRoute
   '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
   '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
   '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
@@ -2077,6 +2085,7 @@ export interface FileRoutesById {
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
+  '/agency/portal/payouts': typeof AgencyPortalPayoutsRoute
   '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
   '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
   '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
@@ -2314,6 +2323,7 @@ export interface FileRouteTypes {
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
+    | '/agency/portal/payouts'
     | '/api/fn/catalog-export'
     | '/api/fn/create-checkout'
     | '/api/fn/create-portal-session'
@@ -2542,6 +2552,7 @@ export interface FileRouteTypes {
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
+    | '/agency/portal/payouts'
     | '/api/fn/catalog-export'
     | '/api/fn/create-checkout'
     | '/api/fn/create-portal-session'
@@ -2777,6 +2788,7 @@ export interface FileRouteTypes {
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
+    | '/agency/portal/payouts'
     | '/api/fn/catalog-export'
     | '/api/fn/create-checkout'
     | '/api/fn/create-portal-session'
@@ -3983,6 +3995,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgencyPortalLinkRouteImport
       parentRoute: typeof AgencyPortalRouteRoute
     }
+    '/agency/portal/payouts': {
+      id: '/agency/portal/payouts'
+      path: '/payouts'
+      fullPath: '/agency/portal/payouts'
+      preLoaderRoute: typeof AgencyPortalPayoutsRouteImport
+      parentRoute: typeof AgencyPortalRouteRoute
+    }
     '/api/fn/catalog-export': {
       id: '/api/fn/catalog-export'
       path: '/api/fn/catalog-export'
@@ -4964,6 +4983,7 @@ interface AgencyPortalRouteRouteChildren {
   AgencyPortalClientsRoute: typeof AgencyPortalClientsRoute
   AgencyPortalEarningsRoute: typeof AgencyPortalEarningsRoute
   AgencyPortalLinkRoute: typeof AgencyPortalLinkRoute
+  AgencyPortalPayoutsRoute: typeof AgencyPortalPayoutsRoute
   AgencyPortalIndexRoute: typeof AgencyPortalIndexRoute
 }
 
@@ -4971,6 +4991,7 @@ const AgencyPortalRouteRouteChildren: AgencyPortalRouteRouteChildren = {
   AgencyPortalClientsRoute: AgencyPortalClientsRoute,
   AgencyPortalEarningsRoute: AgencyPortalEarningsRoute,
   AgencyPortalLinkRoute: AgencyPortalLinkRoute,
+  AgencyPortalPayoutsRoute: AgencyPortalPayoutsRoute,
   AgencyPortalIndexRoute: AgencyPortalIndexRoute,
 }
 
