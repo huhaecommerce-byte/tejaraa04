@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      __import_fail: {
+        Row: {
+          err: string | null
+          id: number | null
+        }
+        Insert: {
+          err?: string | null
+          id?: number | null
+        }
+        Update: {
+          err?: string | null
+          id?: number | null
+        }
+        Relationships: []
+      }
+      __import_payload: {
+        Row: {
+          body: string | null
+          id: number
+        }
+        Insert: {
+          body?: string | null
+          id: number
+        }
+        Update: {
+          body?: string | null
+          id?: number
+        }
+        Relationships: []
+      }
       audit_log: {
         Row: {
           action: string
@@ -746,6 +776,690 @@ export type Database = {
         }
         Relationships: []
       }
+      noon_attribute_cache: {
+        Row: {
+          category_code: string
+          schema_payload: Json
+          synced_at: string
+        }
+        Insert: {
+          category_code: string
+          schema_payload?: Json
+          synced_at?: string
+        }
+        Update: {
+          category_code?: string
+          schema_payload?: Json
+          synced_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_attribute_cache_category_code_fkey"
+            columns: ["category_code"]
+            isOneToOne: true
+            referencedRelation: "noon_category_cache"
+            referencedColumns: ["category_code"]
+          },
+        ]
+      }
+      noon_category_cache: {
+        Row: {
+          category_code: string
+          level: number
+          name_ar: string
+          name_en: string
+          parent_code: string | null
+          path_ar: string | null
+          path_en: string | null
+          raw_payload: Json
+          synced_at: string
+        }
+        Insert: {
+          category_code: string
+          level?: number
+          name_ar?: string
+          name_en?: string
+          parent_code?: string | null
+          path_ar?: string | null
+          path_en?: string | null
+          raw_payload?: Json
+          synced_at?: string
+        }
+        Update: {
+          category_code?: string
+          level?: number
+          name_ar?: string
+          name_en?: string
+          parent_code?: string | null
+          path_ar?: string | null
+          path_en?: string | null
+          raw_payload?: Json
+          synced_at?: string
+        }
+        Relationships: []
+      }
+      noon_category_mappings: {
+        Row: {
+          attribute_values: Json
+          connection_id: string
+          created_at: string
+          id: string
+          noon_category_code: string
+          noon_category_name: string
+          review_status: string
+          source_category: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          attribute_values?: Json
+          connection_id: string
+          created_at?: string
+          id?: string
+          noon_category_code: string
+          noon_category_name?: string
+          review_status?: string
+          source_category: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          attribute_values?: Json
+          connection_id?: string
+          created_at?: string
+          id?: string
+          noon_category_code?: string
+          noon_category_name?: string
+          review_status?: string
+          source_category?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_category_mappings_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "noon_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_connections: {
+        Row: {
+          created_at: string
+          credential_label: string
+          enabled_markets: string[]
+          id: string
+          key_id: string
+          last_auth_at: string | null
+          last_error: string | null
+          last_inventory_sync_at: string | null
+          last_order_sync_at: string | null
+          last_product_sync_at: string | null
+          mode: string
+          name: string
+          pricing_rules: Json
+          private_key_ciphertext: string
+          project_code: string
+          setup_completed_at: string | null
+          status: string
+          store_integration_id: string | null
+          sync_settings: Json
+          updated_at: string
+          user_id: string
+          webhook_secret_hash: string
+        }
+        Insert: {
+          created_at?: string
+          credential_label?: string
+          enabled_markets?: string[]
+          id?: string
+          key_id: string
+          last_auth_at?: string | null
+          last_error?: string | null
+          last_inventory_sync_at?: string | null
+          last_order_sync_at?: string | null
+          last_product_sync_at?: string | null
+          mode?: string
+          name?: string
+          pricing_rules?: Json
+          private_key_ciphertext: string
+          project_code: string
+          setup_completed_at?: string | null
+          status?: string
+          store_integration_id?: string | null
+          sync_settings?: Json
+          updated_at?: string
+          user_id: string
+          webhook_secret_hash?: string
+        }
+        Update: {
+          created_at?: string
+          credential_label?: string
+          enabled_markets?: string[]
+          id?: string
+          key_id?: string
+          last_auth_at?: string | null
+          last_error?: string | null
+          last_inventory_sync_at?: string | null
+          last_order_sync_at?: string | null
+          last_product_sync_at?: string | null
+          mode?: string
+          name?: string
+          pricing_rules?: Json
+          private_key_ciphertext?: string
+          project_code?: string
+          setup_completed_at?: string | null
+          status?: string
+          store_integration_id?: string | null
+          sync_settings?: Json
+          updated_at?: string
+          user_id?: string
+          webhook_secret_hash?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_connections_store_integration_id_fkey"
+            columns: ["store_integration_id"]
+            isOneToOne: false
+            referencedRelation: "store_integrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_order_items: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          order_id: string
+          partner_sku: string
+          product_id: string | null
+          quantity: number
+          raw_payload: Json
+          status: string
+          unit_price: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name?: string
+          order_id: string
+          partner_sku: string
+          product_id?: string | null
+          quantity?: number
+          raw_payload?: Json
+          status?: string
+          unit_price?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          order_id?: string
+          partner_sku?: string
+          product_id?: string | null
+          quantity?: number
+          raw_payload?: Json
+          status?: string
+          unit_price?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "noon_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "noon_order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_orders: {
+        Row: {
+          connection_id: string
+          created_at: string
+          currency: string
+          customer_data: Json
+          external_reference: string
+          external_status: string
+          id: string
+          market: string
+          order_total: number
+          placed_at: string | null
+          raw_payload: Json
+          shipment_data: Json
+          status: string
+          updated_at: string
+          user_id: string
+          warehouse_code: string
+        }
+        Insert: {
+          connection_id: string
+          created_at?: string
+          currency?: string
+          customer_data?: Json
+          external_reference: string
+          external_status?: string
+          id?: string
+          market?: string
+          order_total?: number
+          placed_at?: string | null
+          raw_payload?: Json
+          shipment_data?: Json
+          status?: string
+          updated_at?: string
+          user_id: string
+          warehouse_code?: string
+        }
+        Update: {
+          connection_id?: string
+          created_at?: string
+          currency?: string
+          customer_data?: Json
+          external_reference?: string
+          external_status?: string
+          id?: string
+          market?: string
+          order_total?: number
+          placed_at?: string | null
+          raw_payload?: Json
+          shipment_data?: Json
+          status?: string
+          updated_at?: string
+          user_id?: string
+          warehouse_code?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_orders_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "noon_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_product_links: {
+        Row: {
+          attribute_values: Json
+          connection_id: string
+          content_status: string
+          created_at: string
+          id: string
+          image_status: string
+          last_checked_at: string | null
+          last_error: string | null
+          last_pushed_at: string | null
+          noon_category_code: string | null
+          noon_sku_parent: string | null
+          noon_variant_sku: string | null
+          offer_status: Json
+          partner_sku: string
+          product_id: string
+          psku_code: string | null
+          qc_status: string
+          selected_markets: string[]
+          sync_status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          attribute_values?: Json
+          connection_id: string
+          content_status?: string
+          created_at?: string
+          id?: string
+          image_status?: string
+          last_checked_at?: string | null
+          last_error?: string | null
+          last_pushed_at?: string | null
+          noon_category_code?: string | null
+          noon_sku_parent?: string | null
+          noon_variant_sku?: string | null
+          offer_status?: Json
+          partner_sku: string
+          product_id: string
+          psku_code?: string | null
+          qc_status?: string
+          selected_markets?: string[]
+          sync_status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          attribute_values?: Json
+          connection_id?: string
+          content_status?: string
+          created_at?: string
+          id?: string
+          image_status?: string
+          last_checked_at?: string | null
+          last_error?: string | null
+          last_pushed_at?: string | null
+          noon_category_code?: string | null
+          noon_sku_parent?: string | null
+          noon_variant_sku?: string | null
+          offer_status?: Json
+          partner_sku?: string
+          product_id?: string
+          psku_code?: string | null
+          qc_status?: string
+          selected_markets?: string[]
+          sync_status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_product_links_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "noon_connections"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "noon_product_links_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_product_market_settings: {
+        Row: {
+          active: boolean
+          calculated_price: number | null
+          id: string
+          market: string
+          markup_type: string
+          markup_value: number
+          minimum_margin_percent: number
+          override_price: number | null
+          product_link_id: string
+          published_price: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          calculated_price?: number | null
+          id?: string
+          market: string
+          markup_type?: string
+          markup_value?: number
+          minimum_margin_percent?: number
+          override_price?: number | null
+          product_link_id: string
+          published_price?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          calculated_price?: number | null
+          id?: string
+          market?: string
+          markup_type?: string
+          markup_value?: number
+          minimum_margin_percent?: number
+          override_price?: number | null
+          product_link_id?: string
+          published_price?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_product_market_settings_product_link_id_fkey"
+            columns: ["product_link_id"]
+            isOneToOne: false
+            referencedRelation: "noon_product_links"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_sync_jobs: {
+        Row: {
+          attempts: number
+          completed_at: string | null
+          connection_id: string | null
+          created_at: string
+          entity_id: string
+          entity_type: string
+          id: string
+          job_type: string
+          last_error: string | null
+          locked_at: string | null
+          max_attempts: number
+          payload: Json
+          run_after: string
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          attempts?: number
+          completed_at?: string | null
+          connection_id?: string | null
+          created_at?: string
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          job_type: string
+          last_error?: string | null
+          locked_at?: string | null
+          max_attempts?: number
+          payload?: Json
+          run_after?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          attempts?: number
+          completed_at?: string | null
+          connection_id?: string | null
+          created_at?: string
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          job_type?: string
+          last_error?: string | null
+          locked_at?: string | null
+          max_attempts?: number
+          payload?: Json
+          run_after?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_sync_jobs_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "noon_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_sync_log: {
+        Row: {
+          connection_id: string | null
+          created_at: string
+          detail: Json
+          direction: string
+          duration_ms: number | null
+          entity_id: string
+          entity_type: string
+          id: string
+          market: string
+          message: string
+          operation: string
+          provider_request_id: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          connection_id?: string | null
+          created_at?: string
+          detail?: Json
+          direction?: string
+          duration_ms?: number | null
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          market?: string
+          message?: string
+          operation: string
+          provider_request_id?: string
+          status: string
+          user_id: string
+        }
+        Update: {
+          connection_id?: string | null
+          created_at?: string
+          detail?: Json
+          direction?: string
+          duration_ms?: number | null
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          market?: string
+          message?: string
+          operation?: string
+          provider_request_id?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_sync_log_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "noon_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_warehouses: {
+        Row: {
+          connection_id: string
+          created_at: string
+          enabled: boolean
+          id: string
+          market: string
+          noon_status: string
+          processing_time: number
+          safety_stock: number
+          updated_at: string
+          user_id: string
+          warehouse_code: string
+          warehouse_name: string
+        }
+        Insert: {
+          connection_id: string
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          market: string
+          noon_status?: string
+          processing_time?: number
+          safety_stock?: number
+          updated_at?: string
+          user_id: string
+          warehouse_code: string
+          warehouse_name?: string
+        }
+        Update: {
+          connection_id?: string
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          market?: string
+          noon_status?: string
+          processing_time?: number
+          safety_stock?: number
+          updated_at?: string
+          user_id?: string
+          warehouse_code?: string
+          warehouse_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_warehouses_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "noon_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      noon_webhook_events: {
+        Row: {
+          attempt_count: number
+          connection_id: string | null
+          event_type: string
+          id: string
+          message_id: string
+          order_reference: string
+          processed_at: string | null
+          processing_error: string | null
+          project_code: string
+          raw_payload: Json
+          received_at: string
+          status: string
+        }
+        Insert: {
+          attempt_count?: number
+          connection_id?: string | null
+          event_type: string
+          id?: string
+          message_id: string
+          order_reference?: string
+          processed_at?: string | null
+          processing_error?: string | null
+          project_code?: string
+          raw_payload?: Json
+          received_at?: string
+          status?: string
+        }
+        Update: {
+          attempt_count?: number
+          connection_id?: string | null
+          event_type?: string
+          id?: string
+          message_id?: string
+          order_reference?: string
+          processed_at?: string | null
+          processing_error?: string | null
+          project_code?: string
+          raw_payload?: Json
+          received_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "noon_webhook_events_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "noon_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notification_preferences: {
         Row: {
           created_at: string
@@ -1340,6 +2054,7 @@ export type Database = {
           dropship_price: number
           dropship_price_usd: number
           estimated_delivery: string | null
+          gtin: string | null
           id: string
           images: string[]
           is_featured: boolean
@@ -1363,6 +2078,7 @@ export type Database = {
           track_inventory: boolean
           updated_at: string
           weight_kg: number
+          wl_product_id: string | null
         }
         Insert: {
           bulk_price?: number
@@ -1378,6 +2094,7 @@ export type Database = {
           dropship_price?: number
           dropship_price_usd?: number
           estimated_delivery?: string | null
+          gtin?: string | null
           id?: string
           images?: string[]
           is_featured?: boolean
@@ -1401,6 +2118,7 @@ export type Database = {
           track_inventory?: boolean
           updated_at?: string
           weight_kg?: number
+          wl_product_id?: string | null
         }
         Update: {
           bulk_price?: number
@@ -1416,6 +2134,7 @@ export type Database = {
           dropship_price?: number
           dropship_price_usd?: number
           estimated_delivery?: string | null
+          gtin?: string | null
           id?: string
           images?: string[]
           is_featured?: boolean
@@ -1439,8 +2158,17 @@ export type Database = {
           track_inventory?: boolean
           updated_at?: string
           weight_kg?: number
+          wl_product_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "products_wl_product_id_fkey"
+            columns: ["wl_product_id"]
+            isOneToOne: false
+            referencedRelation: "wl_products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -1907,6 +2635,451 @@ export type Database = {
         }
         Relationships: []
       }
+      shopify_connections: {
+        Row: {
+          access_token_ciphertext: string
+          api_version: string
+          auto_sync: boolean
+          client_id: string | null
+          client_secret_ciphertext: string | null
+          created_at: string
+          currency: string
+          id: string
+          last_auth_at: string | null
+          last_error: string | null
+          last_inventory_sync_at: string | null
+          last_order_sync_at: string | null
+          last_product_sync_at: string | null
+          location_id: string | null
+          location_name: string | null
+          market: string
+          name: string
+          pricing_rules: Json
+          safety_stock: number
+          setup_completed_at: string | null
+          shop_domain: string
+          shop_name: string | null
+          status: string
+          store_integration_id: string | null
+          token_expires_at: string | null
+          updated_at: string
+          user_id: string
+          webhook_secret_hash: string | null
+          webhooks_registered_at: string | null
+        }
+        Insert: {
+          access_token_ciphertext: string
+          api_version?: string
+          auto_sync?: boolean
+          client_id?: string | null
+          client_secret_ciphertext?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          last_auth_at?: string | null
+          last_error?: string | null
+          last_inventory_sync_at?: string | null
+          last_order_sync_at?: string | null
+          last_product_sync_at?: string | null
+          location_id?: string | null
+          location_name?: string | null
+          market?: string
+          name: string
+          pricing_rules?: Json
+          safety_stock?: number
+          setup_completed_at?: string | null
+          shop_domain: string
+          shop_name?: string | null
+          status?: string
+          store_integration_id?: string | null
+          token_expires_at?: string | null
+          updated_at?: string
+          user_id: string
+          webhook_secret_hash?: string | null
+          webhooks_registered_at?: string | null
+        }
+        Update: {
+          access_token_ciphertext?: string
+          api_version?: string
+          auto_sync?: boolean
+          client_id?: string | null
+          client_secret_ciphertext?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          last_auth_at?: string | null
+          last_error?: string | null
+          last_inventory_sync_at?: string | null
+          last_order_sync_at?: string | null
+          last_product_sync_at?: string | null
+          location_id?: string | null
+          location_name?: string | null
+          market?: string
+          name?: string
+          pricing_rules?: Json
+          safety_stock?: number
+          setup_completed_at?: string | null
+          shop_domain?: string
+          shop_name?: string | null
+          status?: string
+          store_integration_id?: string | null
+          token_expires_at?: string | null
+          updated_at?: string
+          user_id?: string
+          webhook_secret_hash?: string | null
+          webhooks_registered_at?: string | null
+        }
+        Relationships: []
+      }
+      shopify_order_items: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          order_id: string
+          product_id: string | null
+          quantity: number
+          raw_payload: Json
+          sku: string | null
+          unit_price: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name?: string
+          order_id: string
+          product_id?: string | null
+          quantity?: number
+          raw_payload?: Json
+          sku?: string | null
+          unit_price?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          order_id?: string
+          product_id?: string | null
+          quantity?: number
+          raw_payload?: Json
+          sku?: string | null
+          unit_price?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shopify_order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "shopify_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shopify_orders: {
+        Row: {
+          connection_id: string
+          created_at: string
+          currency: string
+          customer_email: string | null
+          customer_name: string | null
+          external_id: string
+          financial_status: string | null
+          fulfillment_status: string | null
+          id: string
+          last_error: string | null
+          order_number: string | null
+          order_total: number
+          placed_at: string | null
+          raw_payload: Json
+          shipping_address: Json
+          status: string
+          tejaraa_order_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          connection_id: string
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          external_id: string
+          financial_status?: string | null
+          fulfillment_status?: string | null
+          id?: string
+          last_error?: string | null
+          order_number?: string | null
+          order_total?: number
+          placed_at?: string | null
+          raw_payload?: Json
+          shipping_address?: Json
+          status?: string
+          tejaraa_order_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          connection_id?: string
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          external_id?: string
+          financial_status?: string | null
+          fulfillment_status?: string | null
+          id?: string
+          last_error?: string | null
+          order_number?: string | null
+          order_total?: number
+          placed_at?: string | null
+          raw_payload?: Json
+          shipping_address?: Json
+          status?: string
+          tejaraa_order_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shopify_orders_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "shopify_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shopify_product_links: {
+        Row: {
+          connection_id: string
+          content_status: string
+          created_at: string
+          handle: string | null
+          id: string
+          inventory_item_id: string | null
+          last_error: string | null
+          last_pushed_at: string | null
+          markup_type: string
+          markup_value: number | null
+          override_price: number | null
+          partner_sku: string
+          product_id: string
+          shopify_product_id: string | null
+          shopify_variant_id: string | null
+          sync_status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          connection_id: string
+          content_status?: string
+          created_at?: string
+          handle?: string | null
+          id?: string
+          inventory_item_id?: string | null
+          last_error?: string | null
+          last_pushed_at?: string | null
+          markup_type?: string
+          markup_value?: number | null
+          override_price?: number | null
+          partner_sku: string
+          product_id: string
+          shopify_product_id?: string | null
+          shopify_variant_id?: string | null
+          sync_status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          connection_id?: string
+          content_status?: string
+          created_at?: string
+          handle?: string | null
+          id?: string
+          inventory_item_id?: string | null
+          last_error?: string | null
+          last_pushed_at?: string | null
+          markup_type?: string
+          markup_value?: number | null
+          override_price?: number | null
+          partner_sku?: string
+          product_id?: string
+          shopify_product_id?: string | null
+          shopify_variant_id?: string | null
+          sync_status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shopify_product_links_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "shopify_connections"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "shopify_product_links_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shopify_sync_jobs: {
+        Row: {
+          attempts: number
+          completed_at: string | null
+          connection_id: string
+          created_at: string
+          entity_id: string
+          entity_type: string
+          id: string
+          job_type: string
+          last_error: string | null
+          locked_at: string | null
+          max_attempts: number
+          payload: Json
+          run_after: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          attempts?: number
+          completed_at?: string | null
+          connection_id: string
+          created_at?: string
+          entity_id: string
+          entity_type?: string
+          id?: string
+          job_type: string
+          last_error?: string | null
+          locked_at?: string | null
+          max_attempts?: number
+          payload?: Json
+          run_after?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          attempts?: number
+          completed_at?: string | null
+          connection_id?: string
+          created_at?: string
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          job_type?: string
+          last_error?: string | null
+          locked_at?: string | null
+          max_attempts?: number
+          payload?: Json
+          run_after?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shopify_sync_jobs_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "shopify_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shopify_sync_log: {
+        Row: {
+          connection_id: string
+          created_at: string
+          detail: Json
+          direction: string
+          duration_ms: number | null
+          id: string
+          message: string | null
+          operation: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          connection_id: string
+          created_at?: string
+          detail?: Json
+          direction?: string
+          duration_ms?: number | null
+          id?: string
+          message?: string | null
+          operation: string
+          status: string
+          user_id: string
+        }
+        Update: {
+          connection_id?: string
+          created_at?: string
+          detail?: Json
+          direction?: string
+          duration_ms?: number | null
+          id?: string
+          message?: string | null
+          operation?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shopify_sync_log_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "shopify_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shopify_webhook_events: {
+        Row: {
+          connection_id: string | null
+          created_at: string
+          id: string
+          processed: boolean
+          raw_payload: Json
+          shop_domain: string | null
+          topic: string
+          webhook_id: string
+        }
+        Insert: {
+          connection_id?: string | null
+          created_at?: string
+          id?: string
+          processed?: boolean
+          raw_payload?: Json
+          shop_domain?: string | null
+          topic: string
+          webhook_id: string
+        }
+        Update: {
+          connection_id?: string | null
+          created_at?: string
+          id?: string
+          processed?: boolean
+          raw_payload?: Json
+          shop_domain?: string | null
+          topic?: string
+          webhook_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shopify_webhook_events_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "shopify_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       signup_otps: {
         Row: {
           code: string
@@ -2138,32 +3311,53 @@ export type Database = {
       sunsky_categories: {
         Row: {
           category_id: number
+          child_count: number | null
+          children_synced_at: string | null
           has_children: boolean
           level: number
           name: string
+          name_ar: string | null
           parent_id: number | null
+          path: string | null
+          path_ar: string | null
           product_count: number | null
           raw: Json
+          root_id: number | null
+          sub_id: number | null
           synced_at: string
         }
         Insert: {
           category_id: number
+          child_count?: number | null
+          children_synced_at?: string | null
           has_children?: boolean
           level?: number
           name?: string
+          name_ar?: string | null
           parent_id?: number | null
+          path?: string | null
+          path_ar?: string | null
           product_count?: number | null
           raw?: Json
+          root_id?: number | null
+          sub_id?: number | null
           synced_at?: string
         }
         Update: {
           category_id?: number
+          child_count?: number | null
+          children_synced_at?: string | null
           has_children?: boolean
           level?: number
           name?: string
+          name_ar?: string | null
           parent_id?: number | null
+          path?: string | null
+          path_ar?: string | null
           product_count?: number | null
           raw?: Json
+          root_id?: number | null
+          sub_id?: number | null
           synced_at?: string
         }
         Relationships: []
@@ -2879,6 +4073,241 @@ export type Database = {
         }
         Relationships: []
       }
+      wl_channel_connections: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          key_hash: string
+          key_prefix: string
+          last_order_at: string | null
+          last_push_at: string | null
+          name: string
+          notes: string
+          orders_pull_secret: string
+          orders_pull_url: string
+          push_secret: string
+          push_url: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          key_hash?: string
+          key_prefix?: string
+          last_order_at?: string | null
+          last_push_at?: string | null
+          name: string
+          notes?: string
+          orders_pull_secret?: string
+          orders_pull_url?: string
+          push_secret?: string
+          push_url?: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          key_hash?: string
+          key_prefix?: string
+          last_order_at?: string | null
+          last_push_at?: string | null
+          name?: string
+          notes?: string
+          orders_pull_secret?: string
+          orders_pull_url?: string
+          push_secret?: string
+          push_url?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      wl_channel_sync_log: {
+        Row: {
+          connection_id: string | null
+          created_at: string
+          detail: Json
+          direction: string
+          event: string
+          id: string
+          status: string
+        }
+        Insert: {
+          connection_id?: string | null
+          created_at?: string
+          detail?: Json
+          direction?: string
+          event?: string
+          id?: string
+          status?: string
+        }
+        Update: {
+          connection_id?: string | null
+          created_at?: string
+          detail?: Json
+          direction?: string
+          event?: string
+          id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wl_channel_sync_log_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "wl_channel_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      wl_integrations: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          key_hash: string
+          key_prefix: string
+          last_error: string
+          last_status: string
+          last_sync_at: string | null
+          name: string
+          notes: string
+          pull_secret: string
+          pull_url: string
+          supplier_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          key_hash?: string
+          key_prefix?: string
+          last_error?: string
+          last_status?: string
+          last_sync_at?: string | null
+          name: string
+          notes?: string
+          pull_secret?: string
+          pull_url?: string
+          supplier_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          key_hash?: string
+          key_prefix?: string
+          last_error?: string
+          last_status?: string
+          last_sync_at?: string | null
+          name?: string
+          notes?: string
+          pull_secret?: string
+          pull_url?: string
+          supplier_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      wl_inventory_batches: {
+        Row: {
+          accepted: number
+          created_at: string
+          detail: Json
+          id: string
+          integration_id: string
+          rejected: number
+          request_id: string
+          source: string
+          status: string
+        }
+        Insert: {
+          accepted?: number
+          created_at?: string
+          detail?: Json
+          id?: string
+          integration_id: string
+          rejected?: number
+          request_id?: string
+          source?: string
+          status?: string
+        }
+        Update: {
+          accepted?: number
+          created_at?: string
+          detail?: Json
+          id?: string
+          integration_id?: string
+          rejected?: number
+          request_id?: string
+          source?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wl_inventory_batches_integration_id_fkey"
+            columns: ["integration_id"]
+            isOneToOne: false
+            referencedRelation: "wl_integrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      wl_inventory_log: {
+        Row: {
+          batch_id: string | null
+          created_at: string
+          detail: Json
+          id: string
+          integration_id: string | null
+          message: string
+          sku: string
+          status: string
+        }
+        Insert: {
+          batch_id?: string | null
+          created_at?: string
+          detail?: Json
+          id?: string
+          integration_id?: string | null
+          message?: string
+          sku?: string
+          status?: string
+        }
+        Update: {
+          batch_id?: string | null
+          created_at?: string
+          detail?: Json
+          id?: string
+          integration_id?: string | null
+          message?: string
+          sku?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wl_inventory_log_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "wl_inventory_batches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "wl_inventory_log_integration_id_fkey"
+            columns: ["integration_id"]
+            isOneToOne: false
+            referencedRelation: "wl_integrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       wl_market_flags: {
         Row: {
           code: string
@@ -2909,16 +4338,74 @@ export type Database = {
         }
         Relationships: []
       }
+      wl_order_items: {
+        Row: {
+          created_at: string
+          id: string
+          line_total: number
+          name: string
+          order_id: string
+          product_id: string | null
+          quantity: number
+          sku: string
+          supplier_id: string
+          unit_price: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          line_total?: number
+          name?: string
+          order_id: string
+          product_id?: string | null
+          quantity?: number
+          sku?: string
+          supplier_id: string
+          unit_price?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          line_total?: number
+          name?: string
+          order_id?: string
+          product_id?: string | null
+          quantity?: number
+          sku?: string
+          supplier_id?: string
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wl_order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "wl_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "wl_order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "wl_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       wl_orders: {
         Row: {
           buyer_country: string
           channel: string
+          connection_id: string | null
           created_at: string
           currency: string
+          external_reference: string
+          external_status: string
           id: string
           order_value: number
           product_summary: string
           quantity: number
+          raw_payload: Json
           reference: string
           shipping: string
           status: string
@@ -2928,12 +4415,16 @@ export type Database = {
         Insert: {
           buyer_country?: string
           channel?: string
+          connection_id?: string | null
           created_at?: string
           currency?: string
+          external_reference?: string
+          external_status?: string
           id?: string
           order_value?: number
           product_summary?: string
           quantity?: number
+          raw_payload?: Json
           reference?: string
           shipping?: string
           status?: string
@@ -2943,19 +4434,31 @@ export type Database = {
         Update: {
           buyer_country?: string
           channel?: string
+          connection_id?: string | null
           created_at?: string
           currency?: string
+          external_reference?: string
+          external_status?: string
           id?: string
           order_value?: number
           product_summary?: string
           quantity?: number
+          raw_payload?: Json
           reference?: string
           shipping?: string
           status?: string
           supplier_id?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "wl_orders_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "wl_channel_connections"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       wl_partner_profiles: {
         Row: {
@@ -2966,7 +4469,9 @@ export type Database = {
           id: string
           last_name: string
           mobile: string
+          suspended_at: string | null
           updated_at: string
+          username: string
         }
         Insert: {
           country?: string
@@ -2976,7 +4481,9 @@ export type Database = {
           id: string
           last_name?: string
           mobile?: string
+          suspended_at?: string | null
           updated_at?: string
+          username?: string
         }
         Update: {
           country?: string
@@ -2986,7 +4493,9 @@ export type Database = {
           id?: string
           last_name?: string
           mobile?: string
+          suspended_at?: string | null
           updated_at?: string
+          username?: string
         }
         Relationships: []
       }
@@ -3071,16 +4580,24 @@ export type Database = {
       wl_products: {
         Row: {
           brand: string
+          brand_ar: string | null
           category: string
+          category_id: number | null
+          category_l1_id: number | null
+          category_l2_id: number | null
+          category_l3_id: number | null
+          category_path: string | null
           created_at: string
           currency: string
           description: string
+          description_ar: string | null
           dropship_price: number
           id: string
           images: Json
           is_active: boolean
           moq: number
           name: string
+          name_ar: string | null
           review_notes: string
           sku: string
           status: Database["public"]["Enums"]["wl_product_status"]
@@ -3092,16 +4609,24 @@ export type Database = {
         }
         Insert: {
           brand?: string
+          brand_ar?: string | null
           category?: string
+          category_id?: number | null
+          category_l1_id?: number | null
+          category_l2_id?: number | null
+          category_l3_id?: number | null
+          category_path?: string | null
           created_at?: string
           currency?: string
           description?: string
+          description_ar?: string | null
           dropship_price?: number
           id?: string
           images?: Json
           is_active?: boolean
           moq?: number
           name: string
+          name_ar?: string | null
           review_notes?: string
           sku?: string
           status?: Database["public"]["Enums"]["wl_product_status"]
@@ -3113,16 +4638,24 @@ export type Database = {
         }
         Update: {
           brand?: string
+          brand_ar?: string | null
           category?: string
+          category_id?: number | null
+          category_l1_id?: number | null
+          category_l2_id?: number | null
+          category_l3_id?: number | null
+          category_path?: string | null
           created_at?: string
           currency?: string
           description?: string
+          description_ar?: string | null
           dropship_price?: number
           id?: string
           images?: Json
           is_active?: boolean
           moq?: number
           name?: string
+          name_ar?: string | null
           review_notes?: string
           sku?: string
           status?: Database["public"]["Enums"]["wl_product_status"]
@@ -3260,6 +4793,11 @@ export type Database = {
         Args: { _role: string; sql: string }
         Returns: undefined
       }
+      accept_team_invite: { Args: { _token: string }; Returns: Json }
+      admin_adjust_inventory: {
+        Args: { _inventory_id: string; _qty_change: number; _reason: string }
+        Returns: Json
+      }
       admin_list_customers: {
         Args: { _limit?: number; _offset?: number; _search?: string }
         Returns: {
@@ -3276,10 +4814,101 @@ export type Database = {
           wallet_balance: number
         }[]
       }
+      admin_product_add_stats: { Args: { _days?: number }; Returns: Json }
+      admin_send_notification: {
+        Args: { _body: string; _link: string; _title: string; _user_id: string }
+        Returns: Json
+      }
+      analytics_session_timeline: {
+        Args: { _session_id: string }
+        Returns: {
+          at: string
+          detail: string
+          kind: string
+          label: string
+        }[]
+      }
+      analytics_sessions: {
+        Args: { _days?: number; _limit?: number; _search?: string }
+        Returns: {
+          browser: string
+          converted: boolean
+          country: string
+          device_type: string
+          display_name: string
+          email: string
+          first_seen: string
+          landing_page: string
+          last_page: string
+          last_seen: string
+          page_views: number
+          referrer: string
+          session_id: string
+          user_id: string
+          visitor_id: string
+        }[]
+      }
+      analytics_summary: { Args: { _days?: number }; Returns: Json }
+      apply_pricing_formula:
+        | { Args: never; Returns: number }
+        | {
+            Args: { _cost_usd?: number; _source?: string; _weight_kg?: number }
+            Returns: number
+          }
+      apply_referral_code: { Args: { _code: string }; Returns: Json }
+      broadcast_notification: {
+        Args: {
+          _audience?: string
+          _body: string
+          _link: string
+          _title: string
+        }
+        Returns: number
+      }
+      build_zatca_qr: {
+        Args: {
+          _seller_name: string
+          _seller_vat: string
+          _timestamp: string
+          _total: number
+          _vat: number
+        }
+        Returns: string
+      }
+      claim_guest_shop_orders: { Args: never; Returns: Json }
+      create_notification: {
+        Args: {
+          _body: string
+          _link: string
+          _metadata?: Json
+          _title: string
+          _type: string
+          _user_id: string
+        }
+        Returns: undefined
+      }
+      delete_email: {
+        Args: { message_id: number; queue_name: string }
+        Returns: boolean
+      }
+      enqueue_email: {
+        Args: { payload: Json; queue_name: string }
+        Returns: number
+      }
+      gen_referral_code: { Args: never; Returns: string }
+      generate_invoice_for_order: {
+        Args: { _order_id: string }
+        Returns: string
+      }
+      generate_invoice_number: { Args: never; Returns: string }
       get_team_owner: { Args: { _user_id: string }; Returns: string }
       get_user_plan_limit: {
         Args: { _limit_key: string; _user_id: string }
         Returns: number
+      }
+      has_active_subscription: {
+        Args: { check_env?: string; user_uuid: string }
+        Returns: boolean
       }
       has_module_access: {
         Args: { _module: string; _user_id: string }
@@ -3336,18 +4965,132 @@ export type Database = {
       }
       is_admin: { Args: never; Returns: boolean }
       is_staff_or_admin: { Args: { _user_id: string }; Returns: boolean }
+      move_to_dlq: {
+        Args: {
+          dlq_name: string
+          message_id: number
+          payload: Json
+          source_queue: string
+        }
+        Returns: boolean
+      }
+      notify_admins: {
+        Args: {
+          _body: string
+          _link: string
+          _metadata?: Json
+          _title: string
+          _type: string
+        }
+        Returns: undefined
+      }
+      pricing_setting: {
+        Args: { _default: number; _key: string }
+        Returns: number
+      }
       product_digest_stats: {
         Args: { _limit?: number; _since: string }
         Returns: Json
+      }
+      queue_email:
+        | {
+            Args: {
+              _dedupe_key?: string
+              _payload: Json
+              _recipient_email?: string
+              _template_name: string
+              _user_id: string
+            }
+            Returns: string
+          }
+        | {
+            Args: {
+              _dedupe_key?: string
+              _payload: Json
+              _recipient_email?: string
+              _template_name: string
+              _user_id: string
+            }
+            Returns: string
+          }
+      read_email_batch: {
+        Args: { batch_size?: number; queue_name: string; vt?: number }
+        Returns: {
+          enqueued_at: string
+          message: Json
+          msg_id: number
+          read_ct: number
+          vt_at: string
+        }[]
       }
       record_page_duration: {
         Args: { _id: string; _ms: number }
         Returns: undefined
       }
+      redeem_promo_code: { Args: { _code: string }; Returns: Json }
       refresh_category_counts_cache: { Args: never; Returns: number }
+      refresh_category_counts_if_dirty: { Args: never; Returns: Json }
+      reprice_products_batch: {
+        Args: { _batch_size?: number }
+        Returns: number
+      }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
+      slugify: { Args: { _txt: string }; Returns: string }
+      sunsky_rebuild_category_paths: { Args: never; Returns: number }
+      sunsky_rebuild_category_paths_ar: { Args: never; Returns: number }
       team_can_buy: { Args: { _user_id: string }; Returns: boolean }
+      track_referral_visit: {
+        Args: { _code: string; _meta?: Json }
+        Returns: Json
+      }
+      validate_promo_code: {
+        Args: { _code: string; _order_total: number }
+        Returns: Json
+      }
+      wallet_admin_adjust: {
+        Args: {
+          _amount: number
+          _description: string
+          _type: string
+          _user_id: string
+        }
+        Returns: Json
+      }
+      wallet_apply: {
+        Args: {
+          _amount: number
+          _description: string
+          _stripe_session_id?: string
+          _type: string
+          _user_id: string
+        }
+        Returns: Json
+      }
+      wallet_credit_from_payment: {
+        Args: {
+          _amount: number
+          _description: string
+          _stripe_session_id: string
+          _user_id: string
+        }
+        Returns: Json
+      }
+      wallet_debit_for_order: {
+        Args: { _amount: number; _order_id: string }
+        Returns: Json
+      }
+      wallet_debit_for_release: {
+        Args: { _amount: number; _release_id: string }
+        Returns: Json
+      }
+      wallet_get_balance: { Args: never; Returns: number }
+      wants_notification: {
+        Args: { _type: string; _user_id: string }
+        Returns: boolean
+      }
+      weight_fee_in_price: { Args: { _source: string }; Returns: boolean }
+      wl_catalog_image_urls: { Args: { _images: Json }; Returns: string[] }
       wl_has_role: {
         Args: {
           _role: Database["public"]["Enums"]["wl_role"]
@@ -3355,6 +5098,9 @@ export type Database = {
         }
         Returns: boolean
       }
+      wl_resync_catalog: { Args: never; Returns: Json }
+      wl_supplier_is_approved: { Args: { _user_id: string }; Returns: boolean }
+      wl_sync_product_to_catalog: { Args: { _wl_id: string }; Returns: string }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user" | "staff"
