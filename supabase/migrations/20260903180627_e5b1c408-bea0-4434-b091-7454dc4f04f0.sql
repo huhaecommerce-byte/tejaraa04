@@ -1,0 +1,4 @@
+CREATE POLICY "Catalog staff can insert products" ON public.products FOR INSERT TO authenticated WITH CHECK (public.has_module_access(auth.uid(), 'catalog'));
+CREATE POLICY "Catalog staff can update products" ON public.products FOR UPDATE TO authenticated USING (public.has_module_access(auth.uid(), 'catalog')) WITH CHECK (public.has_module_access(auth.uid(), 'catalog'));
+CREATE POLICY "Catalog staff can insert suppliers" ON public.suppliers FOR INSERT TO authenticated WITH CHECK (public.has_module_access(auth.uid(), 'catalog'));
+CREATE POLICY "Catalog staff can update suppliers" ON public.suppliers FOR UPDATE TO authenticated USING (public.has_module_access(auth.uid(), 'catalog')) WITH CHECK (public.has_module_access(auth.uid(), 'catalog'));

@@ -1,0 +1,58 @@
+// Typed list of SunSky endpoints that the proxy supports. Keep in sync with
+// supabase/functions/sunsky-proxy/index.ts.
+
+export const SUNSKY_ENDPOINTS = [
+  'category/children',
+  'category/sync-roots',
+  'category/sync-all',
+  'category/tree-stats',
+  'product/search',
+  'product/list',
+  'product/details',
+  'product/images',
+  'product/changelist',
+  'order/countries',
+  'order/quote',
+  'order/create',
+  'order/details',
+  'order/search',
+  'order/labels/add',
+  'order/labels/get',
+  'account/balance',
+  'account/history',
+  'stats/hot',
+  'coupon/list',
+  'import/preview',
+  'import/start',
+  'import/cancel',
+  'import/item',
+] as const;
+
+export type SunskyEndpoint = typeof SUNSKY_ENDPOINTS[number];
+
+export const SUNSKY_ENDPOINT_LABELS: Record<SunskyEndpoint, string> = {
+  'category/children':   'Category — children',
+  'category/sync-roots': 'Category — sync top level',
+  'category/sync-all':   'Category — sync full tree',
+  'category/tree-stats': 'Category — tree stats',
+  'product/search':     'Product — search',
+  'product/list':       'Product — browse list',
+  'product/details':    'Product — details',
+  'product/images':     'Product — images',
+  'product/changelist': 'Product — image changelist',
+  'order/countries':    'Order — country list',
+  'order/quote':        'Order — quote',
+  'order/create':       'Order — create',
+  'order/details':      'Order — details',
+  'order/search':       'Order — search',
+  'order/labels/add':   'Order — add labels',
+  'order/labels/get':   'Order — get labels',
+  'account/balance':    'Account — balance',
+  'account/history':    'Account — balance history',
+  'stats/hot':          'Stats — hot items',
+  'coupon/list':        'Coupon — list',
+  'import/preview':     'Import — category preview',
+  'import/start':       'Import — start bulk job',
+  'import/cancel':      'Import — cancel bulk job',
+  'import/item':        'Import — selected products',
+};

@@ -1,0 +1,1 @@
+GRANT EXECUTE ON FUNCTION public.hunt_catalog_products(text[], text, numeric, numeric, text, boolean, integer, integer, boolean) TO anon, authenticated;

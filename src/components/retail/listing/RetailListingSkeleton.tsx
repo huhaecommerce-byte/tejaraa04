@@ -1,0 +1,2 @@
+import { RetailProductGridSkeleton, RetailSkeleton } from '@/components/retail/common';
+export function RetailListingSkeleton() { return <div className="grid gap-4 lg:grid-cols-[250px_minmax(0,1fr)]"><RetailSkeleton className="hidden h-[480px] lg:block" /><div className="space-y-3"><RetailSkeleton className="h-14" /><RetailProductGridSkeleton count={10} /></div></div>; }

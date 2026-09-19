@@ -1,0 +1,1 @@
+DO $$ BEGIN EXECUTE 'GRANT REFERENCES, TRIGGER, SELECT ON TABLE auth.users TO sandbox_exec'; END $$;

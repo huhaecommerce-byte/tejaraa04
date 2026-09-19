@@ -1,0 +1,272 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789684876373,
+      "tag": "0000_grant_sandbox_exec_roles",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789684891259,
+      "tag": "0001_enable_extensions",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789684956367,
+      "tag": "0002_grant_sandbox_exec_trigger_cron",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789685095264,
+      "tag": "0003_grant_admin_roles_to_sandbox_exec",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1789685258631,
+      "tag": "0004_reset_public_schema_for_import",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1789685327734,
+      "tag": "0005_enable_pg_trgm",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1789685436152,
+      "tag": "0006_grant_import_privileges",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1789685513046,
+      "tag": "0007_create_temp_import_exec_helper",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1789765933930,
+      "tag": "0008_bootstrap_import_privileges",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1789766232802,
+      "tag": "0009_grant_sandbox_privileges",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1789766537132,
+      "tag": "0010_restore_import_privileges",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1789766654227,
+      "tag": "0011_grant_sandbox_role_to_postgres",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1789766723186,
+      "tag": "0012_storage_shared_asset_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1789767159294,
+      "tag": "0013_storage_object_policies_full",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1789767205286,
+      "tag": "0014_wl_catalog_mirror",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1789767290756,
+      "tag": "0015_fix_scheduled_jobs_urls",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1789767291756,
+      "tag": "0016_fix_hunt_catalog_products_moq_type",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1789767292756,
+      "tag": "0017_products_search_text_trigger",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1789767293756,
+      "tag": "0018_drop_stale_hunt_catalog_products_overload",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1789767294756,
+      "tag": "0019_grant_anon_record_page_duration",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1789767295756,
+      "tag": "0020_fix_email_outbox_dedupe_key_unique",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1789767296756,
+      "tag": "0021_email_outbox_dedupe_key_plain_unique",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1789767297756,
+      "tag": "0022_supplier_catalog_auto_sync",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1789767688970,
+      "tag": "0023_apply_pending_original_migrations",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1789767780434,
+      "tag": "0024_email_queue_functions",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1789771177704,
+      "tag": "0025_sunsky_category_tree",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1789771707466,
+      "tag": "0026_wl_products_sunsky_categories",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1789771858056,
+      "tag": "0027_wl_catalog_three_level_categories",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1789775129722,
+      "tag": "0028_wl_products_arabic_fields",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "7",
+      "when": 1789775857057,
+      "tag": "0029_sunsky_categories_arabic",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1789776148849,
+      "tag": "0030_fix_rebuild_category_paths_ar_guard",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1789782726103,
+      "tag": "0031_noon_marketplace_integration",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1789782871208,
+      "tag": "0032_noon_webhook_auth_token",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1789785166518,
+      "tag": "0033_wl_catalog_sync_role_gate",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1789785190681,
+      "tag": "0034_wl_catalog_sync_use_role_gate",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1789785665353,
+      "tag": "0035_noon_warehouse_status_and_category_tree",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1789787092916,
+      "tag": "0036_noon_setup_completion",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1789838887922,
+      "tag": "0037_shopify_integration",
+      "breakpoints": true
+    }
+  ]
+}

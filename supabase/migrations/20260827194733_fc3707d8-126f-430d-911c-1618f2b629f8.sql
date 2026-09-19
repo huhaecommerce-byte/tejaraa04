@@ -1,0 +1,2 @@
+REVOKE ALL ON FUNCTION public.start_price_recalc_job(numeric, numeric, numeric, numeric, integer, boolean) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.start_price_recalc_job(numeric, numeric, numeric, numeric, integer, boolean) TO authenticated, service_role;

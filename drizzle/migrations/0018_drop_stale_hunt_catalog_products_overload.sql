@@ -1,0 +1,1 @@
+DROP FUNCTION IF EXISTS public.hunt_catalog_products(text[], text, boolean, integer, numeric, numeric, integer, boolean, text);

@@ -10,33 +10,2870 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountRouteRouteImport } from './routes/account/route'
+import { Route as AdminRouteRouteImport } from './routes/admin/route'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CatalogRouteImport } from './routes/catalog'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DropshippingRouteRouteImport } from './routes/dropshipping/route'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as NoonSellerServicesKsaRouteImport } from './routes/noon-seller-services-ksa'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
+import { Route as AccountIndexRouteImport } from './routes/account/index'
+import { Route as AccountAddressesRouteImport } from './routes/account/addresses'
+import { Route as AccountOrdersRouteImport } from './routes/account/orders'
+import { Route as AccountProfileRouteImport } from './routes/account/profile'
+import { Route as AccountWishlistRouteImport } from './routes/account/wishlist'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin/analytics'
+import { Route as AdminAuditLogRouteImport } from './routes/admin/audit-log'
+import { Route as AdminCatalogHubRouteImport } from './routes/admin/catalog-hub'
+import { Route as AdminContactRouteImport } from './routes/admin/contact'
+import { Route as AdminDeliveryRouteImport } from './routes/admin/delivery'
+import { Route as AdminEmailsRouteImport } from './routes/admin/emails'
+import { Route as AdminHomepageRouteImport } from './routes/admin/homepage'
+import { Route as AdminInternalHubRouteImport } from './routes/admin/internal-hub'
+import { Route as AdminLabelDesignerRouteImport } from './routes/admin/label-designer'
+import { Route as AdminLabellingRouteImport } from './routes/admin/labelling'
+import { Route as AdminOpsHubRouteImport } from './routes/admin/ops-hub'
+import { Route as AdminPlanUsageRouteImport } from './routes/admin/plan-usage'
+import { Route as AdminPlatformsRouteImport } from './routes/admin/platforms'
+import { Route as AdminPricingRouteImport } from './routes/admin/pricing'
+import { Route as AdminPromoCodesRouteImport } from './routes/admin/promo-codes'
+import { Route as AdminQuotesRouteImport } from './routes/admin/quotes'
+import { Route as AdminReportsRouteImport } from './routes/admin/reports'
+import { Route as AdminReturnsRouteImport } from './routes/admin/returns'
+import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
+import { Route as AdminSourcingRouteImport } from './routes/admin/sourcing'
+import { Route as AdminSourcingHubRouteImport } from './routes/admin/sourcing-hub'
+import { Route as AdminSunskyRouteImport } from './routes/admin/sunsky'
+import { Route as AdminSuppliersRouteImport } from './routes/admin/suppliers'
+import { Route as AdminTicketsRouteImport } from './routes/admin/tickets'
+import { Route as AdminWarehouseRouteImport } from './routes/admin/warehouse'
+import { Route as AdminWhatsappLogsRouteImport } from './routes/admin/whatsapp-logs'
+import { Route as ArIndexRouteImport } from './routes/ar/index'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogAmazonFbaLabelingRequirementsGuideRouteImport } from './routes/blog/amazon-fba-labeling-requirements-guide'
+import { Route as BlogAmazonFbaVsNoonFbnSaudiArabiaRouteImport } from './routes/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
+import { Route as BlogCashOnDeliveryEcommerceSaudiArabiaRouteImport } from './routes/blog/cash-on-delivery-ecommerce-saudi-arabia'
+import { Route as BlogEcommerceWarehousingRiyadhJeddahDammamRouteImport } from './routes/blog/ecommerce-warehousing-riyadh-jeddah-dammam'
+import { Route as BlogHowToFindReliableSuppliersAlibaba1688RouteImport } from './routes/blog/how-to-find-reliable-suppliers-alibaba-1688'
+import { Route as BlogHowToImportGoodsFromChinaToSaudiArabiaRouteImport } from './routes/blog/how-to-import-goods-from-china-to-saudi-arabia'
+import { Route as BlogHowToSellOnAmazonSaudiArabiaRouteImport } from './routes/blog/how-to-sell-on-amazon-saudi-arabia'
+import { Route as BlogHowToSellOnNoonSaudiArabiaRouteImport } from './routes/blog/how-to-sell-on-noon-saudi-arabia'
+import { Route as BlogHowToStartDropshippingInSaudiArabiaRouteImport } from './routes/blog/how-to-start-dropshipping-in-saudi-arabia'
+import { Route as BlogSaberCertificationGuideSaudiArabiaRouteImport } from './routes/blog/saber-certification-guide-saudi-arabia'
+import { Route as BlogSallaVsZidVsShopifySaudiArabiaRouteImport } from './routes/blog/salla-vs-zid-vs-shopify-saudi-arabia'
+import { Route as BlogSaudiCustomsDutiesVatGuideImportersRouteImport } from './routes/blog/saudi-customs-duties-vat-guide-importers'
+import { Route as BlogSourcingFromChinaToSaudiArabiaGuideRouteImport } from './routes/blog/sourcing-from-china-to-saudi-arabia-guide'
+import { Route as BlogWhatIs3plFulfillmentSaudiArabiaRouteImport } from './routes/blog/what-is-3pl-fulfillment-saudi-arabia'
+import { Route as CategoryIndexRouteImport } from './routes/category/index'
+import { Route as CategoryTopRouteImport } from './routes/category/$top'
+import { Route as CheckoutIndexRouteImport } from './routes/checkout/index'
+import { Route as CheckoutReturnRouteImport } from './routes/checkout/return'
+import { Route as DashboardSplatRouteImport } from './routes/dashboard.$'
+import { Route as DropshippingIndexRouteImport } from './routes/dropshipping/index'
+import { Route as DropshippingAcceptInviteRouteImport } from './routes/dropshipping/accept-invite'
+import { Route as DropshippingAddressesRouteImport } from './routes/dropshipping/addresses'
+import { Route as DropshippingBillingRouteImport } from './routes/dropshipping/billing'
+import { Route as DropshippingBrowsedRouteImport } from './routes/dropshipping/browsed'
+import { Route as DropshippingDeliveryRouteImport } from './routes/dropshipping/delivery'
+import { Route as DropshippingFavouritesRouteImport } from './routes/dropshipping/favourites'
+import { Route as DropshippingFulfillmentRouteImport } from './routes/dropshipping/fulfillment'
+import { Route as DropshippingHistoryRouteImport } from './routes/dropshipping/history'
+import { Route as DropshippingIntegrationsRouteImport } from './routes/dropshipping/integrations'
+import { Route as DropshippingInvoicesRouteImport } from './routes/dropshipping/invoices'
+import { Route as DropshippingLabellingRouteImport } from './routes/dropshipping/labelling'
+import { Route as DropshippingPlanUsageRouteImport } from './routes/dropshipping/plan-usage'
+import { Route as DropshippingProfileRouteImport } from './routes/dropshipping/profile'
+import { Route as DropshippingQuotesRouteImport } from './routes/dropshipping/quotes'
+import { Route as DropshippingReferralsRouteImport } from './routes/dropshipping/referrals'
+import { Route as DropshippingReturnsRouteImport } from './routes/dropshipping/returns'
+import { Route as DropshippingSourcingRouteImport } from './routes/dropshipping/sourcing'
+import { Route as DropshippingTeamRouteImport } from './routes/dropshipping/team'
+import { Route as DropshippingTemplatesRouteImport } from './routes/dropshipping/templates'
+import { Route as DropshippingTicketsRouteImport } from './routes/dropshipping/tickets'
+import { Route as DropshippingWalletRouteImport } from './routes/dropshipping/wallet'
+import { Route as PartnersIndexRouteImport } from './routes/partners.index'
+import { Route as PartnersAuthRouteImport } from './routes/partners._auth'
+import { Route as PartnersAdminRouteImport } from './routes/partners.admin'
+import { Route as PartnersCategoriesRouteImport } from './routes/partners.categories'
+import { Route as PartnersContactRouteImport } from './routes/partners.contact'
+import { Route as PartnersForgotPasswordRouteImport } from './routes/partners.forgot-password'
+import { Route as PartnersHowItWorksRouteImport } from './routes/partners.how-it-works'
+import { Route as PartnersJoinRouteImport } from './routes/partners.join'
+import { Route as PartnersMarketsRouteImport } from './routes/partners.markets'
+import { Route as PartnersRequirementsRouteImport } from './routes/partners.requirements'
+import { Route as PartnersSigninRouteImport } from './routes/partners.signin'
+import { Route as PartnersSignupRouteImport } from './routes/partners.signup'
+import { Route as PartnersSupplyModelsRouteImport } from './routes/partners.supply-models'
+import { Route as PartnersWhoCanSupplyRouteImport } from './routes/partners.who-can-supply'
+import { Route as ProductIdRouteImport } from './routes/product/$id'
+import { Route as SellingIndexRouteImport } from './routes/selling.index'
+import { Route as SellingContactRouteImport } from './routes/selling.contact'
+import { Route as SellingDropshippingRouteImport } from './routes/selling.dropshipping'
+import { Route as SellingForgotPasswordRouteImport } from './routes/selling.forgot-password'
+import { Route as SellingFulfillmentRouteImport } from './routes/selling.fulfillment'
+import { Route as SellingHowItWorksRouteImport } from './routes/selling.how-it-works'
+import { Route as SellingIntegrationsRouteImport } from './routes/selling.integrations'
+import { Route as SellingMarketplacePreparationRouteImport } from './routes/selling.marketplace-preparation'
+import { Route as SellingPackagingLabelingRouteImport } from './routes/selling.packaging-labeling'
+import { Route as SellingProductHuntingRouteImport } from './routes/selling.product-hunting'
+import { Route as SellingProductSourcingRouteImport } from './routes/selling.product-sourcing'
+import { Route as SellingSigninRouteImport } from './routes/selling.signin'
+import { Route as SellingSignupRouteImport } from './routes/selling.signup'
+import { Route as SellingWarehousingRouteImport } from './routes/selling.warehousing'
+import { Route as ShopForgotPasswordRouteImport } from './routes/shop.forgot-password'
+import { Route as ShopSigninRouteImport } from './routes/shop.signin'
+import { Route as ShopSignupRouteImport } from './routes/shop.signup'
+import { Route as AdminCustomersIndexRouteImport } from './routes/admin/customers/index'
+import { Route as AdminCustomersIdRouteImport } from './routes/admin/customers/$id'
+import { Route as AdminOrdersIndexRouteImport } from './routes/admin/orders/index'
+import { Route as AdminOrdersIdRouteImport } from './routes/admin/orders/$id'
+import { Route as AdminProductsIndexRouteImport } from './routes/admin/products/index'
+import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
+import { Route as AdminProductsImportRouteImport } from './routes/admin/products/import'
+import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
+import { Route as ApiFnCatalogExportRouteImport } from './routes/api/fn/catalog-export'
+import { Route as ApiFnCreateCheckoutRouteImport } from './routes/api/fn/create-checkout'
+import { Route as ApiFnCreatePortalSessionRouteImport } from './routes/api/fn/create-portal-session'
+import { Route as ApiFnDownloadImagesRouteImport } from './routes/api/fn/download-images'
+import { Route as ApiFnGetStripePriceRouteImport } from './routes/api/fn/get-stripe-price'
+import { Route as ApiFnManageSubscriptionRouteImport } from './routes/api/fn/manage-subscription'
+import { Route as ApiFnPreviewTransactionalEmailRouteImport } from './routes/api/fn/preview-transactional-email'
+import { Route as ApiFnSendResendEmailRouteImport } from './routes/api/fn/send-resend-email'
+import { Route as ApiFnSendTicketWhatsappRouteImport } from './routes/api/fn/send-ticket-whatsapp'
+import { Route as ApiFnSendTransactionalEmailRouteImport } from './routes/api/fn/send-transactional-email'
+import { Route as ApiFnShopCheckoutRouteImport } from './routes/api/fn/shop-checkout'
+import { Route as ApiFnSunskyProxyRouteImport } from './routes/api/fn/sunsky-proxy'
+import { Route as ApiFnTryotoProxyRouteImport } from './routes/api/fn/tryoto-proxy'
+import { Route as ApiFnVerifyCheckoutSessionRouteImport } from './routes/api/fn/verify-checkout-session'
+import { Route as ApiFnWalletTopupCheckoutRouteImport } from './routes/api/fn/wallet-topup-checkout'
+import { Route as ApiPublicAuthEmailHookRouteImport } from './routes/api/public/auth-email-hook'
+import { Route as ApiPublicHandleEmailSuppressionRouteImport } from './routes/api/public/handle-email-suppression'
+import { Route as ApiPublicHandleEmailUnsubscribeRouteImport } from './routes/api/public/handle-email-unsubscribe'
+import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments-webhook'
+import { Route as ApiPublicProcessEmailOutboxRouteImport } from './routes/api/public/process-email-outbox'
+import { Route as ApiPublicProcessEmailQueueRouteImport } from './routes/api/public/process-email-queue'
+import { Route as ApiPublicProcessScheduledTemplatesRouteImport } from './routes/api/public/process-scheduled-templates'
+import { Route as ApiPublicReconcileStalePaymentsRouteImport } from './routes/api/public/reconcile-stale-payments'
+import { Route as ApiPublicSendProductDigestRouteImport } from './routes/api/public/send-product-digest'
+import { Route as ApiPublicSignupRemindersRouteImport } from './routes/api/public/signup-reminders'
+import { Route as ApiPublicSitemapRouteImport } from './routes/api/public/sitemap'
+import { Route as ApiPublicSunskyCallbackRouteImport } from './routes/api/public/sunsky-callback'
+import { Route as ApiPublicWahooksTicketWebhookRouteImport } from './routes/api/public/wahooks-ticket-webhook'
+import { Route as ApiPublicWebhookPingRouteImport } from './routes/api/public/webhook-ping'
+import { Route as ArCategoryTopRouteImport } from './routes/ar/category/$top'
+import { Route as ArProductIdRouteImport } from './routes/ar/product/$id'
+import { Route as CategoryTopSubRouteImport } from './routes/category/$top.$sub'
+import { Route as CheckoutShopIndexRouteImport } from './routes/checkout/shop.index'
+import { Route as CheckoutShopThankYouRouteImport } from './routes/checkout/shop.thank-you'
+import { Route as DropshippingCatalogIndexRouteImport } from './routes/dropshipping/catalog/index'
+import { Route as DropshippingCatalogIdRouteImport } from './routes/dropshipping/catalog/$id'
+import { Route as DropshippingCatalogExportRouteImport } from './routes/dropshipping/catalog/export'
+import { Route as DropshippingCatalogHuntingRouteImport } from './routes/dropshipping/catalog/hunting'
+import { Route as DropshippingIntegrationsIndexRouteImport } from './routes/dropshipping/integrations.index'
+import { Route as DropshippingOrdersIndexRouteImport } from './routes/dropshipping/orders/index'
+import { Route as DropshippingOrdersIdRouteImport } from './routes/dropshipping/orders/$id'
+import { Route as DropshippingOrdersImportRouteImport } from './routes/dropshipping/orders/import'
+import { Route as DropshippingOrdersNewRouteImport } from './routes/dropshipping/orders/new'
+import { Route as DropshippingWarehouseIndexRouteImport } from './routes/dropshipping/warehouse/index'
+import { Route as PartnersAuthAnalyticsRouteImport } from './routes/partners._auth.analytics'
+import { Route as PartnersAuthDashboardRouteImport } from './routes/partners._auth.dashboard'
+import { Route as PartnersAuthFinanceRouteImport } from './routes/partners._auth.finance'
+import { Route as PartnersAuthOrdersRouteImport } from './routes/partners._auth.orders'
+import { Route as PartnersAuthProfileRouteImport } from './routes/partners._auth.profile'
+import { Route as PartnersAuthSettingsRouteImport } from './routes/partners._auth.settings'
+import { Route as PartnersAuthVerificationRouteImport } from './routes/partners._auth.verification'
+import { Route as PartnersAdminIndexRouteImport } from './routes/partners.admin.index'
+import { Route as PartnersAdminConnectionsRouteImport } from './routes/partners.admin.connections'
+import { Route as PartnersAdminLiveProductsRouteImport } from './routes/partners.admin.live-products'
+import { Route as PartnersAdminMarketsRouteImport } from './routes/partners.admin.markets'
+import { Route as PartnersAdminOrdersRouteImport } from './routes/partners.admin.orders'
+import { Route as PartnersAdminPayoutsRouteImport } from './routes/partners.admin.payouts'
+import { Route as PartnersAdminSupplierIntegrationsRouteImport } from './routes/partners.admin.supplier-integrations'
+import { Route as PartnersAdminSuppliersRouteImport } from './routes/partners.admin.suppliers'
+import { Route as PartnersAdminTeamRouteImport } from './routes/partners.admin.team'
+import { Route as WalletTopupReturnRouteImport } from './routes/wallet/topup/return'
+import { Route as ApiPublicNoonEventsRouteImport } from './routes/api/public/noon/events'
+import { Route as ApiPublicNoonRunJobsRouteImport } from './routes/api/public/noon/run-jobs'
+import { Route as ApiPublicPartnerImageSplatRouteImport } from './routes/api/public/partner-image.$'
+import { Route as ApiPublicShopifyRunJobsRouteImport } from './routes/api/public/shopify/run-jobs'
+import { Route as ApiPublicShopifyWebhookRouteImport } from './routes/api/public/shopify/webhook'
+import { Route as ArCategoryTopSubRouteImport } from './routes/ar/category/$top.$sub'
+import { Route as CategoryTopSubDetailRouteImport } from './routes/category/$top.$sub.$detail'
+import { Route as DropshippingIntegrationsNoonConnectionIdRouteImport } from './routes/dropshipping/integrations/noon/$connectionId'
+import { Route as DropshippingIntegrationsShopifyConnectionIdRouteImport } from './routes/dropshipping/integrations/shopify/$connectionId'
+import { Route as DropshippingWarehouseReleaseIdRouteImport } from './routes/dropshipping/warehouse/release/$id'
+import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
+import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
+import { Route as PartnersAuthProductsIndexRouteImport } from './routes/partners._auth.products.index'
+import { Route as PartnersAuthProductsIdRouteImport } from './routes/partners._auth.products.$id'
+import { Route as PartnersAuthProductsDraftsRouteImport } from './routes/partners._auth.products.drafts'
+import { Route as PartnersAuthProductsImportRouteImport } from './routes/partners._auth.products.import'
+import { Route as PartnersAuthProductsNewRouteImport } from './routes/partners._auth.products.new'
+import { Route as PartnersAdminApplicationsIndexRouteImport } from './routes/partners.admin.applications.index'
+import { Route as PartnersAdminApplicationsIdRouteImport } from './routes/partners.admin.applications.$id'
+import { Route as PartnersAdminProductsIndexRouteImport } from './routes/partners.admin.products.index'
+import { Route as PartnersAdminProductsIdRouteImport } from './routes/partners.admin.products.$id'
+import { Route as PartnersAdminSuppliersIndexRouteImport } from './routes/partners.admin.suppliers.index'
+import { Route as PartnersAdminSuppliersIdRouteImport } from './routes/partners.admin.suppliers.$id'
+import { Route as ApiPublicPartnersChannelOrdersRouteImport } from './routes/api/public/partners/channel/orders'
+import { Route as ApiPublicPartnersChannelProductsRouteImport } from './routes/api/public/partners/channel/products'
+import { Route as ApiPublicPartnersChannelPullRouteImport } from './routes/api/public/partners/channel/pull'
+import { Route as ApiPublicPartnersSupplierInventoryPullRouteImport } from './routes/api/public/partners/supplier-inventory/pull'
+import { Route as ApiPublicPartnersSupplierInventoryUpdatesRouteImport } from './routes/api/public/partners/supplier-inventory/updates'
+import { Route as ArCategoryTopSubDetailRouteImport } from './routes/ar/category/$top.$sub.$detail'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRouteRoute = AccountRouteRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRouteRoute = AdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogRoute = CatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DropshippingRouteRoute = DropshippingRouteRouteImport.update({
+  id: '/dropshipping',
+  path: '/dropshipping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoonSellerServicesKsaRoute = NoonSellerServicesKsaRouteImport.update({
+  id: '/noon-seller-services-ksa',
+  path: '/noon-seller-services-ksa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountIndexRoute = AccountIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AccountRouteRoute,
+} as any)
+const AccountAddressesRoute = AccountAddressesRouteImport.update({
+  id: '/addresses',
+  path: '/addresses',
+  getParentRoute: () => AccountRouteRoute,
+} as any)
+const AccountOrdersRoute = AccountOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AccountRouteRoute,
+} as any)
+const AccountProfileRoute = AccountProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AccountRouteRoute,
+} as any)
+const AccountWishlistRoute = AccountWishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => AccountRouteRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminAuditLogRoute = AdminAuditLogRouteImport.update({
+  id: '/audit-log',
+  path: '/audit-log',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminCatalogHubRoute = AdminCatalogHubRouteImport.update({
+  id: '/catalog-hub',
+  path: '/catalog-hub',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminContactRoute = AdminContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminDeliveryRoute = AdminDeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminEmailsRoute = AdminEmailsRouteImport.update({
+  id: '/emails',
+  path: '/emails',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminHomepageRoute = AdminHomepageRouteImport.update({
+  id: '/homepage',
+  path: '/homepage',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminInternalHubRoute = AdminInternalHubRouteImport.update({
+  id: '/internal-hub',
+  path: '/internal-hub',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminLabelDesignerRoute = AdminLabelDesignerRouteImport.update({
+  id: '/label-designer',
+  path: '/label-designer',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminLabellingRoute = AdminLabellingRouteImport.update({
+  id: '/labelling',
+  path: '/labelling',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminOpsHubRoute = AdminOpsHubRouteImport.update({
+  id: '/ops-hub',
+  path: '/ops-hub',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminPlanUsageRoute = AdminPlanUsageRouteImport.update({
+  id: '/plan-usage',
+  path: '/plan-usage',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminPlatformsRoute = AdminPlatformsRouteImport.update({
+  id: '/platforms',
+  path: '/platforms',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminPricingRoute = AdminPricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminPromoCodesRoute = AdminPromoCodesRouteImport.update({
+  id: '/promo-codes',
+  path: '/promo-codes',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminQuotesRoute = AdminQuotesRouteImport.update({
+  id: '/quotes',
+  path: '/quotes',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminReturnsRoute = AdminReturnsRouteImport.update({
+  id: '/returns',
+  path: '/returns',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminSourcingRoute = AdminSourcingRouteImport.update({
+  id: '/sourcing',
+  path: '/sourcing',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminSourcingHubRoute = AdminSourcingHubRouteImport.update({
+  id: '/sourcing-hub',
+  path: '/sourcing-hub',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminSunskyRoute = AdminSunskyRouteImport.update({
+  id: '/sunsky',
+  path: '/sunsky',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminSuppliersRoute = AdminSuppliersRouteImport.update({
+  id: '/suppliers',
+  path: '/suppliers',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminTicketsRoute = AdminTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminWarehouseRoute = AdminWarehouseRouteImport.update({
+  id: '/warehouse',
+  path: '/warehouse',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminWhatsappLogsRoute = AdminWhatsappLogsRouteImport.update({
+  id: '/whatsapp-logs',
+  path: '/whatsapp-logs',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const ArIndexRoute = ArIndexRouteImport.update({
+  id: '/ar/',
+  path: '/ar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogAmazonFbaLabelingRequirementsGuideRoute =
+  BlogAmazonFbaLabelingRequirementsGuideRouteImport.update({
+    id: '/blog/amazon-fba-labeling-requirements-guide',
+    path: '/blog/amazon-fba-labeling-requirements-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogAmazonFbaVsNoonFbnSaudiArabiaRoute =
+  BlogAmazonFbaVsNoonFbnSaudiArabiaRouteImport.update({
+    id: '/blog/amazon-fba-vs-noon-fbn-saudi-arabia',
+    path: '/blog/amazon-fba-vs-noon-fbn-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogCashOnDeliveryEcommerceSaudiArabiaRoute =
+  BlogCashOnDeliveryEcommerceSaudiArabiaRouteImport.update({
+    id: '/blog/cash-on-delivery-ecommerce-saudi-arabia',
+    path: '/blog/cash-on-delivery-ecommerce-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogEcommerceWarehousingRiyadhJeddahDammamRoute =
+  BlogEcommerceWarehousingRiyadhJeddahDammamRouteImport.update({
+    id: '/blog/ecommerce-warehousing-riyadh-jeddah-dammam',
+    path: '/blog/ecommerce-warehousing-riyadh-jeddah-dammam',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogHowToFindReliableSuppliersAlibaba1688Route =
+  BlogHowToFindReliableSuppliersAlibaba1688RouteImport.update({
+    id: '/blog/how-to-find-reliable-suppliers-alibaba-1688',
+    path: '/blog/how-to-find-reliable-suppliers-alibaba-1688',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogHowToImportGoodsFromChinaToSaudiArabiaRoute =
+  BlogHowToImportGoodsFromChinaToSaudiArabiaRouteImport.update({
+    id: '/blog/how-to-import-goods-from-china-to-saudi-arabia',
+    path: '/blog/how-to-import-goods-from-china-to-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogHowToSellOnAmazonSaudiArabiaRoute =
+  BlogHowToSellOnAmazonSaudiArabiaRouteImport.update({
+    id: '/blog/how-to-sell-on-amazon-saudi-arabia',
+    path: '/blog/how-to-sell-on-amazon-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogHowToSellOnNoonSaudiArabiaRoute =
+  BlogHowToSellOnNoonSaudiArabiaRouteImport.update({
+    id: '/blog/how-to-sell-on-noon-saudi-arabia',
+    path: '/blog/how-to-sell-on-noon-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogHowToStartDropshippingInSaudiArabiaRoute =
+  BlogHowToStartDropshippingInSaudiArabiaRouteImport.update({
+    id: '/blog/how-to-start-dropshipping-in-saudi-arabia',
+    path: '/blog/how-to-start-dropshipping-in-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSaberCertificationGuideSaudiArabiaRoute =
+  BlogSaberCertificationGuideSaudiArabiaRouteImport.update({
+    id: '/blog/saber-certification-guide-saudi-arabia',
+    path: '/blog/saber-certification-guide-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSallaVsZidVsShopifySaudiArabiaRoute =
+  BlogSallaVsZidVsShopifySaudiArabiaRouteImport.update({
+    id: '/blog/salla-vs-zid-vs-shopify-saudi-arabia',
+    path: '/blog/salla-vs-zid-vs-shopify-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSaudiCustomsDutiesVatGuideImportersRoute =
+  BlogSaudiCustomsDutiesVatGuideImportersRouteImport.update({
+    id: '/blog/saudi-customs-duties-vat-guide-importers',
+    path: '/blog/saudi-customs-duties-vat-guide-importers',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSourcingFromChinaToSaudiArabiaGuideRoute =
+  BlogSourcingFromChinaToSaudiArabiaGuideRouteImport.update({
+    id: '/blog/sourcing-from-china-to-saudi-arabia-guide',
+    path: '/blog/sourcing-from-china-to-saudi-arabia-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogWhatIs3plFulfillmentSaudiArabiaRoute =
+  BlogWhatIs3plFulfillmentSaudiArabiaRouteImport.update({
+    id: '/blog/what-is-3pl-fulfillment-saudi-arabia',
+    path: '/blog/what-is-3pl-fulfillment-saudi-arabia',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CategoryIndexRoute = CategoryIndexRouteImport.update({
+  id: '/category/',
+  path: '/category/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoryTopRoute = CategoryTopRouteImport.update({
+  id: '/category/$top',
+  path: '/category/$top',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutIndexRoute = CheckoutIndexRouteImport.update({
+  id: '/checkout/',
+  path: '/checkout/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutReturnRoute = CheckoutReturnRouteImport.update({
+  id: '/checkout/return',
+  path: '/checkout/return',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardSplatRoute = DashboardSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DropshippingIndexRoute = DropshippingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingAcceptInviteRoute =
+  DropshippingAcceptInviteRouteImport.update({
+    id: '/accept-invite',
+    path: '/accept-invite',
+    getParentRoute: () => DropshippingRouteRoute,
+  } as any)
+const DropshippingAddressesRoute = DropshippingAddressesRouteImport.update({
+  id: '/addresses',
+  path: '/addresses',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingBillingRoute = DropshippingBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingBrowsedRoute = DropshippingBrowsedRouteImport.update({
+  id: '/browsed',
+  path: '/browsed',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingDeliveryRoute = DropshippingDeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingFavouritesRoute = DropshippingFavouritesRouteImport.update({
+  id: '/favourites',
+  path: '/favourites',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingFulfillmentRoute = DropshippingFulfillmentRouteImport.update({
+  id: '/fulfillment',
+  path: '/fulfillment',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingHistoryRoute = DropshippingHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingIntegrationsRoute =
+  DropshippingIntegrationsRouteImport.update({
+    id: '/integrations',
+    path: '/integrations',
+    getParentRoute: () => DropshippingRouteRoute,
+  } as any)
+const DropshippingInvoicesRoute = DropshippingInvoicesRouteImport.update({
+  id: '/invoices',
+  path: '/invoices',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingLabellingRoute = DropshippingLabellingRouteImport.update({
+  id: '/labelling',
+  path: '/labelling',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingPlanUsageRoute = DropshippingPlanUsageRouteImport.update({
+  id: '/plan-usage',
+  path: '/plan-usage',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingProfileRoute = DropshippingProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingQuotesRoute = DropshippingQuotesRouteImport.update({
+  id: '/quotes',
+  path: '/quotes',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingReferralsRoute = DropshippingReferralsRouteImport.update({
+  id: '/referrals',
+  path: '/referrals',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingReturnsRoute = DropshippingReturnsRouteImport.update({
+  id: '/returns',
+  path: '/returns',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingSourcingRoute = DropshippingSourcingRouteImport.update({
+  id: '/sourcing',
+  path: '/sourcing',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingTeamRoute = DropshippingTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingTemplatesRoute = DropshippingTemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingTicketsRoute = DropshippingTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingWalletRoute = DropshippingWalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const PartnersIndexRoute = PartnersIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersAuthRoute = PartnersAuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersAdminRoute = PartnersAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersCategoriesRoute = PartnersCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersContactRoute = PartnersContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersForgotPasswordRoute = PartnersForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersHowItWorksRoute = PartnersHowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersJoinRoute = PartnersJoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersMarketsRoute = PartnersMarketsRouteImport.update({
+  id: '/markets',
+  path: '/markets',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersRequirementsRoute = PartnersRequirementsRouteImport.update({
+  id: '/requirements',
+  path: '/requirements',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersSigninRoute = PartnersSigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersSignupRoute = PartnersSignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersSupplyModelsRoute = PartnersSupplyModelsRouteImport.update({
+  id: '/supply-models',
+  path: '/supply-models',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const PartnersWhoCanSupplyRoute = PartnersWhoCanSupplyRouteImport.update({
+  id: '/who-can-supply',
+  path: '/who-can-supply',
+  getParentRoute: () => PartnersRoute,
+} as any)
+const ProductIdRoute = ProductIdRouteImport.update({
+  id: '/product/$id',
+  path: '/product/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingIndexRoute = SellingIndexRouteImport.update({
+  id: '/selling/',
+  path: '/selling/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingContactRoute = SellingContactRouteImport.update({
+  id: '/selling/contact',
+  path: '/selling/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingDropshippingRoute = SellingDropshippingRouteImport.update({
+  id: '/selling/dropshipping',
+  path: '/selling/dropshipping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingForgotPasswordRoute = SellingForgotPasswordRouteImport.update({
+  id: '/selling/forgot-password',
+  path: '/selling/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingFulfillmentRoute = SellingFulfillmentRouteImport.update({
+  id: '/selling/fulfillment',
+  path: '/selling/fulfillment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingHowItWorksRoute = SellingHowItWorksRouteImport.update({
+  id: '/selling/how-it-works',
+  path: '/selling/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingIntegrationsRoute = SellingIntegrationsRouteImport.update({
+  id: '/selling/integrations',
+  path: '/selling/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingMarketplacePreparationRoute =
+  SellingMarketplacePreparationRouteImport.update({
+    id: '/selling/marketplace-preparation',
+    path: '/selling/marketplace-preparation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SellingPackagingLabelingRoute =
+  SellingPackagingLabelingRouteImport.update({
+    id: '/selling/packaging-labeling',
+    path: '/selling/packaging-labeling',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SellingProductHuntingRoute = SellingProductHuntingRouteImport.update({
+  id: '/selling/product-hunting',
+  path: '/selling/product-hunting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingProductSourcingRoute = SellingProductSourcingRouteImport.update({
+  id: '/selling/product-sourcing',
+  path: '/selling/product-sourcing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingSigninRoute = SellingSigninRouteImport.update({
+  id: '/selling/signin',
+  path: '/selling/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingSignupRoute = SellingSignupRouteImport.update({
+  id: '/selling/signup',
+  path: '/selling/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellingWarehousingRoute = SellingWarehousingRouteImport.update({
+  id: '/selling/warehousing',
+  path: '/selling/warehousing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopForgotPasswordRoute = ShopForgotPasswordRouteImport.update({
+  id: '/shop/forgot-password',
+  path: '/shop/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopSigninRoute = ShopSigninRouteImport.update({
+  id: '/shop/signin',
+  path: '/shop/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopSignupRoute = ShopSignupRouteImport.update({
+  id: '/shop/signup',
+  path: '/shop/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCustomersIndexRoute = AdminCustomersIndexRouteImport.update({
+  id: '/customers/',
+  path: '/customers/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminCustomersIdRoute = AdminCustomersIdRouteImport.update({
+  id: '/customers/$id',
+  path: '/customers/$id',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminOrdersIndexRoute = AdminOrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminOrdersIdRoute = AdminOrdersIdRouteImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminProductsIndexRoute = AdminProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminProductsIdRoute = AdminProductsIdRouteImport.update({
+  id: '/products/$id',
+  path: '/products/$id',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminProductsImportRoute = AdminProductsImportRouteImport.update({
+  id: '/products/import',
+  path: '/products/import',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
+  id: '/products/new',
+  path: '/products/new',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const ApiFnCatalogExportRoute = ApiFnCatalogExportRouteImport.update({
+  id: '/api/fn/catalog-export',
+  path: '/api/fn/catalog-export',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnCreateCheckoutRoute = ApiFnCreateCheckoutRouteImport.update({
+  id: '/api/fn/create-checkout',
+  path: '/api/fn/create-checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnCreatePortalSessionRoute =
+  ApiFnCreatePortalSessionRouteImport.update({
+    id: '/api/fn/create-portal-session',
+    path: '/api/fn/create-portal-session',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiFnDownloadImagesRoute = ApiFnDownloadImagesRouteImport.update({
+  id: '/api/fn/download-images',
+  path: '/api/fn/download-images',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnGetStripePriceRoute = ApiFnGetStripePriceRouteImport.update({
+  id: '/api/fn/get-stripe-price',
+  path: '/api/fn/get-stripe-price',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnManageSubscriptionRoute = ApiFnManageSubscriptionRouteImport.update({
+  id: '/api/fn/manage-subscription',
+  path: '/api/fn/manage-subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnPreviewTransactionalEmailRoute =
+  ApiFnPreviewTransactionalEmailRouteImport.update({
+    id: '/api/fn/preview-transactional-email',
+    path: '/api/fn/preview-transactional-email',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiFnSendResendEmailRoute = ApiFnSendResendEmailRouteImport.update({
+  id: '/api/fn/send-resend-email',
+  path: '/api/fn/send-resend-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnSendTicketWhatsappRoute = ApiFnSendTicketWhatsappRouteImport.update({
+  id: '/api/fn/send-ticket-whatsapp',
+  path: '/api/fn/send-ticket-whatsapp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnSendTransactionalEmailRoute =
+  ApiFnSendTransactionalEmailRouteImport.update({
+    id: '/api/fn/send-transactional-email',
+    path: '/api/fn/send-transactional-email',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiFnShopCheckoutRoute = ApiFnShopCheckoutRouteImport.update({
+  id: '/api/fn/shop-checkout',
+  path: '/api/fn/shop-checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnSunskyProxyRoute = ApiFnSunskyProxyRouteImport.update({
+  id: '/api/fn/sunsky-proxy',
+  path: '/api/fn/sunsky-proxy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnTryotoProxyRoute = ApiFnTryotoProxyRouteImport.update({
+  id: '/api/fn/tryoto-proxy',
+  path: '/api/fn/tryoto-proxy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFnVerifyCheckoutSessionRoute =
+  ApiFnVerifyCheckoutSessionRouteImport.update({
+    id: '/api/fn/verify-checkout-session',
+    path: '/api/fn/verify-checkout-session',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiFnWalletTopupCheckoutRoute =
+  ApiFnWalletTopupCheckoutRouteImport.update({
+    id: '/api/fn/wallet-topup-checkout',
+    path: '/api/fn/wallet-topup-checkout',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicAuthEmailHookRoute = ApiPublicAuthEmailHookRouteImport.update({
+  id: '/api/public/auth-email-hook',
+  path: '/api/public/auth-email-hook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicHandleEmailSuppressionRoute =
+  ApiPublicHandleEmailSuppressionRouteImport.update({
+    id: '/api/public/handle-email-suppression',
+    path: '/api/public/handle-email-suppression',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicHandleEmailUnsubscribeRoute =
+  ApiPublicHandleEmailUnsubscribeRouteImport.update({
+    id: '/api/public/handle-email-unsubscribe',
+    path: '/api/public/handle-email-unsubscribe',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicPaymentsWebhookRoute =
+  ApiPublicPaymentsWebhookRouteImport.update({
+    id: '/api/public/payments-webhook',
+    path: '/api/public/payments-webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicProcessEmailOutboxRoute =
+  ApiPublicProcessEmailOutboxRouteImport.update({
+    id: '/api/public/process-email-outbox',
+    path: '/api/public/process-email-outbox',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicProcessEmailQueueRoute =
+  ApiPublicProcessEmailQueueRouteImport.update({
+    id: '/api/public/process-email-queue',
+    path: '/api/public/process-email-queue',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicProcessScheduledTemplatesRoute =
+  ApiPublicProcessScheduledTemplatesRouteImport.update({
+    id: '/api/public/process-scheduled-templates',
+    path: '/api/public/process-scheduled-templates',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicReconcileStalePaymentsRoute =
+  ApiPublicReconcileStalePaymentsRouteImport.update({
+    id: '/api/public/reconcile-stale-payments',
+    path: '/api/public/reconcile-stale-payments',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicSendProductDigestRoute =
+  ApiPublicSendProductDigestRouteImport.update({
+    id: '/api/public/send-product-digest',
+    path: '/api/public/send-product-digest',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicSignupRemindersRoute =
+  ApiPublicSignupRemindersRouteImport.update({
+    id: '/api/public/signup-reminders',
+    path: '/api/public/signup-reminders',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicSitemapRoute = ApiPublicSitemapRouteImport.update({
+  id: '/api/public/sitemap',
+  path: '/api/public/sitemap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicSunskyCallbackRoute = ApiPublicSunskyCallbackRouteImport.update({
+  id: '/api/public/sunsky-callback',
+  path: '/api/public/sunsky-callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicWahooksTicketWebhookRoute =
+  ApiPublicWahooksTicketWebhookRouteImport.update({
+    id: '/api/public/wahooks-ticket-webhook',
+    path: '/api/public/wahooks-ticket-webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicWebhookPingRoute = ApiPublicWebhookPingRouteImport.update({
+  id: '/api/public/webhook-ping',
+  path: '/api/public/webhook-ping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArCategoryTopRoute = ArCategoryTopRouteImport.update({
+  id: '/ar/category/$top',
+  path: '/ar/category/$top',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArProductIdRoute = ArProductIdRouteImport.update({
+  id: '/ar/product/$id',
+  path: '/ar/product/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoryTopSubRoute = CategoryTopSubRouteImport.update({
+  id: '/$sub',
+  path: '/$sub',
+  getParentRoute: () => CategoryTopRoute,
+} as any)
+const CheckoutShopIndexRoute = CheckoutShopIndexRouteImport.update({
+  id: '/checkout/shop/',
+  path: '/checkout/shop/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutShopThankYouRoute = CheckoutShopThankYouRouteImport.update({
+  id: '/checkout/shop/thank-you',
+  path: '/checkout/shop/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DropshippingCatalogIndexRoute =
+  DropshippingCatalogIndexRouteImport.update({
+    id: '/catalog/',
+    path: '/catalog/',
+    getParentRoute: () => DropshippingRouteRoute,
+  } as any)
+const DropshippingCatalogIdRoute = DropshippingCatalogIdRouteImport.update({
+  id: '/catalog/$id',
+  path: '/catalog/$id',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingCatalogExportRoute =
+  DropshippingCatalogExportRouteImport.update({
+    id: '/catalog/export',
+    path: '/catalog/export',
+    getParentRoute: () => DropshippingRouteRoute,
+  } as any)
+const DropshippingCatalogHuntingRoute =
+  DropshippingCatalogHuntingRouteImport.update({
+    id: '/catalog/hunting',
+    path: '/catalog/hunting',
+    getParentRoute: () => DropshippingRouteRoute,
+  } as any)
+const DropshippingIntegrationsIndexRoute =
+  DropshippingIntegrationsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => DropshippingIntegrationsRoute,
+  } as any)
+const DropshippingOrdersIndexRoute = DropshippingOrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingOrdersIdRoute = DropshippingOrdersIdRouteImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingOrdersImportRoute =
+  DropshippingOrdersImportRouteImport.update({
+    id: '/orders/import',
+    path: '/orders/import',
+    getParentRoute: () => DropshippingRouteRoute,
+  } as any)
+const DropshippingOrdersNewRoute = DropshippingOrdersNewRouteImport.update({
+  id: '/orders/new',
+  path: '/orders/new',
+  getParentRoute: () => DropshippingRouteRoute,
+} as any)
+const DropshippingWarehouseIndexRoute =
+  DropshippingWarehouseIndexRouteImport.update({
+    id: '/warehouse/',
+    path: '/warehouse/',
+    getParentRoute: () => DropshippingRouteRoute,
+  } as any)
+const PartnersAuthAnalyticsRoute = PartnersAuthAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => PartnersAuthRoute,
+} as any)
+const PartnersAuthDashboardRoute = PartnersAuthDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => PartnersAuthRoute,
+} as any)
+const PartnersAuthFinanceRoute = PartnersAuthFinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => PartnersAuthRoute,
+} as any)
+const PartnersAuthOrdersRoute = PartnersAuthOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => PartnersAuthRoute,
+} as any)
+const PartnersAuthProfileRoute = PartnersAuthProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => PartnersAuthRoute,
+} as any)
+const PartnersAuthSettingsRoute = PartnersAuthSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => PartnersAuthRoute,
+} as any)
+const PartnersAuthVerificationRoute =
+  PartnersAuthVerificationRouteImport.update({
+    id: '/verification',
+    path: '/verification',
+    getParentRoute: () => PartnersAuthRoute,
+  } as any)
+const PartnersAdminIndexRoute = PartnersAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PartnersAdminRoute,
+} as any)
+const PartnersAdminConnectionsRoute =
+  PartnersAdminConnectionsRouteImport.update({
+    id: '/connections',
+    path: '/connections',
+    getParentRoute: () => PartnersAdminRoute,
+  } as any)
+const PartnersAdminLiveProductsRoute =
+  PartnersAdminLiveProductsRouteImport.update({
+    id: '/live-products',
+    path: '/live-products',
+    getParentRoute: () => PartnersAdminRoute,
+  } as any)
+const PartnersAdminMarketsRoute = PartnersAdminMarketsRouteImport.update({
+  id: '/markets',
+  path: '/markets',
+  getParentRoute: () => PartnersAdminRoute,
+} as any)
+const PartnersAdminOrdersRoute = PartnersAdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => PartnersAdminRoute,
+} as any)
+const PartnersAdminPayoutsRoute = PartnersAdminPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => PartnersAdminRoute,
+} as any)
+const PartnersAdminSupplierIntegrationsRoute =
+  PartnersAdminSupplierIntegrationsRouteImport.update({
+    id: '/supplier-integrations',
+    path: '/supplier-integrations',
+    getParentRoute: () => PartnersAdminRoute,
+  } as any)
+const PartnersAdminSuppliersRoute = PartnersAdminSuppliersRouteImport.update({
+  id: '/suppliers',
+  path: '/suppliers',
+  getParentRoute: () => PartnersAdminRoute,
+} as any)
+const PartnersAdminTeamRoute = PartnersAdminTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => PartnersAdminRoute,
+} as any)
+const WalletTopupReturnRoute = WalletTopupReturnRouteImport.update({
+  id: '/wallet/topup/return',
+  path: '/wallet/topup/return',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicNoonEventsRoute = ApiPublicNoonEventsRouteImport.update({
+  id: '/api/public/noon/events',
+  path: '/api/public/noon/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicNoonRunJobsRoute = ApiPublicNoonRunJobsRouteImport.update({
+  id: '/api/public/noon/run-jobs',
+  path: '/api/public/noon/run-jobs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicPartnerImageSplatRoute =
+  ApiPublicPartnerImageSplatRouteImport.update({
+    id: '/api/public/partner-image/$',
+    path: '/api/public/partner-image/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicShopifyRunJobsRoute = ApiPublicShopifyRunJobsRouteImport.update({
+  id: '/api/public/shopify/run-jobs',
+  path: '/api/public/shopify/run-jobs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicShopifyWebhookRoute = ApiPublicShopifyWebhookRouteImport.update({
+  id: '/api/public/shopify/webhook',
+  path: '/api/public/shopify/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArCategoryTopSubRoute = ArCategoryTopSubRouteImport.update({
+  id: '/$sub',
+  path: '/$sub',
+  getParentRoute: () => ArCategoryTopRoute,
+} as any)
+const CategoryTopSubDetailRoute = CategoryTopSubDetailRouteImport.update({
+  id: '/$detail',
+  path: '/$detail',
+  getParentRoute: () => CategoryTopSubRoute,
+} as any)
+const DropshippingIntegrationsNoonConnectionIdRoute =
+  DropshippingIntegrationsNoonConnectionIdRouteImport.update({
+    id: '/noon/$connectionId',
+    path: '/noon/$connectionId',
+    getParentRoute: () => DropshippingIntegrationsRoute,
+  } as any)
+const DropshippingIntegrationsShopifyConnectionIdRoute =
+  DropshippingIntegrationsShopifyConnectionIdRouteImport.update({
+    id: '/shopify/$connectionId',
+    path: '/shopify/$connectionId',
+    getParentRoute: () => DropshippingIntegrationsRoute,
+  } as any)
+const DropshippingWarehouseReleaseIdRoute =
+  DropshippingWarehouseReleaseIdRouteImport.update({
+    id: '/warehouse/release/$id',
+    path: '/warehouse/release/$id',
+    getParentRoute: () => DropshippingRouteRoute,
+  } as any)
+const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
+  id: '/lovable/email/auth/preview',
+  path: '/lovable/email/auth/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailAuthWebhookRoute = LovableEmailAuthWebhookRouteImport.update({
+  id: '/lovable/email/auth/webhook',
+  path: '/lovable/email/auth/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PartnersAuthProductsIndexRoute =
+  PartnersAuthProductsIndexRouteImport.update({
+    id: '/products/',
+    path: '/products/',
+    getParentRoute: () => PartnersAuthRoute,
+  } as any)
+const PartnersAuthProductsIdRoute = PartnersAuthProductsIdRouteImport.update({
+  id: '/products/$id',
+  path: '/products/$id',
+  getParentRoute: () => PartnersAuthRoute,
+} as any)
+const PartnersAuthProductsDraftsRoute =
+  PartnersAuthProductsDraftsRouteImport.update({
+    id: '/products/drafts',
+    path: '/products/drafts',
+    getParentRoute: () => PartnersAuthRoute,
+  } as any)
+const PartnersAuthProductsImportRoute =
+  PartnersAuthProductsImportRouteImport.update({
+    id: '/products/import',
+    path: '/products/import',
+    getParentRoute: () => PartnersAuthRoute,
+  } as any)
+const PartnersAuthProductsNewRoute = PartnersAuthProductsNewRouteImport.update({
+  id: '/products/new',
+  path: '/products/new',
+  getParentRoute: () => PartnersAuthRoute,
+} as any)
+const PartnersAdminApplicationsIndexRoute =
+  PartnersAdminApplicationsIndexRouteImport.update({
+    id: '/applications/',
+    path: '/applications/',
+    getParentRoute: () => PartnersAdminRoute,
+  } as any)
+const PartnersAdminApplicationsIdRoute =
+  PartnersAdminApplicationsIdRouteImport.update({
+    id: '/applications/$id',
+    path: '/applications/$id',
+    getParentRoute: () => PartnersAdminRoute,
+  } as any)
+const PartnersAdminProductsIndexRoute =
+  PartnersAdminProductsIndexRouteImport.update({
+    id: '/products/',
+    path: '/products/',
+    getParentRoute: () => PartnersAdminRoute,
+  } as any)
+const PartnersAdminProductsIdRoute = PartnersAdminProductsIdRouteImport.update({
+  id: '/products/$id',
+  path: '/products/$id',
+  getParentRoute: () => PartnersAdminRoute,
+} as any)
+const PartnersAdminSuppliersIndexRoute =
+  PartnersAdminSuppliersIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => PartnersAdminSuppliersRoute,
+  } as any)
+const PartnersAdminSuppliersIdRoute =
+  PartnersAdminSuppliersIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => PartnersAdminSuppliersRoute,
+  } as any)
+const ApiPublicPartnersChannelOrdersRoute =
+  ApiPublicPartnersChannelOrdersRouteImport.update({
+    id: '/api/public/partners/channel/orders',
+    path: '/api/public/partners/channel/orders',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicPartnersChannelProductsRoute =
+  ApiPublicPartnersChannelProductsRouteImport.update({
+    id: '/api/public/partners/channel/products',
+    path: '/api/public/partners/channel/products',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicPartnersChannelPullRoute =
+  ApiPublicPartnersChannelPullRouteImport.update({
+    id: '/api/public/partners/channel/pull',
+    path: '/api/public/partners/channel/pull',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicPartnersSupplierInventoryPullRoute =
+  ApiPublicPartnersSupplierInventoryPullRouteImport.update({
+    id: '/api/public/partners/supplier-inventory/pull',
+    path: '/api/public/partners/supplier-inventory/pull',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicPartnersSupplierInventoryUpdatesRoute =
+  ApiPublicPartnersSupplierInventoryUpdatesRouteImport.update({
+    id: '/api/public/partners/supplier-inventory/updates',
+    path: '/api/public/partners/supplier-inventory/updates',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ArCategoryTopSubDetailRoute = ArCategoryTopSubDetailRouteImport.update({
+  id: '/$detail',
+  path: '/$detail',
+  getParentRoute: () => ArCategoryTopSubRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRouteRouteWithChildren
+  '/admin': typeof AdminRouteRouteWithChildren
+  '/dropshipping': typeof DropshippingRouteRouteWithChildren
+  '/cart': typeof CartRoute
+  '/catalog': typeof CatalogRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/noon-seller-services-ksa': typeof NoonSellerServicesKsaRoute
+  '/partners': typeof PartnersRouteWithChildren
+  '/pricing': typeof PricingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/search': typeof SearchRoute
+  '/services': typeof ServicesRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/account/addresses': typeof AccountAddressesRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
+  '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/audit-log': typeof AdminAuditLogRoute
+  '/admin/catalog-hub': typeof AdminCatalogHubRoute
+  '/admin/contact': typeof AdminContactRoute
+  '/admin/delivery': typeof AdminDeliveryRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/internal-hub': typeof AdminInternalHubRoute
+  '/admin/label-designer': typeof AdminLabelDesignerRoute
+  '/admin/labelling': typeof AdminLabellingRoute
+  '/admin/ops-hub': typeof AdminOpsHubRoute
+  '/admin/plan-usage': typeof AdminPlanUsageRoute
+  '/admin/platforms': typeof AdminPlatformsRoute
+  '/admin/pricing': typeof AdminPricingRoute
+  '/admin/promo-codes': typeof AdminPromoCodesRoute
+  '/admin/quotes': typeof AdminQuotesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/returns': typeof AdminReturnsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/sourcing': typeof AdminSourcingRoute
+  '/admin/sourcing-hub': typeof AdminSourcingHubRoute
+  '/admin/sunsky': typeof AdminSunskyRoute
+  '/admin/suppliers': typeof AdminSuppliersRoute
+  '/admin/tickets': typeof AdminTicketsRoute
+  '/admin/warehouse': typeof AdminWarehouseRoute
+  '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
+  '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
+  '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
+  '/blog/ecommerce-warehousing-riyadh-jeddah-dammam': typeof BlogEcommerceWarehousingRiyadhJeddahDammamRoute
+  '/blog/how-to-find-reliable-suppliers-alibaba-1688': typeof BlogHowToFindReliableSuppliersAlibaba1688Route
+  '/blog/how-to-import-goods-from-china-to-saudi-arabia': typeof BlogHowToImportGoodsFromChinaToSaudiArabiaRoute
+  '/blog/how-to-sell-on-amazon-saudi-arabia': typeof BlogHowToSellOnAmazonSaudiArabiaRoute
+  '/blog/how-to-sell-on-noon-saudi-arabia': typeof BlogHowToSellOnNoonSaudiArabiaRoute
+  '/blog/how-to-start-dropshipping-in-saudi-arabia': typeof BlogHowToStartDropshippingInSaudiArabiaRoute
+  '/blog/saber-certification-guide-saudi-arabia': typeof BlogSaberCertificationGuideSaudiArabiaRoute
+  '/blog/salla-vs-zid-vs-shopify-saudi-arabia': typeof BlogSallaVsZidVsShopifySaudiArabiaRoute
+  '/blog/saudi-customs-duties-vat-guide-importers': typeof BlogSaudiCustomsDutiesVatGuideImportersRoute
+  '/blog/sourcing-from-china-to-saudi-arabia-guide': typeof BlogSourcingFromChinaToSaudiArabiaGuideRoute
+  '/blog/what-is-3pl-fulfillment-saudi-arabia': typeof BlogWhatIs3plFulfillmentSaudiArabiaRoute
+  '/category/$top': typeof CategoryTopRouteWithChildren
+  '/checkout/return': typeof CheckoutReturnRoute
+  '/dashboard/$': typeof DashboardSplatRoute
+  '/dropshipping/accept-invite': typeof DropshippingAcceptInviteRoute
+  '/dropshipping/addresses': typeof DropshippingAddressesRoute
+  '/dropshipping/billing': typeof DropshippingBillingRoute
+  '/dropshipping/browsed': typeof DropshippingBrowsedRoute
+  '/dropshipping/delivery': typeof DropshippingDeliveryRoute
+  '/dropshipping/favourites': typeof DropshippingFavouritesRoute
+  '/dropshipping/fulfillment': typeof DropshippingFulfillmentRoute
+  '/dropshipping/history': typeof DropshippingHistoryRoute
+  '/dropshipping/integrations': typeof DropshippingIntegrationsRouteWithChildren
+  '/dropshipping/invoices': typeof DropshippingInvoicesRoute
+  '/dropshipping/labelling': typeof DropshippingLabellingRoute
+  '/dropshipping/plan-usage': typeof DropshippingPlanUsageRoute
+  '/dropshipping/profile': typeof DropshippingProfileRoute
+  '/dropshipping/quotes': typeof DropshippingQuotesRoute
+  '/dropshipping/referrals': typeof DropshippingReferralsRoute
+  '/dropshipping/returns': typeof DropshippingReturnsRoute
+  '/dropshipping/sourcing': typeof DropshippingSourcingRoute
+  '/dropshipping/team': typeof DropshippingTeamRoute
+  '/dropshipping/templates': typeof DropshippingTemplatesRoute
+  '/dropshipping/tickets': typeof DropshippingTicketsRoute
+  '/dropshipping/wallet': typeof DropshippingWalletRoute
+  '/partners/admin': typeof PartnersAdminRouteWithChildren
+  '/partners/categories': typeof PartnersCategoriesRoute
+  '/partners/contact': typeof PartnersContactRoute
+  '/partners/forgot-password': typeof PartnersForgotPasswordRoute
+  '/partners/how-it-works': typeof PartnersHowItWorksRoute
+  '/partners/join': typeof PartnersJoinRoute
+  '/partners/markets': typeof PartnersMarketsRoute
+  '/partners/requirements': typeof PartnersRequirementsRoute
+  '/partners/signin': typeof PartnersSigninRoute
+  '/partners/signup': typeof PartnersSignupRoute
+  '/partners/supply-models': typeof PartnersSupplyModelsRoute
+  '/partners/who-can-supply': typeof PartnersWhoCanSupplyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/selling/contact': typeof SellingContactRoute
+  '/selling/dropshipping': typeof SellingDropshippingRoute
+  '/selling/forgot-password': typeof SellingForgotPasswordRoute
+  '/selling/fulfillment': typeof SellingFulfillmentRoute
+  '/selling/how-it-works': typeof SellingHowItWorksRoute
+  '/selling/integrations': typeof SellingIntegrationsRoute
+  '/selling/marketplace-preparation': typeof SellingMarketplacePreparationRoute
+  '/selling/packaging-labeling': typeof SellingPackagingLabelingRoute
+  '/selling/product-hunting': typeof SellingProductHuntingRoute
+  '/selling/product-sourcing': typeof SellingProductSourcingRoute
+  '/selling/signin': typeof SellingSigninRoute
+  '/selling/signup': typeof SellingSignupRoute
+  '/selling/warehousing': typeof SellingWarehousingRoute
+  '/shop/forgot-password': typeof ShopForgotPasswordRoute
+  '/shop/signin': typeof ShopSigninRoute
+  '/shop/signup': typeof ShopSignupRoute
+  '/account/': typeof AccountIndexRoute
+  '/admin/': typeof AdminIndexRoute
+  '/ar/': typeof ArIndexRoute
+  '/blog/': typeof BlogIndexRoute
+  '/category/': typeof CategoryIndexRoute
+  '/checkout/': typeof CheckoutIndexRoute
+  '/dropshipping/': typeof DropshippingIndexRoute
+  '/partners/': typeof PartnersIndexRoute
+  '/selling/': typeof SellingIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/import': typeof AdminProductsImportRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
+  '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
+  '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
+  '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
+  '/api/fn/download-images': typeof ApiFnDownloadImagesRoute
+  '/api/fn/get-stripe-price': typeof ApiFnGetStripePriceRoute
+  '/api/fn/manage-subscription': typeof ApiFnManageSubscriptionRoute
+  '/api/fn/preview-transactional-email': typeof ApiFnPreviewTransactionalEmailRoute
+  '/api/fn/send-resend-email': typeof ApiFnSendResendEmailRoute
+  '/api/fn/send-ticket-whatsapp': typeof ApiFnSendTicketWhatsappRoute
+  '/api/fn/send-transactional-email': typeof ApiFnSendTransactionalEmailRoute
+  '/api/fn/shop-checkout': typeof ApiFnShopCheckoutRoute
+  '/api/fn/sunsky-proxy': typeof ApiFnSunskyProxyRoute
+  '/api/fn/tryoto-proxy': typeof ApiFnTryotoProxyRoute
+  '/api/fn/verify-checkout-session': typeof ApiFnVerifyCheckoutSessionRoute
+  '/api/fn/wallet-topup-checkout': typeof ApiFnWalletTopupCheckoutRoute
+  '/api/public/auth-email-hook': typeof ApiPublicAuthEmailHookRoute
+  '/api/public/handle-email-suppression': typeof ApiPublicHandleEmailSuppressionRoute
+  '/api/public/handle-email-unsubscribe': typeof ApiPublicHandleEmailUnsubscribeRoute
+  '/api/public/payments-webhook': typeof ApiPublicPaymentsWebhookRoute
+  '/api/public/process-email-outbox': typeof ApiPublicProcessEmailOutboxRoute
+  '/api/public/process-email-queue': typeof ApiPublicProcessEmailQueueRoute
+  '/api/public/process-scheduled-templates': typeof ApiPublicProcessScheduledTemplatesRoute
+  '/api/public/reconcile-stale-payments': typeof ApiPublicReconcileStalePaymentsRoute
+  '/api/public/send-product-digest': typeof ApiPublicSendProductDigestRoute
+  '/api/public/signup-reminders': typeof ApiPublicSignupRemindersRoute
+  '/api/public/sitemap': typeof ApiPublicSitemapRoute
+  '/api/public/sunsky-callback': typeof ApiPublicSunskyCallbackRoute
+  '/api/public/wahooks-ticket-webhook': typeof ApiPublicWahooksTicketWebhookRoute
+  '/api/public/webhook-ping': typeof ApiPublicWebhookPingRoute
+  '/ar/category/$top': typeof ArCategoryTopRouteWithChildren
+  '/ar/product/$id': typeof ArProductIdRoute
+  '/category/$top/$sub': typeof CategoryTopSubRouteWithChildren
+  '/checkout/shop/thank-you': typeof CheckoutShopThankYouRoute
+  '/dropshipping/catalog/$id': typeof DropshippingCatalogIdRoute
+  '/dropshipping/catalog/export': typeof DropshippingCatalogExportRoute
+  '/dropshipping/catalog/hunting': typeof DropshippingCatalogHuntingRoute
+  '/dropshipping/orders/$id': typeof DropshippingOrdersIdRoute
+  '/dropshipping/orders/import': typeof DropshippingOrdersImportRoute
+  '/dropshipping/orders/new': typeof DropshippingOrdersNewRoute
+  '/partners/analytics': typeof PartnersAuthAnalyticsRoute
+  '/partners/dashboard': typeof PartnersAuthDashboardRoute
+  '/partners/finance': typeof PartnersAuthFinanceRoute
+  '/partners/orders': typeof PartnersAuthOrdersRoute
+  '/partners/profile': typeof PartnersAuthProfileRoute
+  '/partners/settings': typeof PartnersAuthSettingsRoute
+  '/partners/verification': typeof PartnersAuthVerificationRoute
+  '/partners/admin/connections': typeof PartnersAdminConnectionsRoute
+  '/partners/admin/live-products': typeof PartnersAdminLiveProductsRoute
+  '/partners/admin/markets': typeof PartnersAdminMarketsRoute
+  '/partners/admin/orders': typeof PartnersAdminOrdersRoute
+  '/partners/admin/payouts': typeof PartnersAdminPayoutsRoute
+  '/partners/admin/supplier-integrations': typeof PartnersAdminSupplierIntegrationsRoute
+  '/partners/admin/suppliers': typeof PartnersAdminSuppliersRouteWithChildren
+  '/partners/admin/team': typeof PartnersAdminTeamRoute
+  '/wallet/topup/return': typeof WalletTopupReturnRoute
+  '/admin/customers/': typeof AdminCustomersIndexRoute
+  '/admin/orders/': typeof AdminOrdersIndexRoute
+  '/admin/products/': typeof AdminProductsIndexRoute
+  '/checkout/shop/': typeof CheckoutShopIndexRoute
+  '/dropshipping/catalog/': typeof DropshippingCatalogIndexRoute
+  '/dropshipping/integrations/': typeof DropshippingIntegrationsIndexRoute
+  '/dropshipping/orders/': typeof DropshippingOrdersIndexRoute
+  '/dropshipping/warehouse/': typeof DropshippingWarehouseIndexRoute
+  '/partners/admin/': typeof PartnersAdminIndexRoute
+  '/api/public/noon/events': typeof ApiPublicNoonEventsRoute
+  '/api/public/noon/run-jobs': typeof ApiPublicNoonRunJobsRoute
+  '/api/public/partner-image/$': typeof ApiPublicPartnerImageSplatRoute
+  '/api/public/shopify/run-jobs': typeof ApiPublicShopifyRunJobsRoute
+  '/api/public/shopify/webhook': typeof ApiPublicShopifyWebhookRoute
+  '/ar/category/$top/$sub': typeof ArCategoryTopSubRouteWithChildren
+  '/category/$top/$sub/$detail': typeof CategoryTopSubDetailRoute
+  '/dropshipping/integrations/noon/$connectionId': typeof DropshippingIntegrationsNoonConnectionIdRoute
+  '/dropshipping/integrations/shopify/$connectionId': typeof DropshippingIntegrationsShopifyConnectionIdRoute
+  '/dropshipping/warehouse/release/$id': typeof DropshippingWarehouseReleaseIdRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/partners/products/$id': typeof PartnersAuthProductsIdRoute
+  '/partners/products/drafts': typeof PartnersAuthProductsDraftsRoute
+  '/partners/products/import': typeof PartnersAuthProductsImportRoute
+  '/partners/products/new': typeof PartnersAuthProductsNewRoute
+  '/partners/admin/applications/$id': typeof PartnersAdminApplicationsIdRoute
+  '/partners/admin/products/$id': typeof PartnersAdminProductsIdRoute
+  '/partners/admin/suppliers/$id': typeof PartnersAdminSuppliersIdRoute
+  '/partners/products/': typeof PartnersAuthProductsIndexRoute
+  '/partners/admin/applications/': typeof PartnersAdminApplicationsIndexRoute
+  '/partners/admin/products/': typeof PartnersAdminProductsIndexRoute
+  '/partners/admin/suppliers/': typeof PartnersAdminSuppliersIndexRoute
+  '/api/public/partners/channel/orders': typeof ApiPublicPartnersChannelOrdersRoute
+  '/api/public/partners/channel/products': typeof ApiPublicPartnersChannelProductsRoute
+  '/api/public/partners/channel/pull': typeof ApiPublicPartnersChannelPullRoute
+  '/api/public/partners/supplier-inventory/pull': typeof ApiPublicPartnersSupplierInventoryPullRoute
+  '/api/public/partners/supplier-inventory/updates': typeof ApiPublicPartnersSupplierInventoryUpdatesRoute
+  '/ar/category/$top/$sub/$detail': typeof ArCategoryTopSubDetailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/catalog': typeof CatalogRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/noon-seller-services-ksa': typeof NoonSellerServicesKsaRoute
+  '/pricing': typeof PricingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/search': typeof SearchRoute
+  '/services': typeof ServicesRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/account/addresses': typeof AccountAddressesRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
+  '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/audit-log': typeof AdminAuditLogRoute
+  '/admin/catalog-hub': typeof AdminCatalogHubRoute
+  '/admin/contact': typeof AdminContactRoute
+  '/admin/delivery': typeof AdminDeliveryRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/internal-hub': typeof AdminInternalHubRoute
+  '/admin/label-designer': typeof AdminLabelDesignerRoute
+  '/admin/labelling': typeof AdminLabellingRoute
+  '/admin/ops-hub': typeof AdminOpsHubRoute
+  '/admin/plan-usage': typeof AdminPlanUsageRoute
+  '/admin/platforms': typeof AdminPlatformsRoute
+  '/admin/pricing': typeof AdminPricingRoute
+  '/admin/promo-codes': typeof AdminPromoCodesRoute
+  '/admin/quotes': typeof AdminQuotesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/returns': typeof AdminReturnsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/sourcing': typeof AdminSourcingRoute
+  '/admin/sourcing-hub': typeof AdminSourcingHubRoute
+  '/admin/sunsky': typeof AdminSunskyRoute
+  '/admin/suppliers': typeof AdminSuppliersRoute
+  '/admin/tickets': typeof AdminTicketsRoute
+  '/admin/warehouse': typeof AdminWarehouseRoute
+  '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
+  '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
+  '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
+  '/blog/ecommerce-warehousing-riyadh-jeddah-dammam': typeof BlogEcommerceWarehousingRiyadhJeddahDammamRoute
+  '/blog/how-to-find-reliable-suppliers-alibaba-1688': typeof BlogHowToFindReliableSuppliersAlibaba1688Route
+  '/blog/how-to-import-goods-from-china-to-saudi-arabia': typeof BlogHowToImportGoodsFromChinaToSaudiArabiaRoute
+  '/blog/how-to-sell-on-amazon-saudi-arabia': typeof BlogHowToSellOnAmazonSaudiArabiaRoute
+  '/blog/how-to-sell-on-noon-saudi-arabia': typeof BlogHowToSellOnNoonSaudiArabiaRoute
+  '/blog/how-to-start-dropshipping-in-saudi-arabia': typeof BlogHowToStartDropshippingInSaudiArabiaRoute
+  '/blog/saber-certification-guide-saudi-arabia': typeof BlogSaberCertificationGuideSaudiArabiaRoute
+  '/blog/salla-vs-zid-vs-shopify-saudi-arabia': typeof BlogSallaVsZidVsShopifySaudiArabiaRoute
+  '/blog/saudi-customs-duties-vat-guide-importers': typeof BlogSaudiCustomsDutiesVatGuideImportersRoute
+  '/blog/sourcing-from-china-to-saudi-arabia-guide': typeof BlogSourcingFromChinaToSaudiArabiaGuideRoute
+  '/blog/what-is-3pl-fulfillment-saudi-arabia': typeof BlogWhatIs3plFulfillmentSaudiArabiaRoute
+  '/category/$top': typeof CategoryTopRouteWithChildren
+  '/checkout/return': typeof CheckoutReturnRoute
+  '/dashboard/$': typeof DashboardSplatRoute
+  '/dropshipping/accept-invite': typeof DropshippingAcceptInviteRoute
+  '/dropshipping/addresses': typeof DropshippingAddressesRoute
+  '/dropshipping/billing': typeof DropshippingBillingRoute
+  '/dropshipping/browsed': typeof DropshippingBrowsedRoute
+  '/dropshipping/delivery': typeof DropshippingDeliveryRoute
+  '/dropshipping/favourites': typeof DropshippingFavouritesRoute
+  '/dropshipping/fulfillment': typeof DropshippingFulfillmentRoute
+  '/dropshipping/history': typeof DropshippingHistoryRoute
+  '/dropshipping/invoices': typeof DropshippingInvoicesRoute
+  '/dropshipping/labelling': typeof DropshippingLabellingRoute
+  '/dropshipping/plan-usage': typeof DropshippingPlanUsageRoute
+  '/dropshipping/profile': typeof DropshippingProfileRoute
+  '/dropshipping/quotes': typeof DropshippingQuotesRoute
+  '/dropshipping/referrals': typeof DropshippingReferralsRoute
+  '/dropshipping/returns': typeof DropshippingReturnsRoute
+  '/dropshipping/sourcing': typeof DropshippingSourcingRoute
+  '/dropshipping/team': typeof DropshippingTeamRoute
+  '/dropshipping/templates': typeof DropshippingTemplatesRoute
+  '/dropshipping/tickets': typeof DropshippingTicketsRoute
+  '/dropshipping/wallet': typeof DropshippingWalletRoute
+  '/partners': typeof PartnersIndexRoute
+  '/partners/categories': typeof PartnersCategoriesRoute
+  '/partners/contact': typeof PartnersContactRoute
+  '/partners/forgot-password': typeof PartnersForgotPasswordRoute
+  '/partners/how-it-works': typeof PartnersHowItWorksRoute
+  '/partners/join': typeof PartnersJoinRoute
+  '/partners/markets': typeof PartnersMarketsRoute
+  '/partners/requirements': typeof PartnersRequirementsRoute
+  '/partners/signin': typeof PartnersSigninRoute
+  '/partners/signup': typeof PartnersSignupRoute
+  '/partners/supply-models': typeof PartnersSupplyModelsRoute
+  '/partners/who-can-supply': typeof PartnersWhoCanSupplyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/selling/contact': typeof SellingContactRoute
+  '/selling/dropshipping': typeof SellingDropshippingRoute
+  '/selling/forgot-password': typeof SellingForgotPasswordRoute
+  '/selling/fulfillment': typeof SellingFulfillmentRoute
+  '/selling/how-it-works': typeof SellingHowItWorksRoute
+  '/selling/integrations': typeof SellingIntegrationsRoute
+  '/selling/marketplace-preparation': typeof SellingMarketplacePreparationRoute
+  '/selling/packaging-labeling': typeof SellingPackagingLabelingRoute
+  '/selling/product-hunting': typeof SellingProductHuntingRoute
+  '/selling/product-sourcing': typeof SellingProductSourcingRoute
+  '/selling/signin': typeof SellingSigninRoute
+  '/selling/signup': typeof SellingSignupRoute
+  '/selling/warehousing': typeof SellingWarehousingRoute
+  '/shop/forgot-password': typeof ShopForgotPasswordRoute
+  '/shop/signin': typeof ShopSigninRoute
+  '/shop/signup': typeof ShopSignupRoute
+  '/account': typeof AccountIndexRoute
+  '/admin': typeof AdminIndexRoute
+  '/ar': typeof ArIndexRoute
+  '/blog': typeof BlogIndexRoute
+  '/category': typeof CategoryIndexRoute
+  '/checkout': typeof CheckoutIndexRoute
+  '/dropshipping': typeof DropshippingIndexRoute
+  '/selling': typeof SellingIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/import': typeof AdminProductsImportRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
+  '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
+  '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
+  '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
+  '/api/fn/download-images': typeof ApiFnDownloadImagesRoute
+  '/api/fn/get-stripe-price': typeof ApiFnGetStripePriceRoute
+  '/api/fn/manage-subscription': typeof ApiFnManageSubscriptionRoute
+  '/api/fn/preview-transactional-email': typeof ApiFnPreviewTransactionalEmailRoute
+  '/api/fn/send-resend-email': typeof ApiFnSendResendEmailRoute
+  '/api/fn/send-ticket-whatsapp': typeof ApiFnSendTicketWhatsappRoute
+  '/api/fn/send-transactional-email': typeof ApiFnSendTransactionalEmailRoute
+  '/api/fn/shop-checkout': typeof ApiFnShopCheckoutRoute
+  '/api/fn/sunsky-proxy': typeof ApiFnSunskyProxyRoute
+  '/api/fn/tryoto-proxy': typeof ApiFnTryotoProxyRoute
+  '/api/fn/verify-checkout-session': typeof ApiFnVerifyCheckoutSessionRoute
+  '/api/fn/wallet-topup-checkout': typeof ApiFnWalletTopupCheckoutRoute
+  '/api/public/auth-email-hook': typeof ApiPublicAuthEmailHookRoute
+  '/api/public/handle-email-suppression': typeof ApiPublicHandleEmailSuppressionRoute
+  '/api/public/handle-email-unsubscribe': typeof ApiPublicHandleEmailUnsubscribeRoute
+  '/api/public/payments-webhook': typeof ApiPublicPaymentsWebhookRoute
+  '/api/public/process-email-outbox': typeof ApiPublicProcessEmailOutboxRoute
+  '/api/public/process-email-queue': typeof ApiPublicProcessEmailQueueRoute
+  '/api/public/process-scheduled-templates': typeof ApiPublicProcessScheduledTemplatesRoute
+  '/api/public/reconcile-stale-payments': typeof ApiPublicReconcileStalePaymentsRoute
+  '/api/public/send-product-digest': typeof ApiPublicSendProductDigestRoute
+  '/api/public/signup-reminders': typeof ApiPublicSignupRemindersRoute
+  '/api/public/sitemap': typeof ApiPublicSitemapRoute
+  '/api/public/sunsky-callback': typeof ApiPublicSunskyCallbackRoute
+  '/api/public/wahooks-ticket-webhook': typeof ApiPublicWahooksTicketWebhookRoute
+  '/api/public/webhook-ping': typeof ApiPublicWebhookPingRoute
+  '/ar/category/$top': typeof ArCategoryTopRouteWithChildren
+  '/ar/product/$id': typeof ArProductIdRoute
+  '/category/$top/$sub': typeof CategoryTopSubRouteWithChildren
+  '/checkout/shop/thank-you': typeof CheckoutShopThankYouRoute
+  '/dropshipping/catalog/$id': typeof DropshippingCatalogIdRoute
+  '/dropshipping/catalog/export': typeof DropshippingCatalogExportRoute
+  '/dropshipping/catalog/hunting': typeof DropshippingCatalogHuntingRoute
+  '/dropshipping/orders/$id': typeof DropshippingOrdersIdRoute
+  '/dropshipping/orders/import': typeof DropshippingOrdersImportRoute
+  '/dropshipping/orders/new': typeof DropshippingOrdersNewRoute
+  '/partners/analytics': typeof PartnersAuthAnalyticsRoute
+  '/partners/dashboard': typeof PartnersAuthDashboardRoute
+  '/partners/finance': typeof PartnersAuthFinanceRoute
+  '/partners/orders': typeof PartnersAuthOrdersRoute
+  '/partners/profile': typeof PartnersAuthProfileRoute
+  '/partners/settings': typeof PartnersAuthSettingsRoute
+  '/partners/verification': typeof PartnersAuthVerificationRoute
+  '/partners/admin/connections': typeof PartnersAdminConnectionsRoute
+  '/partners/admin/live-products': typeof PartnersAdminLiveProductsRoute
+  '/partners/admin/markets': typeof PartnersAdminMarketsRoute
+  '/partners/admin/orders': typeof PartnersAdminOrdersRoute
+  '/partners/admin/payouts': typeof PartnersAdminPayoutsRoute
+  '/partners/admin/supplier-integrations': typeof PartnersAdminSupplierIntegrationsRoute
+  '/partners/admin/team': typeof PartnersAdminTeamRoute
+  '/wallet/topup/return': typeof WalletTopupReturnRoute
+  '/admin/customers': typeof AdminCustomersIndexRoute
+  '/admin/orders': typeof AdminOrdersIndexRoute
+  '/admin/products': typeof AdminProductsIndexRoute
+  '/checkout/shop': typeof CheckoutShopIndexRoute
+  '/dropshipping/catalog': typeof DropshippingCatalogIndexRoute
+  '/dropshipping/integrations': typeof DropshippingIntegrationsIndexRoute
+  '/dropshipping/orders': typeof DropshippingOrdersIndexRoute
+  '/dropshipping/warehouse': typeof DropshippingWarehouseIndexRoute
+  '/partners/admin': typeof PartnersAdminIndexRoute
+  '/api/public/noon/events': typeof ApiPublicNoonEventsRoute
+  '/api/public/noon/run-jobs': typeof ApiPublicNoonRunJobsRoute
+  '/api/public/partner-image/$': typeof ApiPublicPartnerImageSplatRoute
+  '/api/public/shopify/run-jobs': typeof ApiPublicShopifyRunJobsRoute
+  '/api/public/shopify/webhook': typeof ApiPublicShopifyWebhookRoute
+  '/ar/category/$top/$sub': typeof ArCategoryTopSubRouteWithChildren
+  '/category/$top/$sub/$detail': typeof CategoryTopSubDetailRoute
+  '/dropshipping/integrations/noon/$connectionId': typeof DropshippingIntegrationsNoonConnectionIdRoute
+  '/dropshipping/integrations/shopify/$connectionId': typeof DropshippingIntegrationsShopifyConnectionIdRoute
+  '/dropshipping/warehouse/release/$id': typeof DropshippingWarehouseReleaseIdRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/partners/products/$id': typeof PartnersAuthProductsIdRoute
+  '/partners/products/drafts': typeof PartnersAuthProductsDraftsRoute
+  '/partners/products/import': typeof PartnersAuthProductsImportRoute
+  '/partners/products/new': typeof PartnersAuthProductsNewRoute
+  '/partners/admin/applications/$id': typeof PartnersAdminApplicationsIdRoute
+  '/partners/admin/products/$id': typeof PartnersAdminProductsIdRoute
+  '/partners/admin/suppliers/$id': typeof PartnersAdminSuppliersIdRoute
+  '/partners/products': typeof PartnersAuthProductsIndexRoute
+  '/partners/admin/applications': typeof PartnersAdminApplicationsIndexRoute
+  '/partners/admin/products': typeof PartnersAdminProductsIndexRoute
+  '/partners/admin/suppliers': typeof PartnersAdminSuppliersIndexRoute
+  '/api/public/partners/channel/orders': typeof ApiPublicPartnersChannelOrdersRoute
+  '/api/public/partners/channel/products': typeof ApiPublicPartnersChannelProductsRoute
+  '/api/public/partners/channel/pull': typeof ApiPublicPartnersChannelPullRoute
+  '/api/public/partners/supplier-inventory/pull': typeof ApiPublicPartnersSupplierInventoryPullRoute
+  '/api/public/partners/supplier-inventory/updates': typeof ApiPublicPartnersSupplierInventoryUpdatesRoute
+  '/ar/category/$top/$sub/$detail': typeof ArCategoryTopSubDetailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRouteRouteWithChildren
+  '/admin': typeof AdminRouteRouteWithChildren
+  '/dropshipping': typeof DropshippingRouteRouteWithChildren
+  '/cart': typeof CartRoute
+  '/catalog': typeof CatalogRoute
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/noon-seller-services-ksa': typeof NoonSellerServicesKsaRoute
+  '/partners': typeof PartnersRouteWithChildren
+  '/pricing': typeof PricingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/search': typeof SearchRoute
+  '/services': typeof ServicesRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/account/addresses': typeof AccountAddressesRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/account/profile': typeof AccountProfileRoute
+  '/account/wishlist': typeof AccountWishlistRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/audit-log': typeof AdminAuditLogRoute
+  '/admin/catalog-hub': typeof AdminCatalogHubRoute
+  '/admin/contact': typeof AdminContactRoute
+  '/admin/delivery': typeof AdminDeliveryRoute
+  '/admin/emails': typeof AdminEmailsRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/internal-hub': typeof AdminInternalHubRoute
+  '/admin/label-designer': typeof AdminLabelDesignerRoute
+  '/admin/labelling': typeof AdminLabellingRoute
+  '/admin/ops-hub': typeof AdminOpsHubRoute
+  '/admin/plan-usage': typeof AdminPlanUsageRoute
+  '/admin/platforms': typeof AdminPlatformsRoute
+  '/admin/pricing': typeof AdminPricingRoute
+  '/admin/promo-codes': typeof AdminPromoCodesRoute
+  '/admin/quotes': typeof AdminQuotesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/returns': typeof AdminReturnsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/sourcing': typeof AdminSourcingRoute
+  '/admin/sourcing-hub': typeof AdminSourcingHubRoute
+  '/admin/sunsky': typeof AdminSunskyRoute
+  '/admin/suppliers': typeof AdminSuppliersRoute
+  '/admin/tickets': typeof AdminTicketsRoute
+  '/admin/warehouse': typeof AdminWarehouseRoute
+  '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
+  '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
+  '/blog/cash-on-delivery-ecommerce-saudi-arabia': typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
+  '/blog/ecommerce-warehousing-riyadh-jeddah-dammam': typeof BlogEcommerceWarehousingRiyadhJeddahDammamRoute
+  '/blog/how-to-find-reliable-suppliers-alibaba-1688': typeof BlogHowToFindReliableSuppliersAlibaba1688Route
+  '/blog/how-to-import-goods-from-china-to-saudi-arabia': typeof BlogHowToImportGoodsFromChinaToSaudiArabiaRoute
+  '/blog/how-to-sell-on-amazon-saudi-arabia': typeof BlogHowToSellOnAmazonSaudiArabiaRoute
+  '/blog/how-to-sell-on-noon-saudi-arabia': typeof BlogHowToSellOnNoonSaudiArabiaRoute
+  '/blog/how-to-start-dropshipping-in-saudi-arabia': typeof BlogHowToStartDropshippingInSaudiArabiaRoute
+  '/blog/saber-certification-guide-saudi-arabia': typeof BlogSaberCertificationGuideSaudiArabiaRoute
+  '/blog/salla-vs-zid-vs-shopify-saudi-arabia': typeof BlogSallaVsZidVsShopifySaudiArabiaRoute
+  '/blog/saudi-customs-duties-vat-guide-importers': typeof BlogSaudiCustomsDutiesVatGuideImportersRoute
+  '/blog/sourcing-from-china-to-saudi-arabia-guide': typeof BlogSourcingFromChinaToSaudiArabiaGuideRoute
+  '/blog/what-is-3pl-fulfillment-saudi-arabia': typeof BlogWhatIs3plFulfillmentSaudiArabiaRoute
+  '/category/$top': typeof CategoryTopRouteWithChildren
+  '/checkout/return': typeof CheckoutReturnRoute
+  '/dashboard/$': typeof DashboardSplatRoute
+  '/dropshipping/accept-invite': typeof DropshippingAcceptInviteRoute
+  '/dropshipping/addresses': typeof DropshippingAddressesRoute
+  '/dropshipping/billing': typeof DropshippingBillingRoute
+  '/dropshipping/browsed': typeof DropshippingBrowsedRoute
+  '/dropshipping/delivery': typeof DropshippingDeliveryRoute
+  '/dropshipping/favourites': typeof DropshippingFavouritesRoute
+  '/dropshipping/fulfillment': typeof DropshippingFulfillmentRoute
+  '/dropshipping/history': typeof DropshippingHistoryRoute
+  '/dropshipping/integrations': typeof DropshippingIntegrationsRouteWithChildren
+  '/dropshipping/invoices': typeof DropshippingInvoicesRoute
+  '/dropshipping/labelling': typeof DropshippingLabellingRoute
+  '/dropshipping/plan-usage': typeof DropshippingPlanUsageRoute
+  '/dropshipping/profile': typeof DropshippingProfileRoute
+  '/dropshipping/quotes': typeof DropshippingQuotesRoute
+  '/dropshipping/referrals': typeof DropshippingReferralsRoute
+  '/dropshipping/returns': typeof DropshippingReturnsRoute
+  '/dropshipping/sourcing': typeof DropshippingSourcingRoute
+  '/dropshipping/team': typeof DropshippingTeamRoute
+  '/dropshipping/templates': typeof DropshippingTemplatesRoute
+  '/dropshipping/tickets': typeof DropshippingTicketsRoute
+  '/dropshipping/wallet': typeof DropshippingWalletRoute
+  '/partners/_auth': typeof PartnersAuthRouteWithChildren
+  '/partners/admin': typeof PartnersAdminRouteWithChildren
+  '/partners/categories': typeof PartnersCategoriesRoute
+  '/partners/contact': typeof PartnersContactRoute
+  '/partners/forgot-password': typeof PartnersForgotPasswordRoute
+  '/partners/how-it-works': typeof PartnersHowItWorksRoute
+  '/partners/join': typeof PartnersJoinRoute
+  '/partners/markets': typeof PartnersMarketsRoute
+  '/partners/requirements': typeof PartnersRequirementsRoute
+  '/partners/signin': typeof PartnersSigninRoute
+  '/partners/signup': typeof PartnersSignupRoute
+  '/partners/supply-models': typeof PartnersSupplyModelsRoute
+  '/partners/who-can-supply': typeof PartnersWhoCanSupplyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/selling/contact': typeof SellingContactRoute
+  '/selling/dropshipping': typeof SellingDropshippingRoute
+  '/selling/forgot-password': typeof SellingForgotPasswordRoute
+  '/selling/fulfillment': typeof SellingFulfillmentRoute
+  '/selling/how-it-works': typeof SellingHowItWorksRoute
+  '/selling/integrations': typeof SellingIntegrationsRoute
+  '/selling/marketplace-preparation': typeof SellingMarketplacePreparationRoute
+  '/selling/packaging-labeling': typeof SellingPackagingLabelingRoute
+  '/selling/product-hunting': typeof SellingProductHuntingRoute
+  '/selling/product-sourcing': typeof SellingProductSourcingRoute
+  '/selling/signin': typeof SellingSigninRoute
+  '/selling/signup': typeof SellingSignupRoute
+  '/selling/warehousing': typeof SellingWarehousingRoute
+  '/shop/forgot-password': typeof ShopForgotPasswordRoute
+  '/shop/signin': typeof ShopSigninRoute
+  '/shop/signup': typeof ShopSignupRoute
+  '/account/': typeof AccountIndexRoute
+  '/admin/': typeof AdminIndexRoute
+  '/ar/': typeof ArIndexRoute
+  '/blog/': typeof BlogIndexRoute
+  '/category/': typeof CategoryIndexRoute
+  '/checkout/': typeof CheckoutIndexRoute
+  '/dropshipping/': typeof DropshippingIndexRoute
+  '/partners/': typeof PartnersIndexRoute
+  '/selling/': typeof SellingIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/import': typeof AdminProductsImportRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
+  '/api/fn/catalog-export': typeof ApiFnCatalogExportRoute
+  '/api/fn/create-checkout': typeof ApiFnCreateCheckoutRoute
+  '/api/fn/create-portal-session': typeof ApiFnCreatePortalSessionRoute
+  '/api/fn/download-images': typeof ApiFnDownloadImagesRoute
+  '/api/fn/get-stripe-price': typeof ApiFnGetStripePriceRoute
+  '/api/fn/manage-subscription': typeof ApiFnManageSubscriptionRoute
+  '/api/fn/preview-transactional-email': typeof ApiFnPreviewTransactionalEmailRoute
+  '/api/fn/send-resend-email': typeof ApiFnSendResendEmailRoute
+  '/api/fn/send-ticket-whatsapp': typeof ApiFnSendTicketWhatsappRoute
+  '/api/fn/send-transactional-email': typeof ApiFnSendTransactionalEmailRoute
+  '/api/fn/shop-checkout': typeof ApiFnShopCheckoutRoute
+  '/api/fn/sunsky-proxy': typeof ApiFnSunskyProxyRoute
+  '/api/fn/tryoto-proxy': typeof ApiFnTryotoProxyRoute
+  '/api/fn/verify-checkout-session': typeof ApiFnVerifyCheckoutSessionRoute
+  '/api/fn/wallet-topup-checkout': typeof ApiFnWalletTopupCheckoutRoute
+  '/api/public/auth-email-hook': typeof ApiPublicAuthEmailHookRoute
+  '/api/public/handle-email-suppression': typeof ApiPublicHandleEmailSuppressionRoute
+  '/api/public/handle-email-unsubscribe': typeof ApiPublicHandleEmailUnsubscribeRoute
+  '/api/public/payments-webhook': typeof ApiPublicPaymentsWebhookRoute
+  '/api/public/process-email-outbox': typeof ApiPublicProcessEmailOutboxRoute
+  '/api/public/process-email-queue': typeof ApiPublicProcessEmailQueueRoute
+  '/api/public/process-scheduled-templates': typeof ApiPublicProcessScheduledTemplatesRoute
+  '/api/public/reconcile-stale-payments': typeof ApiPublicReconcileStalePaymentsRoute
+  '/api/public/send-product-digest': typeof ApiPublicSendProductDigestRoute
+  '/api/public/signup-reminders': typeof ApiPublicSignupRemindersRoute
+  '/api/public/sitemap': typeof ApiPublicSitemapRoute
+  '/api/public/sunsky-callback': typeof ApiPublicSunskyCallbackRoute
+  '/api/public/wahooks-ticket-webhook': typeof ApiPublicWahooksTicketWebhookRoute
+  '/api/public/webhook-ping': typeof ApiPublicWebhookPingRoute
+  '/ar/category/$top': typeof ArCategoryTopRouteWithChildren
+  '/ar/product/$id': typeof ArProductIdRoute
+  '/category/$top/$sub': typeof CategoryTopSubRouteWithChildren
+  '/checkout/shop/thank-you': typeof CheckoutShopThankYouRoute
+  '/dropshipping/catalog/$id': typeof DropshippingCatalogIdRoute
+  '/dropshipping/catalog/export': typeof DropshippingCatalogExportRoute
+  '/dropshipping/catalog/hunting': typeof DropshippingCatalogHuntingRoute
+  '/dropshipping/orders/$id': typeof DropshippingOrdersIdRoute
+  '/dropshipping/orders/import': typeof DropshippingOrdersImportRoute
+  '/dropshipping/orders/new': typeof DropshippingOrdersNewRoute
+  '/partners/_auth/analytics': typeof PartnersAuthAnalyticsRoute
+  '/partners/_auth/dashboard': typeof PartnersAuthDashboardRoute
+  '/partners/_auth/finance': typeof PartnersAuthFinanceRoute
+  '/partners/_auth/orders': typeof PartnersAuthOrdersRoute
+  '/partners/_auth/profile': typeof PartnersAuthProfileRoute
+  '/partners/_auth/settings': typeof PartnersAuthSettingsRoute
+  '/partners/_auth/verification': typeof PartnersAuthVerificationRoute
+  '/partners/admin/connections': typeof PartnersAdminConnectionsRoute
+  '/partners/admin/live-products': typeof PartnersAdminLiveProductsRoute
+  '/partners/admin/markets': typeof PartnersAdminMarketsRoute
+  '/partners/admin/orders': typeof PartnersAdminOrdersRoute
+  '/partners/admin/payouts': typeof PartnersAdminPayoutsRoute
+  '/partners/admin/supplier-integrations': typeof PartnersAdminSupplierIntegrationsRoute
+  '/partners/admin/suppliers': typeof PartnersAdminSuppliersRouteWithChildren
+  '/partners/admin/team': typeof PartnersAdminTeamRoute
+  '/wallet/topup/return': typeof WalletTopupReturnRoute
+  '/admin/customers/': typeof AdminCustomersIndexRoute
+  '/admin/orders/': typeof AdminOrdersIndexRoute
+  '/admin/products/': typeof AdminProductsIndexRoute
+  '/checkout/shop/': typeof CheckoutShopIndexRoute
+  '/dropshipping/catalog/': typeof DropshippingCatalogIndexRoute
+  '/dropshipping/integrations/': typeof DropshippingIntegrationsIndexRoute
+  '/dropshipping/orders/': typeof DropshippingOrdersIndexRoute
+  '/dropshipping/warehouse/': typeof DropshippingWarehouseIndexRoute
+  '/partners/admin/': typeof PartnersAdminIndexRoute
+  '/api/public/noon/events': typeof ApiPublicNoonEventsRoute
+  '/api/public/noon/run-jobs': typeof ApiPublicNoonRunJobsRoute
+  '/api/public/partner-image/$': typeof ApiPublicPartnerImageSplatRoute
+  '/api/public/shopify/run-jobs': typeof ApiPublicShopifyRunJobsRoute
+  '/api/public/shopify/webhook': typeof ApiPublicShopifyWebhookRoute
+  '/ar/category/$top/$sub': typeof ArCategoryTopSubRouteWithChildren
+  '/category/$top/$sub/$detail': typeof CategoryTopSubDetailRoute
+  '/dropshipping/integrations/noon/$connectionId': typeof DropshippingIntegrationsNoonConnectionIdRoute
+  '/dropshipping/integrations/shopify/$connectionId': typeof DropshippingIntegrationsShopifyConnectionIdRoute
+  '/dropshipping/warehouse/release/$id': typeof DropshippingWarehouseReleaseIdRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/partners/_auth/products/$id': typeof PartnersAuthProductsIdRoute
+  '/partners/_auth/products/drafts': typeof PartnersAuthProductsDraftsRoute
+  '/partners/_auth/products/import': typeof PartnersAuthProductsImportRoute
+  '/partners/_auth/products/new': typeof PartnersAuthProductsNewRoute
+  '/partners/admin/applications/$id': typeof PartnersAdminApplicationsIdRoute
+  '/partners/admin/products/$id': typeof PartnersAdminProductsIdRoute
+  '/partners/admin/suppliers/$id': typeof PartnersAdminSuppliersIdRoute
+  '/partners/_auth/products/': typeof PartnersAuthProductsIndexRoute
+  '/partners/admin/applications/': typeof PartnersAdminApplicationsIndexRoute
+  '/partners/admin/products/': typeof PartnersAdminProductsIndexRoute
+  '/partners/admin/suppliers/': typeof PartnersAdminSuppliersIndexRoute
+  '/api/public/partners/channel/orders': typeof ApiPublicPartnersChannelOrdersRoute
+  '/api/public/partners/channel/products': typeof ApiPublicPartnersChannelProductsRoute
+  '/api/public/partners/channel/pull': typeof ApiPublicPartnersChannelPullRoute
+  '/api/public/partners/supplier-inventory/pull': typeof ApiPublicPartnersSupplierInventoryPullRoute
+  '/api/public/partners/supplier-inventory/updates': typeof ApiPublicPartnersSupplierInventoryUpdatesRoute
+  '/ar/category/$top/$sub/$detail': typeof ArCategoryTopSubDetailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/dropshipping'
+    | '/cart'
+    | '/catalog'
+    | '/contact'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/login'
+    | '/noon-seller-services-ksa'
+    | '/partners'
+    | '/pricing'
+    | '/reset-password'
+    | '/search'
+    | '/services'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/unsubscribe'
+    | '/account/addresses'
+    | '/account/orders'
+    | '/account/profile'
+    | '/account/wishlist'
+    | '/admin/analytics'
+    | '/admin/audit-log'
+    | '/admin/catalog-hub'
+    | '/admin/contact'
+    | '/admin/delivery'
+    | '/admin/emails'
+    | '/admin/homepage'
+    | '/admin/internal-hub'
+    | '/admin/label-designer'
+    | '/admin/labelling'
+    | '/admin/ops-hub'
+    | '/admin/plan-usage'
+    | '/admin/platforms'
+    | '/admin/pricing'
+    | '/admin/promo-codes'
+    | '/admin/quotes'
+    | '/admin/reports'
+    | '/admin/returns'
+    | '/admin/settings'
+    | '/admin/sourcing'
+    | '/admin/sourcing-hub'
+    | '/admin/sunsky'
+    | '/admin/suppliers'
+    | '/admin/tickets'
+    | '/admin/warehouse'
+    | '/admin/whatsapp-logs'
+    | '/blog/amazon-fba-labeling-requirements-guide'
+    | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
+    | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
+    | '/blog/ecommerce-warehousing-riyadh-jeddah-dammam'
+    | '/blog/how-to-find-reliable-suppliers-alibaba-1688'
+    | '/blog/how-to-import-goods-from-china-to-saudi-arabia'
+    | '/blog/how-to-sell-on-amazon-saudi-arabia'
+    | '/blog/how-to-sell-on-noon-saudi-arabia'
+    | '/blog/how-to-start-dropshipping-in-saudi-arabia'
+    | '/blog/saber-certification-guide-saudi-arabia'
+    | '/blog/salla-vs-zid-vs-shopify-saudi-arabia'
+    | '/blog/saudi-customs-duties-vat-guide-importers'
+    | '/blog/sourcing-from-china-to-saudi-arabia-guide'
+    | '/blog/what-is-3pl-fulfillment-saudi-arabia'
+    | '/category/$top'
+    | '/checkout/return'
+    | '/dashboard/$'
+    | '/dropshipping/accept-invite'
+    | '/dropshipping/addresses'
+    | '/dropshipping/billing'
+    | '/dropshipping/browsed'
+    | '/dropshipping/delivery'
+    | '/dropshipping/favourites'
+    | '/dropshipping/fulfillment'
+    | '/dropshipping/history'
+    | '/dropshipping/integrations'
+    | '/dropshipping/invoices'
+    | '/dropshipping/labelling'
+    | '/dropshipping/plan-usage'
+    | '/dropshipping/profile'
+    | '/dropshipping/quotes'
+    | '/dropshipping/referrals'
+    | '/dropshipping/returns'
+    | '/dropshipping/sourcing'
+    | '/dropshipping/team'
+    | '/dropshipping/templates'
+    | '/dropshipping/tickets'
+    | '/dropshipping/wallet'
+    | '/partners/admin'
+    | '/partners/categories'
+    | '/partners/contact'
+    | '/partners/forgot-password'
+    | '/partners/how-it-works'
+    | '/partners/join'
+    | '/partners/markets'
+    | '/partners/requirements'
+    | '/partners/signin'
+    | '/partners/signup'
+    | '/partners/supply-models'
+    | '/partners/who-can-supply'
+    | '/product/$id'
+    | '/selling/contact'
+    | '/selling/dropshipping'
+    | '/selling/forgot-password'
+    | '/selling/fulfillment'
+    | '/selling/how-it-works'
+    | '/selling/integrations'
+    | '/selling/marketplace-preparation'
+    | '/selling/packaging-labeling'
+    | '/selling/product-hunting'
+    | '/selling/product-sourcing'
+    | '/selling/signin'
+    | '/selling/signup'
+    | '/selling/warehousing'
+    | '/shop/forgot-password'
+    | '/shop/signin'
+    | '/shop/signup'
+    | '/account/'
+    | '/admin/'
+    | '/ar/'
+    | '/blog/'
+    | '/category/'
+    | '/checkout/'
+    | '/dropshipping/'
+    | '/partners/'
+    | '/selling/'
+    | '/admin/customers/$id'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/import'
+    | '/admin/products/new'
+    | '/api/fn/catalog-export'
+    | '/api/fn/create-checkout'
+    | '/api/fn/create-portal-session'
+    | '/api/fn/download-images'
+    | '/api/fn/get-stripe-price'
+    | '/api/fn/manage-subscription'
+    | '/api/fn/preview-transactional-email'
+    | '/api/fn/send-resend-email'
+    | '/api/fn/send-ticket-whatsapp'
+    | '/api/fn/send-transactional-email'
+    | '/api/fn/shop-checkout'
+    | '/api/fn/sunsky-proxy'
+    | '/api/fn/tryoto-proxy'
+    | '/api/fn/verify-checkout-session'
+    | '/api/fn/wallet-topup-checkout'
+    | '/api/public/auth-email-hook'
+    | '/api/public/handle-email-suppression'
+    | '/api/public/handle-email-unsubscribe'
+    | '/api/public/payments-webhook'
+    | '/api/public/process-email-outbox'
+    | '/api/public/process-email-queue'
+    | '/api/public/process-scheduled-templates'
+    | '/api/public/reconcile-stale-payments'
+    | '/api/public/send-product-digest'
+    | '/api/public/signup-reminders'
+    | '/api/public/sitemap'
+    | '/api/public/sunsky-callback'
+    | '/api/public/wahooks-ticket-webhook'
+    | '/api/public/webhook-ping'
+    | '/ar/category/$top'
+    | '/ar/product/$id'
+    | '/category/$top/$sub'
+    | '/checkout/shop/thank-you'
+    | '/dropshipping/catalog/$id'
+    | '/dropshipping/catalog/export'
+    | '/dropshipping/catalog/hunting'
+    | '/dropshipping/orders/$id'
+    | '/dropshipping/orders/import'
+    | '/dropshipping/orders/new'
+    | '/partners/analytics'
+    | '/partners/dashboard'
+    | '/partners/finance'
+    | '/partners/orders'
+    | '/partners/profile'
+    | '/partners/settings'
+    | '/partners/verification'
+    | '/partners/admin/connections'
+    | '/partners/admin/live-products'
+    | '/partners/admin/markets'
+    | '/partners/admin/orders'
+    | '/partners/admin/payouts'
+    | '/partners/admin/supplier-integrations'
+    | '/partners/admin/suppliers'
+    | '/partners/admin/team'
+    | '/wallet/topup/return'
+    | '/admin/customers/'
+    | '/admin/orders/'
+    | '/admin/products/'
+    | '/checkout/shop/'
+    | '/dropshipping/catalog/'
+    | '/dropshipping/integrations/'
+    | '/dropshipping/orders/'
+    | '/dropshipping/warehouse/'
+    | '/partners/admin/'
+    | '/api/public/noon/events'
+    | '/api/public/noon/run-jobs'
+    | '/api/public/partner-image/$'
+    | '/api/public/shopify/run-jobs'
+    | '/api/public/shopify/webhook'
+    | '/ar/category/$top/$sub'
+    | '/category/$top/$sub/$detail'
+    | '/dropshipping/integrations/noon/$connectionId'
+    | '/dropshipping/integrations/shopify/$connectionId'
+    | '/dropshipping/warehouse/release/$id'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
+    | '/lovable/email/transactional/preview'
+    | '/partners/products/$id'
+    | '/partners/products/drafts'
+    | '/partners/products/import'
+    | '/partners/products/new'
+    | '/partners/admin/applications/$id'
+    | '/partners/admin/products/$id'
+    | '/partners/admin/suppliers/$id'
+    | '/partners/products/'
+    | '/partners/admin/applications/'
+    | '/partners/admin/products/'
+    | '/partners/admin/suppliers/'
+    | '/api/public/partners/channel/orders'
+    | '/api/public/partners/channel/products'
+    | '/api/public/partners/channel/pull'
+    | '/api/public/partners/supplier-inventory/pull'
+    | '/api/public/partners/supplier-inventory/updates'
+    | '/ar/category/$top/$sub/$detail'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cart'
+    | '/catalog'
+    | '/contact'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/login'
+    | '/noon-seller-services-ksa'
+    | '/pricing'
+    | '/reset-password'
+    | '/search'
+    | '/services'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/unsubscribe'
+    | '/account/addresses'
+    | '/account/orders'
+    | '/account/profile'
+    | '/account/wishlist'
+    | '/admin/analytics'
+    | '/admin/audit-log'
+    | '/admin/catalog-hub'
+    | '/admin/contact'
+    | '/admin/delivery'
+    | '/admin/emails'
+    | '/admin/homepage'
+    | '/admin/internal-hub'
+    | '/admin/label-designer'
+    | '/admin/labelling'
+    | '/admin/ops-hub'
+    | '/admin/plan-usage'
+    | '/admin/platforms'
+    | '/admin/pricing'
+    | '/admin/promo-codes'
+    | '/admin/quotes'
+    | '/admin/reports'
+    | '/admin/returns'
+    | '/admin/settings'
+    | '/admin/sourcing'
+    | '/admin/sourcing-hub'
+    | '/admin/sunsky'
+    | '/admin/suppliers'
+    | '/admin/tickets'
+    | '/admin/warehouse'
+    | '/admin/whatsapp-logs'
+    | '/blog/amazon-fba-labeling-requirements-guide'
+    | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
+    | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
+    | '/blog/ecommerce-warehousing-riyadh-jeddah-dammam'
+    | '/blog/how-to-find-reliable-suppliers-alibaba-1688'
+    | '/blog/how-to-import-goods-from-china-to-saudi-arabia'
+    | '/blog/how-to-sell-on-amazon-saudi-arabia'
+    | '/blog/how-to-sell-on-noon-saudi-arabia'
+    | '/blog/how-to-start-dropshipping-in-saudi-arabia'
+    | '/blog/saber-certification-guide-saudi-arabia'
+    | '/blog/salla-vs-zid-vs-shopify-saudi-arabia'
+    | '/blog/saudi-customs-duties-vat-guide-importers'
+    | '/blog/sourcing-from-china-to-saudi-arabia-guide'
+    | '/blog/what-is-3pl-fulfillment-saudi-arabia'
+    | '/category/$top'
+    | '/checkout/return'
+    | '/dashboard/$'
+    | '/dropshipping/accept-invite'
+    | '/dropshipping/addresses'
+    | '/dropshipping/billing'
+    | '/dropshipping/browsed'
+    | '/dropshipping/delivery'
+    | '/dropshipping/favourites'
+    | '/dropshipping/fulfillment'
+    | '/dropshipping/history'
+    | '/dropshipping/invoices'
+    | '/dropshipping/labelling'
+    | '/dropshipping/plan-usage'
+    | '/dropshipping/profile'
+    | '/dropshipping/quotes'
+    | '/dropshipping/referrals'
+    | '/dropshipping/returns'
+    | '/dropshipping/sourcing'
+    | '/dropshipping/team'
+    | '/dropshipping/templates'
+    | '/dropshipping/tickets'
+    | '/dropshipping/wallet'
+    | '/partners'
+    | '/partners/categories'
+    | '/partners/contact'
+    | '/partners/forgot-password'
+    | '/partners/how-it-works'
+    | '/partners/join'
+    | '/partners/markets'
+    | '/partners/requirements'
+    | '/partners/signin'
+    | '/partners/signup'
+    | '/partners/supply-models'
+    | '/partners/who-can-supply'
+    | '/product/$id'
+    | '/selling/contact'
+    | '/selling/dropshipping'
+    | '/selling/forgot-password'
+    | '/selling/fulfillment'
+    | '/selling/how-it-works'
+    | '/selling/integrations'
+    | '/selling/marketplace-preparation'
+    | '/selling/packaging-labeling'
+    | '/selling/product-hunting'
+    | '/selling/product-sourcing'
+    | '/selling/signin'
+    | '/selling/signup'
+    | '/selling/warehousing'
+    | '/shop/forgot-password'
+    | '/shop/signin'
+    | '/shop/signup'
+    | '/account'
+    | '/admin'
+    | '/ar'
+    | '/blog'
+    | '/category'
+    | '/checkout'
+    | '/dropshipping'
+    | '/selling'
+    | '/admin/customers/$id'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/import'
+    | '/admin/products/new'
+    | '/api/fn/catalog-export'
+    | '/api/fn/create-checkout'
+    | '/api/fn/create-portal-session'
+    | '/api/fn/download-images'
+    | '/api/fn/get-stripe-price'
+    | '/api/fn/manage-subscription'
+    | '/api/fn/preview-transactional-email'
+    | '/api/fn/send-resend-email'
+    | '/api/fn/send-ticket-whatsapp'
+    | '/api/fn/send-transactional-email'
+    | '/api/fn/shop-checkout'
+    | '/api/fn/sunsky-proxy'
+    | '/api/fn/tryoto-proxy'
+    | '/api/fn/verify-checkout-session'
+    | '/api/fn/wallet-topup-checkout'
+    | '/api/public/auth-email-hook'
+    | '/api/public/handle-email-suppression'
+    | '/api/public/handle-email-unsubscribe'
+    | '/api/public/payments-webhook'
+    | '/api/public/process-email-outbox'
+    | '/api/public/process-email-queue'
+    | '/api/public/process-scheduled-templates'
+    | '/api/public/reconcile-stale-payments'
+    | '/api/public/send-product-digest'
+    | '/api/public/signup-reminders'
+    | '/api/public/sitemap'
+    | '/api/public/sunsky-callback'
+    | '/api/public/wahooks-ticket-webhook'
+    | '/api/public/webhook-ping'
+    | '/ar/category/$top'
+    | '/ar/product/$id'
+    | '/category/$top/$sub'
+    | '/checkout/shop/thank-you'
+    | '/dropshipping/catalog/$id'
+    | '/dropshipping/catalog/export'
+    | '/dropshipping/catalog/hunting'
+    | '/dropshipping/orders/$id'
+    | '/dropshipping/orders/import'
+    | '/dropshipping/orders/new'
+    | '/partners/analytics'
+    | '/partners/dashboard'
+    | '/partners/finance'
+    | '/partners/orders'
+    | '/partners/profile'
+    | '/partners/settings'
+    | '/partners/verification'
+    | '/partners/admin/connections'
+    | '/partners/admin/live-products'
+    | '/partners/admin/markets'
+    | '/partners/admin/orders'
+    | '/partners/admin/payouts'
+    | '/partners/admin/supplier-integrations'
+    | '/partners/admin/team'
+    | '/wallet/topup/return'
+    | '/admin/customers'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/checkout/shop'
+    | '/dropshipping/catalog'
+    | '/dropshipping/integrations'
+    | '/dropshipping/orders'
+    | '/dropshipping/warehouse'
+    | '/partners/admin'
+    | '/api/public/noon/events'
+    | '/api/public/noon/run-jobs'
+    | '/api/public/partner-image/$'
+    | '/api/public/shopify/run-jobs'
+    | '/api/public/shopify/webhook'
+    | '/ar/category/$top/$sub'
+    | '/category/$top/$sub/$detail'
+    | '/dropshipping/integrations/noon/$connectionId'
+    | '/dropshipping/integrations/shopify/$connectionId'
+    | '/dropshipping/warehouse/release/$id'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
+    | '/lovable/email/transactional/preview'
+    | '/partners/products/$id'
+    | '/partners/products/drafts'
+    | '/partners/products/import'
+    | '/partners/products/new'
+    | '/partners/admin/applications/$id'
+    | '/partners/admin/products/$id'
+    | '/partners/admin/suppliers/$id'
+    | '/partners/products'
+    | '/partners/admin/applications'
+    | '/partners/admin/products'
+    | '/partners/admin/suppliers'
+    | '/api/public/partners/channel/orders'
+    | '/api/public/partners/channel/products'
+    | '/api/public/partners/channel/pull'
+    | '/api/public/partners/supplier-inventory/pull'
+    | '/api/public/partners/supplier-inventory/updates'
+    | '/ar/category/$top/$sub/$detail'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/dropshipping'
+    | '/cart'
+    | '/catalog'
+    | '/contact'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/login'
+    | '/noon-seller-services-ksa'
+    | '/partners'
+    | '/pricing'
+    | '/reset-password'
+    | '/search'
+    | '/services'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/unsubscribe'
+    | '/account/addresses'
+    | '/account/orders'
+    | '/account/profile'
+    | '/account/wishlist'
+    | '/admin/analytics'
+    | '/admin/audit-log'
+    | '/admin/catalog-hub'
+    | '/admin/contact'
+    | '/admin/delivery'
+    | '/admin/emails'
+    | '/admin/homepage'
+    | '/admin/internal-hub'
+    | '/admin/label-designer'
+    | '/admin/labelling'
+    | '/admin/ops-hub'
+    | '/admin/plan-usage'
+    | '/admin/platforms'
+    | '/admin/pricing'
+    | '/admin/promo-codes'
+    | '/admin/quotes'
+    | '/admin/reports'
+    | '/admin/returns'
+    | '/admin/settings'
+    | '/admin/sourcing'
+    | '/admin/sourcing-hub'
+    | '/admin/sunsky'
+    | '/admin/suppliers'
+    | '/admin/tickets'
+    | '/admin/warehouse'
+    | '/admin/whatsapp-logs'
+    | '/blog/amazon-fba-labeling-requirements-guide'
+    | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
+    | '/blog/cash-on-delivery-ecommerce-saudi-arabia'
+    | '/blog/ecommerce-warehousing-riyadh-jeddah-dammam'
+    | '/blog/how-to-find-reliable-suppliers-alibaba-1688'
+    | '/blog/how-to-import-goods-from-china-to-saudi-arabia'
+    | '/blog/how-to-sell-on-amazon-saudi-arabia'
+    | '/blog/how-to-sell-on-noon-saudi-arabia'
+    | '/blog/how-to-start-dropshipping-in-saudi-arabia'
+    | '/blog/saber-certification-guide-saudi-arabia'
+    | '/blog/salla-vs-zid-vs-shopify-saudi-arabia'
+    | '/blog/saudi-customs-duties-vat-guide-importers'
+    | '/blog/sourcing-from-china-to-saudi-arabia-guide'
+    | '/blog/what-is-3pl-fulfillment-saudi-arabia'
+    | '/category/$top'
+    | '/checkout/return'
+    | '/dashboard/$'
+    | '/dropshipping/accept-invite'
+    | '/dropshipping/addresses'
+    | '/dropshipping/billing'
+    | '/dropshipping/browsed'
+    | '/dropshipping/delivery'
+    | '/dropshipping/favourites'
+    | '/dropshipping/fulfillment'
+    | '/dropshipping/history'
+    | '/dropshipping/integrations'
+    | '/dropshipping/invoices'
+    | '/dropshipping/labelling'
+    | '/dropshipping/plan-usage'
+    | '/dropshipping/profile'
+    | '/dropshipping/quotes'
+    | '/dropshipping/referrals'
+    | '/dropshipping/returns'
+    | '/dropshipping/sourcing'
+    | '/dropshipping/team'
+    | '/dropshipping/templates'
+    | '/dropshipping/tickets'
+    | '/dropshipping/wallet'
+    | '/partners/_auth'
+    | '/partners/admin'
+    | '/partners/categories'
+    | '/partners/contact'
+    | '/partners/forgot-password'
+    | '/partners/how-it-works'
+    | '/partners/join'
+    | '/partners/markets'
+    | '/partners/requirements'
+    | '/partners/signin'
+    | '/partners/signup'
+    | '/partners/supply-models'
+    | '/partners/who-can-supply'
+    | '/product/$id'
+    | '/selling/contact'
+    | '/selling/dropshipping'
+    | '/selling/forgot-password'
+    | '/selling/fulfillment'
+    | '/selling/how-it-works'
+    | '/selling/integrations'
+    | '/selling/marketplace-preparation'
+    | '/selling/packaging-labeling'
+    | '/selling/product-hunting'
+    | '/selling/product-sourcing'
+    | '/selling/signin'
+    | '/selling/signup'
+    | '/selling/warehousing'
+    | '/shop/forgot-password'
+    | '/shop/signin'
+    | '/shop/signup'
+    | '/account/'
+    | '/admin/'
+    | '/ar/'
+    | '/blog/'
+    | '/category/'
+    | '/checkout/'
+    | '/dropshipping/'
+    | '/partners/'
+    | '/selling/'
+    | '/admin/customers/$id'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/import'
+    | '/admin/products/new'
+    | '/api/fn/catalog-export'
+    | '/api/fn/create-checkout'
+    | '/api/fn/create-portal-session'
+    | '/api/fn/download-images'
+    | '/api/fn/get-stripe-price'
+    | '/api/fn/manage-subscription'
+    | '/api/fn/preview-transactional-email'
+    | '/api/fn/send-resend-email'
+    | '/api/fn/send-ticket-whatsapp'
+    | '/api/fn/send-transactional-email'
+    | '/api/fn/shop-checkout'
+    | '/api/fn/sunsky-proxy'
+    | '/api/fn/tryoto-proxy'
+    | '/api/fn/verify-checkout-session'
+    | '/api/fn/wallet-topup-checkout'
+    | '/api/public/auth-email-hook'
+    | '/api/public/handle-email-suppression'
+    | '/api/public/handle-email-unsubscribe'
+    | '/api/public/payments-webhook'
+    | '/api/public/process-email-outbox'
+    | '/api/public/process-email-queue'
+    | '/api/public/process-scheduled-templates'
+    | '/api/public/reconcile-stale-payments'
+    | '/api/public/send-product-digest'
+    | '/api/public/signup-reminders'
+    | '/api/public/sitemap'
+    | '/api/public/sunsky-callback'
+    | '/api/public/wahooks-ticket-webhook'
+    | '/api/public/webhook-ping'
+    | '/ar/category/$top'
+    | '/ar/product/$id'
+    | '/category/$top/$sub'
+    | '/checkout/shop/thank-you'
+    | '/dropshipping/catalog/$id'
+    | '/dropshipping/catalog/export'
+    | '/dropshipping/catalog/hunting'
+    | '/dropshipping/orders/$id'
+    | '/dropshipping/orders/import'
+    | '/dropshipping/orders/new'
+    | '/partners/_auth/analytics'
+    | '/partners/_auth/dashboard'
+    | '/partners/_auth/finance'
+    | '/partners/_auth/orders'
+    | '/partners/_auth/profile'
+    | '/partners/_auth/settings'
+    | '/partners/_auth/verification'
+    | '/partners/admin/connections'
+    | '/partners/admin/live-products'
+    | '/partners/admin/markets'
+    | '/partners/admin/orders'
+    | '/partners/admin/payouts'
+    | '/partners/admin/supplier-integrations'
+    | '/partners/admin/suppliers'
+    | '/partners/admin/team'
+    | '/wallet/topup/return'
+    | '/admin/customers/'
+    | '/admin/orders/'
+    | '/admin/products/'
+    | '/checkout/shop/'
+    | '/dropshipping/catalog/'
+    | '/dropshipping/integrations/'
+    | '/dropshipping/orders/'
+    | '/dropshipping/warehouse/'
+    | '/partners/admin/'
+    | '/api/public/noon/events'
+    | '/api/public/noon/run-jobs'
+    | '/api/public/partner-image/$'
+    | '/api/public/shopify/run-jobs'
+    | '/api/public/shopify/webhook'
+    | '/ar/category/$top/$sub'
+    | '/category/$top/$sub/$detail'
+    | '/dropshipping/integrations/noon/$connectionId'
+    | '/dropshipping/integrations/shopify/$connectionId'
+    | '/dropshipping/warehouse/release/$id'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
+    | '/lovable/email/transactional/preview'
+    | '/partners/_auth/products/$id'
+    | '/partners/_auth/products/drafts'
+    | '/partners/_auth/products/import'
+    | '/partners/_auth/products/new'
+    | '/partners/admin/applications/$id'
+    | '/partners/admin/products/$id'
+    | '/partners/admin/suppliers/$id'
+    | '/partners/_auth/products/'
+    | '/partners/admin/applications/'
+    | '/partners/admin/products/'
+    | '/partners/admin/suppliers/'
+    | '/api/public/partners/channel/orders'
+    | '/api/public/partners/channel/products'
+    | '/api/public/partners/channel/pull'
+    | '/api/public/partners/supplier-inventory/pull'
+    | '/api/public/partners/supplier-inventory/updates'
+    | '/ar/category/$top/$sub/$detail'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRouteRoute: typeof AccountRouteRouteWithChildren
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
+  DropshippingRouteRoute: typeof DropshippingRouteRouteWithChildren
+  CartRoute: typeof CartRoute
+  CatalogRoute: typeof CatalogRoute
+  ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
+  NoonSellerServicesKsaRoute: typeof NoonSellerServicesKsaRoute
+  PartnersRoute: typeof PartnersRouteWithChildren
+  PricingRoute: typeof PricingRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SearchRoute: typeof SearchRoute
+  ServicesRoute: typeof ServicesRoute
+  SignupRoute: typeof SignupRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
+  BlogAmazonFbaLabelingRequirementsGuideRoute: typeof BlogAmazonFbaLabelingRequirementsGuideRoute
+  BlogAmazonFbaVsNoonFbnSaudiArabiaRoute: typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
+  BlogCashOnDeliveryEcommerceSaudiArabiaRoute: typeof BlogCashOnDeliveryEcommerceSaudiArabiaRoute
+  BlogEcommerceWarehousingRiyadhJeddahDammamRoute: typeof BlogEcommerceWarehousingRiyadhJeddahDammamRoute
+  BlogHowToFindReliableSuppliersAlibaba1688Route: typeof BlogHowToFindReliableSuppliersAlibaba1688Route
+  BlogHowToImportGoodsFromChinaToSaudiArabiaRoute: typeof BlogHowToImportGoodsFromChinaToSaudiArabiaRoute
+  BlogHowToSellOnAmazonSaudiArabiaRoute: typeof BlogHowToSellOnAmazonSaudiArabiaRoute
+  BlogHowToSellOnNoonSaudiArabiaRoute: typeof BlogHowToSellOnNoonSaudiArabiaRoute
+  BlogHowToStartDropshippingInSaudiArabiaRoute: typeof BlogHowToStartDropshippingInSaudiArabiaRoute
+  BlogSaberCertificationGuideSaudiArabiaRoute: typeof BlogSaberCertificationGuideSaudiArabiaRoute
+  BlogSallaVsZidVsShopifySaudiArabiaRoute: typeof BlogSallaVsZidVsShopifySaudiArabiaRoute
+  BlogSaudiCustomsDutiesVatGuideImportersRoute: typeof BlogSaudiCustomsDutiesVatGuideImportersRoute
+  BlogSourcingFromChinaToSaudiArabiaGuideRoute: typeof BlogSourcingFromChinaToSaudiArabiaGuideRoute
+  BlogWhatIs3plFulfillmentSaudiArabiaRoute: typeof BlogWhatIs3plFulfillmentSaudiArabiaRoute
+  CategoryTopRoute: typeof CategoryTopRouteWithChildren
+  CheckoutReturnRoute: typeof CheckoutReturnRoute
+  ProductIdRoute: typeof ProductIdRoute
+  SellingContactRoute: typeof SellingContactRoute
+  SellingDropshippingRoute: typeof SellingDropshippingRoute
+  SellingForgotPasswordRoute: typeof SellingForgotPasswordRoute
+  SellingFulfillmentRoute: typeof SellingFulfillmentRoute
+  SellingHowItWorksRoute: typeof SellingHowItWorksRoute
+  SellingIntegrationsRoute: typeof SellingIntegrationsRoute
+  SellingMarketplacePreparationRoute: typeof SellingMarketplacePreparationRoute
+  SellingPackagingLabelingRoute: typeof SellingPackagingLabelingRoute
+  SellingProductHuntingRoute: typeof SellingProductHuntingRoute
+  SellingProductSourcingRoute: typeof SellingProductSourcingRoute
+  SellingSigninRoute: typeof SellingSigninRoute
+  SellingSignupRoute: typeof SellingSignupRoute
+  SellingWarehousingRoute: typeof SellingWarehousingRoute
+  ShopForgotPasswordRoute: typeof ShopForgotPasswordRoute
+  ShopSigninRoute: typeof ShopSigninRoute
+  ShopSignupRoute: typeof ShopSignupRoute
+  ArIndexRoute: typeof ArIndexRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  CategoryIndexRoute: typeof CategoryIndexRoute
+  CheckoutIndexRoute: typeof CheckoutIndexRoute
+  SellingIndexRoute: typeof SellingIndexRoute
+  ApiFnCatalogExportRoute: typeof ApiFnCatalogExportRoute
+  ApiFnCreateCheckoutRoute: typeof ApiFnCreateCheckoutRoute
+  ApiFnCreatePortalSessionRoute: typeof ApiFnCreatePortalSessionRoute
+  ApiFnDownloadImagesRoute: typeof ApiFnDownloadImagesRoute
+  ApiFnGetStripePriceRoute: typeof ApiFnGetStripePriceRoute
+  ApiFnManageSubscriptionRoute: typeof ApiFnManageSubscriptionRoute
+  ApiFnPreviewTransactionalEmailRoute: typeof ApiFnPreviewTransactionalEmailRoute
+  ApiFnSendResendEmailRoute: typeof ApiFnSendResendEmailRoute
+  ApiFnSendTicketWhatsappRoute: typeof ApiFnSendTicketWhatsappRoute
+  ApiFnSendTransactionalEmailRoute: typeof ApiFnSendTransactionalEmailRoute
+  ApiFnShopCheckoutRoute: typeof ApiFnShopCheckoutRoute
+  ApiFnSunskyProxyRoute: typeof ApiFnSunskyProxyRoute
+  ApiFnTryotoProxyRoute: typeof ApiFnTryotoProxyRoute
+  ApiFnVerifyCheckoutSessionRoute: typeof ApiFnVerifyCheckoutSessionRoute
+  ApiFnWalletTopupCheckoutRoute: typeof ApiFnWalletTopupCheckoutRoute
+  ApiPublicAuthEmailHookRoute: typeof ApiPublicAuthEmailHookRoute
+  ApiPublicHandleEmailSuppressionRoute: typeof ApiPublicHandleEmailSuppressionRoute
+  ApiPublicHandleEmailUnsubscribeRoute: typeof ApiPublicHandleEmailUnsubscribeRoute
+  ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
+  ApiPublicProcessEmailOutboxRoute: typeof ApiPublicProcessEmailOutboxRoute
+  ApiPublicProcessEmailQueueRoute: typeof ApiPublicProcessEmailQueueRoute
+  ApiPublicProcessScheduledTemplatesRoute: typeof ApiPublicProcessScheduledTemplatesRoute
+  ApiPublicReconcileStalePaymentsRoute: typeof ApiPublicReconcileStalePaymentsRoute
+  ApiPublicSendProductDigestRoute: typeof ApiPublicSendProductDigestRoute
+  ApiPublicSignupRemindersRoute: typeof ApiPublicSignupRemindersRoute
+  ApiPublicSitemapRoute: typeof ApiPublicSitemapRoute
+  ApiPublicSunskyCallbackRoute: typeof ApiPublicSunskyCallbackRoute
+  ApiPublicWahooksTicketWebhookRoute: typeof ApiPublicWahooksTicketWebhookRoute
+  ApiPublicWebhookPingRoute: typeof ApiPublicWebhookPingRoute
+  ArCategoryTopRoute: typeof ArCategoryTopRouteWithChildren
+  ArProductIdRoute: typeof ArProductIdRoute
+  CheckoutShopThankYouRoute: typeof CheckoutShopThankYouRoute
+  WalletTopupReturnRoute: typeof WalletTopupReturnRoute
+  CheckoutShopIndexRoute: typeof CheckoutShopIndexRoute
+  ApiPublicNoonEventsRoute: typeof ApiPublicNoonEventsRoute
+  ApiPublicNoonRunJobsRoute: typeof ApiPublicNoonRunJobsRoute
+  ApiPublicPartnerImageSplatRoute: typeof ApiPublicPartnerImageSplatRoute
+  ApiPublicShopifyRunJobsRoute: typeof ApiPublicShopifyRunJobsRoute
+  ApiPublicShopifyWebhookRoute: typeof ApiPublicShopifyWebhookRoute
+  LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
+  LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
+  ApiPublicPartnersChannelOrdersRoute: typeof ApiPublicPartnersChannelOrdersRoute
+  ApiPublicPartnersChannelProductsRoute: typeof ApiPublicPartnersChannelProductsRoute
+  ApiPublicPartnersChannelPullRoute: typeof ApiPublicPartnersChannelPullRoute
+  ApiPublicPartnersSupplierInventoryPullRoute: typeof ApiPublicPartnersSupplierInventoryPullRoute
+  ApiPublicPartnersSupplierInventoryUpdatesRoute: typeof ApiPublicPartnersSupplierInventoryUpdatesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +2885,2074 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalog': {
+      id: '/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof CatalogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dropshipping': {
+      id: '/dropshipping'
+      path: '/dropshipping'
+      fullPath: '/dropshipping'
+      preLoaderRoute: typeof DropshippingRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/noon-seller-services-ksa': {
+      id: '/noon-seller-services-ksa'
+      path: '/noon-seller-services-ksa'
+      fullPath: '/noon-seller-services-ksa'
+      preLoaderRoute: typeof NoonSellerServicesKsaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/': {
+      id: '/account/'
+      path: '/'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AccountIndexRouteImport
+      parentRoute: typeof AccountRouteRoute
+    }
+    '/account/addresses': {
+      id: '/account/addresses'
+      path: '/addresses'
+      fullPath: '/account/addresses'
+      preLoaderRoute: typeof AccountAddressesRouteImport
+      parentRoute: typeof AccountRouteRoute
+    }
+    '/account/orders': {
+      id: '/account/orders'
+      path: '/orders'
+      fullPath: '/account/orders'
+      preLoaderRoute: typeof AccountOrdersRouteImport
+      parentRoute: typeof AccountRouteRoute
+    }
+    '/account/profile': {
+      id: '/account/profile'
+      path: '/profile'
+      fullPath: '/account/profile'
+      preLoaderRoute: typeof AccountProfileRouteImport
+      parentRoute: typeof AccountRouteRoute
+    }
+    '/account/wishlist': {
+      id: '/account/wishlist'
+      path: '/wishlist'
+      fullPath: '/account/wishlist'
+      preLoaderRoute: typeof AccountWishlistRouteImport
+      parentRoute: typeof AccountRouteRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/audit-log': {
+      id: '/admin/audit-log'
+      path: '/audit-log'
+      fullPath: '/admin/audit-log'
+      preLoaderRoute: typeof AdminAuditLogRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/catalog-hub': {
+      id: '/admin/catalog-hub'
+      path: '/catalog-hub'
+      fullPath: '/admin/catalog-hub'
+      preLoaderRoute: typeof AdminCatalogHubRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/contact': {
+      id: '/admin/contact'
+      path: '/contact'
+      fullPath: '/admin/contact'
+      preLoaderRoute: typeof AdminContactRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/delivery': {
+      id: '/admin/delivery'
+      path: '/delivery'
+      fullPath: '/admin/delivery'
+      preLoaderRoute: typeof AdminDeliveryRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/emails': {
+      id: '/admin/emails'
+      path: '/emails'
+      fullPath: '/admin/emails'
+      preLoaderRoute: typeof AdminEmailsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/homepage': {
+      id: '/admin/homepage'
+      path: '/homepage'
+      fullPath: '/admin/homepage'
+      preLoaderRoute: typeof AdminHomepageRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/internal-hub': {
+      id: '/admin/internal-hub'
+      path: '/internal-hub'
+      fullPath: '/admin/internal-hub'
+      preLoaderRoute: typeof AdminInternalHubRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/label-designer': {
+      id: '/admin/label-designer'
+      path: '/label-designer'
+      fullPath: '/admin/label-designer'
+      preLoaderRoute: typeof AdminLabelDesignerRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/labelling': {
+      id: '/admin/labelling'
+      path: '/labelling'
+      fullPath: '/admin/labelling'
+      preLoaderRoute: typeof AdminLabellingRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/ops-hub': {
+      id: '/admin/ops-hub'
+      path: '/ops-hub'
+      fullPath: '/admin/ops-hub'
+      preLoaderRoute: typeof AdminOpsHubRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/plan-usage': {
+      id: '/admin/plan-usage'
+      path: '/plan-usage'
+      fullPath: '/admin/plan-usage'
+      preLoaderRoute: typeof AdminPlanUsageRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/platforms': {
+      id: '/admin/platforms'
+      path: '/platforms'
+      fullPath: '/admin/platforms'
+      preLoaderRoute: typeof AdminPlatformsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/pricing': {
+      id: '/admin/pricing'
+      path: '/pricing'
+      fullPath: '/admin/pricing'
+      preLoaderRoute: typeof AdminPricingRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/promo-codes': {
+      id: '/admin/promo-codes'
+      path: '/promo-codes'
+      fullPath: '/admin/promo-codes'
+      preLoaderRoute: typeof AdminPromoCodesRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/quotes': {
+      id: '/admin/quotes'
+      path: '/quotes'
+      fullPath: '/admin/quotes'
+      preLoaderRoute: typeof AdminQuotesRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/returns': {
+      id: '/admin/returns'
+      path: '/returns'
+      fullPath: '/admin/returns'
+      preLoaderRoute: typeof AdminReturnsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/sourcing': {
+      id: '/admin/sourcing'
+      path: '/sourcing'
+      fullPath: '/admin/sourcing'
+      preLoaderRoute: typeof AdminSourcingRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/sourcing-hub': {
+      id: '/admin/sourcing-hub'
+      path: '/sourcing-hub'
+      fullPath: '/admin/sourcing-hub'
+      preLoaderRoute: typeof AdminSourcingHubRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/sunsky': {
+      id: '/admin/sunsky'
+      path: '/sunsky'
+      fullPath: '/admin/sunsky'
+      preLoaderRoute: typeof AdminSunskyRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/suppliers': {
+      id: '/admin/suppliers'
+      path: '/suppliers'
+      fullPath: '/admin/suppliers'
+      preLoaderRoute: typeof AdminSuppliersRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/tickets': {
+      id: '/admin/tickets'
+      path: '/tickets'
+      fullPath: '/admin/tickets'
+      preLoaderRoute: typeof AdminTicketsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/warehouse': {
+      id: '/admin/warehouse'
+      path: '/warehouse'
+      fullPath: '/admin/warehouse'
+      preLoaderRoute: typeof AdminWarehouseRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/whatsapp-logs': {
+      id: '/admin/whatsapp-logs'
+      path: '/whatsapp-logs'
+      fullPath: '/admin/whatsapp-logs'
+      preLoaderRoute: typeof AdminWhatsappLogsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/ar/': {
+      id: '/ar/'
+      path: '/ar'
+      fullPath: '/ar/'
+      preLoaderRoute: typeof ArIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/amazon-fba-labeling-requirements-guide': {
+      id: '/blog/amazon-fba-labeling-requirements-guide'
+      path: '/blog/amazon-fba-labeling-requirements-guide'
+      fullPath: '/blog/amazon-fba-labeling-requirements-guide'
+      preLoaderRoute: typeof BlogAmazonFbaLabelingRequirementsGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': {
+      id: '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
+      path: '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
+      fullPath: '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
+      preLoaderRoute: typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/cash-on-delivery-ecommerce-saudi-arabia': {
+      id: '/blog/cash-on-delivery-ecommerce-saudi-arabia'
+      path: '/blog/cash-on-delivery-ecommerce-saudi-arabia'
+      fullPath: '/blog/cash-on-delivery-ecommerce-saudi-arabia'
+      preLoaderRoute: typeof BlogCashOnDeliveryEcommerceSaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/ecommerce-warehousing-riyadh-jeddah-dammam': {
+      id: '/blog/ecommerce-warehousing-riyadh-jeddah-dammam'
+      path: '/blog/ecommerce-warehousing-riyadh-jeddah-dammam'
+      fullPath: '/blog/ecommerce-warehousing-riyadh-jeddah-dammam'
+      preLoaderRoute: typeof BlogEcommerceWarehousingRiyadhJeddahDammamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/how-to-find-reliable-suppliers-alibaba-1688': {
+      id: '/blog/how-to-find-reliable-suppliers-alibaba-1688'
+      path: '/blog/how-to-find-reliable-suppliers-alibaba-1688'
+      fullPath: '/blog/how-to-find-reliable-suppliers-alibaba-1688'
+      preLoaderRoute: typeof BlogHowToFindReliableSuppliersAlibaba1688RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/how-to-import-goods-from-china-to-saudi-arabia': {
+      id: '/blog/how-to-import-goods-from-china-to-saudi-arabia'
+      path: '/blog/how-to-import-goods-from-china-to-saudi-arabia'
+      fullPath: '/blog/how-to-import-goods-from-china-to-saudi-arabia'
+      preLoaderRoute: typeof BlogHowToImportGoodsFromChinaToSaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/how-to-sell-on-amazon-saudi-arabia': {
+      id: '/blog/how-to-sell-on-amazon-saudi-arabia'
+      path: '/blog/how-to-sell-on-amazon-saudi-arabia'
+      fullPath: '/blog/how-to-sell-on-amazon-saudi-arabia'
+      preLoaderRoute: typeof BlogHowToSellOnAmazonSaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/how-to-sell-on-noon-saudi-arabia': {
+      id: '/blog/how-to-sell-on-noon-saudi-arabia'
+      path: '/blog/how-to-sell-on-noon-saudi-arabia'
+      fullPath: '/blog/how-to-sell-on-noon-saudi-arabia'
+      preLoaderRoute: typeof BlogHowToSellOnNoonSaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/how-to-start-dropshipping-in-saudi-arabia': {
+      id: '/blog/how-to-start-dropshipping-in-saudi-arabia'
+      path: '/blog/how-to-start-dropshipping-in-saudi-arabia'
+      fullPath: '/blog/how-to-start-dropshipping-in-saudi-arabia'
+      preLoaderRoute: typeof BlogHowToStartDropshippingInSaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/saber-certification-guide-saudi-arabia': {
+      id: '/blog/saber-certification-guide-saudi-arabia'
+      path: '/blog/saber-certification-guide-saudi-arabia'
+      fullPath: '/blog/saber-certification-guide-saudi-arabia'
+      preLoaderRoute: typeof BlogSaberCertificationGuideSaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/salla-vs-zid-vs-shopify-saudi-arabia': {
+      id: '/blog/salla-vs-zid-vs-shopify-saudi-arabia'
+      path: '/blog/salla-vs-zid-vs-shopify-saudi-arabia'
+      fullPath: '/blog/salla-vs-zid-vs-shopify-saudi-arabia'
+      preLoaderRoute: typeof BlogSallaVsZidVsShopifySaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/saudi-customs-duties-vat-guide-importers': {
+      id: '/blog/saudi-customs-duties-vat-guide-importers'
+      path: '/blog/saudi-customs-duties-vat-guide-importers'
+      fullPath: '/blog/saudi-customs-duties-vat-guide-importers'
+      preLoaderRoute: typeof BlogSaudiCustomsDutiesVatGuideImportersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/sourcing-from-china-to-saudi-arabia-guide': {
+      id: '/blog/sourcing-from-china-to-saudi-arabia-guide'
+      path: '/blog/sourcing-from-china-to-saudi-arabia-guide'
+      fullPath: '/blog/sourcing-from-china-to-saudi-arabia-guide'
+      preLoaderRoute: typeof BlogSourcingFromChinaToSaudiArabiaGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/what-is-3pl-fulfillment-saudi-arabia': {
+      id: '/blog/what-is-3pl-fulfillment-saudi-arabia'
+      path: '/blog/what-is-3pl-fulfillment-saudi-arabia'
+      fullPath: '/blog/what-is-3pl-fulfillment-saudi-arabia'
+      preLoaderRoute: typeof BlogWhatIs3plFulfillmentSaudiArabiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/': {
+      id: '/category/'
+      path: '/category'
+      fullPath: '/category/'
+      preLoaderRoute: typeof CategoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$top': {
+      id: '/category/$top'
+      path: '/category/$top'
+      fullPath: '/category/$top'
+      preLoaderRoute: typeof CategoryTopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout/': {
+      id: '/checkout/'
+      path: '/checkout'
+      fullPath: '/checkout/'
+      preLoaderRoute: typeof CheckoutIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout/return': {
+      id: '/checkout/return'
+      path: '/checkout/return'
+      fullPath: '/checkout/return'
+      preLoaderRoute: typeof CheckoutReturnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/$': {
+      id: '/dashboard/$'
+      path: '/$'
+      fullPath: '/dashboard/$'
+      preLoaderRoute: typeof DashboardSplatRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dropshipping/': {
+      id: '/dropshipping/'
+      path: '/'
+      fullPath: '/dropshipping/'
+      preLoaderRoute: typeof DropshippingIndexRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/accept-invite': {
+      id: '/dropshipping/accept-invite'
+      path: '/accept-invite'
+      fullPath: '/dropshipping/accept-invite'
+      preLoaderRoute: typeof DropshippingAcceptInviteRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/addresses': {
+      id: '/dropshipping/addresses'
+      path: '/addresses'
+      fullPath: '/dropshipping/addresses'
+      preLoaderRoute: typeof DropshippingAddressesRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/billing': {
+      id: '/dropshipping/billing'
+      path: '/billing'
+      fullPath: '/dropshipping/billing'
+      preLoaderRoute: typeof DropshippingBillingRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/browsed': {
+      id: '/dropshipping/browsed'
+      path: '/browsed'
+      fullPath: '/dropshipping/browsed'
+      preLoaderRoute: typeof DropshippingBrowsedRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/delivery': {
+      id: '/dropshipping/delivery'
+      path: '/delivery'
+      fullPath: '/dropshipping/delivery'
+      preLoaderRoute: typeof DropshippingDeliveryRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/favourites': {
+      id: '/dropshipping/favourites'
+      path: '/favourites'
+      fullPath: '/dropshipping/favourites'
+      preLoaderRoute: typeof DropshippingFavouritesRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/fulfillment': {
+      id: '/dropshipping/fulfillment'
+      path: '/fulfillment'
+      fullPath: '/dropshipping/fulfillment'
+      preLoaderRoute: typeof DropshippingFulfillmentRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/history': {
+      id: '/dropshipping/history'
+      path: '/history'
+      fullPath: '/dropshipping/history'
+      preLoaderRoute: typeof DropshippingHistoryRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/integrations': {
+      id: '/dropshipping/integrations'
+      path: '/integrations'
+      fullPath: '/dropshipping/integrations'
+      preLoaderRoute: typeof DropshippingIntegrationsRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/invoices': {
+      id: '/dropshipping/invoices'
+      path: '/invoices'
+      fullPath: '/dropshipping/invoices'
+      preLoaderRoute: typeof DropshippingInvoicesRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/labelling': {
+      id: '/dropshipping/labelling'
+      path: '/labelling'
+      fullPath: '/dropshipping/labelling'
+      preLoaderRoute: typeof DropshippingLabellingRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/plan-usage': {
+      id: '/dropshipping/plan-usage'
+      path: '/plan-usage'
+      fullPath: '/dropshipping/plan-usage'
+      preLoaderRoute: typeof DropshippingPlanUsageRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/profile': {
+      id: '/dropshipping/profile'
+      path: '/profile'
+      fullPath: '/dropshipping/profile'
+      preLoaderRoute: typeof DropshippingProfileRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/quotes': {
+      id: '/dropshipping/quotes'
+      path: '/quotes'
+      fullPath: '/dropshipping/quotes'
+      preLoaderRoute: typeof DropshippingQuotesRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/referrals': {
+      id: '/dropshipping/referrals'
+      path: '/referrals'
+      fullPath: '/dropshipping/referrals'
+      preLoaderRoute: typeof DropshippingReferralsRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/returns': {
+      id: '/dropshipping/returns'
+      path: '/returns'
+      fullPath: '/dropshipping/returns'
+      preLoaderRoute: typeof DropshippingReturnsRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/sourcing': {
+      id: '/dropshipping/sourcing'
+      path: '/sourcing'
+      fullPath: '/dropshipping/sourcing'
+      preLoaderRoute: typeof DropshippingSourcingRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/team': {
+      id: '/dropshipping/team'
+      path: '/team'
+      fullPath: '/dropshipping/team'
+      preLoaderRoute: typeof DropshippingTeamRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/templates': {
+      id: '/dropshipping/templates'
+      path: '/templates'
+      fullPath: '/dropshipping/templates'
+      preLoaderRoute: typeof DropshippingTemplatesRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/tickets': {
+      id: '/dropshipping/tickets'
+      path: '/tickets'
+      fullPath: '/dropshipping/tickets'
+      preLoaderRoute: typeof DropshippingTicketsRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/wallet': {
+      id: '/dropshipping/wallet'
+      path: '/wallet'
+      fullPath: '/dropshipping/wallet'
+      preLoaderRoute: typeof DropshippingWalletRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/partners/': {
+      id: '/partners/'
+      path: '/'
+      fullPath: '/partners/'
+      preLoaderRoute: typeof PartnersIndexRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/_auth': {
+      id: '/partners/_auth'
+      path: ''
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersAuthRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/admin': {
+      id: '/partners/admin'
+      path: '/admin'
+      fullPath: '/partners/admin'
+      preLoaderRoute: typeof PartnersAdminRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/categories': {
+      id: '/partners/categories'
+      path: '/categories'
+      fullPath: '/partners/categories'
+      preLoaderRoute: typeof PartnersCategoriesRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/contact': {
+      id: '/partners/contact'
+      path: '/contact'
+      fullPath: '/partners/contact'
+      preLoaderRoute: typeof PartnersContactRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/forgot-password': {
+      id: '/partners/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/partners/forgot-password'
+      preLoaderRoute: typeof PartnersForgotPasswordRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/how-it-works': {
+      id: '/partners/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/partners/how-it-works'
+      preLoaderRoute: typeof PartnersHowItWorksRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/join': {
+      id: '/partners/join'
+      path: '/join'
+      fullPath: '/partners/join'
+      preLoaderRoute: typeof PartnersJoinRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/markets': {
+      id: '/partners/markets'
+      path: '/markets'
+      fullPath: '/partners/markets'
+      preLoaderRoute: typeof PartnersMarketsRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/requirements': {
+      id: '/partners/requirements'
+      path: '/requirements'
+      fullPath: '/partners/requirements'
+      preLoaderRoute: typeof PartnersRequirementsRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/signin': {
+      id: '/partners/signin'
+      path: '/signin'
+      fullPath: '/partners/signin'
+      preLoaderRoute: typeof PartnersSigninRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/signup': {
+      id: '/partners/signup'
+      path: '/signup'
+      fullPath: '/partners/signup'
+      preLoaderRoute: typeof PartnersSignupRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/supply-models': {
+      id: '/partners/supply-models'
+      path: '/supply-models'
+      fullPath: '/partners/supply-models'
+      preLoaderRoute: typeof PartnersSupplyModelsRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/partners/who-can-supply': {
+      id: '/partners/who-can-supply'
+      path: '/who-can-supply'
+      fullPath: '/partners/who-can-supply'
+      preLoaderRoute: typeof PartnersWhoCanSupplyRouteImport
+      parentRoute: typeof PartnersRoute
+    }
+    '/product/$id': {
+      id: '/product/$id'
+      path: '/product/$id'
+      fullPath: '/product/$id'
+      preLoaderRoute: typeof ProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/': {
+      id: '/selling/'
+      path: '/selling'
+      fullPath: '/selling/'
+      preLoaderRoute: typeof SellingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/contact': {
+      id: '/selling/contact'
+      path: '/selling/contact'
+      fullPath: '/selling/contact'
+      preLoaderRoute: typeof SellingContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/dropshipping': {
+      id: '/selling/dropshipping'
+      path: '/selling/dropshipping'
+      fullPath: '/selling/dropshipping'
+      preLoaderRoute: typeof SellingDropshippingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/forgot-password': {
+      id: '/selling/forgot-password'
+      path: '/selling/forgot-password'
+      fullPath: '/selling/forgot-password'
+      preLoaderRoute: typeof SellingForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/fulfillment': {
+      id: '/selling/fulfillment'
+      path: '/selling/fulfillment'
+      fullPath: '/selling/fulfillment'
+      preLoaderRoute: typeof SellingFulfillmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/how-it-works': {
+      id: '/selling/how-it-works'
+      path: '/selling/how-it-works'
+      fullPath: '/selling/how-it-works'
+      preLoaderRoute: typeof SellingHowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/integrations': {
+      id: '/selling/integrations'
+      path: '/selling/integrations'
+      fullPath: '/selling/integrations'
+      preLoaderRoute: typeof SellingIntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/marketplace-preparation': {
+      id: '/selling/marketplace-preparation'
+      path: '/selling/marketplace-preparation'
+      fullPath: '/selling/marketplace-preparation'
+      preLoaderRoute: typeof SellingMarketplacePreparationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/packaging-labeling': {
+      id: '/selling/packaging-labeling'
+      path: '/selling/packaging-labeling'
+      fullPath: '/selling/packaging-labeling'
+      preLoaderRoute: typeof SellingPackagingLabelingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/product-hunting': {
+      id: '/selling/product-hunting'
+      path: '/selling/product-hunting'
+      fullPath: '/selling/product-hunting'
+      preLoaderRoute: typeof SellingProductHuntingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/product-sourcing': {
+      id: '/selling/product-sourcing'
+      path: '/selling/product-sourcing'
+      fullPath: '/selling/product-sourcing'
+      preLoaderRoute: typeof SellingProductSourcingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/signin': {
+      id: '/selling/signin'
+      path: '/selling/signin'
+      fullPath: '/selling/signin'
+      preLoaderRoute: typeof SellingSigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/signup': {
+      id: '/selling/signup'
+      path: '/selling/signup'
+      fullPath: '/selling/signup'
+      preLoaderRoute: typeof SellingSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selling/warehousing': {
+      id: '/selling/warehousing'
+      path: '/selling/warehousing'
+      fullPath: '/selling/warehousing'
+      preLoaderRoute: typeof SellingWarehousingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/forgot-password': {
+      id: '/shop/forgot-password'
+      path: '/shop/forgot-password'
+      fullPath: '/shop/forgot-password'
+      preLoaderRoute: typeof ShopForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/signin': {
+      id: '/shop/signin'
+      path: '/shop/signin'
+      fullPath: '/shop/signin'
+      preLoaderRoute: typeof ShopSigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/signup': {
+      id: '/shop/signup'
+      path: '/shop/signup'
+      fullPath: '/shop/signup'
+      preLoaderRoute: typeof ShopSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/customers/': {
+      id: '/admin/customers/'
+      path: '/customers'
+      fullPath: '/admin/customers/'
+      preLoaderRoute: typeof AdminCustomersIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/customers/$id': {
+      id: '/admin/customers/$id'
+      path: '/customers/$id'
+      fullPath: '/admin/customers/$id'
+      preLoaderRoute: typeof AdminCustomersIdRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/orders/': {
+      id: '/admin/orders/'
+      path: '/orders'
+      fullPath: '/admin/orders/'
+      preLoaderRoute: typeof AdminOrdersIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/orders/$id': {
+      id: '/admin/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/admin/orders/$id'
+      preLoaderRoute: typeof AdminOrdersIdRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/products/': {
+      id: '/admin/products/'
+      path: '/products'
+      fullPath: '/admin/products/'
+      preLoaderRoute: typeof AdminProductsIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/products/$id': {
+      id: '/admin/products/$id'
+      path: '/products/$id'
+      fullPath: '/admin/products/$id'
+      preLoaderRoute: typeof AdminProductsIdRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/products/import': {
+      id: '/admin/products/import'
+      path: '/products/import'
+      fullPath: '/admin/products/import'
+      preLoaderRoute: typeof AdminProductsImportRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/products/new': {
+      id: '/admin/products/new'
+      path: '/products/new'
+      fullPath: '/admin/products/new'
+      preLoaderRoute: typeof AdminProductsNewRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/api/fn/catalog-export': {
+      id: '/api/fn/catalog-export'
+      path: '/api/fn/catalog-export'
+      fullPath: '/api/fn/catalog-export'
+      preLoaderRoute: typeof ApiFnCatalogExportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/create-checkout': {
+      id: '/api/fn/create-checkout'
+      path: '/api/fn/create-checkout'
+      fullPath: '/api/fn/create-checkout'
+      preLoaderRoute: typeof ApiFnCreateCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/create-portal-session': {
+      id: '/api/fn/create-portal-session'
+      path: '/api/fn/create-portal-session'
+      fullPath: '/api/fn/create-portal-session'
+      preLoaderRoute: typeof ApiFnCreatePortalSessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/download-images': {
+      id: '/api/fn/download-images'
+      path: '/api/fn/download-images'
+      fullPath: '/api/fn/download-images'
+      preLoaderRoute: typeof ApiFnDownloadImagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/get-stripe-price': {
+      id: '/api/fn/get-stripe-price'
+      path: '/api/fn/get-stripe-price'
+      fullPath: '/api/fn/get-stripe-price'
+      preLoaderRoute: typeof ApiFnGetStripePriceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/manage-subscription': {
+      id: '/api/fn/manage-subscription'
+      path: '/api/fn/manage-subscription'
+      fullPath: '/api/fn/manage-subscription'
+      preLoaderRoute: typeof ApiFnManageSubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/preview-transactional-email': {
+      id: '/api/fn/preview-transactional-email'
+      path: '/api/fn/preview-transactional-email'
+      fullPath: '/api/fn/preview-transactional-email'
+      preLoaderRoute: typeof ApiFnPreviewTransactionalEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/send-resend-email': {
+      id: '/api/fn/send-resend-email'
+      path: '/api/fn/send-resend-email'
+      fullPath: '/api/fn/send-resend-email'
+      preLoaderRoute: typeof ApiFnSendResendEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/send-ticket-whatsapp': {
+      id: '/api/fn/send-ticket-whatsapp'
+      path: '/api/fn/send-ticket-whatsapp'
+      fullPath: '/api/fn/send-ticket-whatsapp'
+      preLoaderRoute: typeof ApiFnSendTicketWhatsappRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/send-transactional-email': {
+      id: '/api/fn/send-transactional-email'
+      path: '/api/fn/send-transactional-email'
+      fullPath: '/api/fn/send-transactional-email'
+      preLoaderRoute: typeof ApiFnSendTransactionalEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/shop-checkout': {
+      id: '/api/fn/shop-checkout'
+      path: '/api/fn/shop-checkout'
+      fullPath: '/api/fn/shop-checkout'
+      preLoaderRoute: typeof ApiFnShopCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/sunsky-proxy': {
+      id: '/api/fn/sunsky-proxy'
+      path: '/api/fn/sunsky-proxy'
+      fullPath: '/api/fn/sunsky-proxy'
+      preLoaderRoute: typeof ApiFnSunskyProxyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/tryoto-proxy': {
+      id: '/api/fn/tryoto-proxy'
+      path: '/api/fn/tryoto-proxy'
+      fullPath: '/api/fn/tryoto-proxy'
+      preLoaderRoute: typeof ApiFnTryotoProxyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/verify-checkout-session': {
+      id: '/api/fn/verify-checkout-session'
+      path: '/api/fn/verify-checkout-session'
+      fullPath: '/api/fn/verify-checkout-session'
+      preLoaderRoute: typeof ApiFnVerifyCheckoutSessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/fn/wallet-topup-checkout': {
+      id: '/api/fn/wallet-topup-checkout'
+      path: '/api/fn/wallet-topup-checkout'
+      fullPath: '/api/fn/wallet-topup-checkout'
+      preLoaderRoute: typeof ApiFnWalletTopupCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/auth-email-hook': {
+      id: '/api/public/auth-email-hook'
+      path: '/api/public/auth-email-hook'
+      fullPath: '/api/public/auth-email-hook'
+      preLoaderRoute: typeof ApiPublicAuthEmailHookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/handle-email-suppression': {
+      id: '/api/public/handle-email-suppression'
+      path: '/api/public/handle-email-suppression'
+      fullPath: '/api/public/handle-email-suppression'
+      preLoaderRoute: typeof ApiPublicHandleEmailSuppressionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/handle-email-unsubscribe': {
+      id: '/api/public/handle-email-unsubscribe'
+      path: '/api/public/handle-email-unsubscribe'
+      fullPath: '/api/public/handle-email-unsubscribe'
+      preLoaderRoute: typeof ApiPublicHandleEmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/payments-webhook': {
+      id: '/api/public/payments-webhook'
+      path: '/api/public/payments-webhook'
+      fullPath: '/api/public/payments-webhook'
+      preLoaderRoute: typeof ApiPublicPaymentsWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/process-email-outbox': {
+      id: '/api/public/process-email-outbox'
+      path: '/api/public/process-email-outbox'
+      fullPath: '/api/public/process-email-outbox'
+      preLoaderRoute: typeof ApiPublicProcessEmailOutboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/process-email-queue': {
+      id: '/api/public/process-email-queue'
+      path: '/api/public/process-email-queue'
+      fullPath: '/api/public/process-email-queue'
+      preLoaderRoute: typeof ApiPublicProcessEmailQueueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/process-scheduled-templates': {
+      id: '/api/public/process-scheduled-templates'
+      path: '/api/public/process-scheduled-templates'
+      fullPath: '/api/public/process-scheduled-templates'
+      preLoaderRoute: typeof ApiPublicProcessScheduledTemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/reconcile-stale-payments': {
+      id: '/api/public/reconcile-stale-payments'
+      path: '/api/public/reconcile-stale-payments'
+      fullPath: '/api/public/reconcile-stale-payments'
+      preLoaderRoute: typeof ApiPublicReconcileStalePaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/send-product-digest': {
+      id: '/api/public/send-product-digest'
+      path: '/api/public/send-product-digest'
+      fullPath: '/api/public/send-product-digest'
+      preLoaderRoute: typeof ApiPublicSendProductDigestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/signup-reminders': {
+      id: '/api/public/signup-reminders'
+      path: '/api/public/signup-reminders'
+      fullPath: '/api/public/signup-reminders'
+      preLoaderRoute: typeof ApiPublicSignupRemindersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/sitemap': {
+      id: '/api/public/sitemap'
+      path: '/api/public/sitemap'
+      fullPath: '/api/public/sitemap'
+      preLoaderRoute: typeof ApiPublicSitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/sunsky-callback': {
+      id: '/api/public/sunsky-callback'
+      path: '/api/public/sunsky-callback'
+      fullPath: '/api/public/sunsky-callback'
+      preLoaderRoute: typeof ApiPublicSunskyCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/wahooks-ticket-webhook': {
+      id: '/api/public/wahooks-ticket-webhook'
+      path: '/api/public/wahooks-ticket-webhook'
+      fullPath: '/api/public/wahooks-ticket-webhook'
+      preLoaderRoute: typeof ApiPublicWahooksTicketWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/webhook-ping': {
+      id: '/api/public/webhook-ping'
+      path: '/api/public/webhook-ping'
+      fullPath: '/api/public/webhook-ping'
+      preLoaderRoute: typeof ApiPublicWebhookPingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ar/category/$top': {
+      id: '/ar/category/$top'
+      path: '/ar/category/$top'
+      fullPath: '/ar/category/$top'
+      preLoaderRoute: typeof ArCategoryTopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ar/product/$id': {
+      id: '/ar/product/$id'
+      path: '/ar/product/$id'
+      fullPath: '/ar/product/$id'
+      preLoaderRoute: typeof ArProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$top/$sub': {
+      id: '/category/$top/$sub'
+      path: '/$sub'
+      fullPath: '/category/$top/$sub'
+      preLoaderRoute: typeof CategoryTopSubRouteImport
+      parentRoute: typeof CategoryTopRoute
+    }
+    '/checkout/shop/': {
+      id: '/checkout/shop/'
+      path: '/checkout/shop'
+      fullPath: '/checkout/shop/'
+      preLoaderRoute: typeof CheckoutShopIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout/shop/thank-you': {
+      id: '/checkout/shop/thank-you'
+      path: '/checkout/shop/thank-you'
+      fullPath: '/checkout/shop/thank-you'
+      preLoaderRoute: typeof CheckoutShopThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dropshipping/catalog/': {
+      id: '/dropshipping/catalog/'
+      path: '/catalog'
+      fullPath: '/dropshipping/catalog/'
+      preLoaderRoute: typeof DropshippingCatalogIndexRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/catalog/$id': {
+      id: '/dropshipping/catalog/$id'
+      path: '/catalog/$id'
+      fullPath: '/dropshipping/catalog/$id'
+      preLoaderRoute: typeof DropshippingCatalogIdRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/catalog/export': {
+      id: '/dropshipping/catalog/export'
+      path: '/catalog/export'
+      fullPath: '/dropshipping/catalog/export'
+      preLoaderRoute: typeof DropshippingCatalogExportRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/catalog/hunting': {
+      id: '/dropshipping/catalog/hunting'
+      path: '/catalog/hunting'
+      fullPath: '/dropshipping/catalog/hunting'
+      preLoaderRoute: typeof DropshippingCatalogHuntingRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/integrations/': {
+      id: '/dropshipping/integrations/'
+      path: '/'
+      fullPath: '/dropshipping/integrations/'
+      preLoaderRoute: typeof DropshippingIntegrationsIndexRouteImport
+      parentRoute: typeof DropshippingIntegrationsRoute
+    }
+    '/dropshipping/orders/': {
+      id: '/dropshipping/orders/'
+      path: '/orders'
+      fullPath: '/dropshipping/orders/'
+      preLoaderRoute: typeof DropshippingOrdersIndexRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/orders/$id': {
+      id: '/dropshipping/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/dropshipping/orders/$id'
+      preLoaderRoute: typeof DropshippingOrdersIdRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/orders/import': {
+      id: '/dropshipping/orders/import'
+      path: '/orders/import'
+      fullPath: '/dropshipping/orders/import'
+      preLoaderRoute: typeof DropshippingOrdersImportRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/orders/new': {
+      id: '/dropshipping/orders/new'
+      path: '/orders/new'
+      fullPath: '/dropshipping/orders/new'
+      preLoaderRoute: typeof DropshippingOrdersNewRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/dropshipping/warehouse/': {
+      id: '/dropshipping/warehouse/'
+      path: '/warehouse'
+      fullPath: '/dropshipping/warehouse/'
+      preLoaderRoute: typeof DropshippingWarehouseIndexRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/partners/_auth/analytics': {
+      id: '/partners/_auth/analytics'
+      path: '/analytics'
+      fullPath: '/partners/analytics'
+      preLoaderRoute: typeof PartnersAuthAnalyticsRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/dashboard': {
+      id: '/partners/_auth/dashboard'
+      path: '/dashboard'
+      fullPath: '/partners/dashboard'
+      preLoaderRoute: typeof PartnersAuthDashboardRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/finance': {
+      id: '/partners/_auth/finance'
+      path: '/finance'
+      fullPath: '/partners/finance'
+      preLoaderRoute: typeof PartnersAuthFinanceRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/orders': {
+      id: '/partners/_auth/orders'
+      path: '/orders'
+      fullPath: '/partners/orders'
+      preLoaderRoute: typeof PartnersAuthOrdersRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/profile': {
+      id: '/partners/_auth/profile'
+      path: '/profile'
+      fullPath: '/partners/profile'
+      preLoaderRoute: typeof PartnersAuthProfileRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/settings': {
+      id: '/partners/_auth/settings'
+      path: '/settings'
+      fullPath: '/partners/settings'
+      preLoaderRoute: typeof PartnersAuthSettingsRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/verification': {
+      id: '/partners/_auth/verification'
+      path: '/verification'
+      fullPath: '/partners/verification'
+      preLoaderRoute: typeof PartnersAuthVerificationRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/admin/': {
+      id: '/partners/admin/'
+      path: '/'
+      fullPath: '/partners/admin/'
+      preLoaderRoute: typeof PartnersAdminIndexRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/connections': {
+      id: '/partners/admin/connections'
+      path: '/connections'
+      fullPath: '/partners/admin/connections'
+      preLoaderRoute: typeof PartnersAdminConnectionsRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/live-products': {
+      id: '/partners/admin/live-products'
+      path: '/live-products'
+      fullPath: '/partners/admin/live-products'
+      preLoaderRoute: typeof PartnersAdminLiveProductsRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/markets': {
+      id: '/partners/admin/markets'
+      path: '/markets'
+      fullPath: '/partners/admin/markets'
+      preLoaderRoute: typeof PartnersAdminMarketsRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/orders': {
+      id: '/partners/admin/orders'
+      path: '/orders'
+      fullPath: '/partners/admin/orders'
+      preLoaderRoute: typeof PartnersAdminOrdersRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/payouts': {
+      id: '/partners/admin/payouts'
+      path: '/payouts'
+      fullPath: '/partners/admin/payouts'
+      preLoaderRoute: typeof PartnersAdminPayoutsRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/supplier-integrations': {
+      id: '/partners/admin/supplier-integrations'
+      path: '/supplier-integrations'
+      fullPath: '/partners/admin/supplier-integrations'
+      preLoaderRoute: typeof PartnersAdminSupplierIntegrationsRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/suppliers': {
+      id: '/partners/admin/suppliers'
+      path: '/suppliers'
+      fullPath: '/partners/admin/suppliers'
+      preLoaderRoute: typeof PartnersAdminSuppliersRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/team': {
+      id: '/partners/admin/team'
+      path: '/team'
+      fullPath: '/partners/admin/team'
+      preLoaderRoute: typeof PartnersAdminTeamRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/wallet/topup/return': {
+      id: '/wallet/topup/return'
+      path: '/wallet/topup/return'
+      fullPath: '/wallet/topup/return'
+      preLoaderRoute: typeof WalletTopupReturnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/noon/events': {
+      id: '/api/public/noon/events'
+      path: '/api/public/noon/events'
+      fullPath: '/api/public/noon/events'
+      preLoaderRoute: typeof ApiPublicNoonEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/noon/run-jobs': {
+      id: '/api/public/noon/run-jobs'
+      path: '/api/public/noon/run-jobs'
+      fullPath: '/api/public/noon/run-jobs'
+      preLoaderRoute: typeof ApiPublicNoonRunJobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/partner-image/$': {
+      id: '/api/public/partner-image/$'
+      path: '/api/public/partner-image/$'
+      fullPath: '/api/public/partner-image/$'
+      preLoaderRoute: typeof ApiPublicPartnerImageSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/shopify/run-jobs': {
+      id: '/api/public/shopify/run-jobs'
+      path: '/api/public/shopify/run-jobs'
+      fullPath: '/api/public/shopify/run-jobs'
+      preLoaderRoute: typeof ApiPublicShopifyRunJobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/shopify/webhook': {
+      id: '/api/public/shopify/webhook'
+      path: '/api/public/shopify/webhook'
+      fullPath: '/api/public/shopify/webhook'
+      preLoaderRoute: typeof ApiPublicShopifyWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ar/category/$top/$sub': {
+      id: '/ar/category/$top/$sub'
+      path: '/$sub'
+      fullPath: '/ar/category/$top/$sub'
+      preLoaderRoute: typeof ArCategoryTopSubRouteImport
+      parentRoute: typeof ArCategoryTopRoute
+    }
+    '/category/$top/$sub/$detail': {
+      id: '/category/$top/$sub/$detail'
+      path: '/$detail'
+      fullPath: '/category/$top/$sub/$detail'
+      preLoaderRoute: typeof CategoryTopSubDetailRouteImport
+      parentRoute: typeof CategoryTopSubRoute
+    }
+    '/dropshipping/integrations/noon/$connectionId': {
+      id: '/dropshipping/integrations/noon/$connectionId'
+      path: '/noon/$connectionId'
+      fullPath: '/dropshipping/integrations/noon/$connectionId'
+      preLoaderRoute: typeof DropshippingIntegrationsNoonConnectionIdRouteImport
+      parentRoute: typeof DropshippingIntegrationsRoute
+    }
+    '/dropshipping/integrations/shopify/$connectionId': {
+      id: '/dropshipping/integrations/shopify/$connectionId'
+      path: '/shopify/$connectionId'
+      fullPath: '/dropshipping/integrations/shopify/$connectionId'
+      preLoaderRoute: typeof DropshippingIntegrationsShopifyConnectionIdRouteImport
+      parentRoute: typeof DropshippingIntegrationsRoute
+    }
+    '/dropshipping/warehouse/release/$id': {
+      id: '/dropshipping/warehouse/release/$id'
+      path: '/warehouse/release/$id'
+      fullPath: '/dropshipping/warehouse/release/$id'
+      preLoaderRoute: typeof DropshippingWarehouseReleaseIdRouteImport
+      parentRoute: typeof DropshippingRouteRoute
+    }
+    '/lovable/email/auth/preview': {
+      id: '/lovable/email/auth/preview'
+      path: '/lovable/email/auth/preview'
+      fullPath: '/lovable/email/auth/preview'
+      preLoaderRoute: typeof LovableEmailAuthPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/auth/webhook': {
+      id: '/lovable/email/auth/webhook'
+      path: '/lovable/email/auth/webhook'
+      fullPath: '/lovable/email/auth/webhook'
+      preLoaderRoute: typeof LovableEmailAuthWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners/_auth/products/': {
+      id: '/partners/_auth/products/'
+      path: '/products'
+      fullPath: '/partners/products/'
+      preLoaderRoute: typeof PartnersAuthProductsIndexRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/products/$id': {
+      id: '/partners/_auth/products/$id'
+      path: '/products/$id'
+      fullPath: '/partners/products/$id'
+      preLoaderRoute: typeof PartnersAuthProductsIdRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/products/drafts': {
+      id: '/partners/_auth/products/drafts'
+      path: '/products/drafts'
+      fullPath: '/partners/products/drafts'
+      preLoaderRoute: typeof PartnersAuthProductsDraftsRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/products/import': {
+      id: '/partners/_auth/products/import'
+      path: '/products/import'
+      fullPath: '/partners/products/import'
+      preLoaderRoute: typeof PartnersAuthProductsImportRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/_auth/products/new': {
+      id: '/partners/_auth/products/new'
+      path: '/products/new'
+      fullPath: '/partners/products/new'
+      preLoaderRoute: typeof PartnersAuthProductsNewRouteImport
+      parentRoute: typeof PartnersAuthRoute
+    }
+    '/partners/admin/applications/': {
+      id: '/partners/admin/applications/'
+      path: '/applications'
+      fullPath: '/partners/admin/applications/'
+      preLoaderRoute: typeof PartnersAdminApplicationsIndexRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/applications/$id': {
+      id: '/partners/admin/applications/$id'
+      path: '/applications/$id'
+      fullPath: '/partners/admin/applications/$id'
+      preLoaderRoute: typeof PartnersAdminApplicationsIdRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/products/': {
+      id: '/partners/admin/products/'
+      path: '/products'
+      fullPath: '/partners/admin/products/'
+      preLoaderRoute: typeof PartnersAdminProductsIndexRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/products/$id': {
+      id: '/partners/admin/products/$id'
+      path: '/products/$id'
+      fullPath: '/partners/admin/products/$id'
+      preLoaderRoute: typeof PartnersAdminProductsIdRouteImport
+      parentRoute: typeof PartnersAdminRoute
+    }
+    '/partners/admin/suppliers/': {
+      id: '/partners/admin/suppliers/'
+      path: '/'
+      fullPath: '/partners/admin/suppliers/'
+      preLoaderRoute: typeof PartnersAdminSuppliersIndexRouteImport
+      parentRoute: typeof PartnersAdminSuppliersRoute
+    }
+    '/partners/admin/suppliers/$id': {
+      id: '/partners/admin/suppliers/$id'
+      path: '/$id'
+      fullPath: '/partners/admin/suppliers/$id'
+      preLoaderRoute: typeof PartnersAdminSuppliersIdRouteImport
+      parentRoute: typeof PartnersAdminSuppliersRoute
+    }
+    '/api/public/partners/channel/orders': {
+      id: '/api/public/partners/channel/orders'
+      path: '/api/public/partners/channel/orders'
+      fullPath: '/api/public/partners/channel/orders'
+      preLoaderRoute: typeof ApiPublicPartnersChannelOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/partners/channel/products': {
+      id: '/api/public/partners/channel/products'
+      path: '/api/public/partners/channel/products'
+      fullPath: '/api/public/partners/channel/products'
+      preLoaderRoute: typeof ApiPublicPartnersChannelProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/partners/channel/pull': {
+      id: '/api/public/partners/channel/pull'
+      path: '/api/public/partners/channel/pull'
+      fullPath: '/api/public/partners/channel/pull'
+      preLoaderRoute: typeof ApiPublicPartnersChannelPullRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/partners/supplier-inventory/pull': {
+      id: '/api/public/partners/supplier-inventory/pull'
+      path: '/api/public/partners/supplier-inventory/pull'
+      fullPath: '/api/public/partners/supplier-inventory/pull'
+      preLoaderRoute: typeof ApiPublicPartnersSupplierInventoryPullRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/partners/supplier-inventory/updates': {
+      id: '/api/public/partners/supplier-inventory/updates'
+      path: '/api/public/partners/supplier-inventory/updates'
+      fullPath: '/api/public/partners/supplier-inventory/updates'
+      preLoaderRoute: typeof ApiPublicPartnersSupplierInventoryUpdatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ar/category/$top/$sub/$detail': {
+      id: '/ar/category/$top/$sub/$detail'
+      path: '/$detail'
+      fullPath: '/ar/category/$top/$sub/$detail'
+      preLoaderRoute: typeof ArCategoryTopSubDetailRouteImport
+      parentRoute: typeof ArCategoryTopSubRoute
+    }
   }
 }
 
+interface AccountRouteRouteChildren {
+  AccountAddressesRoute: typeof AccountAddressesRoute
+  AccountOrdersRoute: typeof AccountOrdersRoute
+  AccountProfileRoute: typeof AccountProfileRoute
+  AccountWishlistRoute: typeof AccountWishlistRoute
+  AccountIndexRoute: typeof AccountIndexRoute
+}
+
+const AccountRouteRouteChildren: AccountRouteRouteChildren = {
+  AccountAddressesRoute: AccountAddressesRoute,
+  AccountOrdersRoute: AccountOrdersRoute,
+  AccountProfileRoute: AccountProfileRoute,
+  AccountWishlistRoute: AccountWishlistRoute,
+  AccountIndexRoute: AccountIndexRoute,
+}
+
+const AccountRouteRouteWithChildren = AccountRouteRoute._addFileChildren(
+  AccountRouteRouteChildren,
+)
+
+interface AdminRouteRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminAuditLogRoute: typeof AdminAuditLogRoute
+  AdminCatalogHubRoute: typeof AdminCatalogHubRoute
+  AdminContactRoute: typeof AdminContactRoute
+  AdminDeliveryRoute: typeof AdminDeliveryRoute
+  AdminEmailsRoute: typeof AdminEmailsRoute
+  AdminHomepageRoute: typeof AdminHomepageRoute
+  AdminInternalHubRoute: typeof AdminInternalHubRoute
+  AdminLabelDesignerRoute: typeof AdminLabelDesignerRoute
+  AdminLabellingRoute: typeof AdminLabellingRoute
+  AdminOpsHubRoute: typeof AdminOpsHubRoute
+  AdminPlanUsageRoute: typeof AdminPlanUsageRoute
+  AdminPlatformsRoute: typeof AdminPlatformsRoute
+  AdminPricingRoute: typeof AdminPricingRoute
+  AdminPromoCodesRoute: typeof AdminPromoCodesRoute
+  AdminQuotesRoute: typeof AdminQuotesRoute
+  AdminReportsRoute: typeof AdminReportsRoute
+  AdminReturnsRoute: typeof AdminReturnsRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminSourcingRoute: typeof AdminSourcingRoute
+  AdminSourcingHubRoute: typeof AdminSourcingHubRoute
+  AdminSunskyRoute: typeof AdminSunskyRoute
+  AdminSuppliersRoute: typeof AdminSuppliersRoute
+  AdminTicketsRoute: typeof AdminTicketsRoute
+  AdminWarehouseRoute: typeof AdminWarehouseRoute
+  AdminWhatsappLogsRoute: typeof AdminWhatsappLogsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminCustomersIdRoute: typeof AdminCustomersIdRoute
+  AdminOrdersIdRoute: typeof AdminOrdersIdRoute
+  AdminProductsIdRoute: typeof AdminProductsIdRoute
+  AdminProductsImportRoute: typeof AdminProductsImportRoute
+  AdminProductsNewRoute: typeof AdminProductsNewRoute
+  AdminCustomersIndexRoute: typeof AdminCustomersIndexRoute
+  AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
+  AdminProductsIndexRoute: typeof AdminProductsIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminAuditLogRoute: AdminAuditLogRoute,
+  AdminCatalogHubRoute: AdminCatalogHubRoute,
+  AdminContactRoute: AdminContactRoute,
+  AdminDeliveryRoute: AdminDeliveryRoute,
+  AdminEmailsRoute: AdminEmailsRoute,
+  AdminHomepageRoute: AdminHomepageRoute,
+  AdminInternalHubRoute: AdminInternalHubRoute,
+  AdminLabelDesignerRoute: AdminLabelDesignerRoute,
+  AdminLabellingRoute: AdminLabellingRoute,
+  AdminOpsHubRoute: AdminOpsHubRoute,
+  AdminPlanUsageRoute: AdminPlanUsageRoute,
+  AdminPlatformsRoute: AdminPlatformsRoute,
+  AdminPricingRoute: AdminPricingRoute,
+  AdminPromoCodesRoute: AdminPromoCodesRoute,
+  AdminQuotesRoute: AdminQuotesRoute,
+  AdminReportsRoute: AdminReportsRoute,
+  AdminReturnsRoute: AdminReturnsRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminSourcingRoute: AdminSourcingRoute,
+  AdminSourcingHubRoute: AdminSourcingHubRoute,
+  AdminSunskyRoute: AdminSunskyRoute,
+  AdminSuppliersRoute: AdminSuppliersRoute,
+  AdminTicketsRoute: AdminTicketsRoute,
+  AdminWarehouseRoute: AdminWarehouseRoute,
+  AdminWhatsappLogsRoute: AdminWhatsappLogsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminCustomersIdRoute: AdminCustomersIdRoute,
+  AdminOrdersIdRoute: AdminOrdersIdRoute,
+  AdminProductsIdRoute: AdminProductsIdRoute,
+  AdminProductsImportRoute: AdminProductsImportRoute,
+  AdminProductsNewRoute: AdminProductsNewRoute,
+  AdminCustomersIndexRoute: AdminCustomersIndexRoute,
+  AdminOrdersIndexRoute: AdminOrdersIndexRoute,
+  AdminProductsIndexRoute: AdminProductsIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
+
+interface DropshippingIntegrationsRouteChildren {
+  DropshippingIntegrationsIndexRoute: typeof DropshippingIntegrationsIndexRoute
+  DropshippingIntegrationsNoonConnectionIdRoute: typeof DropshippingIntegrationsNoonConnectionIdRoute
+  DropshippingIntegrationsShopifyConnectionIdRoute: typeof DropshippingIntegrationsShopifyConnectionIdRoute
+}
+
+const DropshippingIntegrationsRouteChildren: DropshippingIntegrationsRouteChildren =
+  {
+    DropshippingIntegrationsIndexRoute: DropshippingIntegrationsIndexRoute,
+    DropshippingIntegrationsNoonConnectionIdRoute:
+      DropshippingIntegrationsNoonConnectionIdRoute,
+    DropshippingIntegrationsShopifyConnectionIdRoute:
+      DropshippingIntegrationsShopifyConnectionIdRoute,
+  }
+
+const DropshippingIntegrationsRouteWithChildren =
+  DropshippingIntegrationsRoute._addFileChildren(
+    DropshippingIntegrationsRouteChildren,
+  )
+
+interface DropshippingRouteRouteChildren {
+  DropshippingAcceptInviteRoute: typeof DropshippingAcceptInviteRoute
+  DropshippingAddressesRoute: typeof DropshippingAddressesRoute
+  DropshippingBillingRoute: typeof DropshippingBillingRoute
+  DropshippingBrowsedRoute: typeof DropshippingBrowsedRoute
+  DropshippingDeliveryRoute: typeof DropshippingDeliveryRoute
+  DropshippingFavouritesRoute: typeof DropshippingFavouritesRoute
+  DropshippingFulfillmentRoute: typeof DropshippingFulfillmentRoute
+  DropshippingHistoryRoute: typeof DropshippingHistoryRoute
+  DropshippingIntegrationsRoute: typeof DropshippingIntegrationsRouteWithChildren
+  DropshippingInvoicesRoute: typeof DropshippingInvoicesRoute
+  DropshippingLabellingRoute: typeof DropshippingLabellingRoute
+  DropshippingPlanUsageRoute: typeof DropshippingPlanUsageRoute
+  DropshippingProfileRoute: typeof DropshippingProfileRoute
+  DropshippingQuotesRoute: typeof DropshippingQuotesRoute
+  DropshippingReferralsRoute: typeof DropshippingReferralsRoute
+  DropshippingReturnsRoute: typeof DropshippingReturnsRoute
+  DropshippingSourcingRoute: typeof DropshippingSourcingRoute
+  DropshippingTeamRoute: typeof DropshippingTeamRoute
+  DropshippingTemplatesRoute: typeof DropshippingTemplatesRoute
+  DropshippingTicketsRoute: typeof DropshippingTicketsRoute
+  DropshippingWalletRoute: typeof DropshippingWalletRoute
+  DropshippingIndexRoute: typeof DropshippingIndexRoute
+  DropshippingCatalogIdRoute: typeof DropshippingCatalogIdRoute
+  DropshippingCatalogExportRoute: typeof DropshippingCatalogExportRoute
+  DropshippingCatalogHuntingRoute: typeof DropshippingCatalogHuntingRoute
+  DropshippingOrdersIdRoute: typeof DropshippingOrdersIdRoute
+  DropshippingOrdersImportRoute: typeof DropshippingOrdersImportRoute
+  DropshippingOrdersNewRoute: typeof DropshippingOrdersNewRoute
+  DropshippingCatalogIndexRoute: typeof DropshippingCatalogIndexRoute
+  DropshippingOrdersIndexRoute: typeof DropshippingOrdersIndexRoute
+  DropshippingWarehouseIndexRoute: typeof DropshippingWarehouseIndexRoute
+  DropshippingWarehouseReleaseIdRoute: typeof DropshippingWarehouseReleaseIdRoute
+}
+
+const DropshippingRouteRouteChildren: DropshippingRouteRouteChildren = {
+  DropshippingAcceptInviteRoute: DropshippingAcceptInviteRoute,
+  DropshippingAddressesRoute: DropshippingAddressesRoute,
+  DropshippingBillingRoute: DropshippingBillingRoute,
+  DropshippingBrowsedRoute: DropshippingBrowsedRoute,
+  DropshippingDeliveryRoute: DropshippingDeliveryRoute,
+  DropshippingFavouritesRoute: DropshippingFavouritesRoute,
+  DropshippingFulfillmentRoute: DropshippingFulfillmentRoute,
+  DropshippingHistoryRoute: DropshippingHistoryRoute,
+  DropshippingIntegrationsRoute: DropshippingIntegrationsRouteWithChildren,
+  DropshippingInvoicesRoute: DropshippingInvoicesRoute,
+  DropshippingLabellingRoute: DropshippingLabellingRoute,
+  DropshippingPlanUsageRoute: DropshippingPlanUsageRoute,
+  DropshippingProfileRoute: DropshippingProfileRoute,
+  DropshippingQuotesRoute: DropshippingQuotesRoute,
+  DropshippingReferralsRoute: DropshippingReferralsRoute,
+  DropshippingReturnsRoute: DropshippingReturnsRoute,
+  DropshippingSourcingRoute: DropshippingSourcingRoute,
+  DropshippingTeamRoute: DropshippingTeamRoute,
+  DropshippingTemplatesRoute: DropshippingTemplatesRoute,
+  DropshippingTicketsRoute: DropshippingTicketsRoute,
+  DropshippingWalletRoute: DropshippingWalletRoute,
+  DropshippingIndexRoute: DropshippingIndexRoute,
+  DropshippingCatalogIdRoute: DropshippingCatalogIdRoute,
+  DropshippingCatalogExportRoute: DropshippingCatalogExportRoute,
+  DropshippingCatalogHuntingRoute: DropshippingCatalogHuntingRoute,
+  DropshippingOrdersIdRoute: DropshippingOrdersIdRoute,
+  DropshippingOrdersImportRoute: DropshippingOrdersImportRoute,
+  DropshippingOrdersNewRoute: DropshippingOrdersNewRoute,
+  DropshippingCatalogIndexRoute: DropshippingCatalogIndexRoute,
+  DropshippingOrdersIndexRoute: DropshippingOrdersIndexRoute,
+  DropshippingWarehouseIndexRoute: DropshippingWarehouseIndexRoute,
+  DropshippingWarehouseReleaseIdRoute: DropshippingWarehouseReleaseIdRoute,
+}
+
+const DropshippingRouteRouteWithChildren =
+  DropshippingRouteRoute._addFileChildren(DropshippingRouteRouteChildren)
+
+interface DashboardRouteChildren {
+  DashboardSplatRoute: typeof DashboardSplatRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardSplatRoute: DashboardSplatRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
+interface PartnersAuthRouteChildren {
+  PartnersAuthAnalyticsRoute: typeof PartnersAuthAnalyticsRoute
+  PartnersAuthDashboardRoute: typeof PartnersAuthDashboardRoute
+  PartnersAuthFinanceRoute: typeof PartnersAuthFinanceRoute
+  PartnersAuthOrdersRoute: typeof PartnersAuthOrdersRoute
+  PartnersAuthProfileRoute: typeof PartnersAuthProfileRoute
+  PartnersAuthSettingsRoute: typeof PartnersAuthSettingsRoute
+  PartnersAuthVerificationRoute: typeof PartnersAuthVerificationRoute
+  PartnersAuthProductsIdRoute: typeof PartnersAuthProductsIdRoute
+  PartnersAuthProductsDraftsRoute: typeof PartnersAuthProductsDraftsRoute
+  PartnersAuthProductsImportRoute: typeof PartnersAuthProductsImportRoute
+  PartnersAuthProductsNewRoute: typeof PartnersAuthProductsNewRoute
+  PartnersAuthProductsIndexRoute: typeof PartnersAuthProductsIndexRoute
+}
+
+const PartnersAuthRouteChildren: PartnersAuthRouteChildren = {
+  PartnersAuthAnalyticsRoute: PartnersAuthAnalyticsRoute,
+  PartnersAuthDashboardRoute: PartnersAuthDashboardRoute,
+  PartnersAuthFinanceRoute: PartnersAuthFinanceRoute,
+  PartnersAuthOrdersRoute: PartnersAuthOrdersRoute,
+  PartnersAuthProfileRoute: PartnersAuthProfileRoute,
+  PartnersAuthSettingsRoute: PartnersAuthSettingsRoute,
+  PartnersAuthVerificationRoute: PartnersAuthVerificationRoute,
+  PartnersAuthProductsIdRoute: PartnersAuthProductsIdRoute,
+  PartnersAuthProductsDraftsRoute: PartnersAuthProductsDraftsRoute,
+  PartnersAuthProductsImportRoute: PartnersAuthProductsImportRoute,
+  PartnersAuthProductsNewRoute: PartnersAuthProductsNewRoute,
+  PartnersAuthProductsIndexRoute: PartnersAuthProductsIndexRoute,
+}
+
+const PartnersAuthRouteWithChildren = PartnersAuthRoute._addFileChildren(
+  PartnersAuthRouteChildren,
+)
+
+interface PartnersAdminSuppliersRouteChildren {
+  PartnersAdminSuppliersIdRoute: typeof PartnersAdminSuppliersIdRoute
+  PartnersAdminSuppliersIndexRoute: typeof PartnersAdminSuppliersIndexRoute
+}
+
+const PartnersAdminSuppliersRouteChildren: PartnersAdminSuppliersRouteChildren =
+  {
+    PartnersAdminSuppliersIdRoute: PartnersAdminSuppliersIdRoute,
+    PartnersAdminSuppliersIndexRoute: PartnersAdminSuppliersIndexRoute,
+  }
+
+const PartnersAdminSuppliersRouteWithChildren =
+  PartnersAdminSuppliersRoute._addFileChildren(
+    PartnersAdminSuppliersRouteChildren,
+  )
+
+interface PartnersAdminRouteChildren {
+  PartnersAdminConnectionsRoute: typeof PartnersAdminConnectionsRoute
+  PartnersAdminLiveProductsRoute: typeof PartnersAdminLiveProductsRoute
+  PartnersAdminMarketsRoute: typeof PartnersAdminMarketsRoute
+  PartnersAdminOrdersRoute: typeof PartnersAdminOrdersRoute
+  PartnersAdminPayoutsRoute: typeof PartnersAdminPayoutsRoute
+  PartnersAdminSupplierIntegrationsRoute: typeof PartnersAdminSupplierIntegrationsRoute
+  PartnersAdminSuppliersRoute: typeof PartnersAdminSuppliersRouteWithChildren
+  PartnersAdminTeamRoute: typeof PartnersAdminTeamRoute
+  PartnersAdminIndexRoute: typeof PartnersAdminIndexRoute
+  PartnersAdminApplicationsIdRoute: typeof PartnersAdminApplicationsIdRoute
+  PartnersAdminProductsIdRoute: typeof PartnersAdminProductsIdRoute
+  PartnersAdminApplicationsIndexRoute: typeof PartnersAdminApplicationsIndexRoute
+  PartnersAdminProductsIndexRoute: typeof PartnersAdminProductsIndexRoute
+}
+
+const PartnersAdminRouteChildren: PartnersAdminRouteChildren = {
+  PartnersAdminConnectionsRoute: PartnersAdminConnectionsRoute,
+  PartnersAdminLiveProductsRoute: PartnersAdminLiveProductsRoute,
+  PartnersAdminMarketsRoute: PartnersAdminMarketsRoute,
+  PartnersAdminOrdersRoute: PartnersAdminOrdersRoute,
+  PartnersAdminPayoutsRoute: PartnersAdminPayoutsRoute,
+  PartnersAdminSupplierIntegrationsRoute:
+    PartnersAdminSupplierIntegrationsRoute,
+  PartnersAdminSuppliersRoute: PartnersAdminSuppliersRouteWithChildren,
+  PartnersAdminTeamRoute: PartnersAdminTeamRoute,
+  PartnersAdminIndexRoute: PartnersAdminIndexRoute,
+  PartnersAdminApplicationsIdRoute: PartnersAdminApplicationsIdRoute,
+  PartnersAdminProductsIdRoute: PartnersAdminProductsIdRoute,
+  PartnersAdminApplicationsIndexRoute: PartnersAdminApplicationsIndexRoute,
+  PartnersAdminProductsIndexRoute: PartnersAdminProductsIndexRoute,
+}
+
+const PartnersAdminRouteWithChildren = PartnersAdminRoute._addFileChildren(
+  PartnersAdminRouteChildren,
+)
+
+interface PartnersRouteChildren {
+  PartnersAuthRoute: typeof PartnersAuthRouteWithChildren
+  PartnersAdminRoute: typeof PartnersAdminRouteWithChildren
+  PartnersCategoriesRoute: typeof PartnersCategoriesRoute
+  PartnersContactRoute: typeof PartnersContactRoute
+  PartnersForgotPasswordRoute: typeof PartnersForgotPasswordRoute
+  PartnersHowItWorksRoute: typeof PartnersHowItWorksRoute
+  PartnersJoinRoute: typeof PartnersJoinRoute
+  PartnersMarketsRoute: typeof PartnersMarketsRoute
+  PartnersRequirementsRoute: typeof PartnersRequirementsRoute
+  PartnersSigninRoute: typeof PartnersSigninRoute
+  PartnersSignupRoute: typeof PartnersSignupRoute
+  PartnersSupplyModelsRoute: typeof PartnersSupplyModelsRoute
+  PartnersWhoCanSupplyRoute: typeof PartnersWhoCanSupplyRoute
+  PartnersIndexRoute: typeof PartnersIndexRoute
+}
+
+const PartnersRouteChildren: PartnersRouteChildren = {
+  PartnersAuthRoute: PartnersAuthRouteWithChildren,
+  PartnersAdminRoute: PartnersAdminRouteWithChildren,
+  PartnersCategoriesRoute: PartnersCategoriesRoute,
+  PartnersContactRoute: PartnersContactRoute,
+  PartnersForgotPasswordRoute: PartnersForgotPasswordRoute,
+  PartnersHowItWorksRoute: PartnersHowItWorksRoute,
+  PartnersJoinRoute: PartnersJoinRoute,
+  PartnersMarketsRoute: PartnersMarketsRoute,
+  PartnersRequirementsRoute: PartnersRequirementsRoute,
+  PartnersSigninRoute: PartnersSigninRoute,
+  PartnersSignupRoute: PartnersSignupRoute,
+  PartnersSupplyModelsRoute: PartnersSupplyModelsRoute,
+  PartnersWhoCanSupplyRoute: PartnersWhoCanSupplyRoute,
+  PartnersIndexRoute: PartnersIndexRoute,
+}
+
+const PartnersRouteWithChildren = PartnersRoute._addFileChildren(
+  PartnersRouteChildren,
+)
+
+interface CategoryTopSubRouteChildren {
+  CategoryTopSubDetailRoute: typeof CategoryTopSubDetailRoute
+}
+
+const CategoryTopSubRouteChildren: CategoryTopSubRouteChildren = {
+  CategoryTopSubDetailRoute: CategoryTopSubDetailRoute,
+}
+
+const CategoryTopSubRouteWithChildren = CategoryTopSubRoute._addFileChildren(
+  CategoryTopSubRouteChildren,
+)
+
+interface CategoryTopRouteChildren {
+  CategoryTopSubRoute: typeof CategoryTopSubRouteWithChildren
+}
+
+const CategoryTopRouteChildren: CategoryTopRouteChildren = {
+  CategoryTopSubRoute: CategoryTopSubRouteWithChildren,
+}
+
+const CategoryTopRouteWithChildren = CategoryTopRoute._addFileChildren(
+  CategoryTopRouteChildren,
+)
+
+interface ArCategoryTopSubRouteChildren {
+  ArCategoryTopSubDetailRoute: typeof ArCategoryTopSubDetailRoute
+}
+
+const ArCategoryTopSubRouteChildren: ArCategoryTopSubRouteChildren = {
+  ArCategoryTopSubDetailRoute: ArCategoryTopSubDetailRoute,
+}
+
+const ArCategoryTopSubRouteWithChildren =
+  ArCategoryTopSubRoute._addFileChildren(ArCategoryTopSubRouteChildren)
+
+interface ArCategoryTopRouteChildren {
+  ArCategoryTopSubRoute: typeof ArCategoryTopSubRouteWithChildren
+}
+
+const ArCategoryTopRouteChildren: ArCategoryTopRouteChildren = {
+  ArCategoryTopSubRoute: ArCategoryTopSubRouteWithChildren,
+}
+
+const ArCategoryTopRouteWithChildren = ArCategoryTopRoute._addFileChildren(
+  ArCategoryTopRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRouteRoute: AccountRouteRouteWithChildren,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
+  DropshippingRouteRoute: DropshippingRouteRouteWithChildren,
+  CartRoute: CartRoute,
+  CatalogRoute: CatalogRoute,
+  ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
+  NoonSellerServicesKsaRoute: NoonSellerServicesKsaRoute,
+  PartnersRoute: PartnersRouteWithChildren,
+  PricingRoute: PricingRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SearchRoute: SearchRoute,
+  ServicesRoute: ServicesRoute,
+  SignupRoute: SignupRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
+  BlogAmazonFbaLabelingRequirementsGuideRoute:
+    BlogAmazonFbaLabelingRequirementsGuideRoute,
+  BlogAmazonFbaVsNoonFbnSaudiArabiaRoute:
+    BlogAmazonFbaVsNoonFbnSaudiArabiaRoute,
+  BlogCashOnDeliveryEcommerceSaudiArabiaRoute:
+    BlogCashOnDeliveryEcommerceSaudiArabiaRoute,
+  BlogEcommerceWarehousingRiyadhJeddahDammamRoute:
+    BlogEcommerceWarehousingRiyadhJeddahDammamRoute,
+  BlogHowToFindReliableSuppliersAlibaba1688Route:
+    BlogHowToFindReliableSuppliersAlibaba1688Route,
+  BlogHowToImportGoodsFromChinaToSaudiArabiaRoute:
+    BlogHowToImportGoodsFromChinaToSaudiArabiaRoute,
+  BlogHowToSellOnAmazonSaudiArabiaRoute: BlogHowToSellOnAmazonSaudiArabiaRoute,
+  BlogHowToSellOnNoonSaudiArabiaRoute: BlogHowToSellOnNoonSaudiArabiaRoute,
+  BlogHowToStartDropshippingInSaudiArabiaRoute:
+    BlogHowToStartDropshippingInSaudiArabiaRoute,
+  BlogSaberCertificationGuideSaudiArabiaRoute:
+    BlogSaberCertificationGuideSaudiArabiaRoute,
+  BlogSallaVsZidVsShopifySaudiArabiaRoute:
+    BlogSallaVsZidVsShopifySaudiArabiaRoute,
+  BlogSaudiCustomsDutiesVatGuideImportersRoute:
+    BlogSaudiCustomsDutiesVatGuideImportersRoute,
+  BlogSourcingFromChinaToSaudiArabiaGuideRoute:
+    BlogSourcingFromChinaToSaudiArabiaGuideRoute,
+  BlogWhatIs3plFulfillmentSaudiArabiaRoute:
+    BlogWhatIs3plFulfillmentSaudiArabiaRoute,
+  CategoryTopRoute: CategoryTopRouteWithChildren,
+  CheckoutReturnRoute: CheckoutReturnRoute,
+  ProductIdRoute: ProductIdRoute,
+  SellingContactRoute: SellingContactRoute,
+  SellingDropshippingRoute: SellingDropshippingRoute,
+  SellingForgotPasswordRoute: SellingForgotPasswordRoute,
+  SellingFulfillmentRoute: SellingFulfillmentRoute,
+  SellingHowItWorksRoute: SellingHowItWorksRoute,
+  SellingIntegrationsRoute: SellingIntegrationsRoute,
+  SellingMarketplacePreparationRoute: SellingMarketplacePreparationRoute,
+  SellingPackagingLabelingRoute: SellingPackagingLabelingRoute,
+  SellingProductHuntingRoute: SellingProductHuntingRoute,
+  SellingProductSourcingRoute: SellingProductSourcingRoute,
+  SellingSigninRoute: SellingSigninRoute,
+  SellingSignupRoute: SellingSignupRoute,
+  SellingWarehousingRoute: SellingWarehousingRoute,
+  ShopForgotPasswordRoute: ShopForgotPasswordRoute,
+  ShopSigninRoute: ShopSigninRoute,
+  ShopSignupRoute: ShopSignupRoute,
+  ArIndexRoute: ArIndexRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  CategoryIndexRoute: CategoryIndexRoute,
+  CheckoutIndexRoute: CheckoutIndexRoute,
+  SellingIndexRoute: SellingIndexRoute,
+  ApiFnCatalogExportRoute: ApiFnCatalogExportRoute,
+  ApiFnCreateCheckoutRoute: ApiFnCreateCheckoutRoute,
+  ApiFnCreatePortalSessionRoute: ApiFnCreatePortalSessionRoute,
+  ApiFnDownloadImagesRoute: ApiFnDownloadImagesRoute,
+  ApiFnGetStripePriceRoute: ApiFnGetStripePriceRoute,
+  ApiFnManageSubscriptionRoute: ApiFnManageSubscriptionRoute,
+  ApiFnPreviewTransactionalEmailRoute: ApiFnPreviewTransactionalEmailRoute,
+  ApiFnSendResendEmailRoute: ApiFnSendResendEmailRoute,
+  ApiFnSendTicketWhatsappRoute: ApiFnSendTicketWhatsappRoute,
+  ApiFnSendTransactionalEmailRoute: ApiFnSendTransactionalEmailRoute,
+  ApiFnShopCheckoutRoute: ApiFnShopCheckoutRoute,
+  ApiFnSunskyProxyRoute: ApiFnSunskyProxyRoute,
+  ApiFnTryotoProxyRoute: ApiFnTryotoProxyRoute,
+  ApiFnVerifyCheckoutSessionRoute: ApiFnVerifyCheckoutSessionRoute,
+  ApiFnWalletTopupCheckoutRoute: ApiFnWalletTopupCheckoutRoute,
+  ApiPublicAuthEmailHookRoute: ApiPublicAuthEmailHookRoute,
+  ApiPublicHandleEmailSuppressionRoute: ApiPublicHandleEmailSuppressionRoute,
+  ApiPublicHandleEmailUnsubscribeRoute: ApiPublicHandleEmailUnsubscribeRoute,
+  ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
+  ApiPublicProcessEmailOutboxRoute: ApiPublicProcessEmailOutboxRoute,
+  ApiPublicProcessEmailQueueRoute: ApiPublicProcessEmailQueueRoute,
+  ApiPublicProcessScheduledTemplatesRoute:
+    ApiPublicProcessScheduledTemplatesRoute,
+  ApiPublicReconcileStalePaymentsRoute: ApiPublicReconcileStalePaymentsRoute,
+  ApiPublicSendProductDigestRoute: ApiPublicSendProductDigestRoute,
+  ApiPublicSignupRemindersRoute: ApiPublicSignupRemindersRoute,
+  ApiPublicSitemapRoute: ApiPublicSitemapRoute,
+  ApiPublicSunskyCallbackRoute: ApiPublicSunskyCallbackRoute,
+  ApiPublicWahooksTicketWebhookRoute: ApiPublicWahooksTicketWebhookRoute,
+  ApiPublicWebhookPingRoute: ApiPublicWebhookPingRoute,
+  ArCategoryTopRoute: ArCategoryTopRouteWithChildren,
+  ArProductIdRoute: ArProductIdRoute,
+  CheckoutShopThankYouRoute: CheckoutShopThankYouRoute,
+  WalletTopupReturnRoute: WalletTopupReturnRoute,
+  CheckoutShopIndexRoute: CheckoutShopIndexRoute,
+  ApiPublicNoonEventsRoute: ApiPublicNoonEventsRoute,
+  ApiPublicNoonRunJobsRoute: ApiPublicNoonRunJobsRoute,
+  ApiPublicPartnerImageSplatRoute: ApiPublicPartnerImageSplatRoute,
+  ApiPublicShopifyRunJobsRoute: ApiPublicShopifyRunJobsRoute,
+  ApiPublicShopifyWebhookRoute: ApiPublicShopifyWebhookRoute,
+  LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
+  LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
+  ApiPublicPartnersChannelOrdersRoute: ApiPublicPartnersChannelOrdersRoute,
+  ApiPublicPartnersChannelProductsRoute: ApiPublicPartnersChannelProductsRoute,
+  ApiPublicPartnersChannelPullRoute: ApiPublicPartnersChannelPullRoute,
+  ApiPublicPartnersSupplierInventoryPullRoute:
+    ApiPublicPartnersSupplierInventoryPullRoute,
+  ApiPublicPartnersSupplierInventoryUpdatesRoute:
+    ApiPublicPartnersSupplierInventoryUpdatesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

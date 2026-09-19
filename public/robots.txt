@@ -1,14 +1,33 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# https://tejaraa.com/robots.txt
+# Single group keeps precedence simple and predictable.
 User-agent: *
 Allow: /
+
+# The sitemap index links to paginated child sitemaps (?static=1, ?page=N).
+# These Allow rules must stay ABOVE the ?page= trap rule below.
+Allow: /sitemap.xml
+Allow: /sitemap.xml?*
+
+# Block crawler traps (filtered/search URLs and internal API)
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*q=
+Disallow: /*?*page=
+Disallow: /api/
+
+# Explicitly allow assets so Google can render the SPA
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.ico$
+
+# NOTE: /admin and /dashboard are intentionally NOT disallowed here.
+# They are protected by authentication and emit <meta name="robots" content="noindex, nofollow">,
+# which Google can only honor if it is allowed to crawl the page.
+
+Sitemap: https://tejaraa.com/sitemap.xml

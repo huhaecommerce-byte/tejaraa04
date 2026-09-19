@@ -1,0 +1,1 @@
+GRANT EXECUTE ON FUNCTION public.record_page_duration(uuid, integer) TO anon;

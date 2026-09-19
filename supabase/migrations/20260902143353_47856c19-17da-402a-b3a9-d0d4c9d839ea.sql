@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.products_set_created_by() FROM PUBLIC, anon, authenticated;
