@@ -3,6 +3,7 @@ import {
   Handshake, Layers, PackageSearch, Ruler, ScrollText, Search, Store, Truck, UserRound, Warehouse,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import type { TranslationKey } from '@/i18n/dictionary';
 import { supplierCategories } from '@/data/supplierPartners';
 
 /**
@@ -16,117 +17,66 @@ import { supplierCategories } from '@/data/supplierPartners';
 export const supplierApplyRoute = '/partners/signup';
 export const supplierSignInRoute = '/partners/signin';
 
-export const supplierApprovalDisclaimer =
-  'Submitting a supplier application does not guarantee approval or purchase orders. Supplier and product selection depends on commercial, category and operational requirements.';
+export const supplierApprovalDisclaimer: TranslationKey = 'supplier.approvalDisclaimer';
 
 /* ---------------------------------------------------------------- nav ----- */
 
 export interface SupplierNavItem {
-  label: string;
+  label: TranslationKey;
   to: string;
-  blurb: string;
+  blurb: TranslationKey;
 }
 
 export const supplierNavPages: SupplierNavItem[] = [
-  { label: 'Who Can Supply', to: '/partners/who-can-supply', blurb: 'Manufacturers, distributors, wholesalers, importers and brand owners.' },
-  { label: 'Supply Models', to: '/partners/supply-models', blurb: 'The ways Tejaraa works with suppliers.' },
-  { label: 'How It Works', to: '/partners/how-it-works', blurb: 'From application to supplying orders, step by step.' },
-  { label: 'Categories', to: '/partners/categories', blurb: 'Product areas our team reviews today.' },
-  { label: 'Requirements', to: '/partners/requirements', blurb: 'Business, product, catalogue and commercial information.' },
-  { label: 'Markets & Channels', to: '/partners/markets', blurb: 'Where approved products may be offered.' },
+  { label: 'supplier.navPages.whoCanSupply.label', to: '/partners/who-can-supply', blurb: 'supplier.navPages.whoCanSupply.blurb' },
+  { label: 'supplier.navPages.supplyModels.label', to: '/partners/supply-models', blurb: 'supplier.navPages.supplyModels.blurb' },
+  { label: 'supplier.navPages.howItWorks.label', to: '/partners/how-it-works', blurb: 'supplier.navPages.howItWorks.blurb' },
+  { label: 'supplier.navPages.categories.label', to: '/partners/categories', blurb: 'supplier.navPages.categories.blurb' },
+  { label: 'supplier.navPages.requirements.label', to: '/partners/requirements', blurb: 'supplier.navPages.requirements.blurb' },
+  { label: 'supplier.navPages.markets.label', to: '/partners/markets', blurb: 'supplier.navPages.markets.blurb' },
 ];
 
 /* ------------------------------------------------------- how it works ----- */
 
 export interface JourneyStep {
   icon: LucideIcon;
-  title: string;
-  text: string;
-  detail: string[];
+  title: TranslationKey;
+  text: TranslationKey;
+  detail: TranslationKey[];
 }
 
 export const supplierJourney: JourneyStep[] = [
   {
-    icon: ClipboardCheck,
-    title: 'Apply',
-    text: 'Tell us about your company, product categories, brands and supply capability.',
-    detail: [
-      'Register your account and company details',
-      'Choose your business type: wholesaler, distributor, manufacturer, importer or individual trader',
-      'Add the categories and brands you supply',
-    ],
+    icon: ClipboardCheck, title: 'supplier.journey.apply.title', text: 'supplier.journey.apply.text',
+    detail: ['supplier.journey.apply.detail1', 'supplier.journey.apply.detail2', 'supplier.journey.apply.detail3'],
   },
   {
-    icon: FileText,
-    title: 'Business review',
-    text: 'We review basic company and supplier information to understand the business and product fit.',
-    detail: [
-      'Trade licence or company registration',
-      'Owner or authorised person ID',
-      'VAT certificate and brand authorisation where they apply',
-    ],
+    icon: FileText, title: 'supplier.journey.businessReview.title', text: 'supplier.journey.businessReview.text',
+    detail: ['supplier.journey.businessReview.detail1', 'supplier.journey.businessReview.detail2', 'supplier.journey.businessReview.detail3'],
   },
   {
-    icon: FileSpreadsheet,
-    title: 'Share your catalogue',
-    text: 'Send your range in whichever form you already keep it.',
-    detail: [
-      'Excel or CSV product list',
-      'Catalogue PDF, website or online catalogue link',
-      'Brand list, when you supply branded ranges',
-    ],
+    icon: FileSpreadsheet, title: 'supplier.journey.shareCatalogue.title', text: 'supplier.journey.shareCatalogue.text',
+    detail: ['supplier.journey.shareCatalogue.detail1', 'supplier.journey.shareCatalogue.detail2', 'supplier.journey.shareCatalogue.detail3'],
   },
   {
-    icon: Search,
-    title: 'Product review',
-    text: 'Our team looks at which of your products fit what Tejaraa is sourcing.',
-    detail: [
-      'Category relevance and commercial fit',
-      'Availability, stock and lead time',
-      'Product information and documentation',
-      'Operational feasibility for e-commerce orders',
-    ],
+    icon: Search, title: 'supplier.journey.productReview.title', text: 'supplier.journey.productReview.text',
+    detail: ['supplier.journey.productReview.detail1', 'supplier.journey.productReview.detail2', 'supplier.journey.productReview.detail3', 'supplier.journey.productReview.detail4'],
   },
   {
-    icon: ScrollText,
-    title: 'Commercial discussion',
-    text: 'For relevant products, commercial terms and supply requirements are discussed with your company.',
-    detail: [
-      'Supply pricing per product line',
-      'Any minimums you apply and expected lead times',
-      'Terms are agreed with your company, not published here',
-    ],
+    icon: ScrollText, title: 'supplier.journey.commercialDiscussion.title', text: 'supplier.journey.commercialDiscussion.text',
+    detail: ['supplier.journey.commercialDiscussion.detail1', 'supplier.journey.commercialDiscussion.detail2', 'supplier.journey.commercialDiscussion.detail3'],
   },
   {
-    icon: Handshake,
-    title: 'Supplier approval',
-    text: 'If the business and product fit is suitable, you can proceed to the applicable commercial onboarding process.',
-    detail: [
-      'Your supplier account is activated',
-      'Agreed terms are confirmed in writing',
-      'A bank document is requested before any payout',
-    ],
+    icon: Handshake, title: 'supplier.journey.supplierApproval.title', text: 'supplier.journey.supplierApproval.text',
+    detail: ['supplier.journey.supplierApproval.detail1', 'supplier.journey.supplierApproval.detail2', 'supplier.journey.supplierApproval.detail3'],
   },
   {
-    icon: Boxes,
-    title: 'Product onboarding',
-    text: 'Approved products are prepared for the applicable Tejaraa commerce and procurement workflow.',
-    detail: [
-      'Product title, brand and category',
-      'Images and specifications',
-      'Barcode where available',
-      'Supply cost, stock and lead time',
-    ],
+    icon: Boxes, title: 'supplier.journey.productOnboarding.title', text: 'supplier.journey.productOnboarding.text',
+    detail: ['supplier.journey.productOnboarding.detail1', 'supplier.journey.productOnboarding.detail2', 'supplier.journey.productOnboarding.detail3', 'supplier.journey.productOnboarding.detail4'],
   },
   {
-    icon: Truck,
-    title: 'Supply and orders',
-    text: 'Approved products may be supplied according to agreed commercial and operational requirements.',
-    detail: [
-      'Orders and payout requests are handled in your supplier account',
-      'Stock and availability kept up to date',
-      'Products can be added to the catalogue over time',
-    ],
+    icon: Truck, title: 'supplier.journey.supplyOrders.title', text: 'supplier.journey.supplyOrders.text',
+    detail: ['supplier.journey.supplyOrders.detail1', 'supplier.journey.supplyOrders.detail2', 'supplier.journey.supplyOrders.detail3'],
   },
 ];
 
@@ -135,60 +85,42 @@ export const supplierJourney: JourneyStep[] = [
 export interface SupplierTypeDetail {
   id: string;
   icon: LucideIcon;
-  title: string;
-  bestFor: string;
-  intro: string;
-  points: string[];
+  title: TranslationKey;
+  bestFor: TranslationKey;
+  intro: TranslationKey;
+  points: TranslationKey[];
 }
 
 export const supplierTypeDetails: SupplierTypeDetail[] = [
   {
-    id: 'manufacturers',
-    icon: Factory,
-    title: 'Manufacturers',
-    bestFor: 'Direct product supply and production-backed catalogues.',
-    intro: 'Supply products directly from your own production or brand-controlled inventory.',
-    points: ['Direct availability from production', 'Catalogue depth across your own lines', 'Product specifications and documentation at source', 'Own-brand products need no brand authorisation'],
+    id: 'manufacturers', icon: Factory,
+    title: 'supplier.typeDetails.manufacturers.title', bestFor: 'supplier.typeDetails.manufacturers.bestFor', intro: 'supplier.typeDetails.manufacturers.intro',
+    points: ['supplier.typeDetails.manufacturers.point1', 'supplier.typeDetails.manufacturers.point2', 'supplier.typeDetails.manufacturers.point3', 'supplier.typeDetails.manufacturers.point4'],
   },
   {
-    id: 'distributors',
-    icon: Truck,
-    title: 'Authorised distributors',
-    bestFor: 'Established branded product ranges.',
-    intro: 'Authorised or established distributors can supply branded product ranges through their existing regional distribution network.',
-    points: ['Branded ranges you already distribute', 'Brand authorisation reviewed where the brand requires it', 'Existing stock and replenishment cycles', 'Product lines agreed one by one'],
+    id: 'distributors', icon: Truck,
+    title: 'supplier.typeDetails.distributors.title', bestFor: 'supplier.typeDetails.distributors.bestFor', intro: 'supplier.typeDetails.distributors.intro',
+    points: ['supplier.typeDetails.distributors.point1', 'supplier.typeDetails.distributors.point2', 'supplier.typeDetails.distributors.point3', 'supplier.typeDetails.distributors.point4'],
   },
   {
-    id: 'wholesalers',
-    icon: Warehouse,
-    title: 'Wholesalers',
-    bestFor: 'Broad multi-brand catalogue supply.',
-    intro: 'Wholesalers may provide broad catalogue access and competitive supply across relevant product categories.',
-    points: ['Multi-brand and multi-category ranges', 'Share a wider catalogue so we can identify the fit', 'Not every wholesale catalogue will be accepted', 'Stock held in your own warehouse'],
+    id: 'wholesalers', icon: Warehouse,
+    title: 'supplier.typeDetails.wholesalers.title', bestFor: 'supplier.typeDetails.wholesalers.bestFor', intro: 'supplier.typeDetails.wholesalers.intro',
+    points: ['supplier.typeDetails.wholesalers.point1', 'supplier.typeDetails.wholesalers.point2', 'supplier.typeDetails.wholesalers.point3', 'supplier.typeDetails.wholesalers.point4'],
   },
   {
-    id: 'importers',
-    icon: Globe2,
-    title: 'Importers',
-    bestFor: 'Product ranges already landed in supported markets.',
-    intro: 'Regional importers can present product ranges already available in the markets we serve.',
-    points: ['Products already imported and in stock locally', 'Import and compliance documentation where it applies', 'Reliable replenishment on repeat lines'],
+    id: 'importers', icon: Globe2,
+    title: 'supplier.typeDetails.importers.title', bestFor: 'supplier.typeDetails.importers.bestFor', intro: 'supplier.typeDetails.importers.intro',
+    points: ['supplier.typeDetails.importers.point1', 'supplier.typeDetails.importers.point2', 'supplier.typeDetails.importers.point3'],
   },
   {
-    id: 'brand-owners',
-    icon: BadgeCheck,
-    title: 'Brand owners',
-    bestFor: 'Expanding owned product lines.',
-    intro: 'Brand owners can introduce their own products and expand distribution through the Tejaraa commerce channels that fit them.',
-    points: ['Introduce your own product lines for review', 'Keep brand and product information consistent', 'Add new lines to the catalogue over time'],
+    id: 'brand-owners', icon: BadgeCheck,
+    title: 'supplier.typeDetails.brandOwners.title', bestFor: 'supplier.typeDetails.brandOwners.bestFor', intro: 'supplier.typeDetails.brandOwners.intro',
+    points: ['supplier.typeDetails.brandOwners.point1', 'supplier.typeDetails.brandOwners.point2', 'supplier.typeDetails.brandOwners.point3'],
   },
   {
-    id: 'individual-traders',
-    icon: UserRound,
-    title: 'Individual traders',
-    bestFor: 'Small trading businesses and freelancers.',
-    intro: 'Registering as an individual or freelancer is supported in the application, with a licence uploaded where you have one.',
-    points: ['Register as Individual / Freelancer', 'Same product and catalogue review applies', 'Documents requested according to your setup'],
+    id: 'individual-traders', icon: UserRound,
+    title: 'supplier.typeDetails.individualTraders.title', bestFor: 'supplier.typeDetails.individualTraders.bestFor', intro: 'supplier.typeDetails.individualTraders.intro',
+    points: ['supplier.typeDetails.individualTraders.point1', 'supplier.typeDetails.individualTraders.point2', 'supplier.typeDetails.individualTraders.point3'],
   },
 ];
 
@@ -197,63 +129,51 @@ export const supplierTypeDetails: SupplierTypeDetail[] = [
 export interface SupplyModelDetail {
   id: string;
   icon: LucideIcon;
-  title: string;
-  bestFor: string;
-  intro: string;
-  points: string[];
+  title: TranslationKey;
+  bestFor: TranslationKey;
+  intro: TranslationKey;
+  points: TranslationKey[];
 }
 
 export const supplyModelDetails: SupplyModelDetail[] = [
   {
-    id: 'wholesale-supply',
-    icon: Warehouse,
-    title: 'Wholesale supply',
-    bestFor: 'Suppliers who can supply approved products in agreed quantities.',
-    intro: 'Supply approved products based on agreed pricing, stock and commercial terms.',
-    points: ['Products approved line by line', 'Supply against agreed requirements', 'Stock held in your own warehouse'],
+    id: 'wholesale-supply', icon: Warehouse,
+    title: 'supplier.modelDetails.wholesaleSupply.title', bestFor: 'supplier.modelDetails.wholesaleSupply.bestFor', intro: 'supplier.modelDetails.wholesaleSupply.intro',
+    points: ['supplier.modelDetails.wholesaleSupply.point1', 'supplier.modelDetails.wholesaleSupply.point2', 'supplier.modelDetails.wholesaleSupply.point3'],
   },
   {
-    id: 'brand-supply',
-    icon: Truck,
-    title: 'Distributor and brand supply',
-    bestFor: 'Distributors and brand owners with authorised ranges.',
-    intro: 'Supply established brand catalogues or authorised product ranges through your distribution business.',
-    points: ['Branded ranges reviewed with authorisation where required', 'Consistent product information per brand', 'Ranges extended as the relationship develops'],
+    id: 'brand-supply', icon: Truck,
+    title: 'supplier.modelDetails.brandSupply.title', bestFor: 'supplier.modelDetails.brandSupply.bestFor', intro: 'supplier.modelDetails.brandSupply.intro',
+    points: ['supplier.modelDetails.brandSupply.point1', 'supplier.modelDetails.brandSupply.point2', 'supplier.modelDetails.brandSupply.point3'],
   },
   {
-    id: 'catalogue-supply',
-    icon: Boxes,
-    title: 'Catalogue-based supply',
-    bestFor: 'Suppliers with many SKUs across several categories.',
-    intro: 'Share a broader catalogue so Tejaraa can identify products relevant to its current sourcing requirements.',
-    points: ['Send the full range instead of picking items yourself', 'We shortlist products that match current demand', 'More products can be reviewed later'],
+    id: 'catalogue-supply', icon: Boxes,
+    title: 'supplier.modelDetails.catalogueSupply.title', bestFor: 'supplier.modelDetails.catalogueSupply.bestFor', intro: 'supplier.modelDetails.catalogueSupply.intro',
+    points: ['supplier.modelDetails.catalogueSupply.point1', 'supplier.modelDetails.catalogueSupply.point2', 'supplier.modelDetails.catalogueSupply.point3'],
   },
   {
-    id: 'purchase-order-supply',
-    icon: ScrollText,
-    title: 'Purchase order supply',
-    bestFor: 'Approved suppliers on agreed product lines.',
-    intro: 'Where applicable, supply may be managed through approved purchase orders under agreed terms.',
-    points: ['Orders appear in your supplier account', 'Quantities confirmed per order, not guaranteed in advance', 'Payout requests follow the agreed process'],
+    id: 'purchase-order-supply', icon: ScrollText,
+    title: 'supplier.modelDetails.purchaseOrderSupply.title', bestFor: 'supplier.modelDetails.purchaseOrderSupply.bestFor', intro: 'supplier.modelDetails.purchaseOrderSupply.intro',
+    points: ['supplier.modelDetails.purchaseOrderSupply.point1', 'supplier.modelDetails.purchaseOrderSupply.point2', 'supplier.modelDetails.purchaseOrderSupply.point3'],
   },
 ];
 
 /* ------------------------------------------------------------ categories -- */
 
 export interface CategoryDetail {
-  name: string;
-  examples: string;
+  name: TranslationKey;
+  examples: TranslationKey;
 }
 
-export const categoryExamples: Record<string, string> = {
-  Electronics: 'Consumer electronics, audio, small devices, TV and remote accessories.',
-  'Mobile accessories': 'Cases, chargers, cables, screen protectors and related accessories.',
-  'Home & kitchen': 'Household items, kitchenware, storage and small appliances.',
-  'Health & beauty': 'Personal care, skincare, hair care and grooming products.',
-  'Fashion accessories': 'Bags, watches, belts, eyewear and everyday accessories.',
-  'Automotive accessories': 'Car care, interior accessories and in-car electronics.',
-  'Food & beverage': 'Packaged food, drinks and shelf-stable grocery lines.',
-  'Packaging & supplies': 'Packaging materials, labels, cartons and operational supplies.',
+export const categoryExamples: Partial<Record<TranslationKey, TranslationKey>> = {
+  'supplier.categoriesList.electronics.name': 'supplier.categoryExamples.electronics',
+  'supplier.categoriesList.mobile.name': 'supplier.categoryExamples.mobile',
+  'supplier.categoriesList.home.name': 'supplier.categoryExamples.home',
+  'supplier.categoriesList.beauty.name': 'supplier.categoryExamples.beauty',
+  'supplier.categoriesList.fashion.name': 'supplier.categoryExamples.fashion',
+  'supplier.categoriesList.automotive.name': 'supplier.categoryExamples.automotive',
+  'supplier.categoriesList.food.name': 'supplier.categoryExamples.food',
+  'supplier.categoriesList.packaging.name': 'supplier.categoryExamples.packaging',
 };
 
 export const supplierCategoryCards = supplierCategories.map((category) => ({
@@ -265,84 +185,39 @@ export const supplierCategoryCards = supplierCategories.map((category) => ({
 
 export interface RequirementGroup {
   icon: LucideIcon;
-  title: string;
-  intro: string;
-  items: string[];
-  note?: string;
+  title: TranslationKey;
+  intro: TranslationKey;
+  items: TranslationKey[];
+  note?: TranslationKey;
 }
 
 export const requirementGroups: RequirementGroup[] = [
   {
-    icon: Building2,
-    title: 'Business requirements',
-    intro: 'What we need to understand your company.',
-    items: [
-      'Registered company with a trade licence or company registration',
-      'Owner or authorised person ID',
-      'Business contact person, email and phone',
-      'Individual traders and freelancers can apply, with a licence where they have one',
-    ],
+    icon: Building2, title: 'supplier.requirementGroups.business.title', intro: 'supplier.requirementGroups.business.intro',
+    items: ['supplier.requirementGroups.business.item1', 'supplier.requirementGroups.business.item2', 'supplier.requirementGroups.business.item3', 'supplier.requirementGroups.business.item4'],
   },
   {
-    icon: FileText,
-    title: 'Documentation',
-    intro: 'Documents are requested according to your setup and products.',
-    items: [
-      'Trade licence or company registration — required',
-      'Owner or authorised person ID — required',
-      'VAT certificate — where your business is VAT registered',
-      'Brand authorisation — for branded products where the brand requires it',
-      'Company bank document — before your first payout, not at application',
-    ],
-    note: 'Suppliers are expected to provide genuine, legally marketable products and the applicable product documentation.',
+    icon: FileText, title: 'supplier.requirementGroups.documentation.title', intro: 'supplier.requirementGroups.documentation.intro',
+    items: ['supplier.requirementGroups.documentation.item1', 'supplier.requirementGroups.documentation.item2', 'supplier.requirementGroups.documentation.item3', 'supplier.requirementGroups.documentation.item4', 'supplier.requirementGroups.documentation.item5'],
+    note: 'supplier.requirementGroups.documentation.note',
   },
   {
-    icon: PackageSearch,
-    title: 'Product information',
-    intro: 'Product details we review, and later use for onboarding.',
-    items: [
-      'Product title and brand',
-      'Category',
-      'Barcode (EAN / UPC) where available',
-      'Product images',
-      'Specifications and packaging details',
-      'Country of origin where relevant',
-    ],
+    icon: PackageSearch, title: 'supplier.requirementGroups.productInfo.title', intro: 'supplier.requirementGroups.productInfo.intro',
+    items: ['supplier.requirementGroups.productInfo.item1', 'supplier.requirementGroups.productInfo.item2', 'supplier.requirementGroups.productInfo.item3', 'supplier.requirementGroups.productInfo.item4', 'supplier.requirementGroups.productInfo.item5', 'supplier.requirementGroups.productInfo.item6'],
   },
   {
-    icon: FileSpreadsheet,
-    title: 'Catalogue information',
-    intro: 'Send your range in the format you already keep it in.',
-    items: [
-      'Excel or CSV product list',
-      'Catalogue PDF',
-      'Website or online catalogue link',
-      'Brand list for branded ranges',
-    ],
-    note: 'Products are uploaded in the supplier workspace after approval — no public upload is needed to apply.',
+    icon: FileSpreadsheet, title: 'supplier.requirementGroups.catalogueInfo.title', intro: 'supplier.requirementGroups.catalogueInfo.intro',
+    items: ['supplier.requirementGroups.catalogueInfo.item1', 'supplier.requirementGroups.catalogueInfo.item2', 'supplier.requirementGroups.catalogueInfo.item3', 'supplier.requirementGroups.catalogueInfo.item4'],
+    note: 'supplier.requirementGroups.catalogueInfo.note',
   },
   {
-    icon: Ruler,
-    title: 'Commercial information',
-    intro: 'Commercial details are discussed per product line during review.',
-    items: [
-      'Supply cost and currency',
-      'Any minimum order quantity you apply — suppliers set their own, there is no single Tejaraa MOQ',
-      'Available stock',
-      'Lead time for replenishment',
-    ],
-    note: 'Margins, payment cycles and purchase volumes are agreed with your company and are not published here.',
+    icon: Ruler, title: 'supplier.requirementGroups.commercialInfo.title', intro: 'supplier.requirementGroups.commercialInfo.intro',
+    items: ['supplier.requirementGroups.commercialInfo.item1', 'supplier.requirementGroups.commercialInfo.item2', 'supplier.requirementGroups.commercialInfo.item3', 'supplier.requirementGroups.commercialInfo.item4'],
+    note: 'supplier.requirementGroups.commercialInfo.note',
   },
   {
-    icon: Layers,
-    title: 'Operational capability',
-    intro: 'What keeps supply working once products are live.',
-    items: [
-      'Stock and availability kept up to date',
-      'Order preparation within the agreed lead time',
-      'Packing suitable for e-commerce shipping',
-      'Confirmed warehouse address for collection or handover',
-    ],
+    icon: Layers, title: 'supplier.requirementGroups.operational.title', intro: 'supplier.requirementGroups.operational.intro',
+    items: ['supplier.requirementGroups.operational.item1', 'supplier.requirementGroups.operational.item2', 'supplier.requirementGroups.operational.item3', 'supplier.requirementGroups.operational.item4'],
   },
 ];
 
@@ -350,22 +225,20 @@ export const requirementGroups: RequirementGroup[] = [
 
 export interface MarketChannel {
   icon: LucideIcon;
-  title: string;
-  text: string;
+  title: TranslationKey;
+  text: TranslationKey;
 }
 
 export const marketChannels: MarketChannel[] = [
-  { icon: Store, title: 'Tejaraa Shop', text: 'Approved products can be offered to retail customers on the Tejaraa storefront.' },
-  { icon: Truck, title: 'Sellers we supply', text: 'Products can be supplied to e-commerce sellers using Tejaraa sourcing and fulfilment services.' },
-  { icon: Globe2, title: 'Business buyers', text: 'Wholesale quantities can be offered to business buyers in the markets we serve.' },
+  { icon: Store, title: 'supplier.channelsList.shop.title', text: 'supplier.marketChannels.shop.text' },
+  { icon: Truck, title: 'supplier.channelsList.sellers.title', text: 'supplier.marketChannels.sellers.text' },
+  { icon: Globe2, title: 'supplier.channelsList.businessBuyers.title', text: 'supplier.channelsList.businessBuyers.text' },
 ];
 
-export const marketRegions = [
-  { name: 'Saudi Arabia', text: 'Our primary market for e-commerce demand and supplier partnerships.' },
-  { name: 'United Arab Emirates', text: 'Supplier registration and supply conversations are supported.' },
-  { name: 'Wider GCC', text: 'Kuwait, Qatar, Bahrain and Oman are supported in supplier registration.' },
+export const marketRegions: { name: TranslationKey; text: TranslationKey }[] = [
+  { name: 'supplier.marketRegions.saudi.name', text: 'supplier.marketRegions.saudi.text' },
+  { name: 'supplier.marketRegions.uae.name', text: 'supplier.marketRegions.uae.text' },
+  { name: 'supplier.marketRegions.gcc.name', text: 'supplier.marketRegions.gcc.text' },
 ];
 
-export const marketNote =
-  "Approved products may be considered for Tejaraa's supported sales channels based on category, commercial and operational fit. Placement on any channel is not guaranteed.";
-
+export const marketNote: TranslationKey = 'supplier.marketNote';
