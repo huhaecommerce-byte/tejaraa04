@@ -1,0 +1,108 @@
+import { useState } from 'react';
+import { Outlet, Navigate, Link, useLocation } from '@/lib/router-compat';
+import { Clock, ShieldAlert, XCircle } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
+import { useAgency } from '@/hooks/useAgency';
+import { agencyNavigation } from '@/config/navigation';
+import { CommandDeck } from '@/components/layout/CommandDeck';
+import { Menu } from 'lucide-react';
+
+const StatusCard = ({
+  icon, title, text, action,
+}: { icon: React.ReactNode; title: string; text: string; action?: React.ReactNode }) => (
+  <div className="min-h-screen flex items-center justify-center bg-[hsl(var(--muted)/0.4)] px-4">
+    <div className="max-w-md w-full rounded-2xl border bg-card p-8 text-center shadow-sm">
+      <div className="mx-auto h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+        {icon}
+      </div>
+      <h2 className="text-lg font-bold mb-2">{title}</h2>
+      <p className="text-sm text-muted-foreground mb-6">{text}</p>
+      {action}
+    </div>
+  </div>
+);
+
+const AgencyLayout = () => {
+  const { user, isLoading } = useAuth();
+  const { agency, isLoading: agencyLoading } = useAgency();
+  const location = useLocation();
+  const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  if (isLoading || agencyLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="space-y-4 w-64">
+          <Skeleton className="h-8 w-full" />
+          <Skeleton className="h-4 w-3/4" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) return <Navigate to="/agency/signin" replace />;
+
+  if (!agency?.ok) {
+    return (
+      <StatusCard
+        icon={<ShieldAlert className="h-6 w-6" />}
+        title="No partner account yet"
+        text="You are signed in, but this account is not registered as a Tejaraa agency partner."
+        action={<Button asChild><Link to="/agency/apply">Apply to the programme</Link></Button>}
+      />
+    );
+  }
+
+  if (agency.status === 'pending') {
+    return (
+      <StatusCard
+        icon={<Clock className="h-6 w-6" />}
+        title="Application under review"
+        text="Our team is reviewing your application. You will get an email as soon as it is approved, and your invite link appears here straight away."
+        action={<Button variant="outline" asChild><Link to="/">Back to Tejaraa</Link></Button>}
+      />
+    );
+  }
+
+  if (agency.status === 'rejected' || agency.status === 'suspended') {
+    return (
+      <StatusCard
+        icon={<XCircle className="h-6 w-6" />}
+        title={agency.status === 'rejected' ? 'Application not approved' : 'Account suspended'}
+        text="Please contact the Tejaraa partnerships team if you think this is a mistake."
+        action={<Button variant="outline" asChild><Link to="/contact">Contact us</Link></Button>}
+      />
+    );
+  }
+
+  return (
+    <div className="min-h-screen w-full bg-[hsl(var(--muted)/0.4)]" key={location.pathname}>
+      <CommandDeck
+        sections={agencyNavigation}
+        variant="customer"
+        collapsed={collapsed}
+        onToggle={() => setCollapsed((c) => !c)}
+        mobileOpen={mobileOpen}
+        onMobileClose={() => setMobileOpen(false)}
+      />
+      <button
+        onClick={() => setMobileOpen(true)}
+        aria-label="Open menu"
+        className="lg:hidden fixed top-3 left-3 z-30 h-10 w-10 rounded-full bg-white/95 backdrop-blur shadow-md ring-1 ring-border/60 inline-flex items-center justify-center text-foreground/80"
+      >
+        <Menu className="h-5 w-5" />
+      </button>
+      <div className={`${collapsed ? 'lg:ml-[64px]' : 'lg:ml-[260px]'} flex flex-col min-h-screen transition-[margin] duration-300`}>
+        <main className="flex-1 px-3 md:px-6 pt-16 lg:pt-6 pb-24 md:pb-8">
+          <div className="max-w-[1200px] mx-auto space-y-4 md:space-y-6">
+            <Outlet />
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default AgencyLayout;

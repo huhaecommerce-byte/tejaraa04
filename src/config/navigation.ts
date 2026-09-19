@@ -3,7 +3,7 @@ import {
   TicketIcon, User, Settings, Users, CreditCard, MessageSquare, Globe, Palette,
   Box, Package, LayoutGrid, Search, Inbox, BarChart3, Factory, Undo2,
   ScrollText, Boxes, Warehouse, Cog, Briefcase, Cloud, ShoppingBasket, Coins,
-  ListChecks, Activity, Webhook, Flame, Plug,
+  ListChecks, Activity, Webhook, Flame, Plug, Share2, Handshake,
 } from 'lucide-react';
 
 import type { AdminModuleKey } from './adminModules';
@@ -53,6 +53,23 @@ export const customerNavigation: NavSection[] = [
       { title: 'Wallet & Billing', url: '/dropshipping/billing', icon: Wallet },
       { title: 'Support & Tickets', url: '/dropshipping/tickets', icon: TicketIcon },
       { title: 'Profile & Plan', url: '/dropshipping/profile', icon: User },
+    ],
+  },
+];
+
+export const agencyNavigation: NavSection[] = [
+  {
+    id: 'agency',
+    label: 'Agency Portal',
+    icon: LayoutDashboard,
+    accent: 'teal',
+    items: [
+      { title: 'Dashboard', url: '/agency/portal', icon: LayoutDashboard },
+      { title: 'My Invite Link', url: '/agency/portal/link', icon: Share2 },
+      { title: 'My Dropshippers', url: '/agency/portal/clients', icon: Users },
+      { title: 'Earnings', url: '/agency/portal/earnings', icon: Coins },
+      { title: 'Payouts', url: '/agency/portal/payouts', icon: Wallet },
+      { title: 'Profile', url: '/agency/portal/profile', icon: User },
     ],
   },
 ];
@@ -133,6 +150,15 @@ export const adminNavigation: NavSection[] = [
       { title: 'Support Tickets', url: '/admin/tickets', icon: TicketIcon, badgeKey: 'tickets', module: 'tickets' },
       { title: 'Reports', url: '/admin/reports', icon: BarChart3, module: 'reports' },
       { title: 'Visitor Analytics', url: '/admin/analytics', icon: Activity, module: 'analytics' },
+      {
+        title: 'Agencies & VAs',
+        url: '/admin/agencies',
+        icon: Handshake,
+        module: 'agencies',
+        children: [
+          { title: 'Agency Payouts', url: '/admin/agency-payouts', module: 'agencies' },
+        ],
+      },
     ],
   },
   {

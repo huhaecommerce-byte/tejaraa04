@@ -4,7 +4,7 @@
 export type AdminModuleKey =
   | 'orders' | 'labelling' | 'delivery' | 'warehouse' | 'returns'
   | 'sourcing' | 'quotes'
-  | 'customers' | 'tickets' | 'reports' | 'analytics'
+  | 'customers' | 'tickets' | 'reports' | 'analytics' | 'agencies'
   | 'catalog' | 'suppliers' | 'platforms' | 'label-designer'
   | 'pricing' | 'promo' | 'homepage' | 'contact' | 'audit' | 'settings' | 'emails'
   | 'sunsky';
@@ -32,6 +32,7 @@ export const ADMIN_MODULES: AdminModule[] = [
   { key: 'tickets',     label: 'Support Tickets', group: 'People' },
   { key: 'reports',     label: 'Reports',        group: 'People' },
   { key: 'analytics',   label: 'Visitor Analytics', group: 'People' },
+  { key: 'agencies',    label: 'Agencies & VAs', group: 'People' },
 
   // Catalog
   { key: 'catalog',         label: 'Products',       group: 'Catalog' },
@@ -71,6 +72,7 @@ export function moduleForRoute(pathname: string, tab: string | null): AdminModul
   if (pathname.startsWith('/admin/analytics')) return 'analytics';
   if (pathname.startsWith('/admin/emails'))    return 'emails';
   if (pathname.startsWith('/admin/tickets'))   return 'tickets';
+  if (pathname.startsWith('/admin/agencies') || pathname.startsWith('/admin/agency-payouts')) return 'agencies';
 
   if (pathname.startsWith('/admin/orders/'))   return 'orders';
 
