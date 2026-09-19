@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { supabase } from '@/integrations/supabase/client';
 import { sar } from '@/hooks/useAgency';
 import { Users } from 'lucide-react';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 interface ClientRow {
   client_user_id: string;
@@ -16,6 +17,7 @@ interface ClientRow {
 }
 
 export default function AgencyClients() {
+  const { t } = useLocale();
   const [rows, setRows] = useState<ClientRow[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,29 +31,29 @@ export default function AgencyClients() {
   return (
     <>
       <PageHeader
-        title="My dropshippers"
-        highlight="dropshippers"
-        subtitle="Everyone who joined Tejaraa through your invite link."
+        title={t('agency.clients.title')}
+        highlight={t('agency.clients.highlight')}
+        subtitle={t('agency.clients.subtitle')}
       />
       <Card>
         <CardContent className="p-0">
           {loading ? (
-            <p className="p-8 text-center text-sm text-muted-foreground">Loading…</p>
+            <p className="p-8 text-center text-sm text-muted-foreground">{t('agency.clients.loading')}</p>
           ) : rows.length === 0 ? (
             <div className="p-12 text-center">
               <Users className="mx-auto mb-3 h-8 w-8 text-muted-foreground" />
               <p className="text-sm text-muted-foreground">
-                No dropshippers yet. Share your invite link to get started.
+                {t('agency.clients.empty')}
               </p>
             </div>
           ) : (
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Dropshipper</TableHead>
-                  <TableHead>Joined</TableHead>
-                  <TableHead className="text-right">Orders</TableHead>
-                  <TableHead className="text-right">You earned</TableHead>
+                  <TableHead>{t('agency.clients.colDropshipper')}</TableHead>
+                  <TableHead>{t('agency.clients.colJoined')}</TableHead>
+                  <TableHead className="text-right">{t('agency.clients.colOrders')}</TableHead>
+                  <TableHead className="text-right">{t('agency.clients.colEarned')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
