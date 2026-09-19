@@ -9,6 +9,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import { ArrowRight, CheckCircle2, Loader2, MailCheck } from 'lucide-react';
 import { sendSignupOtp, verifySignupOtp } from '@/lib/signupOtp.functions';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 const empty = {
   company_name: '',
@@ -19,6 +20,7 @@ const empty = {
 };
 
 export default function AgencyApply() {
+  const { t } = useLocale();
   const { user, isLoading, refreshUser } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState(empty);
@@ -54,11 +56,11 @@ export default function AgencyApply() {
       !form.phone.trim() ||
       !form.email.trim()
     ) {
-      toast.error('Please fill in every field — all fields are required.');
+      toast.error(t('agency.apply.errorFillAll'));
       return;
     }
     if (!user && form.password.length < 8) {
-      toast.error('Choose a password of at least 8 characters.');
+      toast.error(t('agency.apply.errorPasswordLength'));
       return;
     }
     setSubmitting(true);
@@ -79,12 +81,12 @@ export default function AgencyApply() {
           // Email confirmation is on: verify with a 4-digit code, same as seller signup.
           await sendSignupOtp({ data: { email: form.email.trim() } });
           setStep('otp');
-          toast.success(`We sent a 4-digit code to ${form.email.trim()}`);
+          toast.success(t('agency.apply.toastCodeSent', { email: form.email.trim() }));
           return;
         }
         await refreshUser();
       }
-      if (!userId) throw new Error('Could not create your account');
+      if (!userId) throw new Error(t('agency.apply.errorCreateAccount'));
 
       const { error: insertError } = await supabase.from('agency_profiles').insert({
         user_id: userId,
@@ -100,7 +102,7 @@ export default function AgencyApply() {
       setDone(true);
       toast.success('Your partner account is ready.');
     } catch (err: any) {
-      toast.error(err?.message || 'Could not send your application.');
+      toast.error(err?.message || t('agency.apply.errorSendApplication'));
     } finally {
       setSubmitting(false);
     }
@@ -130,14 +132,14 @@ export default function AgencyApply() {
       });
       if (error) throw error;
       const userId = data.user?.id;
-      if (!userId) throw new Error('Could not create your account');
+      if (!userId) throw new Error(t('agency.apply.errorCreateAccount'));
       await saveProfile(userId);
       await refreshUser();
       setDone(true);
-      toast.success('Your partner account is ready.');
+      toast.success(t('agency.apply.toastAccountReady'));
     } catch (err: any) {
       setCode('');
-      toast.error(err?.message || 'Invalid or expired code');
+      toast.error(err?.message || t('agency.apply.errorInvalidCode'));
     } finally {
       setVerifying(false);
     }

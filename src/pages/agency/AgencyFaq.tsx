@@ -1,40 +1,43 @@
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
 import { AgencyBreadcrumbs, AgencyCTA, AgencyPageHero } from '@/components/agency/sections';
 import { ServiceFAQ } from '@/components/seller/service';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { HelpCircle } from 'lucide-react';
 
-const faqs = [
-  { q: 'Does it cost anything to join?', a: 'No. The programme is completely free and there is no minimum number of sellers you have to bring.' },
-  { q: 'How are my sellers linked to me?', a: 'Every approved partner gets a unique code and invite link. A dropshipper who signs up through it is permanently linked to your account.' },
-  { q: 'How long do I keep earning from a seller?', a: 'For as long as they keep ordering. There is no 30 or 90 day cut-off — the link is for the lifetime of the account.' },
-  { q: 'What exactly is the commission calculated on?', a: 'It is a percentage of the profit Tejaraa makes on the order: the sale price minus the cost of the products, line by line.' },
-  { q: 'When can I withdraw?', a: 'Commission becomes available once the order is delivered and the return window closes. When your available balance passes the minimum payout, you can request a withdrawal from the portal.' },
-  { q: 'What happens if an order is cancelled or returned?', a: 'The matching commission is reversed automatically, so your balance always reflects orders that actually completed.' },
-  { q: 'Can I see what my sellers are doing?', a: 'You see the sellers linked to you, their order activity and exactly what each order earned you. Personal contact details stay private.' },
-  { q: 'How long does approval take?', a: 'Most applications are reviewed within two working days. You get an email as soon as a decision is made.' },
-  { q: 'Can I join from outside Saudi Arabia?', a: 'Yes. Partners can be based anywhere; payouts are made in SAR to the bank details on your partner profile.' },
-  { q: 'Is this the same as the customer referral programme?', a: 'No. The customer referral programme gives shoppers credit. The agency programme pays ongoing commission on seller orders and is reviewed and approved separately.' },
-];
-
 export default function AgencyFaq() {
+  const { t } = useLocale();
+
+  const faqs = [
+    { q: t('agency.faq.q1'), a: t('agency.faq.a1') },
+    { q: t('agency.faq.q2'), a: t('agency.faq.a2') },
+    { q: t('agency.faq.q3'), a: t('agency.faq.a3') },
+    { q: t('agency.faq.q4'), a: t('agency.faq.a4') },
+    { q: t('agency.faq.q5'), a: t('agency.faq.a5') },
+    { q: t('agency.faq.q6'), a: t('agency.faq.a6') },
+    { q: t('agency.faq.q7'), a: t('agency.faq.a7') },
+    { q: t('agency.faq.q8'), a: t('agency.faq.a8') },
+    { q: t('agency.faq.q9'), a: t('agency.faq.a9') },
+    { q: t('agency.faq.q10'), a: t('agency.faq.a10') },
+  ];
+
   return (
     <AgencyPublicShell>
-      <AgencyBreadcrumbs items={[{ label: 'FAQ' }]} />
+      <AgencyBreadcrumbs items={[{ label: t('agency.faq.crumb') }]} />
       <AgencyPageHero
         icon={HelpCircle}
-        eyebrow="FAQ"
-        title="Questions partners ask"
-        lead="Everything about joining, attribution, commission and payouts in one place."
-        tags={['Joining', 'Commission', 'Payouts']}
+        eyebrow={t('agency.faq.eyebrow')}
+        title={t('agency.faq.heroTitle')}
+        lead={t('agency.faq.heroLead')}
+        tags={[t('agency.faq.tagJoining'), t('agency.faq.tagCommission'), t('agency.faq.tagPayouts')]}
       />
 
-      <ServiceFAQ items={faqs} title="Frequently asked questions" />
+      <ServiceFAQ items={faqs} title={t('agency.faq.title')} />
 
       <AgencyCTA
         variant="dark"
-        title="Still have a question?"
-        text="Apply to the programme and our partnerships team will walk you through everything before you go live."
-        primaryLabel="Apply to join"
+        title={t('agency.faq.ctaTitle')}
+        text={t('agency.faq.ctaText')}
+        primaryLabel={t('agency.bits.applyToJoin')}
         primaryTo="/agency/apply"
       />
     </AgencyPublicShell>
