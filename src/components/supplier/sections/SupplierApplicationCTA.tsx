@@ -3,12 +3,10 @@ import { ArrowRight, FileText, ShieldCheck, Warehouse } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SupplierContainer } from '@/components/supplier/common/SupplierContainer';
 import { supplierApplyPath } from '@/data/supplierPartners';
+import { useLocale } from '@/i18n/LocaleProvider';
 
-const prepare = [
-  { icon: FileText, text: 'Company details and trade licence' },
-  { icon: ShieldCheck, text: 'Owner or authorised person ID' },
-  { icon: Warehouse, text: 'Warehouse city and address' },
-];
+const prepareIcons = [FileText, ShieldCheck, Warehouse];
+const prepareKeys = ['prepareLicence', 'prepareId', 'prepareWarehouse'] as const;
 
 interface SupplierApplicationCTAProps {
   variant?: 'light' | 'dark';
@@ -20,7 +18,9 @@ interface SupplierApplicationCTAProps {
 export function SupplierApplicationCTA({
   variant = 'light', title, text, showChecklist = false,
 }: SupplierApplicationCTAProps) {
+  const { t } = useLocale();
   const dark = variant === 'dark';
+  const prepare = prepareKeys.map((key, index) => ({ icon: prepareIcons[index], text: t(`supplier.cta.${key}` as const) }));
   return (
     <section id="apply" className={`scroll-mt-28 py-11 lg:py-14 ${dark ? 'bg-retail-dark-green' : 'bg-retail-light-green/50'}`}>
       <SupplierContainer>
@@ -36,7 +36,7 @@ export function SupplierApplicationCTA({
                 : 'bg-retail-green font-semibold text-white hover:bg-retail-dark-green'}
             >
               <Link to={supplierApplyPath}>
-                Become a Supplier
+                {t('supplier.cta.becomeSupplier')}
                 <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden />
               </Link>
             </Button>
@@ -48,7 +48,7 @@ export function SupplierApplicationCTA({
                 ? 'border-white/30 bg-transparent font-semibold text-white hover:bg-white/10 hover:text-white'
                 : 'border-retail-green/35 bg-white font-semibold text-retail-dark-green hover:bg-white'}
             >
-              <Link to="/partners/contact">Talk to Tejaraa</Link>
+              <Link to="/partners/contact">{t('supplier.cta.talkToTejaraa')}</Link>
             </Button>
           </div>
 

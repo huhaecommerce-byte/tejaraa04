@@ -1,6 +1,7 @@
 import { Link } from '@/lib/router-compat';
 import { ChevronRight } from 'lucide-react';
 import { SupplierContainer } from './SupplierContainer';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export interface SupplierCrumb {
   label: string;
@@ -9,9 +10,10 @@ export interface SupplierCrumb {
 
 /** Compact supplier breadcrumb: Suppliers > Requirements */
 export function SupplierBreadcrumbs({ items }: { items: SupplierCrumb[] }) {
-  const trail: SupplierCrumb[] = [{ label: 'Suppliers', to: '/partners' }, ...items];
+  const { t } = useLocale();
+  const trail: SupplierCrumb[] = [{ label: t('supplier.common.breadcrumbRoot'), to: '/partners' }, ...items];
   return (
-    <nav aria-label="Breadcrumb" className="border-b border-retail-border bg-white">
+    <nav aria-label={t('supplier.common.breadcrumbAria')} className="border-b border-retail-border bg-white">
       <SupplierContainer>
         <ol className="flex flex-wrap items-center gap-1 py-2.5 text-xs text-retail-muted sm:text-[0.8125rem]">
           {trail.map((crumb, index) => {

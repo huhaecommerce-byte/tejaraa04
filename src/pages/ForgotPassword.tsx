@@ -7,10 +7,12 @@ import { Sparkles, ShieldCheck, Zap, Users, ArrowRight, ArrowLeft, MailCheck } f
 import { toast } from 'sonner';
 import { BrandLogo } from '@/components/BrandLogo';
 import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 type Audience = 'shop' | 'dropshipping';
 
 const ForgotPassword = ({ audience = 'shop' }: { audience?: Audience }) => {
+  const { t } = useLocale();
   const isDropship = audience === 'dropshipping';
   const signinHref = isDropship ? '/selling/signin' : '/shop/signin';
   const [email, setEmail] = useState('');
@@ -27,7 +29,7 @@ const ForgotPassword = ({ audience = 'shop' }: { audience?: Audience }) => {
       if (error) throw error;
       setSent(true);
     } catch (err: any) {
-      toast.error(err.message || 'Failed to send reset link');
+      toast.error(err.message || (isDropship ? 'Failed to send reset link' : t('shopx.forgot.toastFailed')));
     } finally {
       setSubmitting(false);
     }
@@ -52,38 +54,38 @@ const ForgotPassword = ({ audience = 'shop' }: { audience?: Audience }) => {
             : "mx-auto w-12 h-12 rounded-full bg-retail-light-green flex items-center justify-center mb-4"}>
             <MailCheck className={isDropship ? "h-7 w-7 text-emerald-600" : "h-5 w-5 text-retail-dark-green"} />
           </div>
-          <h1 className="text-2xl font-extrabold tracking-tight">Check your inbox</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight">{isDropship ? 'Check your inbox' : t('shopx.forgot.checkInbox')}</h1>
           <p className="text-muted-foreground mt-2 text-sm">
-            We sent a password reset link to <span className="font-semibold text-foreground">{email}</span>. Follow the link to set a new password.
+            {isDropship ? (<>We sent a password reset link to <span className="font-semibold text-foreground">{email}</span>. Follow the link to set a new password.</>) : t('shopx.forgot.sentLink', { email })}
           </p>
           <Link to={signinHref} className="btn-pill-primary w-full text-base md:text-sm group min-h-11 md:min-h-12 mt-6 inline-flex">
-            Back to sign in <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            {isDropship ? 'Back to sign in' : t('shopx.forgot.backToSignIn')} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <button type="button" onClick={() => setSent(false)} className="mt-3 text-sm text-muted-foreground hover:text-foreground">
-            Use a different email
+            {isDropship ? 'Use a different email' : t('shopx.forgot.useDifferentEmail')}
           </button>
         </div>
       ) : (
         <>
           <div className="mb-5 lg:mb-8">
-            <h1 className="text-3xl font-extrabold tracking-tight">{isDropship ? 'Reset your password' : 'Forgot password?'}</h1>
-            <p className="text-muted-foreground mt-2">{isDropship ? 'Enter your business email and we\'ll send you a secure reset link.' : 'Enter your email and we\'ll send you a reset link.'}</p>
+            <h1 className="text-3xl font-extrabold tracking-tight">{isDropship ? 'Reset your password' : t('shopx.forgot.title')}</h1>
+            <p className="text-muted-foreground mt-2">{isDropship ? 'Enter your business email and we\'ll send you a secure reset link.' : t('shopx.forgot.subtitle')}</p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-3.5 lg:space-y-4">
             <div>
-              <Label>Email</Label>
-              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder={isDropship ? "seller@example.com" : "you@example.com"} required className="focus-glow rounded-xl mt-1.5 h-11 md:h-10 text-base md:text-sm" />
+              <Label>{isDropship ? 'Email' : t('shopx.forgot.email')}</Label>
+              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder={isDropship ? "seller@example.com" : t('shopx.forgot.emailPlaceholder')} required className="focus-glow rounded-xl mt-1.5 h-11 md:h-10 text-base md:text-sm" />
             </div>
             <button type="submit" className="btn-pill-primary w-full text-base md:text-sm group min-h-11 md:min-h-12 active:scale-[0.98] transition-transform" disabled={submitting}>
               {submitting ? (
-                <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sending...</span>
+                <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />{isDropship ? 'Sending...' : t('shopx.forgot.sending')}</span>
               ) : (
-                <>Send reset link <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
+                <>{isDropship ? 'Send reset link' : t('shopx.forgot.sendResetLink')} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
               )}
             </button>
           </form>
           <p className="text-center text-sm text-muted-foreground mt-5 lg:mt-6">
-            Remembered it? <Link to={signinHref} className="text-primary font-semibold hover:underline">Sign in</Link>
+            {isDropship ? 'Remembered it?' : t('shopx.forgot.rememberedIt')} <Link to={signinHref} className="text-primary font-semibold hover:underline">{isDropship ? 'Sign in' : t('shopx.forgot.signIn')}</Link>
           </p>
         </>
       )}

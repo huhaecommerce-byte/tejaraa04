@@ -4,6 +4,7 @@ import { SupplierBreadcrumbs, type SupplierCrumb } from './SupplierBreadcrumbs';
 import { SupplierPageHero } from './SupplierPageHero';
 import { RelatedSupplierPages } from './RelatedSupplierPages';
 import { SupplierApplicationCTA } from '@/components/supplier/sections';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 interface SupplierContentPageProps {
   crumbs: SupplierCrumb[];
@@ -24,6 +25,7 @@ export function SupplierContentPage({
   crumbs, eyebrow, title, intro, primary, secondary, visual,
   currentPath, showRelated = true, cta, children,
 }: SupplierContentPageProps) {
+  const { t } = useLocale();
   return (
     <SupplierPublicShell>
       <SupplierBreadcrumbs items={crumbs} />
@@ -39,8 +41,8 @@ export function SupplierContentPage({
       {cta === null ? null : (
         <SupplierApplicationCTA
           variant="dark"
-          title={cta?.title ?? 'Become a Tejaraa supplier'}
-          text={cta?.text ?? 'Tell us about your company and product catalogue to start the supplier review process.'}
+          title={cta?.title ?? t('supplier.common.defaultCtaTitle')}
+          text={cta?.text ?? t('supplier.common.defaultCtaText')}
         />
       )}
       {showRelated ? <RelatedSupplierPages {...(currentPath ? { current: currentPath } : {})} /> : null}

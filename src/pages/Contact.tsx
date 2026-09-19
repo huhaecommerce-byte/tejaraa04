@@ -1,4 +1,5 @@
 import { JsonLd } from '@/components/JsonLd';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
 import { SellerPublicShell } from '@/components/seller/shell/SellerPublicShell';
 import { SupplierPublicShell } from '@/components/supplier/shell/SupplierPublicShell';
@@ -83,20 +84,21 @@ function ConfettiEffect({ show, containerRef }: { show: boolean; containerRef: R
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />;
 }
 
-const responseBadges = [
-  { icon: Clock, label: 'Response within 24 hours' },
-  { icon: MessageCircle, label: 'Live chat available' },
+const responseBadgeDefs = [
+  { icon: Clock, key: 'shopx.contact.responseTime' as const },
+  { icon: MessageCircle, key: 'shopx.contact.liveChat' as const },
 ];
 
 type ContactItem = { icon: React.FC<{ className?: string }>; label: string; value: string; color: string; region: string };
 
-const REGION_META: Record<string, { label: string; flag: string }> = {
-  KSA: { label: 'Saudi Arabia', flag: '🇸🇦' },
-  UAE: { label: 'United Arab Emirates', flag: '🇦🇪' },
+const REGION_META: Record<string, { labelKey: 'shopx.contact.saudiArabia' | 'shopx.contact.uae'; flag: string }> = {
+  KSA: { labelKey: 'shopx.contact.saudiArabia', flag: '🇸🇦' },
+  UAE: { labelKey: 'shopx.contact.uae', flag: '🇦🇪' },
 };
 
 const Contact = ({ audience = 'shop' }: { audience?: ContactAudience }) => {
   const Shell = audience === 'selling' ? SellerPublicShell : audience === 'partners' ? SupplierPublicShell : RetailPublicShell;
+  const { t } = useLocale();
   const { toast } = useToast();
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const formSection = useInView();
@@ -145,9 +147,9 @@ const Contact = ({ audience = 'shop' }: { audience?: ContactAudience }) => {
       message: form.message.trim(),
     });
     setSubmitting(false);
-    if (error) { toast({ title: 'Error', description: 'Failed to send message. Please try again.', variant: 'destructive' }); return; }
+    if (error) { toast({ title: t('shopx.contact.errorTitle'), description: t('shopx.contact.errorDescription'), variant: 'destructive' }); return; }
     setShowConfetti(true);
-    toast({ title: '🎉 Message sent!', description: 'We\'ll get back to you within 24 hours.' });
+    toast({ title: t('shopx.contact.successTitle'), description: t('shopx.contact.successDescription') });
     setForm({ name: '', email: '', subject: '', message: '' });
     setTimeout(() => setShowConfetti(false), 2500);
   };
@@ -190,19 +192,18 @@ const Contact = ({ audience = 'shop' }: { audience?: ContactAudience }) => {
 
         <div className="relative mx-auto max-w-7xl px-4 pt-8 md:pt-16 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md px-3 sm:px-4 py-1.5 text-xs sm:text-sm text-white font-medium mb-4 sm:mb-6 opacity-0 animate-fade-in-up">
-            <Sparkles className="h-4 w-4 text-emerald-300" /> We're Here to Help
+            <Sparkles className="h-4 w-4 text-emerald-300" /> {t('shopx.contact.hereToHelp')}
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold leading-[1.05] tracking-tight text-white max-w-4xl mx-auto opacity-0 animate-fade-in-up stagger-1">
-            Get in <span className="scribble-underline text-gradient-light">touch</span>{' '}
-            <span className="text-outline-accent">today</span>.
+            {t('shopx.contact.getInTouch')}
           </h1>
           <p className="mt-5 sm:mt-7 text-base md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-in-up stagger-2" style={{ animationFillMode: 'forwards' }}>
-            Have a question or need help? Our team is ready to assist you within 24 hours.
+            {t('shopx.contact.heroDescription')}
           </p>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-5 sm:mt-7 opacity-0 animate-fade-in-up stagger-3" style={{ animationFillMode: 'forwards' }}>
-            {responseBadges.map((b, i) => (
+            {responseBadgeDefs.map((b, i) => (
               <Badge key={i} variant="outline" className="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm gap-2 bg-white/10 backdrop-blur-md border-white/25 text-white">
-                <b.icon className="h-3.5 w-3.5 text-emerald-300" /> {b.label}
+                <b.icon className="h-3.5 w-3.5 text-emerald-300" /> {t(b.key)}
               </Badge>
             ))}
           </div>
@@ -220,15 +221,17 @@ const Contact = ({ audience = 'shop' }: { audience?: ContactAudience }) => {
         <div ref={formSection.ref} className="relative grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           <div className="space-y-6">
             {regionKeys.map((rk, ri) => {
-              const meta = REGION_META[rk] ?? { label: rk, flag: '🌍' };
+              const meta = REGION_META[rk];
+              const regionLabel = meta ? t(meta.labelKey) : rk;
+              const flag = meta?.flag ?? '🌍';
               return (
                 <div key={rk} className="space-y-3">
                   <div
                     className={`flex items-center gap-2 px-1 transition-all duration-500 ${formSection.isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                     style={{ transitionDelay: formSection.isInView ? `${ri * 120}ms` : '0ms' }}
                   >
-                    <span className="text-xl leading-none" aria-hidden>{meta.flag}</span>
-                    <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">{meta.label}</h2>
+                    <span className="text-xl leading-none" aria-hidden>{flag}</span>
+                    <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">{regionLabel}</h2>
                     <span className="flex-1 h-px bg-border/60" />
                   </div>
                   {groupedContacts[rk].map((item, i) => (
@@ -261,19 +264,19 @@ const Contact = ({ audience = 'shop' }: { audience?: ContactAudience }) => {
             <ConfettiEffect show={showConfetti} containerRef={formCardRef as React.RefObject<HTMLDivElement>} />
             <CardHeader className="relative">
               <CardTitle className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" /> Send a Message
+                <Sparkles className="h-5 w-5 text-primary" /> {t('shopx.contact.sendMessage')}
               </CardTitle>
             </CardHeader>
             <CardContent className="relative">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div><Label htmlFor="contact-name">Name</Label><Input id="contact-name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required className="focus-glow rounded-xl mt-1.5 h-12 md:h-10 text-base md:text-sm" /></div>
-                  <div><Label htmlFor="contact-email">Email</Label><Input id="contact-email" type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required className="focus-glow rounded-xl mt-1.5 h-12 md:h-10 text-base md:text-sm" /></div>
+                  <div><Label htmlFor="contact-name">{t('shopx.contact.name')}</Label><Input id="contact-name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required className="focus-glow rounded-xl mt-1.5 h-12 md:h-10 text-base md:text-sm" /></div>
+                  <div><Label htmlFor="contact-email">{t('shopx.contact.email')}</Label><Input id="contact-email" type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required className="focus-glow rounded-xl mt-1.5 h-12 md:h-10 text-base md:text-sm" /></div>
                 </div>
-                <div><Label htmlFor="contact-subject">Subject</Label><Input id="contact-subject" value={form.subject} onChange={e => setForm({ ...form, subject: e.target.value })} required className="focus-glow rounded-xl mt-1.5 h-12 md:h-10 text-base md:text-sm" /></div>
-                <div><Label htmlFor="contact-message">Message</Label><Textarea id="contact-message" rows={5} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} required className="focus-glow rounded-xl mt-1.5 text-base md:text-sm" /></div>
+                <div><Label htmlFor="contact-subject">{t('shopx.contact.subject')}</Label><Input id="contact-subject" value={form.subject} onChange={e => setForm({ ...form, subject: e.target.value })} required className="focus-glow rounded-xl mt-1.5 h-12 md:h-10 text-base md:text-sm" /></div>
+                <div><Label htmlFor="contact-message">{t('shopx.contact.message')}</Label><Textarea id="contact-message" rows={5} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} required className="focus-glow rounded-xl mt-1.5 text-base md:text-sm" /></div>
                 <button type="submit" disabled={submitting} className="btn-pill-primary w-full sm:w-auto justify-center text-base md:text-sm group disabled:opacity-60 min-h-12 active:scale-[0.98] transition-transform">
-                  {submitting ? 'Sending...' : <>Send Message <Sparkles className="h-4 w-4 transition-transform group-hover:rotate-12" /></>}
+                  {submitting ? t('shopx.contact.sending') : <>{t('shopx.contact.send')} <Sparkles className="h-4 w-4 transition-transform group-hover:rotate-12" /></>}
                 </button>
               </form>
             </CardContent>

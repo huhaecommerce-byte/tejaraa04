@@ -2,15 +2,17 @@ import { SupplierContainer } from '@/components/supplier/common/SupplierContaine
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { SupplierSectionLink } from '@/components/supplier/common/SupplierSectionLink';
 import { supplierChannels } from '@/data/supplierPartners';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SupplierChannels() {
+  const { t } = useLocale();
   return (
     <section id="channels" className="scroll-mt-28 border-y border-retail-border bg-white py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
-          eyebrow="Sales channels"
-          title="Where approved products may be sold"
-          description="Approved products may be offered through the Tejaraa sales channels that fit them. Which channels apply is agreed with your company — it is not automatic for every product."
+          eyebrow={t('supplier.channels.eyebrow')}
+          title={t('supplier.channels.title')}
+          description={t('supplier.channels.description')}
         />
         <div className="mt-7 grid gap-4 lg:grid-cols-3">
           {supplierChannels.map((channel) => (
@@ -23,7 +25,7 @@ export function SupplierChannels() {
             </article>
           ))}
         </div>
-        <SupplierSectionLink align="left" to="/partners/markets" label="See markets and channels in detail" />
+        <SupplierSectionLink align="left" to="/partners/markets" label={t('supplier.channels.sectionLink')} />
       </SupplierContainer>
     </section>
   );

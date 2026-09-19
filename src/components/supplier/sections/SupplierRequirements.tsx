@@ -2,15 +2,17 @@ import { SupplierContainer } from '@/components/supplier/common/SupplierContaine
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { SupplierSectionLink } from '@/components/supplier/common/SupplierSectionLink';
 import { supplierRequirements } from '@/data/supplierPartners';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SupplierRequirements() {
+  const { t } = useLocale();
   return (
     <section id="requirements" className="scroll-mt-28 py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
-          eyebrow="Requirements"
-          title="What we look for in suppliers"
-          description="Nothing here is a surprise later — these are the details the supplier application and review actually ask for."
+          eyebrow={t('supplier.requirements.eyebrow')}
+          title={t('supplier.requirements.title')}
+          description={t('supplier.requirements.description')}
         />
         <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {supplierRequirements.map((item) => (
@@ -26,10 +28,9 @@ export function SupplierRequirements() {
           ))}
         </div>
         <p className="mt-6 max-w-3xl text-sm leading-6 text-retail-muted">
-          Brand authorisation may be required for applicable branded products. Commercial terms such as pricing,
-          order sizes and payment are agreed with your company during review.
+          {t('supplier.requirements.note')}
         </p>
-        <SupplierSectionLink align="left" to="/partners/requirements" label="See the full requirement list" />
+        <SupplierSectionLink align="left" to="/partners/requirements" label={t('supplier.requirements.sectionLink')} />
       </SupplierContainer>
     </section>
   );
