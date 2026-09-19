@@ -2,18 +2,20 @@ import { SupplierContainer } from '@/components/supplier/common/SupplierContaine
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { SupplierSectionLink } from '@/components/supplier/common/SupplierSectionLink';
 import { supplierJourney } from '@/data/supplierPages';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 /** Landing summary of the canonical supplier journey (full detail at /partners/how-it-works). */
 export function SupplierProcess() {
+  const { t } = useLocale();
   return (
     <section id="how-it-works" className="scroll-mt-28 bg-retail-dark-green py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
           onDark
           align="center"
-          eyebrow="Process"
-          title="How supplier partnership works"
-          description={`${supplierJourney.length} stages from your application to supplying orders. Our team stays in touch at each one.`}
+          eyebrow={t('supplier.process.eyebrow')}
+          title={t('supplier.process.title')}
+          description={t('supplier.process.description', { count: supplierJourney.length })}
         />
         {/* Desktop: connected columns. Mobile: vertical timeline. */}
         <ol className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -25,18 +27,18 @@ export function SupplierProcess() {
                 </span>
                 <span aria-hidden className="mt-2 w-px flex-1 bg-white/15 xl:mt-0 xl:hidden" />
                 <span className="hidden text-xs font-bold tracking-[0.14em] text-white/50 xl:inline">
-                  STEP {index + 1}
+                  {t('supplier.process.step', { n: index + 1 })}
                 </span>
               </div>
               <div className="min-w-0 pb-1">
-                <span className="text-xs font-bold tracking-[0.14em] text-white/50 xl:hidden">STEP {index + 1}</span>
+                <span className="text-xs font-bold tracking-[0.14em] text-white/50 xl:hidden">{t('supplier.process.step', { n: index + 1 })}</span>
                 <h3 className="mt-1 text-base font-bold text-white xl:mt-0">{step.title}</h3>
                 <p className="mt-1.5 text-sm leading-6 text-white/70">{step.text}</p>
               </div>
             </li>
           ))}
         </ol>
-        <SupplierSectionLink onDark to="/partners/how-it-works" label="See what happens at each stage" />
+        <SupplierSectionLink onDark to="/partners/how-it-works" label={t('supplier.process.sectionLink')} />
       </SupplierContainer>
     </section>
   );

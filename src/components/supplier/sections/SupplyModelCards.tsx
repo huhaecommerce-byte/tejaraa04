@@ -3,16 +3,18 @@ import { SupplierContainer } from '@/components/supplier/common/SupplierContaine
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { SupplierSectionLink } from '@/components/supplier/common/SupplierSectionLink';
 import { supplyModels } from '@/data/supplierPartners';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SupplyModelCards() {
+  const { t } = useLocale();
   return (
     <section id="supply-models" className="scroll-mt-28 py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
           align="center"
-          eyebrow="Supply models"
-          title="Ways to supply Tejaraa"
-          description="The shape of the relationship depends on your products and your business. These are the models we work with."
+          eyebrow={t('supplier.supplyModels.eyebrow')}
+          title={t('supplier.supplyModels.title')}
+          description={t('supplier.supplyModels.description')}
         />
         <div className="mt-7 grid gap-4 lg:grid-cols-3">
           {supplyModels.map((model) => (
@@ -33,7 +35,7 @@ export function SupplyModelCards() {
             </article>
           ))}
         </div>
-        <SupplierSectionLink to="/partners/supply-models" label="Compare all supply models" />
+        <SupplierSectionLink to="/partners/supply-models" label={t('supplier.supplyModels.sectionLink')} />
       </SupplierContainer>
     </section>
   );

@@ -2,51 +2,59 @@ import { Link } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
 import { RetailContainer } from '@/components/retail/common/RetailContainer';
 import { Handshake } from 'lucide-react';
+import { useLocale } from '@/i18n/LocaleProvider';
+import type { TranslationKey } from '@/i18n/dictionary';
+
+interface FooterLink {
+  labelKey: TranslationKey;
+  to: string;
+}
 
 interface FooterGroup {
-  title: string;
-  links: { label: string; to: string }[];
+  titleKey: TranslationKey;
+  links: FooterLink[];
 }
 
 const groups: FooterGroup[] = [
   {
-    title: 'The programme',
+    titleKey: 'agency.footer.groupProgramme',
     links: [
-      { label: 'Programme overview', to: '/agency' },
-      { label: 'How it works', to: '/agency/how-it-works' },
-      { label: 'Commission & payouts', to: '/agency/commission' },
-      { label: 'Who can join', to: '/agency/who-can-join' },
+      { labelKey: 'agency.footer.programmeOverview', to: '/agency' },
+      { labelKey: 'agency.footer.howItWorks', to: '/agency/how-it-works' },
+      { labelKey: 'agency.footer.commissionPayouts', to: '/agency/commission' },
+      { labelKey: 'agency.footer.whoCanJoin', to: '/agency/who-can-join' },
     ],
   },
   {
-    title: 'Partners',
+    titleKey: 'agency.footer.groupPartners',
     links: [
-      { label: 'Apply to join', to: '/agency/apply' },
-      { label: 'Partner sign in', to: '/agency/signin' },
-      { label: 'Partner portal', to: '/agency/portal' },
-      { label: 'Reset password', to: '/agency/forgot-password' },
+      { labelKey: 'agency.footer.applyToJoin', to: '/agency/apply' },
+      { labelKey: 'agency.footer.partnerSignIn', to: '/agency/signin' },
+      { labelKey: 'agency.footer.partnerPortal', to: '/agency/portal' },
+      { labelKey: 'agency.footer.resetPassword', to: '/agency/forgot-password' },
     ],
   },
   {
-    title: 'Resources',
+    titleKey: 'agency.footer.groupResources',
     links: [
-      { label: 'Frequently asked questions', to: '/agency/faq' },
-      { label: 'Guides & articles', to: '/blog' },
-      { label: 'بالعربية', to: '/ar/agency' },
+      { labelKey: 'agency.footer.faq', to: '/agency/faq' },
+      { labelKey: 'agency.footer.guidesArticles', to: '/blog' },
+      { labelKey: 'agency.footer.otherLanguage', to: '/ar/agency' },
     ],
   },
   {
-    title: 'Tejaraa platforms',
+    titleKey: 'agency.footer.groupPlatforms',
     links: [
-      { label: 'Tejaraa Shop', to: '/' },
-      { label: 'Dropshipping & Selling Services', to: '/selling' },
-      { label: 'Wholesalers and Suppliers', to: '/partners' },
-      { label: 'Agencies & VAs', to: '/agency' },
+      { labelKey: 'agency.footer.shop', to: '/' },
+      { labelKey: 'agency.footer.selling', to: '/selling' },
+      { labelKey: 'agency.footer.suppliers', to: '/partners' },
+      { labelKey: 'agency.footer.agencies', to: '/agency' },
     ],
   },
 ];
 
 export function AgencyFooter() {
+  const { t } = useLocale();
   return (
     <footer className="mt-16 border-t border-retail-border bg-retail-card">
       <RetailContainer className="py-12">
@@ -54,20 +62,19 @@ export function AgencyFooter() {
           <div>
             <BrandLogo variant="storefront-footer" />
             <p className="mt-4 max-w-xs text-sm leading-6 text-retail-muted">
-              The Tejaraa partner programme for agencies and virtual assistants. Onboard dropshippers
-              and earn a share of profit on every order they place.
+              {t('agency.footer.blurb')}
             </p>
             <p className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green">
-              <Handshake className="h-4 w-4" /> Grow together
+              <Handshake className="h-4 w-4" /> {t('agency.footer.growTogether')}
             </p>
           </div>
           {groups.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-sm font-extrabold text-retail-dark-green">{group.title}</h3>
-              <nav aria-label={group.title} className="mt-3 space-y-2">
+            <div key={group.titleKey}>
+              <h3 className="text-sm font-extrabold text-retail-dark-green">{t(group.titleKey)}</h3>
+              <nav aria-label={t(group.titleKey)} className="mt-3 space-y-2">
                 {group.links.map((link) => (
-                  <Link key={link.label} to={link.to} className="block py-1 text-sm text-retail-muted transition-colors hover:text-retail-green">
-                    {link.label}
+                  <Link key={link.labelKey} to={link.to} className="block py-1 text-sm text-retail-muted transition-colors hover:text-retail-green">
+                    {t(link.labelKey)}
                   </Link>
                 ))}
               </nav>
@@ -75,7 +82,7 @@ export function AgencyFooter() {
           ))}
         </div>
         <div className="mt-10 border-t border-retail-border pt-6 text-xs text-retail-muted">
-          © {new Date().getFullYear()} Tejaraa. All rights reserved.
+          {t('agency.footer.copyright', { year: new Date().getFullYear() })}
         </div>
       </RetailContainer>
     </footer>

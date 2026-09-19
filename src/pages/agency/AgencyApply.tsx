@@ -9,6 +9,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import { ArrowRight, CheckCircle2, Loader2, MailCheck } from 'lucide-react';
 import { sendSignupOtp, verifySignupOtp } from '@/lib/signupOtp.functions';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 const empty = {
   company_name: '',
@@ -19,6 +20,7 @@ const empty = {
 };
 
 export default function AgencyApply() {
+  const { t } = useLocale();
   const { user, isLoading, refreshUser } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState(empty);
@@ -54,11 +56,11 @@ export default function AgencyApply() {
       !form.phone.trim() ||
       !form.email.trim()
     ) {
-      toast.error('Please fill in every field — all fields are required.');
+      toast.error(t('agency.apply.errorFillAll'));
       return;
     }
     if (!user && form.password.length < 8) {
-      toast.error('Choose a password of at least 8 characters.');
+      toast.error(t('agency.apply.errorPasswordLength'));
       return;
     }
     setSubmitting(true);
@@ -79,12 +81,12 @@ export default function AgencyApply() {
           // Email confirmation is on: verify with a 4-digit code, same as seller signup.
           await sendSignupOtp({ data: { email: form.email.trim() } });
           setStep('otp');
-          toast.success(`We sent a 4-digit code to ${form.email.trim()}`);
+          toast.success(t('agency.apply.toastCodeSent', { email: form.email.trim() }));
           return;
         }
         await refreshUser();
       }
-      if (!userId) throw new Error('Could not create your account');
+      if (!userId) throw new Error(t('agency.apply.errorCreateAccount'));
 
       const { error: insertError } = await supabase.from('agency_profiles').insert({
         user_id: userId,
@@ -100,7 +102,7 @@ export default function AgencyApply() {
       setDone(true);
       toast.success('Your partner account is ready.');
     } catch (err: any) {
-      toast.error(err?.message || 'Could not send your application.');
+      toast.error(err?.message || t('agency.apply.errorSendApplication'));
     } finally {
       setSubmitting(false);
     }
@@ -130,14 +132,14 @@ export default function AgencyApply() {
       });
       if (error) throw error;
       const userId = data.user?.id;
-      if (!userId) throw new Error('Could not create your account');
+      if (!userId) throw new Error(t('agency.apply.errorCreateAccount'));
       await saveProfile(userId);
       await refreshUser();
       setDone(true);
-      toast.success('Your partner account is ready.');
+      toast.success(t('agency.apply.toastAccountReady'));
     } catch (err: any) {
       setCode('');
-      toast.error(err?.message || 'Invalid or expired code');
+      toast.error(err?.message || t('agency.apply.errorInvalidCode'));
     } finally {
       setVerifying(false);
     }
@@ -145,7 +147,7 @@ export default function AgencyApply() {
 
   if (isLoading || checking) {
     return (
-      <AgencyAuthShell eyebrow="Partner application" title="Preparing your application" subtitle="One moment while we check your account.">
+      <AgencyAuthShell eyebrow={t('agency.apply.preparingEyebrow')} title={t('agency.apply.preparingTitle')} subtitle={t('agency.apply.preparingSubtitle')}>
         <div className="flex min-h-48 items-center justify-center">
           <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
         </div>
@@ -155,17 +157,17 @@ export default function AgencyApply() {
 
   if (done) {
     return (
-      <AgencyAuthShell eyebrow="Account ready" title="Welcome to the partner programme" subtitle="Your partner account is active — no approval needed.">
+      <AgencyAuthShell eyebrow={t('agency.apply.doneEyebrow')} title={t('agency.apply.doneTitle')} subtitle={t('agency.apply.doneSubtitle')}>
         <div className="text-center">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-retail-light-green text-retail-green">
             <CheckCircle2 className="h-7 w-7" />
           </div>
           <p className="text-sm leading-6 text-retail-muted">
-            Open your partner area to copy your personal invite link and start onboarding dropshippers right away.
+            {t('agency.apply.doneText')}
           </p>
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
-            <Button asChild className="bg-retail-green hover:bg-retail-dark-green"><Link to="/agency/portal">Open partner area</Link></Button>
-            <Button asChild variant="outline" className="border-retail-border"><Link to="/agency">Programme home</Link></Button>
+            <Button asChild className="bg-retail-green hover:bg-retail-dark-green"><Link to="/agency/portal">{t('agency.apply.openPartnerArea')}</Link></Button>
+            <Button asChild variant="outline" className="border-retail-border"><Link to="/agency">{t('agency.apply.programmeHome')}</Link></Button>
           </div>
         </div>
       </AgencyAuthShell>
@@ -174,7 +176,7 @@ export default function AgencyApply() {
 
   if (step === 'otp') {
     return (
-      <AgencyAuthShell eyebrow="Secure verification" title="Confirm your email" subtitle={`Enter the 4-digit code we sent to ${form.email.trim()}.`}>
+      <AgencyAuthShell eyebrow={t('agency.apply.otpEyebrow')} title={t('agency.apply.otpTitle')} subtitle={t('agency.apply.otpSubtitle', { email: form.email.trim() })}>
         <div className="text-center">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-retail-light-green text-retail-green">
             <MailCheck className="h-7 w-7" />
@@ -189,12 +191,12 @@ export default function AgencyApply() {
               }}
               inputMode="numeric"
               placeholder="0000"
-              aria-label="Verification code"
+              aria-label={t('agency.apply.otpAria')}
               className="mx-auto h-14 max-w-[190px] text-center text-2xl tracking-[0.5em]"
             />
             <Button className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={verifying || code.length !== 4} onClick={() => handleVerify()}>
               {verifying ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-              Confirm and create my account
+              {t('agency.apply.otpConfirmButton')}
             </Button>
             <button
               type="button"
@@ -202,13 +204,13 @@ export default function AgencyApply() {
               onClick={async () => {
                 try {
                   await sendSignupOtp({ data: { email: form.email.trim() } });
-                  toast.success('New code sent');
+                  toast.success(t('agency.apply.toastNewCodeSent'));
                 } catch {
-                  toast.error('Could not send a new code');
+                  toast.error(t('agency.apply.errorNewCode'));
                 }
               }}
             >
-              Send me a new code
+              {t('agency.apply.otpResend')}
             </button>
           </div>
         </div>
@@ -218,44 +220,44 @@ export default function AgencyApply() {
 
   return (
     <AgencyAuthShell
-      eyebrow="Agency & VA programme"
-      title="Create your partner account"
-      subtitle="Sign up in a minute and start earning — your partner account is active straight away."
+      eyebrow={t('agency.apply.eyebrow')}
+      title={t('agency.apply.title')}
+      subtitle={t('agency.apply.subtitle')}
       wide
-      footer={<>Already a partner? <Link to="/agency/signin" className="font-semibold text-retail-green hover:underline">Sign in to your portal</Link></>}
+      footer={<>{t('agency.apply.alreadyPartner')} <Link to="/agency/signin" className="font-semibold text-retail-green hover:underline">{t('agency.apply.signInToPortal')}</Link></>}
     >
             <form onSubmit={submit} className="space-y-5">
               <div className="grid gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="company">Agency or business name *</Label>
-                  <Input id="company" className="w-full" value={form.company_name} onChange={(e) => set('company_name', e.target.value)} placeholder="Nomad Media" required />
+                  <Label htmlFor="company">{t('agency.apply.companyLabel')}</Label>
+                  <Input id="company" className="w-full" value={form.company_name} onChange={(e) => set('company_name', e.target.value)} placeholder={t('agency.apply.companyPlaceholder')} required />
                 </div>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="contact">Your full name *</Label>
-                    <Input id="contact" className="w-full" value={form.contact_name} onChange={(e) => set('contact_name', e.target.value)} placeholder="Sara Al-Otaibi" required />
+                    <Label htmlFor="contact">{t('agency.apply.nameLabel')}</Label>
+                    <Input id="contact" className="w-full" value={form.contact_name} onChange={(e) => set('contact_name', e.target.value)} placeholder={t('agency.apply.namePlaceholder')} required />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">WhatsApp / phone *</Label>
-                    <Input id="phone" className="w-full" type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value.replace(/[^\d\s+()-]/g, ''))} placeholder="+966 5x xxx xxxx" required />
+                    <Label htmlFor="phone">{t('agency.apply.phoneLabel')}</Label>
+                    <Input id="phone" className="w-full" type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value.replace(/[^\d\s+()-]/g, ''))} placeholder={t('agency.apply.phonePlaceholder')} required />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input id="email" className="w-full" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder="you@company.com" disabled={Boolean(user)} required />
+                  <Label htmlFor="email">{t('agency.apply.emailLabel')}</Label>
+                  <Input id="email" className="w-full" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder={t('agency.apply.emailPlaceholder')} disabled={Boolean(user)} required />
                 </div>
               </div>
 
               {!user && (
                 <div className="space-y-2">
-                  <Label htmlFor="password">Choose a password *</Label>
-                  <Input id="password" type="password" value={form.password} onChange={(e) => set('password', e.target.value)} placeholder="At least 8 characters" required />
+                  <Label htmlFor="password">{t('agency.apply.passwordLabel')}</Label>
+                  <Input id="password" type="password" value={form.password} onChange={(e) => set('password', e.target.value)} placeholder={t('agency.apply.passwordPlaceholder')} required />
                 </div>
               )}
 
               <Button type="submit" className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={submitting}>
                 {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                Create my partner account {!submitting ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
+                {t('agency.apply.submit')} {!submitting ? <ArrowRight className="ml-2 h-4 w-4 rtl:rotate-180" /> : null}
               </Button>
             </form>
     </AgencyAuthShell>

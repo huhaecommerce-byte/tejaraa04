@@ -3,48 +3,52 @@ import { BrandLogo } from '@/components/BrandLogo';
 import { SupplierContainer } from '@/components/supplier/common/SupplierContainer';
 import { supplierApplyPath, supplierSignInPath } from '@/data/supplierPartners';
 import { ShieldCheck } from 'lucide-react';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 interface FooterGroup {
   title: string;
   links: { label: string; to: string }[];
 }
 
-const groups: FooterGroup[] = [
-  {
-    title: 'Become a supplier',
-    links: [
-      { label: 'Who can supply', to: '/partners/who-can-supply' },
-      { label: 'How it works', to: '/partners/how-it-works' },
-      { label: 'Ways to supply', to: '/partners/supply-models' },
-      { label: 'Create a supplier account', to: supplierApplyPath },
-    ],
-  },
-  {
-    title: 'Supplier resources',
-    links: [
-      { label: 'Categories we source', to: '/partners/categories' },
-      { label: 'What we look for', to: '/partners/requirements' },
-      { label: 'Markets and channels', to: '/partners/markets' },
-      { label: 'Supplier sign in', to: supplierSignInPath },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'Contact Tejaraa', to: '/partners/contact' },
-      { label: 'Plans & pricing', to: '/pricing' },
-      { label: 'Guides & articles', to: '/blog' },
-    ],
-  },
-  {
-    title: 'Tejaraa platforms',
-    links: [
-      { label: 'Tejaraa Shop', to: '/' },
-      { label: 'Dropshipping & Selling Services', to: '/selling' },
-      { label: 'Wholesalers and Suppliers', to: '/partners' },
-    ],
-  },
-];
+function useFooterGroups(): FooterGroup[] {
+  const { t } = useLocale();
+  return [
+    {
+      title: t('supplier.footer.becomeSupplierTitle'),
+      links: [
+        { label: t('supplier.footer.whoCanSupply'), to: '/partners/who-can-supply' },
+        { label: t('supplier.footer.howItWorks'), to: '/partners/how-it-works' },
+        { label: t('supplier.footer.waysToSupply'), to: '/partners/supply-models' },
+        { label: t('supplier.footer.createAccount'), to: supplierApplyPath },
+      ],
+    },
+    {
+      title: t('supplier.footer.resourcesTitle'),
+      links: [
+        { label: t('supplier.footer.categoriesWeSource'), to: '/partners/categories' },
+        { label: t('supplier.footer.whatWeLookFor'), to: '/partners/requirements' },
+        { label: t('supplier.footer.marketsAndChannels'), to: '/partners/markets' },
+        { label: t('supplier.footer.supplierSignIn'), to: supplierSignInPath },
+      ],
+    },
+    {
+      title: t('supplier.footer.companyTitle'),
+      links: [
+        { label: t('supplier.footer.contactTejaraa'), to: '/partners/contact' },
+        { label: t('supplier.footer.pricing'), to: '/pricing' },
+        { label: t('supplier.footer.guides'), to: '/blog' },
+      ],
+    },
+    {
+      title: t('supplier.footer.platformsTitle'),
+      links: [
+        { label: t('supplier.footer.shop'), to: '/' },
+        { label: t('supplier.footer.dropshipping'), to: '/selling' },
+        { label: t('supplier.footer.suppliers'), to: '/partners' },
+      ],
+    },
+  ];
+}
 
 function FooterLinks({ group }: { group: FooterGroup }) {
   return (
@@ -63,20 +67,21 @@ function FooterLinks({ group }: { group: FooterGroup }) {
 }
 
 export function SupplierFooter() {
+  const { t } = useLocale();
+  const groups = useFooterGroups();
   return (
     <footer className="mt-auto border-t border-retail-border bg-retail-card">
       <SupplierContainer className="py-6 lg:py-8">
         <div className="grid gap-6 lg:grid-cols-[1fr_2.4fr]">
           <div className="min-w-0">
-            <Link to="/partners" aria-label="Tejaraa Suppliers home" className="inline-block">
+            <Link to="/partners" aria-label={t('supplier.footer.homeAria')} className="inline-block">
               <BrandLogo variant="storefront" className="max-w-[180px]" />
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-6 text-retail-muted">
-              Tejaraa works with manufacturers, distributors, wholesalers and importers to bring
-              products into e-commerce sales channels in Saudi Arabia and the wider Gulf.
+              {t('supplier.footer.blurb')}
             </p>
             <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-retail-dark-green">
-              <span className="text-retail-muted">Language</span>
+              <span className="text-retail-muted">{t('supplier.footer.language')}</span>
               <Link to="/" className="rounded border border-retail-border px-2 py-1 hover:border-retail-green hover:text-retail-green">
                 English
               </Link>
@@ -117,10 +122,10 @@ export function SupplierFooter() {
         </div>
 
         <div className="mt-6 flex flex-col gap-2 border-t border-retail-border pt-4 text-xs text-retail-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Tejaraa. All rights reserved.</p>
+          <p>{t('supplier.footer.copyright')}</p>
           <p className="flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-retail-green" aria-hidden="true" />
-            Approval does not guarantee purchase orders
+            {t('supplier.footer.approvalNotice')}
           </p>
         </div>
       </SupplierContainer>

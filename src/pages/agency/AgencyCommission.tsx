@@ -3,54 +3,57 @@ import { AgencyBreadcrumbs, AgencyCTA, AgencyFeatureList, AgencyPageHero } from 
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHeading';
 import { ServiceFAQ } from '@/components/seller/service';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { CheckCircle2, Clock, Coins, RotateCcw, Wallet } from 'lucide-react';
 
-const rules = [
-  { icon: CheckCircle2, title: 'Paid on profit, not on price', text: 'Your commission is a share of the profit Tejaraa makes on the order — the selling price minus the product cost, line by line.' },
-  { icon: Clock, title: 'Pending until delivered', text: 'A new commission is pending while the order is in transit. It becomes available after delivery and the return window has passed.' },
-  { icon: RotateCcw, title: 'Reversed if the order fails', text: 'If an order is cancelled, returned or refunded, the matching commission is reversed automatically — so the numbers you see are real.' },
-  { icon: Wallet, title: 'Withdraw in SAR', text: 'Once your available balance passes the minimum payout, request a withdrawal to your bank account from the partner portal.' },
-];
-
-const example = [
-  { label: 'Seller order value', value: 'SAR 1,200' },
-  { label: 'Product cost to Tejaraa', value: 'SAR 775' },
-  { label: 'Tejaraa profit on the order', value: 'SAR 425' },
-  { label: 'Your share of the profit', value: '10%' },
-  { label: 'You earn on this single order', value: 'SAR 42.50' },
-];
-
-const guarantees = [
-  'No cost to join',
-  'No cap on the number of sellers',
-  'No cut-off on earnings',
-  'Live reporting in your portal',
-];
-
-const faqs = [
-  { q: 'Is the rate the same for everyone?', a: 'The standard programme rate applies by default. Larger agencies can agree a custom rate with the partnerships team; your rate is always shown in your portal.' },
-  { q: 'When does a commission become available?', a: 'After the order is delivered and the return window closes. Until then it stays pending in your balance.' },
-  { q: 'What is the minimum payout?', a: 'A minimum balance applies before a withdrawal can be requested; the current figure is shown on your payouts page.' },
-  { q: 'Which currency are payouts made in?', a: 'Payouts are made in SAR to the bank details on your partner profile.' },
-];
-
 export default function AgencyCommission() {
+  const { t } = useLocale();
+
+  const rules = [
+    { icon: CheckCircle2, title: t('agency.commission.rule1Title'), text: t('agency.commission.rule1Text') },
+    { icon: Clock, title: t('agency.commission.rule2Title'), text: t('agency.commission.rule2Text') },
+    { icon: RotateCcw, title: t('agency.commission.rule3Title'), text: t('agency.commission.rule3Text') },
+    { icon: Wallet, title: t('agency.commission.rule4Title'), text: t('agency.commission.rule4Text') },
+  ];
+
+  const example = [
+    { label: t('agency.commission.exampleRow1Label'), value: t('agency.commission.exampleRow1Value') },
+    { label: t('agency.commission.exampleRow2Label'), value: t('agency.commission.exampleRow2Value') },
+    { label: t('agency.commission.exampleRow3Label'), value: t('agency.commission.exampleRow3Value') },
+    { label: t('agency.commission.exampleRow4Label'), value: t('agency.commission.exampleRow4Value') },
+    { label: t('agency.commission.exampleRow5Label'), value: t('agency.commission.exampleRow5Value') },
+  ];
+
+  const guarantees = [
+    t('agency.commission.guarantee1'),
+    t('agency.commission.guarantee2'),
+    t('agency.commission.guarantee3'),
+    t('agency.commission.guarantee4'),
+  ];
+
+  const faqs = [
+    { q: t('agency.commission.faq1Q'), a: t('agency.commission.faq1A') },
+    { q: t('agency.commission.faq2Q'), a: t('agency.commission.faq2A') },
+    { q: t('agency.commission.faq3Q'), a: t('agency.commission.faq3A') },
+    { q: t('agency.commission.faq4Q'), a: t('agency.commission.faq4A') },
+  ];
+
   return (
     <AgencyPublicShell>
-      <AgencyBreadcrumbs items={[{ label: 'Commission' }]} />
+      <AgencyBreadcrumbs items={[{ label: t('agency.commission.crumb') }]} />
       <AgencyPageHero
         icon={Coins}
-        eyebrow="Commission & payouts"
-        title="You earn every time they order"
-        lead="Not just the first order, not only for the first 90 days. For as long as your seller keeps buying through Tejaraa, you keep earning."
-        tags={['Share of profit', 'Lifetime', 'Paid in SAR']}
-        flow={['Order paid', 'Commission pending', 'Order delivered', 'Commission available', 'Payout requested']}
-        flowCaption="Cancelled, returned or refunded orders reverse automatically."
+        eyebrow={t('agency.commission.eyebrow')}
+        title={t('agency.commission.heroTitle')}
+        lead={t('agency.commission.heroLead')}
+        tags={[t('agency.commission.tagShare'), t('agency.commission.tagLifetime'), t('agency.commission.tagPaid')]}
+        flow={[t('agency.commission.flow1'), t('agency.commission.flow2'), t('agency.commission.flow3'), t('agency.commission.flow4'), t('agency.commission.flow5')]}
+        flowCaption={t('agency.commission.flowCaption')}
       />
 
       <section className="py-9 lg:py-11">
         <SellerContainer>
-          <SellerSectionHeading eyebrow="The rules" title="How commission is calculated" description="Four rules that decide what you earn and when you can take it out." />
+          <SellerSectionHeading eyebrow={t('agency.commission.rulesEyebrow')} title={t('agency.commission.rulesTitle')} description={t('agency.commission.rulesDescription')} />
           <div className="mt-5">
             <AgencyFeatureList items={rules} columns={4} />
           </div>
@@ -60,7 +63,7 @@ export default function AgencyCommission() {
       <section className="border-y border-retail-border bg-retail-light-green py-9 lg:py-11">
         <SellerContainer className="grid gap-8 lg:grid-cols-2 lg:items-start">
           <div className="min-w-0">
-            <SellerSectionHeading eyebrow="Worked example" title="One order, step by step" as="h2" />
+            <SellerSectionHeading eyebrow={t('agency.commission.exampleEyebrow')} title={t('agency.commission.exampleTitle')} as="h2" />
             <dl className="mt-5 divide-y divide-retail-border border-t border-retail-border bg-white">
               {example.map((row, index) => (
                 <div
@@ -73,16 +76,14 @@ export default function AgencyCommission() {
               ))}
             </dl>
             <p className="mt-3 text-xs leading-5 text-retail-muted">
-              Rates shown are the standard programme rate. Your own rate is confirmed on approval and shown in your partner portal.
+              {t('agency.commission.exampleFootnote')}
             </p>
           </div>
 
           <div className="min-w-0">
-            <SellerSectionHeading eyebrow="At scale" title="Ten sellers, every month" as="h2" />
+            <SellerSectionHeading eyebrow={t('agency.commission.scaleEyebrow')} title={t('agency.commission.scaleTitle')} as="h2" />
             <p className="mt-3 text-sm leading-6 text-retail-muted">
-              If you onboard 10 dropshippers and each places around SAR 20,000 of orders a month at a similar
-              margin, your monthly commission would be in the region of SAR 7,000 — and it repeats every month
-              those sellers stay active.
+              {t('agency.commission.scaleText')}
             </p>
             <ul className="mt-5 grid gap-2 text-sm text-retail-dark-green">
               {guarantees.map((item) => (
@@ -100,8 +101,8 @@ export default function AgencyCommission() {
 
       <AgencyCTA
         variant="dark"
-        title="Turn your seller network into monthly income"
-        text="Apply now and start sharing your invite link as soon as you are approved."
+        title={t('agency.commission.ctaTitle')}
+        text={t('agency.commission.ctaText')}
       />
     </AgencyPublicShell>
   );

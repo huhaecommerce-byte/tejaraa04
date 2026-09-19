@@ -1,15 +1,17 @@
 import { SupplierContainer } from '@/components/supplier/common/SupplierContainer';
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { supplierTrust } from '@/data/supplierPartners';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SupplierTrust() {
+  const { t } = useLocale();
   return (
     <section className="py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
           align="center"
-          eyebrow="How we work"
-          title="A commercial process, not a listing form"
+          eyebrow={t('supplier.trust.eyebrow')}
+          title={t('supplier.trust.title')}
         />
         <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {supplierTrust.map((item) => (

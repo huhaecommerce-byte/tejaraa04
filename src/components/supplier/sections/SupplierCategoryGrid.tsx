@@ -2,23 +2,25 @@ import { SupplierContainer } from '@/components/supplier/common/SupplierContaine
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { SupplierSectionLink } from '@/components/supplier/common/SupplierSectionLink';
 import { supplierCategories } from '@/data/supplierPartners';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SupplierCategoryGrid() {
+  const { t } = useLocale();
   return (
     <section id="categories" className="scroll-mt-28 border-y border-retail-border bg-white py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
           align="center"
-          eyebrow="Categories of interest"
-          title="Categories we review"
-          description="Product areas our team looks at today. If your range sits close to one of these, send it in for review."
+          eyebrow={t('supplier.categoryGrid.eyebrow')}
+          title={t('supplier.categoryGrid.title')}
+          description={t('supplier.categoryGrid.description')}
         />
         <div className="mt-7 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {supplierCategories.map((category) => (
             <article key={category.name} className="overflow-hidden rounded-xl border border-retail-border bg-white">
               <img
                 src={category.image}
-                alt={`${category.name} products supplied to Tejaraa`}
+                alt={t('supplier.categoryGrid.altTemplate', { name: category.name })}
                 width={480}
                 height={360}
                 loading="lazy"
@@ -31,7 +33,7 @@ export function SupplierCategoryGrid() {
             </article>
           ))}
         </div>
-        <SupplierSectionLink to="/partners/categories" label="See example product types per category" />
+        <SupplierSectionLink to="/partners/categories" label={t('supplier.categoryGrid.sectionLink')} />
       </SupplierContainer>
     </section>
   );

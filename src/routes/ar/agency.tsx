@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import AgencyLandingAr from "@/pages/agency/AgencyLandingAr";
+import AgencyLanding from "@/pages/agency/AgencyLanding";
 
 export const Route = createFileRoute("/ar/agency")({
   head: () => ({
@@ -12,5 +12,5 @@ export const Route = createFileRoute("/ar/agency")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: AgencyLandingAr,
+  component: AgencyLanding,
 });

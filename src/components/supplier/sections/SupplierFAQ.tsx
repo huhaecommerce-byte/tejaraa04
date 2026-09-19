@@ -4,16 +4,18 @@ import {
 import { SupplierContainer } from '@/components/supplier/common/SupplierContainer';
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { supplierFaqs } from '@/data/supplierPartners';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SupplierFAQ() {
+  const { t } = useLocale();
   return (
     <section id="faq" className="scroll-mt-28 border-y border-retail-border bg-white py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
           align="center"
-          eyebrow="FAQ"
-          title="Frequently asked questions"
-          description="Straight answers about applying, documents, categories and what approval does and does not mean."
+          eyebrow={t('supplier.faq.eyebrow')}
+          title={t('supplier.faq.title')}
+          description={t('supplier.faq.description')}
         />
         <Accordion type="single" collapsible className="mx-auto mt-6 max-w-3xl">
           {supplierFaqs.map((faq, index) => (

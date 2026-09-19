@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { brandConfig } from "@/config/partnerBrand";
 import heroImage from "@/assets/partners/hero-gcc-logistics.jpg";
-
-const supplierHighlights = ["Wholesale & distribution supply", "E-commerce sales channels", "Saudi & Gulf markets"];
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export function BrandMark({ inverse = false }: { inverse?: boolean }) {
   return (
@@ -16,12 +15,6 @@ export function BrandMark({ inverse = false }: { inverse?: boolean }) {
     </div>
   );
 }
-
-const proofPoints = [
-  { icon: Globe2, text: "Sell across 6 GCC markets and internationally" },
-  { icon: BadgeCheck, text: "Verified wholesaler network buyers trust" },
-  { icon: ShieldCheck, text: "Secure, compliant and built for growth" },
-];
 
 export function AuthShell({
   eyebrow,
@@ -36,6 +29,17 @@ export function AuthShell({
   children: ReactNode;
   footer: ReactNode;
 }) {
+  const { t } = useLocale();
+  const proofPoints = [
+    { icon: Globe2, text: t("supplier.auth.proof.markets") },
+    { icon: BadgeCheck, text: t("supplier.auth.proof.network") },
+    { icon: ShieldCheck, text: t("supplier.auth.proof.secure") },
+  ];
+  const supplierHighlights = [
+    t("supplier.auth.highlight.wholesale"),
+    t("supplier.auth.highlight.channels"),
+    t("supplier.auth.highlight.markets"),
+  ];
   return (
     <div className="supplier-theme min-h-screen overflow-x-hidden bg-background text-foreground">
       <div className="grid min-h-screen lg:grid-cols-2">
@@ -43,7 +47,7 @@ export function AuthShell({
         <aside className="hero-surface relative hidden overflow-hidden text-primary-foreground lg:block">
           <img
             src={heroImage}
-            alt="GCC wholesale distribution network with trucks leaving a warehouse hub and Gulf city skylines connected by trade routes"
+            alt={t("supplier.auth.heroAlt")}
             width={1408}
             height={1024}
             className="hero-photo pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -53,8 +57,8 @@ export function AuthShell({
           <div className="relative z-10 flex h-full flex-col justify-between p-7">
             <Link to="/"><BrandMark inverse /></Link>
             <div>
-              <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-hero-soft">Bigger opportunities. A stronger GCC together.</p>
-              <h2 className="text-[2rem] font-extrabold leading-[1.05]">Your Inventory.<br />More Markets.<br /><span className="text-hero-accent">More Buyers.</span></h2>
+              <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-hero-soft">{t("supplier.auth.tagline")}</p>
+              <h2 className="text-[2rem] font-extrabold leading-[1.05]">{t("supplier.auth.headingLine1")}<br />{t("supplier.auth.headingLine2")}<br /><span className="text-hero-accent">{t("supplier.auth.headingLine3")}</span></h2>
               <ul className="mt-4 space-y-2">
                 {proofPoints.map((point) => (
                   <li key={point.text} className="flex items-center gap-2 text-xs font-medium text-primary-foreground/85">
@@ -63,7 +67,7 @@ export function AuthShell({
                   </li>
                 ))}
               </ul>
-              <p className="script-note mt-4 text-lg text-hero-accent">From your warehouse to the whole GCC and beyond</p>
+              <p className="script-note mt-4 text-lg text-hero-accent">{t("supplier.auth.scriptNote")}</p>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {supplierHighlights.map((item) => (
@@ -83,7 +87,7 @@ export function AuthShell({
           <div className="flex flex-1 items-center justify-center py-6">
             <div className="w-full max-w-md">
               <Link to="/" className="mb-4 inline-flex w-fit items-center gap-2 rounded-lg bg-primary px-3 py-2 text-xs font-bold text-primary-foreground shadow-button transition-transform hover:-translate-y-0.5">
-                <ArrowLeft className="h-4 w-4" /> Back to home
+                <ArrowLeft className="h-4 w-4" /> {t("supplier.auth.backToHome")}
               </Link>
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{eyebrow}</p>
               <h1 className="mt-1.5 text-2xl font-extrabold">{title}</h1>
@@ -93,7 +97,7 @@ export function AuthShell({
             </div>
           </div>
           <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pb-2 text-[11px] text-muted-foreground">
-            {["Secure & Compliant", "Verified Businesses Only", "GCC Wide"].map((item) => (
+            {[t("supplier.auth.secureCompliant"), t("supplier.auth.verifiedBusinesses"), t("supplier.auth.gccWide")].map((item) => (
               <span key={item} className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-primary" />{item}</span>
             ))}
           </p>

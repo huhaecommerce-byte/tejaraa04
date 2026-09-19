@@ -4,6 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { cn } from '@/lib/utils';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 /* ── Breadcrumbs ───────────────────────────────────────────────── */
 export interface AgencyCrumb {
@@ -13,9 +14,10 @@ export interface AgencyCrumb {
 
 /** Compact agency breadcrumb: Agencies & VAs > How It Works */
 export function AgencyBreadcrumbs({ items }: { items: AgencyCrumb[] }) {
-  const trail: AgencyCrumb[] = [{ label: 'Agencies & VAs', to: '/agency' }, ...items];
+  const { t } = useLocale();
+  const trail: AgencyCrumb[] = [{ label: t('agency.bits.breadcrumbRoot'), to: '/agency' }, ...items];
   return (
-    <nav aria-label="Breadcrumb" className="border-b border-retail-border bg-white">
+    <nav aria-label={t('agency.bits.breadcrumbAria')} className="border-b border-retail-border bg-white">
       <SellerContainer>
         <ol className="flex flex-wrap items-center gap-1 py-2.5 text-xs text-retail-muted sm:text-[0.8125rem]">
           {trail.map((crumb, index) => {
@@ -59,9 +61,12 @@ interface AgencyPageHeroProps {
 /** Agency sub-page hero mirroring the Seller service hero. */
 export function AgencyPageHero({
   icon: Icon, eyebrow, title, lead, tags = [], flow, flowCaption,
-  primaryLabel = 'Apply to join', primaryTo = '/agency/apply',
-  secondaryLabel = 'Partner sign in', secondaryTo = '/agency/signin',
+  primaryLabel, primaryTo = '/agency/apply',
+  secondaryLabel, secondaryTo = '/agency/signin',
 }: AgencyPageHeroProps) {
+  const { t } = useLocale();
+  const primary = primaryLabel ?? t('agency.bits.applyToJoin');
+  const secondary = secondaryLabel ?? t('agency.bits.partnerSignIn');
   return (
     <section className="hero-surface relative flex items-center overflow-hidden py-9 text-white lg:py-11">
       <div aria-hidden className="hero-grid pointer-events-none absolute inset-0 opacity-15" />
@@ -82,7 +87,7 @@ export function AgencyPageHero({
           <div className="mt-5 flex flex-wrap gap-3">
             <Button asChild size="lg" className="bg-white font-semibold text-retail-dark-green hover:bg-retail-light-green">
               <Link to={primaryTo}>
-                {primaryLabel}
+                {primary}
                 <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden />
               </Link>
             </Button>
@@ -92,7 +97,7 @@ export function AgencyPageHero({
               variant="outline"
               className="border-white/40 bg-transparent font-semibold text-white hover:bg-white/10 hover:text-white"
             >
-              <Link to={secondaryTo}>{secondaryLabel}</Link>
+              <Link to={secondaryTo}>{secondary}</Link>
             </Button>
           </div>
 
@@ -139,10 +144,12 @@ interface AgencyCTAProps {
 
 export function AgencyCTA({
   title, text,
-  primaryLabel = 'Apply to join', primaryTo = '/agency/apply',
+  primaryLabel, primaryTo = '/agency/apply',
   secondaryLabel, secondaryTo,
   variant = 'light',
 }: AgencyCTAProps) {
+  const { t } = useLocale();
+  const primary = primaryLabel ?? t('agency.bits.applyToJoin');
   const dark = variant === 'dark';
   return (
     <section className={cn('py-11 lg:py-13', dark ? 'bg-retail-green' : 'border-y border-retail-border bg-retail-light-green')}>
@@ -160,7 +167,7 @@ export function AgencyCTA({
             className={cn('font-semibold', dark ? 'bg-white text-retail-dark-green hover:bg-retail-light-green' : 'bg-retail-green text-white hover:bg-retail-dark-green')}
           >
             <Link to={primaryTo}>
-              {primaryLabel}
+              {primary}
               <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden />
             </Link>
           </Button>

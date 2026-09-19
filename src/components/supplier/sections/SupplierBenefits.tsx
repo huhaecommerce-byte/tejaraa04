@@ -1,16 +1,18 @@
 import { SupplierContainer } from '@/components/supplier/common/SupplierContainer';
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { supplierBenefits } from '@/data/supplierPartners';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SupplierBenefits() {
+  const { t } = useLocale();
   return (
     <section id="why-tejaraa" className="scroll-mt-28 border-y border-retail-border bg-white py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
           align="center"
-          eyebrow="Why Tejaraa"
-          title="Why suppliers work with Tejaraa"
-          description="What a supply relationship with Tejaraa gives your business in practice."
+          eyebrow={t('supplier.benefits.eyebrow')}
+          title={t('supplier.benefits.title')}
+          description={t('supplier.benefits.description')}
         />
         <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {supplierBenefits.map((benefit) => (

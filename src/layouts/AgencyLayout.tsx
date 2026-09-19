@@ -11,6 +11,7 @@ import { agencyNavigation } from '@/config/navigation';
 import { CommandDeck } from '@/components/layout/CommandDeck';
 import { Menu } from 'lucide-react';
 import { AgencyPortalHeader } from '@/components/agency/shell/AgencyPortalHeader';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 const StatusCard = ({
   icon, title, text, action,
@@ -31,6 +32,7 @@ const StatusCard = ({
 );
 
 const AgencyLayout = () => {
+  const { t } = useLocale();
   const { user, isLoading } = useAuth();
   const { agency, isLoading: agencyLoading } = useAgency();
   const access = useAccessTier();
@@ -60,9 +62,9 @@ const AgencyLayout = () => {
       return (
         <StatusCard
           icon={<ShieldAlert className="h-6 w-6" />}
-          title="No partner account yet"
-          text="You are signed in with a shop / dropshipping account. The Agencies & VAs portal needs a partner account."
-          action={<Button asChild><Link to="/agency/apply">Create a partner account</Link></Button>}
+          title={t('agency.layout.noAccountTitle')}
+          text={t('agency.layout.noAccountText')}
+          action={<Button asChild><Link to="/agency/apply">{t('agency.layout.createPartnerAccount')}</Link></Button>}
         />
       );
     }
@@ -71,9 +73,9 @@ const AgencyLayout = () => {
       return (
         <StatusCard
           icon={<Clock className="h-6 w-6" />}
-          title="Application under review"
-          text="Our team is reviewing your application. You will get an email as soon as it is approved, and your invite link appears here straight away."
-          action={<Button variant="outline" asChild><Link to="/">Back to Tejaraa</Link></Button>}
+          title={t('agency.layout.pendingTitle')}
+          text={t('agency.layout.pendingText')}
+          action={<Button variant="outline" asChild><Link to="/">{t('agency.layout.backToTejaraa')}</Link></Button>}
         />
       );
     }
@@ -82,9 +84,9 @@ const AgencyLayout = () => {
       return (
         <StatusCard
           icon={<XCircle className="h-6 w-6" />}
-          title={agency.status === 'rejected' ? 'Application not approved' : 'Account suspended'}
-          text="Please contact the Tejaraa partnerships team if you think this is a mistake."
-          action={<Button variant="outline" asChild><Link to="/contact">Contact us</Link></Button>}
+          title={agency.status === 'rejected' ? t('agency.layout.rejectedTitle') : t('agency.layout.suspendedTitle')}
+          text={t('agency.layout.contactText')}
+          action={<Button variant="outline" asChild><Link to="/contact">{t('agency.layout.contactUs')}</Link></Button>}
         />
       );
     }
@@ -106,7 +108,7 @@ const AgencyLayout = () => {
       />
       <button
         onClick={() => setMobileOpen(true)}
-        aria-label="Open menu"
+        aria-label={t('agency.layout.openMenu')}
         className="lg:hidden fixed left-3 top-[76px] z-30 h-10 w-10 rounded-full bg-background/95 backdrop-blur shadow-md ring-1 ring-border/60 inline-flex items-center justify-center text-foreground/80"
       >
         <Menu className="h-5 w-5" />
@@ -116,7 +118,7 @@ const AgencyLayout = () => {
           <div className="mx-auto max-w-[1400px] space-y-4 md:space-y-6">
             {supplierBrowsing ? (
               <div className="rounded-lg border border-retail-border bg-retail-light-green/50 px-4 py-3 text-sm text-retail-dark-green">
-                You are browsing the partner portal with a supplier / staff account. No partner earnings are linked to this login.
+                {t('agency.layout.supplierBrowsing')}
               </div>
             ) : null}
             <Outlet />

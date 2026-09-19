@@ -3,46 +3,49 @@ import { AgencyBreadcrumbs, AgencyCTA, AgencyPageHero } from '@/components/agenc
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHeading';
 import { ServiceFAQ } from '@/components/seller/service';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { ClipboardCheck, Link2, ShoppingBag, Coins, Wallet, LineChart, ListChecks } from 'lucide-react';
 
-const journey = [
-  { icon: ClipboardCheck, title: 'Apply and get approved', text: 'Tell us about your agency or VA business and how you plan to bring sellers to Tejaraa. Our partnerships team reviews every application, usually within two working days.' },
-  { icon: Link2, title: 'Share your invite link', text: 'Approved partners get a personal code and invite link inside the partner portal. Any dropshipper who signs up through it is permanently attached to your account.' },
-  { icon: ShoppingBag, title: 'Your sellers start ordering', text: 'Your sellers source, list and sell. Tejaraa handles sourcing, warehousing, labelling, shipping and support, so you can focus on bringing in and coaching sellers.' },
-  { icon: Coins, title: 'Commission is recorded', text: 'Every paid order creates a commission line for you, calculated on Tejaraa profit for that order. It starts as pending while the order is on its way.' },
-  { icon: LineChart, title: 'Commission is approved', text: 'Once the order is delivered and the return window closes, the commission becomes available. Cancelled, returned or refunded orders reverse automatically.' },
-  { icon: Wallet, title: 'Request your payout', text: 'When your available balance passes the minimum, request a withdrawal from the portal. Our finance team approves it and marks it paid to your bank account.' },
-];
-
-const responsibilities = [
-  { who: 'Tejaraa', items: ['Sourcing, storage and quality checks', 'Packing, labelling and dispatch', 'Seller support and order tracking', 'Commission tracking and payouts'] },
-  { who: 'You', items: ['Finding and onboarding sellers', 'Sharing your invite link correctly', 'Helping sellers place their first orders', 'Keeping your payout details current'] },
-];
-
-const faqs = [
-  { q: 'How long does approval take?', a: 'Most applications are reviewed within two working days and you get an email with the decision.' },
-  { q: 'Is there a minimum number of sellers?', a: 'No. There are no targets and no fees — you earn on whatever your sellers order.' },
-  { q: 'What if a seller signs up without my link?', a: 'Attribution happens at signup, so ask your sellers to use your link or enter your partner code on the signup form.' },
-  { q: 'Can I see my sellers activity?', a: 'Yes. Your portal lists every linked seller, their order activity and the commission each order produced.' },
-];
-
 export default function AgencyHowItWorks() {
+  const { t } = useLocale();
+
+  const journey = [
+    { icon: ClipboardCheck, title: t('agency.how.step1Title'), text: t('agency.how.step1Text') },
+    { icon: Link2, title: t('agency.how.step2Title'), text: t('agency.how.step2Text') },
+    { icon: ShoppingBag, title: t('agency.how.step3Title'), text: t('agency.how.step3Text') },
+    { icon: Coins, title: t('agency.how.step4Title'), text: t('agency.how.step4Text') },
+    { icon: LineChart, title: t('agency.how.step5Title'), text: t('agency.how.step5Text') },
+    { icon: Wallet, title: t('agency.how.step6Title'), text: t('agency.how.step6Text') },
+  ];
+
+  const responsibilities = [
+    { who: t('agency.how.tejaraaWho'), items: [t('agency.how.tejaraaItem1'), t('agency.how.tejaraaItem2'), t('agency.how.tejaraaItem3'), t('agency.how.tejaraaItem4')] },
+    { who: t('agency.how.youWho'), items: [t('agency.how.youItem1'), t('agency.how.youItem2'), t('agency.how.youItem3'), t('agency.how.youItem4')] },
+  ];
+
+  const faqs = [
+    { q: t('agency.how.faq1Q'), a: t('agency.how.faq1A') },
+    { q: t('agency.how.faq2Q'), a: t('agency.how.faq2A') },
+    { q: t('agency.how.faq3Q'), a: t('agency.how.faq3A') },
+    { q: t('agency.how.faq4Q'), a: t('agency.how.faq4A') },
+  ];
+
   return (
     <AgencyPublicShell>
-      <AgencyBreadcrumbs items={[{ label: 'How It Works' }]} />
+      <AgencyBreadcrumbs items={[{ label: t('agency.how.crumb') }]} />
       <AgencyPageHero
         icon={ListChecks}
-        eyebrow="How it works"
-        title="From application to payout"
-        lead="Six simple steps. No fees, no targets to unlock payment, and no cut-off date on your earnings."
-        tags={['Apply', 'Onboard sellers', 'Earn', 'Withdraw']}
-        flow={['Apply', 'Get approved', 'Share your link', 'Sellers order', 'Get paid']}
-        flowCaption="Your sellers stay linked to you for the life of their account."
+        eyebrow={t('agency.how.eyebrow')}
+        title={t('agency.how.heroTitle')}
+        lead={t('agency.how.heroLead')}
+        tags={[t('agency.how.tagApply'), t('agency.how.tagOnboard'), t('agency.how.tagEarn'), t('agency.how.tagWithdraw')]}
+        flow={[t('agency.how.flow1'), t('agency.how.flow2'), t('agency.how.flow3'), t('agency.how.flow4'), t('agency.how.flow5')]}
+        flowCaption={t('agency.how.flowCaption')}
       />
 
       <section className="py-9 lg:py-11">
         <SellerContainer>
-          <SellerSectionHeading eyebrow="Journey" title="Six steps, one clear flow" />
+          <SellerSectionHeading eyebrow={t('agency.how.journeyEyebrow')} title={t('agency.how.journeyTitle')} />
           <ol className="mt-5 grid gap-x-5 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
             {journey.map((step, index) => (
               <li key={step.title} className="border-t-2 border-retail-green pt-4">
@@ -61,7 +64,7 @@ export default function AgencyHowItWorks() {
 
       <section className="border-y border-retail-border bg-retail-light-green py-9 lg:py-11">
         <SellerContainer>
-          <SellerSectionHeading eyebrow="Split" title="Who does what" description="You bring the sellers; Tejaraa runs the operation behind them." />
+          <SellerSectionHeading eyebrow={t('agency.how.splitEyebrow')} title={t('agency.how.splitTitle')} description={t('agency.how.splitDescription')} />
           <ul className="mt-5 grid gap-5 lg:grid-cols-2">
             {responsibilities.map((block) => (
               <li key={block.who} className="border-t-2 border-retail-green bg-white p-4">
@@ -84,9 +87,9 @@ export default function AgencyHowItWorks() {
 
       <AgencyCTA
         variant="dark"
-        title="Ready to start onboarding sellers?"
-        text="Applying takes about two minutes and costs nothing."
-        secondaryLabel="See how commission works"
+        title={t('agency.how.ctaTitle')}
+        text={t('agency.how.ctaText')}
+        secondaryLabel={t('agency.how.ctaSecondary')}
         secondaryTo="/agency/commission"
       />
     </AgencyPublicShell>
