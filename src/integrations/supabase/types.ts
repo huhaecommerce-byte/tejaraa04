@@ -3256,6 +3256,10 @@ export type Database = {
     }
     Functions: {
       __import_exec: { Args: { sql: string }; Returns: undefined }
+      __import_exec_as: {
+        Args: { _role: string; sql: string }
+        Returns: undefined
+      }
       admin_list_customers: {
         Args: { _limit?: number; _offset?: number; _search?: string }
         Returns: {
