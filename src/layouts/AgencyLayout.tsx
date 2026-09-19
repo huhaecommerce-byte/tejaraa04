@@ -112,8 +112,14 @@ const AgencyLayout = () => {
       <div className={`${collapsed ? 'lg:ml-[64px]' : 'lg:ml-[260px]'} flex flex-col min-h-screen transition-[margin] duration-300`}>
         <main className="flex-1 px-3 pb-24 pt-16 md:px-6 md:pb-8 lg:pt-6">
           <div className="mx-auto max-w-[1400px] space-y-4 md:space-y-6">
+            {supplierBrowsing ? (
+              <div className="rounded-lg border border-retail-border bg-retail-light-green/50 px-4 py-3 text-sm text-retail-dark-green">
+                You are browsing the partner portal with a supplier / staff account. No partner earnings are linked to this login.
+              </div>
+            ) : null}
             <Outlet />
           </div>
+
         </main>
       </div>
     </div>
