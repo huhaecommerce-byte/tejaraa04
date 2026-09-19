@@ -1,7 +1,7 @@
 import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
+import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
 import {
   Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, ArrowRight, CheckCircle2,
 } from 'lucide-react';
@@ -21,7 +21,7 @@ const benefits = [
 
 export default function AgencyLanding() {
   return (
-    <RetailPublicShell>
+    <AgencyPublicShell>
       <section className="relative overflow-hidden bg-gradient-to-br from-[hsl(152_45%_14%)] via-[hsl(152_40%_18%)] to-[hsl(152_35%_22%)] text-white">
         <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider">
@@ -133,6 +133,6 @@ export default function AgencyLanding() {
           </Button>
         </div>
       </section>
-    </RetailPublicShell>
+    </AgencyPublicShell>
   );
 }

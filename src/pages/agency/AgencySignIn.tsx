@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
-import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
+import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import { Handshake, Loader2 } from 'lucide-react';
@@ -34,7 +34,7 @@ export default function AgencySignIn() {
   };
 
   return (
-    <RetailPublicShell>
+    <AgencyPublicShell>
       <div className="mx-auto max-w-md px-4 py-20">
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
@@ -59,13 +59,13 @@ export default function AgencySignIn() {
                 Sign in
               </Button>
               <div className="flex justify-between text-xs text-muted-foreground">
-                <Link to="/shop/forgot-password" className="underline">Forgot password?</Link>
+                <Link to="/agency/forgot-password" className="underline">Forgot password?</Link>
                 <Link to="/agency/apply" className="underline">Apply to join</Link>
               </div>
             </form>
           </CardContent>
         </Card>
       </div>
-    </RetailPublicShell>
+    </AgencyPublicShell>
   );
 }

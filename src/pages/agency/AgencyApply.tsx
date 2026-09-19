@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
+import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
@@ -150,17 +150,17 @@ export default function AgencyApply() {
 
   if (isLoading || checking) {
     return (
-      <RetailPublicShell>
+      <AgencyPublicShell>
         <div className="flex min-h-[50vh] items-center justify-center">
           <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
         </div>
-      </RetailPublicShell>
+      </AgencyPublicShell>
     );
   }
 
   if (done) {
     return (
-      <RetailPublicShell>
+      <AgencyPublicShell>
         <div className="mx-auto max-w-lg px-4 py-24 text-center">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
             <CheckCircle2 className="h-7 w-7" />
@@ -175,13 +175,13 @@ export default function AgencyApply() {
             <Button asChild variant="outline"><Link to="/">Back to Tejaraa</Link></Button>
           </div>
         </div>
-      </RetailPublicShell>
+      </AgencyPublicShell>
     );
   }
 
   if (step === 'otp') {
     return (
-      <RetailPublicShell>
+      <AgencyPublicShell>
         <div className="mx-auto max-w-md px-4 py-20 text-center">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
             <MailCheck className="h-7 w-7" />
@@ -223,12 +223,12 @@ export default function AgencyApply() {
             </button>
           </div>
         </div>
-      </RetailPublicShell>
+      </AgencyPublicShell>
     );
   }
 
   return (
-    <RetailPublicShell>
+    <AgencyPublicShell>
       <div className="mx-auto max-w-2xl px-4 py-14">
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
@@ -293,6 +293,6 @@ export default function AgencyApply() {
           </CardContent>
         </Card>
       </div>
-    </RetailPublicShell>
+    </AgencyPublicShell>
   );
 }
