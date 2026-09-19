@@ -1,6 +1,12 @@
 import type { ComponentType } from 'react'
 
 import { template as abandonedCheckoutTemplate } from './abandoned-checkout'
+import {
+  agencyApprovedTemplate,
+  agencyNewClientTemplate,
+  agencyPayoutTemplate,
+  agencyRejectedTemplate,
+} from './agency-emails'
 import { template as alertNotificationTemplate } from './alert-notification'
 import { template as confirmReminderTemplate } from './confirm-reminder'
 import { template as customMessageTemplate } from './custom-message'
@@ -54,4 +60,8 @@ export const TEMPLATES: Record<string, TemplateEntry> = {
   'product-digest': productDigestTemplate,
   'signup-credit': signupCreditTemplate,
   'confirm-reminder': confirmReminderTemplate,
+  'agency-approved': agencyApprovedTemplate,
+  'agency-rejected': agencyRejectedTemplate,
+  'agency-new-client': agencyNewClientTemplate,
+  'agency-payout-update': agencyPayoutTemplate,
 }

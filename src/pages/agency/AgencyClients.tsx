@@ -21,7 +21,7 @@ export default function AgencyClients() {
 
   useEffect(() => {
     supabase.rpc('agency_list_clients' as never).then(({ data }) => {
-      setRows((data as ClientRow[]) || []);
+      setRows((data as unknown as ClientRow[]) || []);
       setLoading(false);
     });
   }, []);

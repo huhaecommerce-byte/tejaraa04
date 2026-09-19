@@ -50,7 +50,7 @@ export default function AgenciesAdmin() {
       _search: search || null,
     } as never);
     if (error) toast.error(error.message);
-    setRows((data as AgencyRow[]) || []);
+    setRows((data as unknown as AgencyRow[]) || []);
     setLoading(false);
   }, [status, search]);
 

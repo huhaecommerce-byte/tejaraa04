@@ -61,8 +61,8 @@ export default function AgencyDetail() {
       supabase.rpc('agency_balance' as never, { _agency_id: id } as never),
     ]);
     setAgency((a as Agency) || null);
-    setClients((c as ClientRow[]) || []);
-    setBalance((b as Balance) || null);
+    setClients((c as unknown as ClientRow[]) || []);
+    setBalance((b as unknown as Balance) || null);
     setRate(a && (a as any).commission_rate != null ? String((a as any).commission_rate) : '');
   }, [id]);
 

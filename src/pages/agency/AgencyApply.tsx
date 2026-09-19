@@ -9,7 +9,8 @@ import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
-import { CheckCircle2, Handshake, Loader2 } from 'lucide-react';
+import { CheckCircle2, Handshake, Loader2, MailCheck } from 'lucide-react';
+import { sendSignupOtp, verifySignupOtp } from '@/lib/signupOtp.functions';
 
 const empty = {
   company_name: '',
@@ -29,6 +30,9 @@ export default function AgencyApply() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [checking, setChecking] = useState(true);
+  const [step, setStep] = useState<'form' | 'otp'>('form');
+  const [code, setCode] = useState('');
+  const [verifying, setVerifying] = useState(false);
 
   useEffect(() => {
     if (isLoading) return;
@@ -72,8 +76,10 @@ export default function AgencyApply() {
         if (error) throw error;
         userId = data.user?.id;
         if (!data.session) {
-          setDone(true);
-          toast.success('Check your inbox to confirm your email, then sign in to finish.');
+          // Email confirmation is on: verify with a 4-digit code, same as seller signup.
+          await sendSignupOtp({ data: { email: form.email.trim() } });
+          setStep('otp');
+          toast.success(`We sent a 4-digit code to ${form.email.trim()}`);
           return;
         }
         await refreshUser();
@@ -102,6 +108,46 @@ export default function AgencyApply() {
     }
   };
 
+  const saveProfile = async (userId: string) => {
+    const { error } = await supabase.from('agency_profiles').insert({
+      user_id: userId,
+      company_name: form.company_name.trim(),
+      contact_name: form.contact_name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim() || null,
+      country: form.country.trim() || null,
+      website: form.website.trim() || null,
+      audience: form.audience.trim() || null,
+      invite_code: '',
+    } as never);
+    if (error) throw error;
+  };
+
+  const handleVerify = async (value?: string) => {
+    const token = (value ?? code).trim();
+    if (token.length !== 4) return;
+    setVerifying(true);
+    try {
+      await verifySignupOtp({ data: { email: form.email.trim(), code: token } });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: form.email.trim(),
+        password: form.password,
+      });
+      if (error) throw error;
+      const userId = data.user?.id;
+      if (!userId) throw new Error('Could not create your account');
+      await saveProfile(userId);
+      await refreshUser();
+      setDone(true);
+      toast.success('Application received — we will review it shortly.');
+    } catch (err: any) {
+      setCode('');
+      toast.error(err?.message || 'Invalid or expired code');
+    } finally {
+      setVerifying(false);
+    }
+  };
+
   if (isLoading || checking) {
     return (
       <RetailPublicShell>
@@ -127,6 +173,54 @@ export default function AgencyApply() {
           <div className="mt-8 flex justify-center gap-3">
             <Button asChild><Link to="/agency/portal">Go to my partner area</Link></Button>
             <Button asChild variant="outline"><Link to="/">Back to Tejaraa</Link></Button>
+          </div>
+        </div>
+      </RetailPublicShell>
+    );
+  }
+
+  if (step === 'otp') {
+    return (
+      <RetailPublicShell>
+        <div className="mx-auto max-w-md px-4 py-20 text-center">
+          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <MailCheck className="h-7 w-7" />
+          </div>
+          <h1 className="text-2xl font-black">Confirm your email</h1>
+          <p className="mt-3 text-muted-foreground">
+            We sent a 4-digit code to <strong>{form.email.trim()}</strong>. Enter it to finish your
+            application.
+          </p>
+          <div className="mt-8 space-y-4">
+            <Input
+              value={code}
+              onChange={(e) => {
+                const v = e.target.value.replace(/\D/g, '').slice(0, 4);
+                setCode(v);
+                if (v.length === 4) void handleVerify(v);
+              }}
+              inputMode="numeric"
+              placeholder="0000"
+              className="mx-auto max-w-[180px] text-center text-2xl tracking-[0.5em]"
+            />
+            <Button className="w-full" size="lg" disabled={verifying || code.length !== 4} onClick={() => handleVerify()}>
+              {verifying ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+              Confirm and send application
+            </Button>
+            <button
+              type="button"
+              className="text-xs text-muted-foreground underline"
+              onClick={async () => {
+                try {
+                  await sendSignupOtp({ data: { email: form.email.trim() } });
+                  toast.success('New code sent');
+                } catch {
+                  toast.error('Could not send a new code');
+                }
+              }}
+            >
+              Send me a new code
+            </button>
           </div>
         </div>
       </RetailPublicShell>
