@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from '@/lib/router-compat';
-import { ChevronDown, Menu, PhoneCall } from 'lucide-react';
+import { ChevronDown, Menu } from 'lucide-react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -48,14 +48,6 @@ export function SellerHeader() {
       <div className="bg-retail-dark-green text-white">
         <SellerContainer className="flex h-11 items-center justify-between gap-3">
           <SellerPlatformSwitcher />
-          <div className="hidden items-center gap-3 text-xs font-medium text-white/75 sm:flex">
-            <Link to="/selling/contact" className="inline-flex items-center gap-1.5 hover:text-white">
-              <PhoneCall className="h-3.5 w-3.5" aria-hidden />
-              Talk to us
-            </Link>
-            <span aria-hidden className="h-3 w-px bg-white/25" />
-            <Link to="/selling/signin" className="hover:text-white">Sign in</Link>
-          </div>
         </SellerContainer>
       </div>
 
