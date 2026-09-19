@@ -65,7 +65,6 @@ import { Route as AdminWhatsappLogsRouteImport } from './routes/admin/whatsapp-l
 import { Route as AgencyIndexRouteImport } from './routes/agency/index'
 import { Route as AgencyApplyRouteImport } from './routes/agency/apply'
 import { Route as AgencyCommissionRouteImport } from './routes/agency/commission'
-import { Route as AgencyContactRouteImport } from './routes/agency/contact'
 import { Route as AgencyFaqRouteImport } from './routes/agency/faq'
 import { Route as AgencyForgotPasswordRouteImport } from './routes/agency/forgot-password'
 import { Route as AgencyHowItWorksRouteImport } from './routes/agency/how-it-works'
@@ -537,11 +536,6 @@ const AgencyApplyRoute = AgencyApplyRouteImport.update({
 const AgencyCommissionRoute = AgencyCommissionRouteImport.update({
   id: '/commission',
   path: '/commission',
-  getParentRoute: () => AgencyRouteRoute,
-} as any)
-const AgencyContactRoute = AgencyContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
   getParentRoute: () => AgencyRouteRoute,
 } as any)
 const AgencyFaqRoute = AgencyFaqRouteImport.update({
@@ -1621,7 +1615,6 @@ export interface FileRoutesByFullPath {
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/commission': typeof AgencyCommissionRoute
-  '/agency/contact': typeof AgencyContactRoute
   '/agency/faq': typeof AgencyFaqRoute
   '/agency/forgot-password': typeof AgencyForgotPasswordRoute
   '/agency/how-it-works': typeof AgencyHowItWorksRoute
@@ -1865,7 +1858,6 @@ export interface FileRoutesByTo {
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/commission': typeof AgencyCommissionRoute
-  '/agency/contact': typeof AgencyContactRoute
   '/agency/faq': typeof AgencyFaqRoute
   '/agency/forgot-password': typeof AgencyForgotPasswordRoute
   '/agency/how-it-works': typeof AgencyHowItWorksRoute
@@ -2113,7 +2105,6 @@ export interface FileRoutesById {
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/commission': typeof AgencyCommissionRoute
-  '/agency/contact': typeof AgencyContactRoute
   '/agency/faq': typeof AgencyFaqRoute
   '/agency/forgot-password': typeof AgencyForgotPasswordRoute
   '/agency/how-it-works': typeof AgencyHowItWorksRoute
@@ -2366,7 +2357,6 @@ export interface FileRouteTypes {
     | '/admin/whatsapp-logs'
     | '/agency/apply'
     | '/agency/commission'
-    | '/agency/contact'
     | '/agency/faq'
     | '/agency/forgot-password'
     | '/agency/how-it-works'
@@ -2610,7 +2600,6 @@ export interface FileRouteTypes {
     | '/admin/whatsapp-logs'
     | '/agency/apply'
     | '/agency/commission'
-    | '/agency/contact'
     | '/agency/faq'
     | '/agency/forgot-password'
     | '/agency/how-it-works'
@@ -2857,7 +2846,6 @@ export interface FileRouteTypes {
     | '/admin/whatsapp-logs'
     | '/agency/apply'
     | '/agency/commission'
-    | '/agency/contact'
     | '/agency/faq'
     | '/agency/forgot-password'
     | '/agency/how-it-works'
@@ -3557,13 +3545,6 @@ declare module '@tanstack/react-router' {
       path: '/commission'
       fullPath: '/agency/commission'
       preLoaderRoute: typeof AgencyCommissionRouteImport
-      parentRoute: typeof AgencyRouteRoute
-    }
-    '/agency/contact': {
-      id: '/agency/contact'
-      path: '/contact'
-      fullPath: '/agency/contact'
-      preLoaderRoute: typeof AgencyContactRouteImport
       parentRoute: typeof AgencyRouteRoute
     }
     '/agency/faq': {
@@ -5044,7 +5025,6 @@ interface AgencyRouteRouteChildren {
   AgencyPortalRouteRoute: typeof AgencyPortalRouteRouteWithChildren
   AgencyApplyRoute: typeof AgencyApplyRoute
   AgencyCommissionRoute: typeof AgencyCommissionRoute
-  AgencyContactRoute: typeof AgencyContactRoute
   AgencyFaqRoute: typeof AgencyFaqRoute
   AgencyForgotPasswordRoute: typeof AgencyForgotPasswordRoute
   AgencyHowItWorksRoute: typeof AgencyHowItWorksRoute
@@ -5058,7 +5038,6 @@ const AgencyRouteRouteChildren: AgencyRouteRouteChildren = {
   AgencyPortalRouteRoute: AgencyPortalRouteRouteWithChildren,
   AgencyApplyRoute: AgencyApplyRoute,
   AgencyCommissionRoute: AgencyCommissionRoute,
-  AgencyContactRoute: AgencyContactRoute,
   AgencyFaqRoute: AgencyFaqRoute,
   AgencyForgotPasswordRoute: AgencyForgotPasswordRoute,
   AgencyHowItWorksRoute: AgencyHowItWorksRoute,
