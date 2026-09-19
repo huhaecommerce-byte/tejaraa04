@@ -230,13 +230,15 @@ export default function AgencyApply() {
                   <Label htmlFor="company">Agency or business name *</Label>
                   <Input id="company" className="w-full" value={form.company_name} onChange={(e) => set('company_name', e.target.value)} placeholder="Nomad Media" required />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="contact">Your full name *</Label>
-                  <Input id="contact" className="w-full" value={form.contact_name} onChange={(e) => set('contact_name', e.target.value)} placeholder="Sara Al-Otaibi" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">WhatsApp / phone *</Label>
-                  <Input id="phone" className="w-full" type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value.replace(/[^\d\s+()-]/g, ''))} placeholder="+966 5x xxx xxxx" required />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="contact">Your full name *</Label>
+                    <Input id="contact" className="w-full" value={form.contact_name} onChange={(e) => set('contact_name', e.target.value)} placeholder="Sara Al-Otaibi" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">WhatsApp / phone *</Label>
+                    <Input id="phone" className="w-full" type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value.replace(/[^\d\s+()-]/g, ''))} placeholder="+966 5x xxx xxxx" required />
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
