@@ -13,7 +13,7 @@ interface AgencyPublicShellProps {
 /** Public chrome for the Agency & VA area — its own header, nav and footer. */
 export function AgencyPublicShell({ children, className, contentClassName, dir }: AgencyPublicShellProps) {
   return (
-    <div dir={dir} className={cn('retail-theme flex min-h-screen flex-col bg-retail-page text-retail-text', className)}>
+    <div dir={dir} className={cn('seller-theme flex min-h-screen flex-col bg-retail-page text-retail-text', className)}>
       <AgencyHeader />
       <div className={cn('flex-1', contentClassName)}>{children}</div>
       <AgencyFooter />

@@ -56,7 +56,7 @@ export function AgencyHeader() {
           <Button asChild variant="outline" size="sm" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex">
             <Link to="/agency/signin">Partner sign in</Link>
           </Button>
-          <Button asChild size="sm" className="bg-retail-green font-semibold text-white hover:bg-retail-dark-green">
+          <Button asChild size="sm" className="bg-retail-green font-semibold text-primary-foreground hover:bg-retail-dark-green">
             <Link to="/agency/apply">Apply to join</Link>
           </Button>
 
