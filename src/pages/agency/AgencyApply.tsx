@@ -46,8 +46,6 @@ export default function AgencyApply() {
 
   const set = (k: keyof typeof empty, v: string) => setForm((f) => ({ ...f, [k]: v }));
 
-  const dial = GCC_COUNTRIES.find((c) => c.name === form.country)?.dial ?? '+966';
-
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (
