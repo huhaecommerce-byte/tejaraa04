@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { useNavigate } from "@/lib/router-compat";
 import { ShoppingCart } from "lucide-react";
 import { toast } from "sonner";
@@ -39,6 +40,7 @@ function newOrderRef() {
 }
 
 export default function ShopCheckout() {
+  const { t } = useLocale();
   const { items, subtotal, unitPrice, lineTotal, clear, isHydrated } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -172,11 +174,11 @@ export default function ShopCheckout() {
     if (submitting) return;
     setAttempted(true);
     if (!form.name || !form.email || !form.phone || !form.address || !form.city) {
-      toast.error("Please review the highlighted fields.");
+      toast.error(t("shopx.checkout.toastReviewFields"));
       return;
     }
     if (items.length === 0) {
-      toast.error("Your cart is empty.");
+      toast.error(t("shopx.checkout.toastCartEmpty"));
       return;
     }
     setSubmitting(true);
@@ -239,7 +241,7 @@ export default function ShopCheckout() {
         });
         const data = await response.json();
         if (!response.ok || !data?.url) {
-          throw new Error(data?.error || "Could not start card payment");
+          throw new Error(data?.error || t("shopx.checkout.toastCardError"));
         }
         clear();
         window.location.href = data.url;
@@ -251,7 +253,7 @@ export default function ShopCheckout() {
     } catch (error: unknown) {
       console.error(error);
       toast.error(
-        error instanceof Error ? error.message : "We could not place your order. Please try again.",
+        error instanceof Error ? error.message : t("shopx.checkout.toastOrderError"),
       );
     } finally {
       setSubmitting(false);
@@ -267,9 +269,9 @@ export default function ShopCheckout() {
           <RetailContainer className="max-w-3xl py-12 sm:py-20">
             <RetailEmptyState
               icon={ShoppingCart}
-              title="Your cart is empty"
-              description="Add something to your cart before starting checkout."
-              actionLabel="Browse the catalog"
+              title={t("shopx.checkout.emptyTitle")}
+              description={t("shopx.checkout.emptyDescription")}
+              actionLabel={t("shopx.checkout.browseCatalog")}
               actionHref="/catalog"
             />
           </RetailContainer>
@@ -294,10 +296,10 @@ export default function ShopCheckout() {
             <div className="min-w-0 space-y-4">
               <div>
                 <h1 className="font-display text-2xl font-bold text-retail-text sm:text-3xl">
-                  Checkout
+                  {t("shopx.checkout.title")}
                 </h1>
                 <p className="mt-1 text-sm text-retail-muted">
-                  Complete your order as a guest or with your saved account details.
+                  {t("shopx.checkout.subtitle")}
                 </p>
               </div>
               {missingRequired && (
@@ -305,7 +307,7 @@ export default function ShopCheckout() {
                   role="alert"
                   className="rounded-md border border-retail-sale/30 bg-retail-sale/5 px-4 py-3 text-sm font-medium text-retail-sale"
                 >
-                  Please review the highlighted fields before placing your order.
+                  {t("shopx.checkout.reviewFields")}
                 </div>
               )}
               <CheckoutContactAddress

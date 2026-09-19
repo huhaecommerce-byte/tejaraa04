@@ -1,21 +1,7 @@
 import { Banknote, CreditCard } from "lucide-react";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { Button } from "@/components/ui/button";
 import { CheckoutSection } from "./CheckoutSection";
-
-const methods = [
-  {
-    id: "cod" as const,
-    title: "Cash on delivery",
-    description: "Pay the courier when your order arrives.",
-    icon: Banknote,
-  },
-  {
-    id: "card" as const,
-    title: "Card payment",
-    description: "Continue to secure online payment after placing the order.",
-    icon: CreditCard,
-  },
-];
 
 export function CheckoutPaymentMethods({
   value,
@@ -24,14 +10,29 @@ export function CheckoutPaymentMethods({
   value: "cod" | "card";
   onChange: (value: "cod" | "card") => void;
 }) {
+  const { t } = useLocale();
+  const methods = [
+    {
+      id: "cod" as const,
+      title: t("shopx.checkout.cod"),
+      description: t("shopx.checkout.codDescription"),
+      icon: Banknote,
+    },
+    {
+      id: "card" as const,
+      title: t("shopx.checkout.card"),
+      description: t("shopx.checkout.cardDescription"),
+      icon: CreditCard,
+    },
+  ];
   return (
     <CheckoutSection
       number={4}
-      title="Payment Method"
-      description="Choose how you would like to pay."
+      title={t("shopx.checkout.paymentMethodTitle")}
+      description={t("shopx.checkout.paymentMethodDescription")}
       complete
     >
-      <div className="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Payment method">
+      <div className="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label={t("shopx.checkout.paymentMethodAria")}>
         {methods.map((method) => {
           const selected = value === method.id;
           return (

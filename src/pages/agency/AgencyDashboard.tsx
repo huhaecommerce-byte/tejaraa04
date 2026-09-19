@@ -8,6 +8,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAgency, sar, num, inviteLink } from '@/hooks/useAgency';
 import { Coins, Users, Wallet, Clock, Copy, ArrowRight, ShoppingCart } from 'lucide-react';
 import { toast } from 'sonner';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 interface Row {
   id: string;
@@ -17,6 +18,13 @@ interface Row {
   created_at: string;
 }
 
+const statusLabelKey: Record<string, string> = {
+  pending: 'agency.earnings.statusPending',
+  approved: 'agency.earnings.statusApproved',
+  paid: 'agency.earnings.statusPaid',
+  reversed: 'agency.earnings.statusReversed',
+};
+
 const statusTone: Record<string, string> = {
   pending: 'bg-amber-100 text-amber-800',
   approved: 'bg-emerald-100 text-emerald-800',
@@ -25,6 +33,7 @@ const statusTone: Record<string, string> = {
 };
 
 export default function AgencyDashboard() {
+  const { t } = useLocale();
   const { agency } = useAgency();
   const [recent, setRecent] = useState<Row[]>([]);
 
@@ -41,21 +50,21 @@ export default function AgencyDashboard() {
   const code = agency?.code || '';
 
   const stats = [
-    { label: 'Available to withdraw', value: sar(b?.available), icon: Wallet, tone: 'text-emerald-600' },
-    { label: 'Pending (awaiting delivery)', value: sar(b?.pending), icon: Clock, tone: 'text-amber-600' },
-    { label: 'Earned this month', value: sar(b?.this_month), icon: Coins, tone: 'text-primary' },
-    { label: 'Lifetime earnings', value: sar(b?.lifetime), icon: Coins, tone: 'text-foreground' },
-    { label: 'Dropshippers onboarded', value: String(num(b?.clients)), icon: Users, tone: 'text-foreground' },
-    { label: 'Orders earning', value: String(num(b?.orders)), icon: ShoppingCart, tone: 'text-foreground' },
+    { label: t('agency.dashboard.statAvailable'), value: sar(b?.available), icon: Wallet, tone: 'text-emerald-600' },
+    { label: t('agency.dashboard.statPending'), value: sar(b?.pending), icon: Clock, tone: 'text-amber-600' },
+    { label: t('agency.dashboard.statThisMonth'), value: sar(b?.this_month), icon: Coins, tone: 'text-primary' },
+    { label: t('agency.dashboard.statLifetime'), value: sar(b?.lifetime), icon: Coins, tone: 'text-foreground' },
+    { label: t('agency.dashboard.statClients'), value: String(num(b?.clients)), icon: Users, tone: 'text-foreground' },
+    { label: t('agency.dashboard.statOrders'), value: String(num(b?.orders)), icon: ShoppingCart, tone: 'text-foreground' },
   ];
 
   return (
     <>
       <PageHeader
-        title="Partner dashboard"
+        title={t('agency.dashboard.title')}
         highlight="dashboard"
-        subtitle={`${agency?.company || 'Your agency'} · ${num(agency?.rate)}% of Tejaraa profit on every order`}
-        actions={<Button asChild><Link to="/agency/portal/payouts">Request payout <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>}
+        subtitle={t('agency.dashboard.subtitle', { company: agency?.company || t('agency.dashboard.defaultCompany'), rate: num(agency?.rate) })}
+        actions={<Button asChild><Link to="/agency/portal/payouts">{t('agency.dashboard.requestPayout')} <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>}
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -74,7 +83,7 @@ export default function AgencyDashboard() {
       <Card>
         <CardContent className="flex flex-wrap items-center justify-between gap-4 p-5">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Your invite link</div>
+            <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t('agency.dashboard.inviteLink')}</div>
             <div className="mt-1 break-all font-mono text-sm">{code ? inviteLink(code) : '—'}</div>
           </div>
           <div className="flex gap-2">
@@ -82,12 +91,12 @@ export default function AgencyDashboard() {
               variant="outline"
               onClick={() => {
                 navigator.clipboard.writeText(inviteLink(code));
-                toast.success('Invite link copied');
+                toast.success(t('agency.dashboard.copiedToast'));
               }}
             >
-              <Copy className="mr-2 h-4 w-4" /> Copy
+              <Copy className="mr-2 h-4 w-4" /> {t('agency.dashboard.copy')}
             </Button>
-            <Button asChild variant="secondary"><Link to="/agency/portal/link">Share kit</Link></Button>
+            <Button asChild variant="secondary"><Link to="/agency/portal/link">{t('agency.dashboard.shareKit')}</Link></Button>
           </div>
         </CardContent>
       </Card>
@@ -95,23 +104,23 @@ export default function AgencyDashboard() {
       <Card>
         <CardContent className="p-5">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-bold">Recent earnings</h2>
-            <Link to="/agency/portal/earnings" className="text-sm text-primary underline">View all</Link>
+            <h2 className="font-bold">{t('agency.dashboard.recentEarnings')}</h2>
+            <Link to="/agency/portal/earnings" className="text-sm text-primary underline">{t('agency.dashboard.viewAll')}</Link>
           </div>
           {recent.length === 0 ? (
             <p className="py-8 text-center text-sm text-muted-foreground">
-              No commission yet. Share your invite link to onboard your first dropshipper.
+              {t('agency.dashboard.emptyState')}
             </p>
           ) : (
             <div className="divide-y">
               {recent.map((r) => (
                 <div key={r.id} className="flex items-center justify-between gap-3 py-3">
                   <div>
-                    <div className="text-sm font-medium">{r.order_ref || 'Order'}</div>
+                    <div className="text-sm font-medium">{r.order_ref || t('agency.dashboard.order')}</div>
                     <div className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleDateString()}</div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Badge className={statusTone[r.status] || ''} variant="secondary">{r.status}</Badge>
+                    <Badge className={statusTone[r.status] || ''} variant="secondary">{statusLabelKey[r.status] ? t(statusLabelKey[r.status] as any) : r.status}</Badge>
                     <span className="font-bold">{sar(r.amount_sar)}</span>
                   </div>
                 </div>

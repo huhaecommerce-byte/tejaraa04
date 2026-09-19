@@ -1,12 +1,19 @@
 import { Check } from "lucide-react";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/utils";
 
-const steps = ["Cart", "Address", "Delivery", "Payment", "Review"];
-
 export function CheckoutProgress({ currentStep }: { currentStep: number }) {
+  const { t } = useLocale();
+  const steps = [
+    t("shopx.checkout.stepCart"),
+    t("shopx.checkout.stepAddress"),
+    t("shopx.checkout.stepDelivery"),
+    t("shopx.checkout.stepPayment"),
+    t("shopx.checkout.stepReview"),
+  ];
   return (
     <nav
-      aria-label="Checkout progress"
+      aria-label={t("shopx.checkout.progressAria")}
       className="overflow-hidden rounded-lg border border-retail-border bg-retail-card px-3 py-4 sm:px-6"
     >
       <ol className="grid grid-cols-5">
