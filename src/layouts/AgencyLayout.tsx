@@ -8,6 +8,7 @@ import { useAgency } from '@/hooks/useAgency';
 import { agencyNavigation } from '@/config/navigation';
 import { CommandDeck } from '@/components/layout/CommandDeck';
 import { Menu } from 'lucide-react';
+import { AgencyPortalHeader } from '@/components/agency/shell/AgencyPortalHeader';
 
 const StatusCard = ({
   icon, title, text, action,
@@ -78,10 +79,13 @@ const AgencyLayout = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[hsl(var(--muted)/0.4)]" key={location.pathname}>
+    <div className="dashboard-with-retail-header retail-theme min-h-screen w-full bg-retail-page" key={location.pathname}>
+      <div className="sticky top-0 z-50">
+        <AgencyPortalHeader />
+      </div>
       <CommandDeck
         sections={agencyNavigation}
-        variant="customer"
+        variant="agency"
         collapsed={collapsed}
         onToggle={() => setCollapsed((c) => !c)}
         mobileOpen={mobileOpen}
@@ -90,13 +94,13 @@ const AgencyLayout = () => {
       <button
         onClick={() => setMobileOpen(true)}
         aria-label="Open menu"
-        className="lg:hidden fixed top-3 left-3 z-30 h-10 w-10 rounded-full bg-white/95 backdrop-blur shadow-md ring-1 ring-border/60 inline-flex items-center justify-center text-foreground/80"
+        className="lg:hidden fixed left-3 top-[76px] z-30 h-10 w-10 rounded-full bg-background/95 backdrop-blur shadow-md ring-1 ring-border/60 inline-flex items-center justify-center text-foreground/80"
       >
         <Menu className="h-5 w-5" />
       </button>
       <div className={`${collapsed ? 'lg:ml-[64px]' : 'lg:ml-[260px]'} flex flex-col min-h-screen transition-[margin] duration-300`}>
-        <main className="flex-1 px-3 md:px-6 pt-16 lg:pt-6 pb-24 md:pb-8">
-          <div className="max-w-[1200px] mx-auto space-y-4 md:space-y-6">
+        <main className="flex-1 px-3 pb-24 pt-16 md:px-6 md:pb-8 lg:pt-6">
+          <div className="mx-auto max-w-[1400px] space-y-4 md:space-y-6">
             <Outlet />
           </div>
         </main>

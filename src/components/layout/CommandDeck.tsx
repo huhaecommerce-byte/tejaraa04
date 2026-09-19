@@ -14,7 +14,7 @@ import { safeSetItem } from '@/lib/safeStorage';
 
 interface Props {
   sections: NavSection[];
-  variant?: 'customer' | 'admin';
+  variant?: 'customer' | 'admin' | 'agency';
   collapsed: boolean;
   onToggle: () => void;
   mobileOpen?: boolean;
@@ -43,7 +43,7 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
   const location = useLocation();
   const pendingCounts = useAdminPendingCounts();
   const initials = (user?.name || user?.email || 'U').slice(0, 2).toUpperCase();
-  const handleLogout = async () => { await logout(); navigate('/'); };
+  const handleLogout = async () => { await logout(); navigate(variant === 'agency' ? '/agency/signin' : '/'); };
   const [balance, setBalance] = useState<number | null>(null);
 
   const showWallet = variant === 'customer';
@@ -126,19 +126,19 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
         {/* Brand */}
         <div className="command-deck-brand">
           {variant !== 'customer' && (
-            <Link to="/" className="group" aria-label="Home">
+            <Link to={variant === 'agency' ? '/agency/portal' : '/'} className="group" aria-label={variant === 'agency' ? 'Agency portal' : 'Home'}>
               <BrandLogo
                 variant="sidebar"
                 collapsed={collapsed}
-                subLabel={variant === 'admin' ? 'ADMIN' : undefined}
+                subLabel={variant === 'admin' ? 'ADMIN' : variant === 'agency' ? 'PARTNER' : undefined}
               />
             </Link>
           )}
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                to="/"
-                aria-label="Homepage"
+                to={variant === 'agency' ? '/agency' : '/'}
+                aria-label={variant === 'agency' ? 'Agency programme' : 'Homepage'}
                 className="h-9 w-9 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-sm border border-white/15 hover:border-white/25 inline-flex items-center justify-center text-white/90 hover:text-white transition-all"
               >
                 <Home className="h-4 w-4" />
@@ -312,7 +312,7 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
         )}
 
         {/* Utility row: wallet / support / notifications — buyer panel keeps these in the retail header */}
-        {variant !== 'customer' && (
+        {variant === 'admin' && (
           <div className={`px-3 pb-2 ${collapsed ? 'flex flex-col items-center gap-1.5' : 'flex items-center gap-1.5'}`}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -361,7 +361,7 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
           {/* Buyer panel keeps the account block + logout in the retail header */}
           {variant !== 'customer' && (
             <div className="command-deck-user">
-              <Link to="/admin" className="flex items-center gap-2.5 min-w-0 flex-1">
+              <Link to={variant === 'agency' ? '/agency/portal/profile' : '/admin'} className="flex items-center gap-2.5 min-w-0 flex-1">
                 <Avatar className="h-8 w-8 ring-2 ring-white/15 shrink-0">
                   {user?.avatar_url && <AvatarImage src={user.avatar_url} />}
                   <AvatarFallback className="bg-primary/30 text-white text-[10px] font-semibold">{initials}</AvatarFallback>
@@ -369,7 +369,7 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
                 {!collapsed && (
                   <div className="min-w-0 flex-1">
                     <div className="text-[12.5px] font-semibold text-white truncate">{user?.name || 'Profile'}</div>
-                    <div className="text-[10.5px] text-white/50 truncate capitalize">{user?.role || 'user'}</div>
+                    <div className="text-[10.5px] text-white/50 truncate capitalize">{variant === 'agency' ? 'Agency partner' : user?.role || 'user'}</div>
                   </div>
                 )}
               </Link>
