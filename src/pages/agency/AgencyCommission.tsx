@@ -1,8 +1,9 @@
-import { Link } from '@/lib/router-compat';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
-import { ArrowRight, CheckCircle2, Clock, RotateCcw, Wallet } from 'lucide-react';
+import { AgencyBreadcrumbs, AgencyCTA, AgencyFeatureList, AgencyPageHero } from '@/components/agency/sections';
+import { SellerContainer } from '@/components/seller/common/SellerContainer';
+import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHeading';
+import { ServiceFAQ } from '@/components/seller/service';
+import { CheckCircle2, Clock, Coins, RotateCcw, Wallet } from 'lucide-react';
 
 const rules = [
   { icon: CheckCircle2, title: 'Paid on profit, not on price', text: 'Your commission is a share of the profit Tejaraa makes on the order — the selling price minus the product cost, line by line.' },
@@ -19,72 +20,89 @@ const example = [
   { label: 'You earn on this single order', value: 'SAR 42.50' },
 ];
 
+const guarantees = [
+  'No cost to join',
+  'No cap on the number of sellers',
+  'No cut-off on earnings',
+  'Live reporting in your portal',
+];
+
+const faqs = [
+  { q: 'Is the rate the same for everyone?', a: 'The standard programme rate applies by default. Larger agencies can agree a custom rate with the partnerships team; your rate is always shown in your portal.' },
+  { q: 'When does a commission become available?', a: 'After the order is delivered and the return window closes. Until then it stays pending in your balance.' },
+  { q: 'What is the minimum payout?', a: 'A minimum balance applies before a withdrawal can be requested; the current figure is shown on your payouts page.' },
+  { q: 'Which currency are payouts made in?', a: 'Payouts are made in SAR to the bank details on your partner profile.' },
+];
+
 export default function AgencyCommission() {
   return (
     <AgencyPublicShell>
-      <section className="border-b border-retail-border bg-retail-card">
-        <div className="mx-auto max-w-5xl px-4 py-16 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green">Commission &amp; payouts</p>
-          <h1 className="mt-3 text-4xl font-black text-retail-dark-green md:text-5xl">You earn every time they order</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-retail-muted">
-            Not just the first order, not only for the first 90 days. For as long as your seller keeps
-            buying through Tejaraa, you keep earning.
-          </p>
-        </div>
+      <AgencyBreadcrumbs items={[{ label: 'Commission' }]} />
+      <AgencyPageHero
+        icon={Coins}
+        eyebrow="Commission & payouts"
+        title="You earn every time they order"
+        lead="Not just the first order, not only for the first 90 days. For as long as your seller keeps buying through Tejaraa, you keep earning."
+        tags={['Share of profit', 'Lifetime', 'Paid in SAR']}
+        flow={['Order paid', 'Commission pending', 'Order delivered', 'Commission available', 'Payout requested']}
+        flowCaption="Cancelled, returned or refunded orders reverse automatically."
+      />
+
+      <section className="py-9 lg:py-11">
+        <SellerContainer>
+          <SellerSectionHeading eyebrow="The rules" title="How commission is calculated" description="Four rules that decide what you earn and when you can take it out." />
+          <div className="mt-5">
+            <AgencyFeatureList items={rules} columns={4} />
+          </div>
+        </SellerContainer>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 py-14">
-        <div className="grid gap-5 md:grid-cols-2">
-          {rules.map((rule) => (
-            <Card key={rule.title} className="border-border/60">
-              <CardContent className="p-6">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <rule.icon className="h-5 w-5" />
+      <section className="border-y border-retail-border bg-retail-light-green py-9 lg:py-11">
+        <SellerContainer className="grid gap-8 lg:grid-cols-2 lg:items-start">
+          <div className="min-w-0">
+            <SellerSectionHeading eyebrow="Worked example" title="One order, step by step" as="h2" />
+            <dl className="mt-5 divide-y divide-retail-border border-t border-retail-border bg-white">
+              {example.map((row, index) => (
+                <div
+                  key={row.label}
+                  className={`flex items-center justify-between gap-4 px-4 py-3 ${index === example.length - 1 ? 'text-base font-extrabold text-retail-dark-green' : 'text-sm'}`}
+                >
+                  <dt className={index === example.length - 1 ? '' : 'text-retail-muted'}>{row.label}</dt>
+                  <dd className="font-bold text-retail-dark-green">{row.value}</dd>
                 </div>
-                <h2 className="text-lg font-bold">{rule.title}</h2>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{rule.text}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+              ))}
+            </dl>
+            <p className="mt-3 text-xs leading-5 text-retail-muted">
+              Rates shown are the standard programme rate. Your own rate is confirmed on approval and shown in your partner portal.
+            </p>
+          </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          <Card className="border-border/60">
-            <CardContent className="p-6">
-              <h2 className="text-xl font-black">A worked example</h2>
-              <dl className="mt-5 divide-y divide-border/60">
-                {example.map((row) => (
-                  <div key={row.label} className="flex items-center justify-between gap-4 py-3">
-                    <dt className="text-sm text-muted-foreground">{row.label}</dt>
-                    <dd className="text-sm font-bold">{row.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-4 text-xs text-muted-foreground">
-                Rates shown are the standard programme rate. Your own rate is confirmed on approval and
-                shown in your partner portal.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-border/60">
-            <CardContent className="p-6">
-              <h2 className="text-xl font-black">Ten sellers, every month</h2>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                If you onboard 10 dropshippers and each places around SAR 20,000 of orders a month at a
-                similar margin, your monthly commission would be in the region of SAR 7,000 — and it
-                repeats every month those sellers stay active.
-              </p>
-              <ul className="mt-5 space-y-2 text-sm">
-                {['No cost to join', 'No cap on the number of sellers', 'No cut-off on earnings', 'Live reporting in your portal'].map((item) => (
-                  <li key={item} className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> {item}</li>
-                ))}
-              </ul>
-              <Button asChild className="mt-6 w-full"><Link to="/agency/apply">Apply to join <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
-            </CardContent>
-          </Card>
-        </div>
+          <div className="min-w-0">
+            <SellerSectionHeading eyebrow="At scale" title="Ten sellers, every month" as="h2" />
+            <p className="mt-3 text-sm leading-6 text-retail-muted">
+              If you onboard 10 dropshippers and each places around SAR 20,000 of orders a month at a similar
+              margin, your monthly commission would be in the region of SAR 7,000 — and it repeats every month
+              those sellers stay active.
+            </p>
+            <ul className="mt-5 grid gap-2 text-sm text-retail-dark-green">
+              {guarantees.map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-retail-green" aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </SellerContainer>
       </section>
+
+      <ServiceFAQ items={faqs} />
+
+      <AgencyCTA
+        variant="dark"
+        title="Turn your seller network into monthly income"
+        text="Apply now and start sharing your invite link as soon as you are approved."
+      />
     </AgencyPublicShell>
   );
 }

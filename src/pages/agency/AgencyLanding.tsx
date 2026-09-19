@@ -1,8 +1,10 @@
 import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
+import { AgencyCTA, AgencyFeatureList } from '@/components/agency/sections';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
+import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHeading';
+import { ServiceFAQ } from '@/components/seller/service';
 import {
   Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, ArrowRight,
 } from 'lucide-react';
@@ -18,6 +20,19 @@ const benefits = [
   { icon: Repeat, title: 'Lifetime commission', text: 'No cut-off after 30 or 90 days. As long as your seller keeps ordering, you keep earning.' },
   { icon: LineChart, title: 'Full transparency', text: 'See every order, the profit it made and exactly what you earned, in real time.' },
   { icon: ShieldCheck, title: 'We do the heavy lifting', text: 'Sourcing, warehousing, labelling, shipping and support are all handled by Tejaraa.' },
+];
+
+const faqs = [
+  { q: 'Who can join?', a: 'Marketing agencies, virtual assistants, community managers, coaches and anyone with an audience of e-commerce sellers in Saudi Arabia and the Gulf.' },
+  { q: 'How long do I earn for?', a: 'For as long as the seller stays with Tejaraa. Every order they place earns you commission — there is no expiry.' },
+  { q: 'When can I withdraw?', a: 'Earnings unlock once the order is delivered and the return window has closed. After that you can request a withdrawal whenever you are above the minimum amount.' },
+  { q: 'Does it cost anything?', a: 'No. Joining is free and there are no targets or fees.' },
+];
+
+const exampleRows: Array<[string, string]> = [
+  ['Orders placed by your sellers', '400'],
+  ['Tejaraa profit on those orders', 'SAR 10,000'],
+  ['Your commission (10%)', 'SAR 1,000'],
 ];
 
 export default function AgencyLanding() {
@@ -52,89 +67,69 @@ export default function AgencyLanding() {
         </SellerContainer>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="text-center text-3xl font-black md:text-4xl">How the programme works</h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <Card key={s.title} className="border-border/60">
-              <CardContent className="p-6">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <s.icon className="h-5 w-5" />
+      <section id="how" className="scroll-mt-28 py-9 lg:py-11">
+        <SellerContainer>
+          <SellerSectionHeading
+            eyebrow="Programme"
+            title="How the programme works"
+            description="Four steps from application to your first payout."
+          />
+          <ol className="mt-5 grid gap-x-5 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, index) => (
+              <li key={step.title} className="border-t-2 border-retail-green pt-4">
+                <div className="flex items-center gap-2.5">
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-retail-green text-xs font-bold text-retail-card">
+                    {index + 1}
+                  </span>
+                  <h3 className="text-sm font-bold text-retail-dark-green">{step.title}</h3>
                 </div>
-                <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Step {i + 1}</div>
-                <h3 className="mt-1 text-lg font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                <p className="mt-2 text-sm leading-6 text-retail-muted">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </SellerContainer>
       </section>
 
-      <section className="bg-muted/40 py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
-            <div>
-              <h2 className="text-3xl font-black md:text-4xl">An example month</h2>
-              <p className="mt-3 text-muted-foreground">
-                Say you onboard 10 dropshippers and each places 40 orders in a month. Tejaraa makes
-                an average profit of SAR 25 per order, and your share is 10%.
-              </p>
-              <div className="mt-6 space-y-3 rounded-2xl border bg-card p-6">
-                {[
-                  ['Orders placed by your sellers', '400'],
-                  ['Tejaraa profit on those orders', 'SAR 10,000'],
-                  ['Your commission (10%)', 'SAR 1,000'],
-                ].map(([k, v], i) => (
-                  <div key={k} className={`flex items-center justify-between gap-4 ${i === 2 ? 'border-t pt-3 text-lg font-bold' : 'text-sm'}`}>
-                    <span className={i === 2 ? '' : 'text-muted-foreground'}>{k}</span>
-                    <span>{v}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-3 text-xs text-muted-foreground">
-                Illustrative figures. Your actual rate is confirmed when your application is approved.
-              </p>
-            </div>
-            <div className="grid gap-4">
-              {benefits.map((b) => (
-                <Card key={b.title} className="border-border/60">
-                  <CardContent className="flex gap-4 p-6">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <b.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold">{b.title}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{b.text}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+      <section className="border-y border-retail-border bg-retail-light-green py-9 lg:py-11">
+        <SellerContainer className="grid gap-8 lg:grid-cols-2 lg:items-start">
+          <div className="min-w-0">
+            <SellerSectionHeading
+              eyebrow="Example"
+              title="An example month"
+              description="Onboard 10 dropshippers who each place 40 orders a month, at an average Tejaraa profit of SAR 25 per order and a 10% share."
+            />
+            <dl className="mt-5 divide-y divide-retail-border border-t border-retail-border bg-white">
+              {exampleRows.map(([label, value], index) => (
+                <div
+                  key={label}
+                  className={`flex items-center justify-between gap-4 px-4 py-3 ${index === 2 ? 'text-base font-extrabold text-retail-dark-green' : 'text-sm'}`}
+                >
+                  <dt className={index === 2 ? '' : 'text-retail-muted'}>{label}</dt>
+                  <dd className="font-bold text-retail-dark-green">{value}</dd>
+                </div>
               ))}
+            </dl>
+            <p className="mt-3 text-xs leading-5 text-retail-muted">
+              Illustrative figures. Your actual rate is confirmed when your application is approved.
+            </p>
+          </div>
+          <div className="min-w-0">
+            <SellerSectionHeading eyebrow="Why partners join" title="Built to keep paying you" />
+            <div className="mt-5">
+              <AgencyFeatureList items={benefits} columns={2} />
             </div>
           </div>
-        </div>
+        </SellerContainer>
       </section>
 
-      <section className="mx-auto max-w-4xl px-4 py-16">
-        <h2 className="text-center text-3xl font-black">Common questions</h2>
-        <div className="mt-8 space-y-4">
-          {[
-            ['Who can join?', 'Marketing agencies, virtual assistants, community managers, coaches and anyone with an audience of e-commerce sellers in Saudi Arabia and the Gulf.'],
-            ['How long do I earn for?', 'For as long as the seller stays with Tejaraa. Every order they place earns you commission — there is no expiry.'],
-            ['When can I withdraw?', 'Earnings unlock once the order is delivered and the return window has closed. After that you can request a withdrawal whenever you are above the minimum amount.'],
-            ['Does it cost anything?', 'No. Joining is free and there are no targets or fees.'],
-          ].map(([q, a]) => (
-            <div key={q} className="rounded-xl border bg-card p-5">
-              <h3 className="font-bold">{q}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{a}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 text-center">
-          <Button asChild size="lg">
-            <Link to="/agency/apply">Start my application <ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </Button>
-        </div>
-      </section>
+      <ServiceFAQ items={faqs} title="Common questions" />
+
+      <AgencyCTA
+        variant="dark"
+        title="Start onboarding sellers with Tejaraa"
+        text="Applying is free and takes about two minutes."
+        primaryLabel="Start my application"
+      />
     </AgencyPublicShell>
   );
 }
