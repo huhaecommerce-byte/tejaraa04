@@ -52,7 +52,6 @@ export default function AgencyApply() {
       !form.company_name.trim() ||
       !form.contact_name.trim() ||
       !form.phone.trim() ||
-      !form.country.trim() ||
       !form.email.trim()
     ) {
       toast.error('Please fill in every field — all fields are required.');
