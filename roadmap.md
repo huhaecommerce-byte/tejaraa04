@@ -12,3 +12,4 @@
 - [x] Align the Agency & VA public pages and partner workspace with the Selling visual system
 - [x] Give agency sign-in, application/sign-up, email verification, and password reset a dedicated auth design
 - [x] Verify agency public and auth layouts on desktop and mobile; portal code verified, signed-in preview awaits a partner account
+- [x] Place Agencies & VAs third in the platform switcher and match the Selling top banner size

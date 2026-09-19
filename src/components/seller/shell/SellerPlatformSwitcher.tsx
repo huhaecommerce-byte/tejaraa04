@@ -5,8 +5,8 @@ import { cn } from '@/lib/utils';
 export const tejaraaPlatforms = [
   { label: 'Shop', to: '/', icon: Store, id: 'shop' },
   { label: 'Dropshipping & Selling Services', to: '/selling', icon: Truck, id: 'selling' },
-  { label: 'Wholesalers and Suppliers', to: '/partners', icon: Warehouse, id: 'suppliers' },
   { label: 'Agencies & VAs', to: '/agency', icon: Handshake, id: 'agencies' },
+  { label: 'Wholesalers and Suppliers', to: '/partners', icon: Warehouse, id: 'suppliers' },
 ] as const;
 
 export type TejaraaPlatformId = 'shop' | 'selling' | 'suppliers' | 'agencies';
