@@ -15,3 +15,12 @@
 - [x] Place Agencies & VAs third in the platform switcher and match the Selling top banner size
 - [x] Agency signup: GCC country dropdown + per-country phone code prefix
 - [x] Agency signup: email field placeholder/full-width confirm
+
+## Bilingual (English/Arabic) rollout
+- [x] i18n foundation: dictionary + LocaleProvider + language toggle
+- [x] Shop chrome: header, footer, mobile nav, homepage, category names
+- [ ] Shop flows: catalog, search, product, cart, checkout, account, auth
+- [ ] Dropshipping & Selling pages + portal
+- [ ] Agencies & VAs pages + portal
+- [ ] Wholesalers & Suppliers pages + portal
+- [ ] Admin screens (pending user decision)

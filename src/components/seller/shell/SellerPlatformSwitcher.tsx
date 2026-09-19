@@ -1,13 +1,17 @@
 import { Link } from '@/lib/router-compat';
 import { Handshake, Store, Truck, Warehouse } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLocale } from '@/i18n/LocaleProvider';
+import type { TranslationKey } from '@/i18n/dictionary';
 
-export const tejaraaPlatforms = [
-  { label: 'Shop', to: '/', icon: Store, id: 'shop' },
-  { label: 'Dropshipping & Selling Services', to: '/selling', icon: Truck, id: 'selling' },
-  { label: 'Agencies & VAs', to: '/agency', icon: Handshake, id: 'agencies' },
-  { label: 'Wholesalers and Suppliers', to: '/partners', icon: Warehouse, id: 'suppliers' },
-] as const;
+export const tejaraaPlatforms: {
+  label: TranslationKey; to: string; icon: typeof Store; id: TejaraaPlatformId;
+}[] = [
+  { label: 'platform.shop', to: '/', icon: Store, id: 'shop' },
+  { label: 'platform.selling', to: '/selling', icon: Truck, id: 'selling' },
+  { label: 'platform.agencies', to: '/agency', icon: Handshake, id: 'agencies' },
+  { label: 'platform.suppliers', to: '/partners', icon: Warehouse, id: 'suppliers' },
+];
 
 export type TejaraaPlatformId = 'shop' | 'selling' | 'suppliers' | 'agencies';
 
@@ -24,6 +28,7 @@ interface SellerPlatformSwitcherProps {
 export function SellerPlatformSwitcher({
   layout = 'inline', onDark = true, className, onNavigate, current: currentId = 'selling',
 }: SellerPlatformSwitcherProps) {
+  const { t } = useLocale();
   return (
     <nav
       aria-label="Tejaraa platforms"
@@ -54,7 +59,7 @@ export function SellerPlatformSwitcher({
             )}
           >
             <platform.icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
-            <span>{platform.label}</span>
+            <span>{t(platform.label)}</span>
             {current && layout === 'inline' ? <span aria-hidden className="absolute inset-x-0 -bottom-1 h-1.5 rounded-b-lg bg-retail-card" /> : null}
             {current ? <span className="sr-only">(current section)</span> : null}
           </Link>

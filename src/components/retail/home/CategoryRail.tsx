@@ -1,6 +1,7 @@
 import { Link } from '@/lib/router-compat';
 import { RetailSectionHeader } from '@/components/retail/common';
 import type { HomepageCategory } from './homeTypes';
+import { translateCategory } from '@/i18n/categoryNames';
 
 const fallbackImages = ['/marketplace/mobile.jpg', '/marketplace/electronics.jpg', '/marketplace/home.jpg', '/marketplace/beauty.jpg', '/marketplace/fashion.jpg', '/marketplace/sports.jpg', '/marketplace/automotive.jpg', '/marketplace/food.jpg', '/marketplace/more.jpg'];
 
@@ -54,7 +55,7 @@ export function CategoryRail({ categories, locale = 'en' }: { categories: Homepa
         {categories.slice(0, 20).map((category, index) => (
           <Link key={category.top_category} to={`/catalog?q=${encodeURIComponent(category.top_category)}`} className="group text-center">
             <span className="block aspect-square overflow-hidden rounded-md bg-retail-light-green"><img src={categoryImage(category.top_category, index)} alt="" loading="lazy" width={232} height={232} className="h-full w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105" /></span>
-            <span className="mt-2 line-clamp-2 block text-xs font-bold leading-tight text-retail-text group-hover:text-retail-green">{category.top_category}</span>
+            <span className="mt-2 line-clamp-2 block text-xs font-bold leading-tight text-retail-text group-hover:text-retail-green">{translateCategory(category.top_category, locale)}</span>
             {category.cnt > 0 && <span className="mt-0.5 block text-[10px] text-retail-muted">{category.cnt.toLocaleString()} {t.products}</span>}
           </Link>
         ))}

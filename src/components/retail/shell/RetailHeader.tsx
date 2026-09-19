@@ -17,6 +17,9 @@ import { RetailContainer } from '@/components/retail/common/RetailContainer';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
 import { NotificationBell } from '@/components/NotificationBell';
 import { useWholesaleAccess } from '@/hooks/useWholesaleAccess';
+import { translateCategory } from '@/i18n/categoryNames';
+import { useLocale } from '@/i18n/LocaleProvider';
+import type { TranslationKey } from '@/i18n/dictionary';
 
 interface CategoryRow { top_category: string; sub_category: string; cnt: number }
 interface CategoryGroup { name: string; count: number; children: string[] }
@@ -33,14 +36,15 @@ const establishedCategoryFallbacks: CategoryGroup[] = [
   { name: 'Daily needs', count: 0, children: [] },
 ];
 
-const platformLinks = [
-  { label: 'Shop', to: '/', icon: ShoppingCart },
-  { label: 'Dropshipping & Selling Services', to: '/selling', icon: Store },
-  { label: 'Wholesalers and Suppliers', to: '/partners', icon: Warehouse },
-  { label: 'Agencies & VAs', to: '/agency', icon: Handshake },
+const platformLinks: { label: TranslationKey; to: string; icon: typeof ShoppingCart }[] = [
+  { label: 'platform.shop', to: '/', icon: ShoppingCart },
+  { label: 'platform.selling', to: '/selling', icon: Store },
+  { label: 'platform.suppliers', to: '/partners', icon: Warehouse },
+  { label: 'platform.agencies', to: '/agency', icon: Handshake },
 ];
 
 export function RetailHeader() {
+  const { t, locale } = useLocale();
   const { user, logout } = useAuth();
   const { count } = useCart();
   const navigate = useNavigate();
@@ -126,7 +130,7 @@ export function RetailHeader() {
           <RetailContainer className="flex h-11 w-full items-center justify-between gap-3 text-xs">
             <div className="flex min-w-0 items-center gap-2 self-stretch">
               <SellerPlatformSwitcher current={activePlatform === '/partners' ? 'suppliers' : activePlatform === '/agency' ? 'agencies' : activePlatform === '/selling' ? 'selling' : 'shop'} />
-              <span className="pb-2 font-bold sm:hidden">Tejaraa Shop</span>
+              <span className="pb-2 font-bold sm:hidden">{t("shop.brand")}</span>
             </div>
             <LanguageToggle />
           </RetailContainer>
@@ -137,24 +141,24 @@ export function RetailHeader() {
             <RetailContainer className="flex min-h-[64px] items-center justify-between gap-3 py-2 lg:min-h-[72px]">
               <div className="flex items-center gap-2">
                 <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                  <SheetTrigger asChild><Button type="button" variant="ghost" size="icon" aria-label="Open navigation" className="h-10 w-10 lg:hidden"><Menu className="h-5 w-5" /></Button></SheetTrigger>
+                  <SheetTrigger asChild><Button type="button" variant="ghost" size="icon" aria-label={t("common.openNavigation")} className="h-10 w-10 lg:hidden"><Menu className="h-5 w-5" /></Button></SheetTrigger>
                   <SheetContent side="left" className="w-[88%] max-w-sm overflow-y-auto p-0">
                     <MobileMenu categories={availableCategories} user={user} accountHref={accountHref} logout={logout} />
                   </SheetContent>
                 </Sheet>
-                <Link to="/" aria-label="Tejaraa Shop home" className="shrink-0"><BrandLogo variant="storefront" className="max-w-[170px]" /></Link>
+                <Link to="/" aria-label={t("shop.homeAria")} className="shrink-0"><BrandLogo variant="storefront" className="max-w-[170px]" /></Link>
               </div>
 
               <div className="flex items-center gap-4">
                 <button
                   type="button"
                   onClick={() => window.dispatchEvent(new CustomEvent('tejaraa:open-command-palette'))}
-                  aria-label="Search (⌘K)"
+                  aria-label={t("common.search")}
                   className="group hidden w-56 items-center justify-between rounded-xl border border-retail-border bg-retail-light-green/40 px-4 py-2.5 transition-all duration-200 hover:border-retail-green/40 hover:bg-retail-card md:flex xl:w-64"
                 >
                   <span className="flex items-center gap-3">
                     <Search className="h-4 w-4 text-retail-muted transition-colors group-hover:text-retail-dark-green" />
-                    <span className="text-sm font-medium text-retail-muted">Search...</span>
+                    <span className="text-sm font-medium text-retail-muted">{t("common.searchEllipsis")}</span>
                   </span>
                   <kbd className="rounded border border-retail-border bg-retail-card px-1.5 py-0.5 text-[10px] font-bold text-retail-muted shadow-sm">⌘K</kbd>
                 </button>
@@ -163,20 +167,20 @@ export function RetailHeader() {
 
                 <Link
                   to="/dropshipping/billing?tab=wallet"
-                  aria-label="Wallet"
+                  aria-label={t("common.wallet")}
                   className="hidden items-center gap-3 rounded-xl border-b-2 border-retail-gold/50 bg-retail-dark-green px-4 py-2 shadow-md transition-colors hover:bg-retail-dark-green/90 md:flex"
                 >
                   <Wallet className="h-5 w-5 text-retail-gold" />
                   <span className="flex flex-col items-start leading-tight">
-                    <span className="text-[9px] font-semibold uppercase tracking-tighter text-primary-foreground/70">Wallet</span>
-                    <span className="text-sm font-bold text-primary-foreground">SAR {walletBalance !== null ? walletBalance.toFixed(2) : '—'}</span>
+                    <span className="text-[9px] font-semibold uppercase tracking-tighter text-primary-foreground/70">{t("common.wallet")}</span>
+                    <span className="text-sm font-bold text-primary-foreground">{t('common.currency')} {walletBalance !== null ? walletBalance.toFixed(2) : '—'}</span>
                   </span>
                 </Link>
 
                 <div className="flex items-center gap-1.5">
                   <Link
                     to="/dropshipping/tickets"
-                    aria-label="Support"
+                    aria-label={t("common.support")}
                     className="hidden h-10 w-10 items-center justify-center rounded-full text-retail-muted transition-all hover:bg-retail-light-green/70 hover:text-retail-dark-green lg:inline-flex"
                   >
                     <MessageCircle className="h-[18px] w-[18px]" />
@@ -189,8 +193,8 @@ export function RetailHeader() {
                 <div className="flex items-center gap-3 border-l border-retail-border pl-3">
                   <Link to="/dropshipping/profile" className="hidden items-center gap-3 md:flex">
                     <span className="flex flex-col text-right">
-                      <span className="text-xs font-medium text-retail-muted">Hello, <span className="font-bold text-retail-dark-green">{user?.name.split(' ')[0]}</span></span>
-                      <span className="text-[11px] font-bold uppercase text-retail-green transition-colors hover:text-retail-dark-green">My Account</span>
+                      <span className="text-xs font-medium text-retail-muted">{t('shop.hello', { name: user?.name.split(' ')[0] ?? '' })}</span>
+                      <span className="text-[11px] font-bold uppercase text-retail-green transition-colors hover:text-retail-dark-green">{t("common.myAccount")}</span>
                     </span>
                     <span className="relative rounded-full p-0.5 ring-2 ring-retail-dark-green/10 transition-transform hover:scale-105">
                       <Avatar className="h-9 w-9 shrink-0">
@@ -203,11 +207,11 @@ export function RetailHeader() {
                   <button
                     type="button"
                     onClick={() => { void logout().then(() => navigate('/')); }}
-                    aria-label="Logout"
+                    aria-label={t("common.logout")}
                     className="group hidden h-8 items-center gap-1.5 rounded-full border border-retail-sale/25 px-2.5 text-retail-sale transition-colors hover:border-retail-sale/50 hover:bg-retail-sale/10 md:inline-flex"
                   >
                     <LogOut className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                    <span className="text-[11px] font-semibold leading-none">Logout</span>
+                    <span className="text-[11px] font-semibold leading-none">{t("common.logout")}</span>
                   </button>
                 </div>
               </div>
@@ -215,31 +219,31 @@ export function RetailHeader() {
           ) : (
             <RetailContainer className="grid min-h-[64px] grid-cols-[1fr_auto_1fr] items-center gap-2 py-2 lg:min-h-[72px] lg:grid-cols-[auto_minmax(280px,1fr)_auto] lg:gap-3">
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                <SheetTrigger asChild><Button type="button" variant="ghost" size="icon" aria-label="Open navigation" className="h-10 w-10 lg:hidden"><Menu className="h-5 w-5" /></Button></SheetTrigger>
+                <SheetTrigger asChild><Button type="button" variant="ghost" size="icon" aria-label={t("common.openNavigation")} className="h-10 w-10 lg:hidden"><Menu className="h-5 w-5" /></Button></SheetTrigger>
                 <SheetContent side="left" className="w-[88%] max-w-sm overflow-y-auto p-0">
                   <MobileMenu categories={availableCategories} user={user} accountHref={accountHref} logout={logout} />
                 </SheetContent>
               </Sheet>
 
-              <Link to="/" aria-label="Tejaraa Shop home" className="shrink-0 justify-self-center lg:justify-self-start"><BrandLogo variant="storefront" className="max-w-[170px]" /></Link>
+              <Link to="/" aria-label={t("shop.homeAria")} className="shrink-0 justify-self-center lg:justify-self-start"><BrandLogo variant="storefront" className="max-w-[170px]" /></Link>
 
               {!hideShopNav && (
                 <form onSubmit={submitSearch} className="order-last col-span-3 w-full lg:order-none lg:col-span-1">
                   <div className="grid h-11 grid-cols-[minmax(0,1fr)_auto] overflow-hidden rounded-md border-2 border-retail-green bg-retail-card focus-within:ring-2 focus-within:ring-retail-green/20">
-                    <input suppressHydrationWarning value={term} onChange={(event) => setTerm(event.target.value)} aria-label="Search products, brands and categories" placeholder="Search products, brands and categories…" className="min-w-0 bg-transparent px-3 text-sm outline-none placeholder:text-retail-muted" />
-                    <Button type="submit" className="h-full rounded-none px-4" aria-label="Search"><Search className="h-4 w-4" /><span className="hidden xl:inline">Search</span></Button>
+                    <input suppressHydrationWarning value={term} onChange={(event) => setTerm(event.target.value)} aria-label={t("shop.searchAria")} placeholder={t("shop.searchPlaceholder")} className="min-w-0 bg-transparent px-3 text-sm outline-none placeholder:text-retail-muted" />
+                    <Button type="submit" className="h-full rounded-none px-4" aria-label={t("common.search")}><Search className="h-4 w-4" /><span className="hidden xl:inline">{t("common.search")}</span></Button>
                   </div>
                 </form>
               )}
 
               <div className="flex shrink-0 items-center justify-self-end">
-                <Link to="/account/wishlist" className="hidden min-w-16 flex-col items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold text-retail-text hover:text-retail-green lg:inline-flex"><Heart className="h-5 w-5" />Wishlist</Link>
-                <Link to="/cart" aria-label={`Cart, ${count} item${count === 1 ? '' : 's'}`} className="relative flex min-w-16 flex-col items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold text-retail-text hover:text-retail-green"><ShoppingCart className="h-5 w-5" /><span className="hidden xl:inline">Cart</span>{count > 0 && <span className="absolute right-1 top-0 grid h-4 min-w-4 place-items-center rounded-full bg-retail-sale px-1 text-[10px] font-bold text-primary-foreground">{count > 99 ? '99+' : count}</span>}</Link>
+                <Link to="/account/wishlist" className="hidden min-w-16 flex-col items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold text-retail-text hover:text-retail-green lg:inline-flex"><Heart className="h-5 w-5" />{t("common.wishlist")}</Link>
+                <Link to="/cart" aria-label={`Cart, ${count} item${count === 1 ? '' : 's'}`} className="relative flex min-w-16 flex-col items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold text-retail-text hover:text-retail-green"><ShoppingCart className="h-5 w-5" /><span className="hidden xl:inline">{t("common.cart")}</span>{count > 0 && <span className="absolute right-1 top-0 grid h-4 min-w-4 place-items-center rounded-full bg-retail-sale px-1 text-[10px] font-bold text-primary-foreground">{count > 99 ? '99+' : count}</span>}</Link>
                 <Link to={user ? accountHref : '/login'} className="hidden h-auto min-w-14 items-center gap-2 px-2 py-1 text-left text-retail-text hover:text-retail-green md:inline-flex">
                   <User className="h-5 w-5 shrink-0" />
                   <span className="hidden text-[10px] leading-tight xl:block">
-                    <span className="block text-retail-muted">{user ? `Hello, ${user.name.split(' ')[0]}` : 'Hello, sign in'}</span>
-                    <strong className="text-xs">My Account</strong>
+                    <span className="block text-retail-muted">{user ? t('shop.hello', { name: user.name.split(' ')[0] }) : t('shop.helloSignIn')}</span>
+                    <strong className="text-xs">{t("common.myAccount")}</strong>
                   </span>
                 </Link>
               </div>
@@ -249,16 +253,16 @@ export function RetailHeader() {
 
 
         {!hideShopNav && (
-          <nav aria-label="Shop departments" className="hidden h-10 border-t border-retail-border bg-retail-light-green/55 lg:block">
+          <nav aria-label={t("shop.departmentsAria")} className="hidden h-10 border-t border-retail-border bg-retail-light-green/55 lg:block">
             <RetailContainer className="flex h-full items-center overflow-hidden">
               <div ref={categoryRef} className="relative h-full">
-                <Button type="button" variant="ghost" aria-expanded={categoryOpen} aria-controls="retail-category-menu" onClick={() => setCategoryOpen((open) => !open)} className="h-full shrink-0 gap-2 rounded-none border-r border-retail-border pr-4 text-xs font-bold text-retail-dark-green"><Menu className="h-4 w-4" />Departments</Button>
+                <Button type="button" variant="ghost" aria-expanded={categoryOpen} aria-controls="retail-category-menu" onClick={() => setCategoryOpen((open) => !open)} className="h-full shrink-0 gap-2 rounded-none border-r border-retail-border pr-4 text-xs font-bold text-retail-dark-green"><Menu className="h-4 w-4" />{t("shop.departments")}</Button>
                 {categoryOpen && <CategoryMegaMenu categories={availableCategories} onClose={() => setCategoryOpen(false)} />}
               </div>
               <div className="no-scrollbar flex h-full min-w-0 flex-1 items-center overflow-x-auto">
-                {departmentLinks.map((category) => <Link key={category.name} to={`/catalog?q=${encodeURIComponent(category.name)}`} className="flex h-full shrink-0 items-center px-3 text-xs font-semibold text-retail-text hover:bg-retail-card hover:text-retail-green">{category.name}</Link>)}
+                {departmentLinks.map((category) => <Link key={category.name} to={`/catalog?q=${encodeURIComponent(category.name)}`} className="flex h-full shrink-0 items-center px-3 text-xs font-semibold text-retail-text hover:bg-retail-card hover:text-retail-green">{translateCategory(category.name, locale)}</Link>)}
               </div>
-              <Link to="/catalog?source=local" className="flex h-full shrink-0 items-center gap-1.5 border-l border-retail-border pl-4 text-xs font-bold text-retail-green">Ready to Ship</Link>
+              <Link to="/catalog?source=local" className="flex h-full shrink-0 items-center gap-1.5 border-l border-retail-border pl-4 text-xs font-bold text-retail-green">{t("shop.readyToShip")}</Link>
             </RetailContainer>
           </nav>
         )}
@@ -270,29 +274,36 @@ export function RetailHeader() {
 }
 
 function CategoryMegaMenu({ categories, onClose }: { categories: CategoryGroup[]; onClose: () => void }) {
+  const { t, locale } = useLocale();
   return <div id="retail-category-menu" role="menu" className="absolute left-0 top-[calc(100%+8px)] z-50 w-[780px] rounded-lg border border-retail-border bg-retail-card p-5 shadow-xl">
-    <div className="mb-4 grid grid-cols-[minmax(0,1fr)_auto] items-center border-b border-retail-border pb-3"><div><p className="text-xs font-bold uppercase text-retail-muted">All categories</p><p className="text-sm font-bold text-retail-text">Browse Tejaraa departments</p></div><Link to="/category" onClick={onClose} className="text-xs font-bold text-retail-green">View all categories →</Link></div>
-    <div className="grid grid-cols-4 gap-x-6 gap-y-5">{categories.slice(0, 8).map((category) => <div key={category.name} className="min-w-0"><Link to={`/catalog?q=${encodeURIComponent(category.name)}`} onClick={onClose} className="block truncate text-sm font-bold text-retail-dark-green hover:text-retail-green">{category.name}</Link><ul className="mt-2 space-y-1.5">{category.children.map((child) => <li key={child}><Link to={`/catalog?q=${encodeURIComponent(child)}`} onClick={onClose} className="block truncate text-xs text-retail-muted hover:text-retail-green">{child}</Link></li>)}</ul></div>)}</div>
+    <div className="mb-4 grid grid-cols-[minmax(0,1fr)_auto] items-center border-b border-retail-border pb-3"><div><p className="text-xs font-bold uppercase text-retail-muted">{t('shop.allCategories')}</p><p className="text-sm font-bold text-retail-text">{t('shop.browseDepartments')}</p></div><Link to="/category" onClick={onClose} className="text-xs font-bold text-retail-green">{t('shop.viewAllCategories')}</Link></div>
+    <div className="grid grid-cols-4 gap-x-6 gap-y-5">{categories.slice(0, 8).map((category) => <div key={category.name} className="min-w-0"><Link to={`/catalog?q=${encodeURIComponent(category.name)}`} onClick={onClose} className="block truncate text-sm font-bold text-retail-dark-green hover:text-retail-green">{translateCategory(category.name, locale)}</Link><ul className="mt-2 space-y-1.5">{category.children.map((child) => <li key={child}><Link to={`/catalog?q=${encodeURIComponent(child)}`} onClick={onClose} className="block truncate text-xs text-retail-muted hover:text-retail-green">{translateCategory(child, locale)}</Link></li>)}</ul></div>)}</div>
   </div>;
 }
 
 
 function MobileMenu({ categories, user, accountHref, logout }: { categories: CategoryGroup[]; user: ReturnType<typeof useAuth>['user']; accountHref: string; logout: () => Promise<void> }) {
-  const { pathname } = useLocation();
-  const isArabic = pathname === '/ar' || pathname.startsWith('/ar/');
+  const { t, locale, setLocale } = useLocale();
   const [activeCategory, setActiveCategory] = useState<CategoryGroup | null>(null);
   const wholesale = useWholesaleAccess();
   return <div className="min-h-full bg-retail-card">
-    <SheetHeader className="border-b border-retail-border bg-retail-dark-green p-5 text-left text-primary-foreground"><SheetTitle className="text-primary-foreground">Tejaraa Shop</SheetTitle><SheetDescription className="text-primary-foreground/70">{user ? `Hello, ${user.name}` : 'Shop products across Saudi Arabia'}</SheetDescription></SheetHeader>
-    {activeCategory ? <div className="p-4"><Button type="button" variant="ghost" onClick={() => setActiveCategory(null)} className="mb-4 gap-2 px-0 text-sm font-bold text-retail-green"><ChevronRight className="h-4 w-4 rotate-180" />All Categories</Button><h2 className="mb-2 font-display text-lg font-bold">{activeCategory.name}</h2><nav className="divide-y divide-retail-border">{activeCategory.children.map((child) => <SheetClose asChild key={child}><Link to={`/catalog?q=${encodeURIComponent(child)}`} className="block py-3 text-sm">{child}</Link></SheetClose>)}<SheetClose asChild><Link to={`/catalog?q=${encodeURIComponent(activeCategory.name)}`} className="block py-3 text-sm font-bold text-retail-green">View all {activeCategory.name}</Link></SheetClose></nav></div> : <div className="p-4">
-      <div className="grid grid-cols-2 gap-2">{platformLinks.map((item) => <SheetClose asChild key={item.label}><Link to={item.to} className={`flex items-center gap-2 rounded-md border p-3 text-xs font-bold ${item.to === '/' ? 'border-retail-green bg-retail-light-green text-retail-green' : 'border-retail-border'}`}><item.icon className="h-4 w-4" />{item.label}</Link></SheetClose>)}</div>
-      <section className="mt-5"><div className="flex items-center justify-between"><h2 className="text-xs font-bold uppercase text-retail-muted">Categories</h2><SheetClose asChild><Link to="/category" className="text-xs font-bold text-retail-green">View all</Link></SheetClose></div><div className="mt-2 divide-y divide-retail-border">{categories.slice(0, 10).map((category) => <Button key={category.name} type="button" variant="ghost" onClick={() => setActiveCategory(category)} className="flex h-auto w-full justify-between rounded-none py-3 text-left text-sm font-semibold"><span className="truncate">{category.name}</span><ChevronRight className="h-4 w-4 shrink-0 text-retail-muted" /></Button>)}</div></section>
-      <nav className="mt-5 border-t border-retail-border pt-3">{user ? <><SheetClose asChild><Link to={accountHref} className="flex items-center gap-3 py-3 text-sm"><User className="h-5 w-5" />My Account</Link></SheetClose><SheetClose asChild><Link to="/account/orders" className="flex items-center gap-3 py-3 text-sm"><Package className="h-5 w-5" />Orders</Link></SheetClose><SheetClose asChild><Link to="/account/wishlist" className="flex items-center gap-3 py-3 text-sm"><Heart className="h-5 w-5" />Wishlist</Link></SheetClose>{wholesale.hasAccess && <SheetClose asChild><Link to={wholesale.portalHref} className="flex items-center gap-3 py-3 text-sm font-bold text-retail-green"><Warehouse className="h-5 w-5" />{wholesale.isConsole ? 'Admin Portal' : 'Wholesale Portal'}</Link></SheetClose>}<SheetClose asChild><Button type="button" variant="ghost" onClick={() => void logout()} className="px-0 text-sm text-retail-sale hover:text-retail-sale">Sign out</Button></SheetClose></> : <div className="grid grid-cols-2 gap-2"><SheetClose asChild><Button asChild><Link to="/shop/signin">Sign in</Link></Button></SheetClose><SheetClose asChild><Button asChild variant="outline"><Link to="/shop/signup">Create account</Link></Button></SheetClose></div>}<SheetClose asChild><Link to="/contact" className="mt-3 flex items-center gap-3 py-3 text-sm"><CircleHelp className="h-5 w-5" />Help Center</Link></SheetClose><SheetClose asChild>{isArabic ? <Link to="/" className="flex items-center gap-3 py-3 text-sm"><Globe2 className="h-5 w-5" />English</Link> : <Link to="/ar" className="flex items-center gap-3 py-3 text-sm"><Globe2 className="h-5 w-5" />العربية</Link>}</SheetClose></nav>
+    <SheetHeader className="border-b border-retail-border bg-retail-dark-green p-5 text-left text-primary-foreground"><SheetTitle className="text-primary-foreground">{t('shop.brand')}</SheetTitle><SheetDescription className="text-primary-foreground/70">{user ? t('shop.hello', { name: user.name }) : t('shop.tagline')}</SheetDescription></SheetHeader>
+    {activeCategory ? <div className="p-4"><Button type="button" variant="ghost" onClick={() => setActiveCategory(null)} className="mb-4 gap-2 px-0 text-sm font-bold text-retail-green"><ChevronRight className="h-4 w-4 rotate-180" />{t('shop.backToAllCategories')}</Button><h2 className="mb-2 font-display text-lg font-bold">{activeCategory.name}</h2><nav className="divide-y divide-retail-border">{activeCategory.children.map((child) => <SheetClose asChild key={child}><Link to={`/catalog?q=${encodeURIComponent(child)}`} className="block py-3 text-sm">{child}</Link></SheetClose>)}<SheetClose asChild><Link to={`/catalog?q=${encodeURIComponent(activeCategory.name)}`} className="block py-3 text-sm font-bold text-retail-green">{t('shop.viewAllIn', { name: activeCategory.name })}</Link></SheetClose></nav></div> : <div className="p-4">
+      <div className="grid grid-cols-2 gap-2">{platformLinks.map((item) => <SheetClose asChild key={item.label}><Link to={item.to} className={`flex items-center gap-2 rounded-md border p-3 text-xs font-bold ${item.to === '/' ? 'border-retail-green bg-retail-light-green text-retail-green' : 'border-retail-border'}`}><item.icon className="h-4 w-4" />{t(item.label)}</Link></SheetClose>)}</div>
+      <section className="mt-5"><div className="flex items-center justify-between"><h2 className="text-xs font-bold uppercase text-retail-muted">{t('common.categories')}</h2><SheetClose asChild><Link to="/category" className="text-xs font-bold text-retail-green">{t('common.viewAll')}</Link></SheetClose></div><div className="mt-2 divide-y divide-retail-border">{categories.slice(0, 10).map((category) => <Button key={category.name} type="button" variant="ghost" onClick={() => setActiveCategory(category)} className="flex h-auto w-full justify-between rounded-none py-3 text-left text-sm font-semibold"><span className="truncate">{translateCategory(category.name, locale)}</span><ChevronRight className="h-4 w-4 shrink-0 text-retail-muted" /></Button>)}</div></section>
+      <nav className="mt-5 border-t border-retail-border pt-3">{user ? <><SheetClose asChild><Link to={accountHref} className="flex items-center gap-3 py-3 text-sm"><User className="h-5 w-5" />{t('common.myAccount')}</Link></SheetClose><SheetClose asChild><Link to="/account/orders" className="flex items-center gap-3 py-3 text-sm"><Package className="h-5 w-5" />{t('common.orders')}</Link></SheetClose><SheetClose asChild><Link to="/account/wishlist" className="flex items-center gap-3 py-3 text-sm"><Heart className="h-5 w-5" />{t('common.wishlist')}</Link></SheetClose>{wholesale.hasAccess && <SheetClose asChild><Link to={wholesale.portalHref} className="flex items-center gap-3 py-3 text-sm font-bold text-retail-green"><Warehouse className="h-5 w-5" />{wholesale.isConsole ? t('shop.adminPortal') : t('shop.wholesalePortal')}</Link></SheetClose>}<SheetClose asChild><Button type="button" variant="ghost" onClick={() => void logout()} className="px-0 text-sm text-retail-sale hover:text-retail-sale">{t('common.signOut')}</Button></SheetClose></> : <div className="grid grid-cols-2 gap-2"><SheetClose asChild><Button asChild><Link to="/shop/signin">{t('common.signIn')}</Link></Button></SheetClose><SheetClose asChild><Button asChild variant="outline"><Link to="/shop/signup">{t('common.createAccount')}</Link></Button></SheetClose></div>}<SheetClose asChild><Link to="/contact" className="mt-3 flex items-center gap-3 py-3 text-sm"><CircleHelp className="h-5 w-5" />{t('common.helpCenter')}</Link></SheetClose><button type="button" onClick={() => setLocale(locale === 'ar' ? 'en' : 'ar')} className="flex w-full items-center gap-3 py-3 text-left text-sm"><Globe2 className="h-5 w-5" />{locale === 'ar' ? 'English' : 'العربية'}</button></nav>
     </div>}
   </div>;
 }
 
 function MobileBottomNav({ count }: { count: number }) {
-  const items = [{ label: 'Home', to: '/', icon: Home }, { label: 'Categories', to: '/category', icon: List }, { label: 'Cart', to: '/cart', icon: ShoppingCart }, { label: 'Orders', to: '/account/orders', icon: Package }, { label: 'Account', to: '/account', icon: User }];
-  return <nav aria-label="Mobile shop navigation" className="fixed inset-x-0 bottom-0 z-40 grid h-[calc(56px+env(safe-area-inset-bottom))] grid-cols-5 border-t border-retail-border bg-retail-card pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_14px_hsl(var(--foreground)/0.08)] lg:hidden">{items.map((item) => <Link key={item.label} to={item.to} className="relative flex min-w-0 flex-col items-center justify-center gap-0.5 text-[10px] font-semibold text-retail-muted hover:text-retail-green"><item.icon className="h-5 w-5" /><span>{item.label}</span>{item.label === 'Cart' && count > 0 && <span className="absolute right-[22%] top-1 grid h-4 min-w-4 place-items-center rounded-full bg-retail-sale px-1 text-[9px] text-primary-foreground">{count > 99 ? '99+' : count}</span>}</Link>)}</nav>;
+  const { t } = useLocale();
+  const items: { label: TranslationKey; to: string; icon: typeof Home }[] = [
+    { label: 'common.home', to: '/', icon: Home },
+    { label: 'common.categories', to: '/category', icon: List },
+    { label: 'common.cart', to: '/cart', icon: ShoppingCart },
+    { label: 'common.orders', to: '/account/orders', icon: Package },
+    { label: 'shop.account', to: '/account', icon: User },
+  ];
+  return <nav aria-label={t('shop.mobileNavAria')} className="fixed inset-x-0 bottom-0 z-40 grid h-[calc(56px+env(safe-area-inset-bottom))] grid-cols-5 border-t border-retail-border bg-retail-card pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_14px_hsl(var(--foreground)/0.08)] lg:hidden">{items.map((item) => <Link key={item.label} to={item.to} className="relative flex min-w-0 flex-col items-center justify-center gap-0.5 text-[10px] font-semibold text-retail-muted hover:text-retail-green"><item.icon className="h-5 w-5" /><span>{t(item.label)}</span>{item.label === 'common.cart' && count > 0 && <span className="absolute right-[22%] top-1 grid h-4 min-w-4 place-items-center rounded-full bg-retail-sale px-1 text-[9px] text-primary-foreground">{count > 99 ? '99+' : count}</span>}</Link>)}</nav>;
 }
