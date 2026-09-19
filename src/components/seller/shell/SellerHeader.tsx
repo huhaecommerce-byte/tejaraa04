@@ -148,8 +148,11 @@ export function SellerHeader() {
             </SheetContent>
           </Sheet>
 
-          <Link to="/selling" aria-label="Tejaraa Seller Services home" className="shrink-0">
+          <Link to="/selling" aria-label="Tejaraa Seller Services home" className="flex shrink-0 items-center gap-2">
             <BrandLogo variant="storefront" />
+            <span className="hidden text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green sm:inline">
+              Dropshipping &amp; Selling
+            </span>
           </Link>
 
           <nav aria-label="Seller Services" className="ml-2 hidden items-center gap-1 lg:flex">
