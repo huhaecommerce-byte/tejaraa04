@@ -192,7 +192,7 @@ export function RetailHeader() {
                 <div className="flex items-center gap-3 border-l border-retail-border pl-3">
                   <Link to="/dropshipping/profile" className="hidden items-center gap-3 md:flex">
                     <span className="flex flex-col text-right">
-                      <span className="text-xs font-medium text-retail-muted">Hello, <span className="font-bold text-retail-dark-green">{user?.name.split(' ')[0]}</span></span>
+                      <span className="text-xs font-medium text-retail-muted">{t('shop.hello', { name: user?.name.split(' ')[0] ?? '' })}</span>
                       <span className="text-[11px] font-bold uppercase text-retail-green transition-colors hover:text-retail-dark-green">{t("common.myAccount")}</span>
                     </span>
                     <span className="relative rounded-full p-0.5 ring-2 ring-retail-dark-green/10 transition-transform hover:scale-105">
