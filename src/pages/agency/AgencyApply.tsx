@@ -193,7 +193,7 @@ export default function AgencyApply() {
             />
             <Button className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={verifying || code.length !== 4} onClick={() => handleVerify()}>
               {verifying ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-              Confirm and send application
+              Confirm and create my account
             </Button>
             <button
               type="button"
@@ -219,7 +219,7 @@ export default function AgencyApply() {
     <AgencyAuthShell
       eyebrow="Agency & VA programme"
       title="Create your partner account"
-      subtitle="Tell us about your business and audience. Approval usually takes under two working days."
+      subtitle="Sign up in a minute and start earning — your partner account is active straight away."
       wide
       footer={<>Already a partner? <Link to="/agency/signin" className="font-semibold text-retail-green hover:underline">Sign in to your portal</Link></>}
     >
@@ -245,10 +245,6 @@ export default function AgencyApply() {
                   <Label htmlFor="country">Country</Label>
                   <Input id="country" value={form.country} onChange={(e) => set('country', e.target.value)} />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="website">Website or social profile</Label>
-                  <Input id="website" value={form.website} onChange={(e) => set('website', e.target.value)} placeholder="instagram.com/..." />
-                </div>
               </div>
 
               {!user && (
@@ -258,14 +254,9 @@ export default function AgencyApply() {
                 </div>
               )}
 
-              <div className="space-y-2">
-                <Label htmlFor="audience">How will you bring dropshippers to Tejaraa?</Label>
-                <Textarea id="audience" rows={4} value={form.audience} onChange={(e) => set('audience', e.target.value)} placeholder="Tell us about your audience, community size, client base or the services you offer sellers." />
-              </div>
-
               <Button type="submit" className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={submitting}>
                 {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                Send my application {!submitting ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
+                Create my partner account {!submitting ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
               </Button>
             </form>
     </AgencyAuthShell>
