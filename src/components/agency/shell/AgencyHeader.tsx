@@ -80,7 +80,7 @@ export function AgencyHeader() {
                 ))}
                 <SheetClose asChild>
                   <Link to="/agency/signin" className="rounded-md px-3 py-2 text-sm font-semibold text-retail-dark-green hover:bg-retail-light-green">
-                    Partner sign in
+                    {t('agency.header.partnerSignIn')}
                   </Link>
                 </SheetClose>
               </div>
