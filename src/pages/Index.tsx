@@ -26,7 +26,10 @@ const HOME_COPY = {
   },
 };
 
-export default function Index({ locale = 'en' }: { locale?: 'en' | 'ar' } = {}) {
+export default function Index({ locale: localeProp }: { locale?: 'en' | 'ar' } = {}) {
+  // Arabic can come from the /ar URL (prop) or from the language toggle (context).
+  const { locale: activeLocale } = useLocale();
+  const locale = localeProp ?? activeLocale;
   const L = HOME_COPY[locale];
   const [categories, setCategories] = useState<HomepageCategory[]>([]);
   const [mainCategories, setMainCategories] = useState<HomepageCategory[]>([]);
