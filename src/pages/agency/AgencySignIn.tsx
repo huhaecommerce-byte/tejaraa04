@@ -14,16 +14,31 @@ export default function AgencySignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
-    if (!isLoading && user) navigate('/agency/portal', { replace: true });
-  }, [isLoading, user, navigate]);
+    if (isLoading || !user || blocked) return;
+    let active = true;
+    void loadAccessProfile(user.id).then((access) => {
+      if (!active) return;
+      if (canAccess(access.tier, 'agency')) navigate('/agency/portal', { replace: true });
+      else setBlocked(true);
+    });
+    return () => { active = false; };
+  }, [isLoading, user, blocked, navigate]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     try {
       await login(email, password);
+      const { data } = await supabase.auth.getUser();
+      const access = await loadAccessProfile(data.user?.id);
+      if (!canAccess(access.tier, 'agency')) {
+        setBlocked(true);
+        toast.error('This is a shop / dropshipping account. It cannot open the partner portal.');
+        return;
+      }
       navigate('/agency/portal', { replace: true });
     } catch (err: any) {
       toast.error(err?.message || 'Could not sign you in.');
@@ -31,6 +46,26 @@ export default function AgencySignIn() {
       setSubmitting(false);
     }
   };
+
+  if (blocked) {
+    return (
+      <AgencyAuthShell
+        eyebrow="Partner access"
+        title="This account is not a partner account"
+        subtitle="Shop and Dropshipping & Selling accounts can't open the Agencies & VAs portal. Create a partner account to join the programme."
+      >
+        <div className="space-y-3">
+          <Button asChild className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green">
+            <Link to="/agency/apply">Create a partner account</Link>
+          </Button>
+          <Button asChild variant="outline" className="h-11 w-full">
+            <Link to="/dropshipping">Back to Dropshipping & Selling</Link>
+          </Button>
+        </div>
+      </AgencyAuthShell>
+    );
+  }
+
 
   return (
     <AgencyAuthShell
