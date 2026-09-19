@@ -17,8 +17,6 @@ const empty = {
   email: '',
   phone: '',
   country: 'Saudi Arabia',
-  website: '',
-  audience: '',
   password: '',
 };
 
@@ -92,14 +90,13 @@ export default function AgencyApply() {
         email: form.email.trim(),
         phone: form.phone.trim() || null,
         country: form.country.trim() || null,
-        website: form.website.trim() || null,
-        audience: form.audience.trim() || null,
         invite_code: '',
       } as never);
       if (insertError) throw insertError;
 
+      await refreshUser();
       setDone(true);
-      toast.success('Application received — we will review it shortly.');
+      toast.success('Your partner account is ready.');
     } catch (err: any) {
       toast.error(err?.message || 'Could not send your application.');
     } finally {
