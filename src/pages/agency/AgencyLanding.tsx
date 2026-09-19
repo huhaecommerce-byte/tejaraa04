@@ -35,7 +35,7 @@ export default function AgencyLanding() {
             Bring dropshippers onto Tejaraa and earn a share of our profit on every order they ever
             place. Ten active sellers means ten income streams that keep paying, month after month.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Button asChild size="lg" variant="secondary">
               <Link to="/agency/apply">Apply to join <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
