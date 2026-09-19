@@ -1,7 +1,7 @@
 import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
+import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
 import { Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, CheckCircle2 } from 'lucide-react';
 
 const steps = [
@@ -19,7 +19,7 @@ const benefits = [
 
 export default function AgencyLandingAr() {
   return (
-    <RetailPublicShell dir="rtl">
+    <AgencyPublicShell dir="rtl">
       <section className="bg-gradient-to-bl from-[hsl(152_45%_14%)] via-[hsl(152_40%_18%)] to-[hsl(152_35%_22%)] text-white">
         <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold">
@@ -111,6 +111,6 @@ export default function AgencyLandingAr() {
         <p className="mt-3 text-muted-foreground">الانضمام مجاني تماماً ولا توجد أهداف أو رسوم.</p>
         <Button asChild size="lg" className="mt-6"><Link to="/agency/apply">ابدأ طلبي</Link></Button>
       </section>
-    </RetailPublicShell>
+    </AgencyPublicShell>
   );
 }

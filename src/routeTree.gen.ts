@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountRouteRouteImport } from './routes/account/route'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
+import { Route as AgencyRouteRouteImport } from './routes/agency/route'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -63,8 +64,15 @@ import { Route as AdminWarehouseRouteImport } from './routes/admin/warehouse'
 import { Route as AdminWhatsappLogsRouteImport } from './routes/admin/whatsapp-logs'
 import { Route as AgencyIndexRouteImport } from './routes/agency/index'
 import { Route as AgencyApplyRouteImport } from './routes/agency/apply'
+import { Route as AgencyCommissionRouteImport } from './routes/agency/commission'
+import { Route as AgencyContactRouteImport } from './routes/agency/contact'
+import { Route as AgencyFaqRouteImport } from './routes/agency/faq'
+import { Route as AgencyForgotPasswordRouteImport } from './routes/agency/forgot-password'
+import { Route as AgencyHowItWorksRouteImport } from './routes/agency/how-it-works'
 import { Route as AgencyPortalRouteRouteImport } from './routes/agency/portal/route'
 import { Route as AgencySigninRouteImport } from './routes/agency/signin'
+import { Route as AgencySignupRouteImport } from './routes/agency/signup'
+import { Route as AgencyWhoCanJoinRouteImport } from './routes/agency/who-can-join'
 import { Route as ArIndexRouteImport } from './routes/ar/index'
 import { Route as ArAgencyRouteImport } from './routes/ar/agency'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
@@ -264,6 +272,11 @@ const AccountRouteRoute = AccountRouteRouteImport.update({
 const AdminRouteRoute = AdminRouteRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgencyRouteRoute = AgencyRouteRouteImport.update({
+  id: '/agency',
+  path: '/agency',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -512,24 +525,59 @@ const AdminWhatsappLogsRoute = AdminWhatsappLogsRouteImport.update({
   getParentRoute: () => AdminRouteRoute,
 } as any)
 const AgencyIndexRoute = AgencyIndexRouteImport.update({
-  id: '/agency/',
-  path: '/agency/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => AgencyRouteRoute,
 } as any)
 const AgencyApplyRoute = AgencyApplyRouteImport.update({
-  id: '/agency/apply',
-  path: '/agency/apply',
-  getParentRoute: () => rootRouteImport,
+  id: '/apply',
+  path: '/apply',
+  getParentRoute: () => AgencyRouteRoute,
+} as any)
+const AgencyCommissionRoute = AgencyCommissionRouteImport.update({
+  id: '/commission',
+  path: '/commission',
+  getParentRoute: () => AgencyRouteRoute,
+} as any)
+const AgencyContactRoute = AgencyContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => AgencyRouteRoute,
+} as any)
+const AgencyFaqRoute = AgencyFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => AgencyRouteRoute,
+} as any)
+const AgencyForgotPasswordRoute = AgencyForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => AgencyRouteRoute,
+} as any)
+const AgencyHowItWorksRoute = AgencyHowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => AgencyRouteRoute,
 } as any)
 const AgencyPortalRouteRoute = AgencyPortalRouteRouteImport.update({
-  id: '/agency/portal',
-  path: '/agency/portal',
-  getParentRoute: () => rootRouteImport,
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => AgencyRouteRoute,
 } as any)
 const AgencySigninRoute = AgencySigninRouteImport.update({
-  id: '/agency/signin',
-  path: '/agency/signin',
-  getParentRoute: () => rootRouteImport,
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => AgencyRouteRoute,
+} as any)
+const AgencySignupRoute = AgencySignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => AgencyRouteRoute,
+} as any)
+const AgencyWhoCanJoinRoute = AgencyWhoCanJoinRouteImport.update({
+  id: '/who-can-join',
+  path: '/who-can-join',
+  getParentRoute: () => AgencyRouteRoute,
 } as any)
 const ArIndexRoute = ArIndexRouteImport.update({
   id: '/ar/',
@@ -1522,6 +1570,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/account': typeof AccountRouteRouteWithChildren
   '/admin': typeof AdminRouteRouteWithChildren
+  '/agency': typeof AgencyRouteRouteWithChildren
   '/dropshipping': typeof DropshippingRouteRouteWithChildren
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
@@ -1571,7 +1620,14 @@ export interface FileRoutesByFullPath {
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
+  '/agency/commission': typeof AgencyCommissionRoute
+  '/agency/contact': typeof AgencyContactRoute
+  '/agency/faq': typeof AgencyFaqRoute
+  '/agency/forgot-password': typeof AgencyForgotPasswordRoute
+  '/agency/how-it-works': typeof AgencyHowItWorksRoute
   '/agency/signin': typeof AgencySigninRoute
+  '/agency/signup': typeof AgencySignupRoute
+  '/agency/who-can-join': typeof AgencyWhoCanJoinRoute
   '/ar/agency': typeof ArAgencyRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
@@ -1808,7 +1864,14 @@ export interface FileRoutesByTo {
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
+  '/agency/commission': typeof AgencyCommissionRoute
+  '/agency/contact': typeof AgencyContactRoute
+  '/agency/faq': typeof AgencyFaqRoute
+  '/agency/forgot-password': typeof AgencyForgotPasswordRoute
+  '/agency/how-it-works': typeof AgencyHowItWorksRoute
   '/agency/signin': typeof AgencySigninRoute
+  '/agency/signup': typeof AgencySignupRoute
+  '/agency/who-can-join': typeof AgencyWhoCanJoinRoute
   '/ar/agency': typeof ArAgencyRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
@@ -1999,6 +2062,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/account': typeof AccountRouteRouteWithChildren
   '/admin': typeof AdminRouteRouteWithChildren
+  '/agency': typeof AgencyRouteRouteWithChildren
   '/dropshipping': typeof DropshippingRouteRouteWithChildren
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
@@ -2048,7 +2112,14 @@ export interface FileRoutesById {
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
   '/agency/apply': typeof AgencyApplyRoute
+  '/agency/commission': typeof AgencyCommissionRoute
+  '/agency/contact': typeof AgencyContactRoute
+  '/agency/faq': typeof AgencyFaqRoute
+  '/agency/forgot-password': typeof AgencyForgotPasswordRoute
+  '/agency/how-it-works': typeof AgencyHowItWorksRoute
   '/agency/signin': typeof AgencySigninRoute
+  '/agency/signup': typeof AgencySignupRoute
+  '/agency/who-can-join': typeof AgencyWhoCanJoinRoute
   '/ar/agency': typeof ArAgencyRoute
   '/blog/amazon-fba-labeling-requirements-guide': typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   '/blog/amazon-fba-vs-noon-fbn-saudi-arabia': typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
@@ -2244,6 +2315,7 @@ export interface FileRouteTypes {
     | '/'
     | '/account'
     | '/admin'
+    | '/agency'
     | '/dropshipping'
     | '/cart'
     | '/catalog'
@@ -2293,7 +2365,14 @@ export interface FileRouteTypes {
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
     | '/agency/apply'
+    | '/agency/commission'
+    | '/agency/contact'
+    | '/agency/faq'
+    | '/agency/forgot-password'
+    | '/agency/how-it-works'
     | '/agency/signin'
+    | '/agency/signup'
+    | '/agency/who-can-join'
     | '/ar/agency'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
@@ -2530,7 +2609,14 @@ export interface FileRouteTypes {
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
     | '/agency/apply'
+    | '/agency/commission'
+    | '/agency/contact'
+    | '/agency/faq'
+    | '/agency/forgot-password'
+    | '/agency/how-it-works'
     | '/agency/signin'
+    | '/agency/signup'
+    | '/agency/who-can-join'
     | '/ar/agency'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
@@ -2720,6 +2806,7 @@ export interface FileRouteTypes {
     | '/'
     | '/account'
     | '/admin'
+    | '/agency'
     | '/dropshipping'
     | '/cart'
     | '/catalog'
@@ -2769,7 +2856,14 @@ export interface FileRouteTypes {
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
     | '/agency/apply'
+    | '/agency/commission'
+    | '/agency/contact'
+    | '/agency/faq'
+    | '/agency/forgot-password'
+    | '/agency/how-it-works'
     | '/agency/signin'
+    | '/agency/signup'
+    | '/agency/who-can-join'
     | '/ar/agency'
     | '/blog/amazon-fba-labeling-requirements-guide'
     | '/blog/amazon-fba-vs-noon-fbn-saudi-arabia'
@@ -2964,6 +3058,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccountRouteRoute: typeof AccountRouteRouteWithChildren
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
+  AgencyRouteRoute: typeof AgencyRouteRouteWithChildren
   DropshippingRouteRoute: typeof DropshippingRouteRouteWithChildren
   CartRoute: typeof CartRoute
   CatalogRoute: typeof CatalogRoute
@@ -2980,9 +3075,6 @@ export interface RootRouteChildren {
   SignupRoute: typeof SignupRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
-  AgencyPortalRouteRoute: typeof AgencyPortalRouteRouteWithChildren
-  AgencyApplyRoute: typeof AgencyApplyRoute
-  AgencySigninRoute: typeof AgencySigninRoute
   ArAgencyRoute: typeof ArAgencyRoute
   BlogAmazonFbaLabelingRequirementsGuideRoute: typeof BlogAmazonFbaLabelingRequirementsGuideRoute
   BlogAmazonFbaVsNoonFbnSaudiArabiaRoute: typeof BlogAmazonFbaVsNoonFbnSaudiArabiaRoute
@@ -3017,7 +3109,6 @@ export interface RootRouteChildren {
   ShopForgotPasswordRoute: typeof ShopForgotPasswordRoute
   ShopSigninRoute: typeof ShopSigninRoute
   ShopSignupRoute: typeof ShopSignupRoute
-  AgencyIndexRoute: typeof AgencyIndexRoute
   ArIndexRoute: typeof ArIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
   CategoryIndexRoute: typeof CategoryIndexRoute
@@ -3095,6 +3186,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agency': {
+      id: '/agency'
+      path: '/agency'
+      fullPath: '/agency'
+      preLoaderRoute: typeof AgencyRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -3442,31 +3540,80 @@ declare module '@tanstack/react-router' {
     }
     '/agency/': {
       id: '/agency/'
-      path: '/agency'
+      path: '/'
       fullPath: '/agency/'
       preLoaderRoute: typeof AgencyIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AgencyRouteRoute
     }
     '/agency/apply': {
       id: '/agency/apply'
-      path: '/agency/apply'
+      path: '/apply'
       fullPath: '/agency/apply'
       preLoaderRoute: typeof AgencyApplyRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AgencyRouteRoute
+    }
+    '/agency/commission': {
+      id: '/agency/commission'
+      path: '/commission'
+      fullPath: '/agency/commission'
+      preLoaderRoute: typeof AgencyCommissionRouteImport
+      parentRoute: typeof AgencyRouteRoute
+    }
+    '/agency/contact': {
+      id: '/agency/contact'
+      path: '/contact'
+      fullPath: '/agency/contact'
+      preLoaderRoute: typeof AgencyContactRouteImport
+      parentRoute: typeof AgencyRouteRoute
+    }
+    '/agency/faq': {
+      id: '/agency/faq'
+      path: '/faq'
+      fullPath: '/agency/faq'
+      preLoaderRoute: typeof AgencyFaqRouteImport
+      parentRoute: typeof AgencyRouteRoute
+    }
+    '/agency/forgot-password': {
+      id: '/agency/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/agency/forgot-password'
+      preLoaderRoute: typeof AgencyForgotPasswordRouteImport
+      parentRoute: typeof AgencyRouteRoute
+    }
+    '/agency/how-it-works': {
+      id: '/agency/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/agency/how-it-works'
+      preLoaderRoute: typeof AgencyHowItWorksRouteImport
+      parentRoute: typeof AgencyRouteRoute
     }
     '/agency/portal': {
       id: '/agency/portal'
-      path: '/agency/portal'
+      path: '/portal'
       fullPath: '/agency/portal'
       preLoaderRoute: typeof AgencyPortalRouteRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AgencyRouteRoute
     }
     '/agency/signin': {
       id: '/agency/signin'
-      path: '/agency/signin'
+      path: '/signin'
       fullPath: '/agency/signin'
       preLoaderRoute: typeof AgencySigninRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AgencyRouteRoute
+    }
+    '/agency/signup': {
+      id: '/agency/signup'
+      path: '/signup'
+      fullPath: '/agency/signup'
+      preLoaderRoute: typeof AgencySignupRouteImport
+      parentRoute: typeof AgencyRouteRoute
+    }
+    '/agency/who-can-join': {
+      id: '/agency/who-can-join'
+      path: '/who-can-join'
+      fullPath: '/agency/who-can-join'
+      preLoaderRoute: typeof AgencyWhoCanJoinRouteImport
+      parentRoute: typeof AgencyRouteRoute
     }
     '/ar/': {
       id: '/ar/'
@@ -4872,6 +5019,59 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
   AdminRouteRouteChildren,
 )
 
+interface AgencyPortalRouteRouteChildren {
+  AgencyPortalClientsRoute: typeof AgencyPortalClientsRoute
+  AgencyPortalEarningsRoute: typeof AgencyPortalEarningsRoute
+  AgencyPortalLinkRoute: typeof AgencyPortalLinkRoute
+  AgencyPortalPayoutsRoute: typeof AgencyPortalPayoutsRoute
+  AgencyPortalProfileRoute: typeof AgencyPortalProfileRoute
+  AgencyPortalIndexRoute: typeof AgencyPortalIndexRoute
+}
+
+const AgencyPortalRouteRouteChildren: AgencyPortalRouteRouteChildren = {
+  AgencyPortalClientsRoute: AgencyPortalClientsRoute,
+  AgencyPortalEarningsRoute: AgencyPortalEarningsRoute,
+  AgencyPortalLinkRoute: AgencyPortalLinkRoute,
+  AgencyPortalPayoutsRoute: AgencyPortalPayoutsRoute,
+  AgencyPortalProfileRoute: AgencyPortalProfileRoute,
+  AgencyPortalIndexRoute: AgencyPortalIndexRoute,
+}
+
+const AgencyPortalRouteRouteWithChildren =
+  AgencyPortalRouteRoute._addFileChildren(AgencyPortalRouteRouteChildren)
+
+interface AgencyRouteRouteChildren {
+  AgencyPortalRouteRoute: typeof AgencyPortalRouteRouteWithChildren
+  AgencyApplyRoute: typeof AgencyApplyRoute
+  AgencyCommissionRoute: typeof AgencyCommissionRoute
+  AgencyContactRoute: typeof AgencyContactRoute
+  AgencyFaqRoute: typeof AgencyFaqRoute
+  AgencyForgotPasswordRoute: typeof AgencyForgotPasswordRoute
+  AgencyHowItWorksRoute: typeof AgencyHowItWorksRoute
+  AgencySigninRoute: typeof AgencySigninRoute
+  AgencySignupRoute: typeof AgencySignupRoute
+  AgencyWhoCanJoinRoute: typeof AgencyWhoCanJoinRoute
+  AgencyIndexRoute: typeof AgencyIndexRoute
+}
+
+const AgencyRouteRouteChildren: AgencyRouteRouteChildren = {
+  AgencyPortalRouteRoute: AgencyPortalRouteRouteWithChildren,
+  AgencyApplyRoute: AgencyApplyRoute,
+  AgencyCommissionRoute: AgencyCommissionRoute,
+  AgencyContactRoute: AgencyContactRoute,
+  AgencyFaqRoute: AgencyFaqRoute,
+  AgencyForgotPasswordRoute: AgencyForgotPasswordRoute,
+  AgencyHowItWorksRoute: AgencyHowItWorksRoute,
+  AgencySigninRoute: AgencySigninRoute,
+  AgencySignupRoute: AgencySignupRoute,
+  AgencyWhoCanJoinRoute: AgencyWhoCanJoinRoute,
+  AgencyIndexRoute: AgencyIndexRoute,
+}
+
+const AgencyRouteRouteWithChildren = AgencyRouteRoute._addFileChildren(
+  AgencyRouteRouteChildren,
+)
+
 interface DropshippingIntegrationsRouteChildren {
   DropshippingIntegrationsIndexRoute: typeof DropshippingIntegrationsIndexRoute
   DropshippingIntegrationsNoonConnectionIdRoute: typeof DropshippingIntegrationsNoonConnectionIdRoute
@@ -5102,27 +5302,6 @@ const PartnersRouteWithChildren = PartnersRoute._addFileChildren(
   PartnersRouteChildren,
 )
 
-interface AgencyPortalRouteRouteChildren {
-  AgencyPortalClientsRoute: typeof AgencyPortalClientsRoute
-  AgencyPortalEarningsRoute: typeof AgencyPortalEarningsRoute
-  AgencyPortalLinkRoute: typeof AgencyPortalLinkRoute
-  AgencyPortalPayoutsRoute: typeof AgencyPortalPayoutsRoute
-  AgencyPortalProfileRoute: typeof AgencyPortalProfileRoute
-  AgencyPortalIndexRoute: typeof AgencyPortalIndexRoute
-}
-
-const AgencyPortalRouteRouteChildren: AgencyPortalRouteRouteChildren = {
-  AgencyPortalClientsRoute: AgencyPortalClientsRoute,
-  AgencyPortalEarningsRoute: AgencyPortalEarningsRoute,
-  AgencyPortalLinkRoute: AgencyPortalLinkRoute,
-  AgencyPortalPayoutsRoute: AgencyPortalPayoutsRoute,
-  AgencyPortalProfileRoute: AgencyPortalProfileRoute,
-  AgencyPortalIndexRoute: AgencyPortalIndexRoute,
-}
-
-const AgencyPortalRouteRouteWithChildren =
-  AgencyPortalRouteRoute._addFileChildren(AgencyPortalRouteRouteChildren)
-
 interface CategoryTopSubRouteChildren {
   CategoryTopSubDetailRoute: typeof CategoryTopSubDetailRoute
 }
@@ -5174,6 +5353,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccountRouteRoute: AccountRouteRouteWithChildren,
   AdminRouteRoute: AdminRouteRouteWithChildren,
+  AgencyRouteRoute: AgencyRouteRouteWithChildren,
   DropshippingRouteRoute: DropshippingRouteRouteWithChildren,
   CartRoute: CartRoute,
   CatalogRoute: CatalogRoute,
@@ -5190,9 +5370,6 @@ const rootRouteChildren: RootRouteChildren = {
   SignupRoute: SignupRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UnsubscribeRoute: UnsubscribeRoute,
-  AgencyPortalRouteRoute: AgencyPortalRouteRouteWithChildren,
-  AgencyApplyRoute: AgencyApplyRoute,
-  AgencySigninRoute: AgencySigninRoute,
   ArAgencyRoute: ArAgencyRoute,
   BlogAmazonFbaLabelingRequirementsGuideRoute:
     BlogAmazonFbaLabelingRequirementsGuideRoute,
@@ -5239,7 +5416,6 @@ const rootRouteChildren: RootRouteChildren = {
   ShopForgotPasswordRoute: ShopForgotPasswordRoute,
   ShopSigninRoute: ShopSigninRoute,
   ShopSignupRoute: ShopSignupRoute,
-  AgencyIndexRoute: AgencyIndexRoute,
   ArIndexRoute: ArIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
   CategoryIndexRoute: CategoryIndexRoute,
