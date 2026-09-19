@@ -9,23 +9,12 @@ import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import { ArrowRight, CheckCircle2, Loader2, MailCheck } from 'lucide-react';
 import { sendSignupOtp, verifySignupOtp } from '@/lib/signupOtp.functions';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-
-const GCC_COUNTRIES = [
-  { name: 'Saudi Arabia', dial: '+966' },
-  { name: 'United Arab Emirates', dial: '+971' },
-  { name: 'Kuwait', dial: '+965' },
-  { name: 'Qatar', dial: '+974' },
-  { name: 'Bahrain', dial: '+973' },
-  { name: 'Oman', dial: '+968' },
-] as const;
 
 const empty = {
   company_name: '',
   contact_name: '',
   email: '',
   phone: '',
-  country: 'Saudi Arabia',
   password: '',
 };
 
