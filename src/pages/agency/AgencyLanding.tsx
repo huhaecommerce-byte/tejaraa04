@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
 import {
-  Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, ArrowRight, CheckCircle2,
+  Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, ArrowRight,
 } from 'lucide-react';
 
 const steps = [
@@ -24,29 +24,23 @@ export default function AgencyLanding() {
     <AgencyPublicShell>
       <section className="hero-surface relative overflow-hidden text-primary-foreground">
         <div className="hero-grid pointer-events-none absolute inset-0 opacity-10" />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 md:py-28">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
+        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:py-12 lg:py-14">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
             <Handshake className="h-4 w-4" /> Agency &amp; VA Programme
           </span>
-          <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight md:text-6xl">
+          <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.08] sm:text-5xl">
             Grow your income every time your sellers sell
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
-            Bring dropshippers onto Tejaraa and earn a share of our profit on every order they ever
-            place. Ten active sellers means ten income streams that keep paying, month after month.
+          <p className="mt-4 max-w-2xl text-base leading-7 text-primary-foreground/80 sm:text-lg">
+            Earn a share of our profit on every order your sellers ever place.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Button asChild size="lg" variant="secondary">
               <Link to="/agency/apply">Apply to join <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
               <Link to="/agency/signin">Partner sign in</Link>
             </Button>
-          </div>
-          <div className="mt-10 flex flex-wrap gap-6 text-sm text-primary-foreground/70">
-            {['Lifetime earnings', 'No cost to join', 'Paid in SAR'].map((t) => (
-              <span key={t} className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> {t}</span>
-            ))}
           </div>
         </div>
       </section>
