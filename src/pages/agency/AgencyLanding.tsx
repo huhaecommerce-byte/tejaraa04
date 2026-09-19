@@ -2,6 +2,7 @@ import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { AgencyPublicShell } from '@/components/agency/shell/AgencyPublicShell';
+import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import {
   Handshake, Users, Coins, Repeat, ShieldCheck, LineChart, ArrowRight,
 } from 'lucide-react';
