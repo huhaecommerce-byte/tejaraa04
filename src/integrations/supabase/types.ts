@@ -2807,6 +2807,128 @@ export type Database = {
         }
         Relationships: []
       }
+      wl_channel_connections: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          key_hash: string
+          key_prefix: string
+          last_order_at: string | null
+          last_push_at: string | null
+          name: string
+          notes: string
+          orders_pull_secret: string
+          orders_pull_url: string
+          push_secret: string
+          push_url: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          key_hash?: string
+          key_prefix?: string
+          last_order_at?: string | null
+          last_push_at?: string | null
+          name: string
+          notes?: string
+          orders_pull_secret?: string
+          orders_pull_url?: string
+          push_secret?: string
+          push_url?: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          key_hash?: string
+          key_prefix?: string
+          last_order_at?: string | null
+          last_push_at?: string | null
+          name?: string
+          notes?: string
+          orders_pull_secret?: string
+          orders_pull_url?: string
+          push_secret?: string
+          push_url?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      wl_channel_sync_log: {
+        Row: {
+          connection_id: string | null
+          created_at: string
+          detail: Json
+          direction: string
+          event: string
+          id: string
+          status: string
+        }
+        Insert: {
+          connection_id?: string | null
+          created_at?: string
+          detail?: Json
+          direction?: string
+          event?: string
+          id?: string
+          status?: string
+        }
+        Update: {
+          connection_id?: string | null
+          created_at?: string
+          detail?: Json
+          direction?: string
+          event?: string
+          id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wl_channel_sync_log_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "wl_channel_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      wl_market_flags: {
+        Row: {
+          code: string
+          created_at: string
+          image_url: string
+          name: string
+          note: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          image_url?: string
+          name?: string
+          note?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          image_url?: string
+          name?: string
+          note?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       product_category_counts: {
@@ -2865,11 +2987,42 @@ export type Database = {
         Args: { _body: string; _link: string; _title: string; _user_id: string }
         Returns: Json
       }
-      analytics_summary: { Args: { _days?: number }; Returns: Json }
-      apply_pricing_formula: {
-        Args: { _cost_usd?: number; _source?: string; _weight_kg?: number }
-        Returns: number
+      analytics_session_timeline: {
+        Args: { _session_id: string }
+        Returns: {
+          at: string
+          detail: string
+          kind: string
+          label: string
+        }[]
       }
+      analytics_sessions: {
+        Args: { _days?: number; _limit?: number; _search?: string }
+        Returns: {
+          browser: string
+          converted: boolean
+          country: string
+          device_type: string
+          display_name: string
+          email: string
+          first_seen: string
+          landing_page: string
+          last_page: string
+          last_seen: string
+          page_views: number
+          referrer: string
+          session_id: string
+          user_id: string
+          visitor_id: string
+        }[]
+      }
+      analytics_summary: { Args: { _days?: number }; Returns: Json }
+      apply_pricing_formula:
+        | { Args: never; Returns: number }
+        | {
+            Args: { _cost_usd?: number; _source?: string; _weight_kg?: number }
+            Returns: number
+          }
       apply_referral_code: { Args: { _code: string }; Returns: Json }
       broadcast_notification: {
         Args: {
@@ -2928,48 +3081,91 @@ export type Database = {
         }
         Returns: boolean
       }
-      hunt_catalog_products: {
-        Args: {
-          _category?: string
-          _in_stock?: boolean
-          _limit?: number
-          _max_price?: number
-          _min_price?: number
-          _offset?: number
-          _relaxed?: boolean
-          _source?: string
-          _terms: string[]
-        }
-        Returns: {
-          bulk_price: number
-          bulk_price_usd: number
-          cost_usd: number
-          created_at: string
-          detailed_category: string
-          dropship_price: number
-          dropship_price_usd: number
-          estimated_delivery: string
-          id: string
-          images: string[]
-          is_featured: boolean
-          labelling_available: boolean
-          match_score: number
-          moq: number
-          name: string
-          name_ar: string
-          platforms: string[]
-          price_sar: number
-          price_usd: number
-          sku: string
-          source: string
-          stock_qty: number
-          sub_category: string
-          top_category: string
-          total_count: number
-          track_inventory: boolean
-          weight_kg: number
-        }[]
-      }
+      hunt_catalog_products:
+        | {
+            Args: {
+              _category?: string
+              _in_stock?: boolean
+              _limit?: number
+              _max_price?: number
+              _min_price?: number
+              _offset?: number
+              _relaxed?: boolean
+              _source?: string
+              _terms: string[]
+            }
+            Returns: {
+              bulk_price: number
+              bulk_price_usd: number
+              cost_usd: number
+              created_at: string
+              detailed_category: string
+              dropship_price: number
+              dropship_price_usd: number
+              estimated_delivery: string
+              id: string
+              images: string[]
+              is_featured: boolean
+              labelling_available: boolean
+              match_score: number
+              moq: number
+              name: string
+              name_ar: string
+              platforms: string[]
+              price_sar: number
+              price_usd: number
+              sku: string
+              source: string
+              stock_qty: number
+              sub_category: string
+              top_category: string
+              total_count: number
+              track_inventory: boolean
+              weight_kg: number
+            }[]
+          }
+        | {
+            Args: {
+              _category?: string
+              _in_stock?: boolean
+              _limit?: number
+              _max_price?: number
+              _min_price?: number
+              _offset?: number
+              _relaxed?: boolean
+              _source?: string
+              _terms: string[]
+            }
+            Returns: {
+              bulk_price: number
+              bulk_price_usd: number
+              cost_usd: number
+              created_at: string
+              detailed_category: string
+              dropship_price: number
+              dropship_price_usd: number
+              estimated_delivery: string
+              id: string
+              images: string[]
+              is_featured: boolean
+              labelling_available: boolean
+              match_score: number
+              moq: number
+              name: string
+              name_ar: string
+              platforms: string[]
+              price_sar: number
+              price_usd: number
+              sku: string
+              source: string
+              stock_qty: number
+              sub_category: string
+              top_category: string
+              total_count: number
+              track_inventory: boolean
+              weight_kg: number
+            }[]
+          }
       is_admin: { Args: never; Returns: boolean }
       is_staff_or_admin: { Args: { _user_id: string }; Returns: boolean }
       notify_admins: {
@@ -2990,7 +3186,27 @@ export type Database = {
         Args: { _limit?: number; _since: string }
         Returns: Json
       }
-      recalc_job_step: { Args: { p_job_id: string }; Returns: Json }
+      queue_email:
+        | {
+            Args: {
+              _dedupe_key?: string
+              _payload: Json
+              _recipient_email?: string
+              _template_name: string
+              _user_id: string
+            }
+            Returns: string
+          }
+        | {
+            Args: {
+              _dedupe_key?: string
+              _payload: Json
+              _recipient_email?: string
+              _template_name: string
+              _user_id: string
+            }
+            Returns: string
+          }
       record_page_duration: {
         Args: { _id: string; _ms: number }
         Returns: undefined
@@ -3005,17 +3221,6 @@ export type Database = {
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
       slugify: { Args: { _txt: string }; Returns: string }
-      start_price_recalc_job: {
-        Args: {
-          p_batch_size?: number
-          p_flat_add: number
-          p_markup_percent: number
-          p_resume?: boolean
-          p_usd_to_sar_rate: number
-          p_weight_rate: number
-        }
-        Returns: Json
-      }
       team_can_buy: { Args: { _user_id: string }; Returns: boolean }
       track_referral_visit: {
         Args: { _code: string; _meta?: Json }
@@ -3072,6 +3277,13 @@ export type Database = {
       app_role: "admin" | "moderator" | "user" | "staff"
       team_invite_status: "pending" | "accepted" | "revoked"
       team_member_role: "owner" | "admin" | "member" | "viewer" | "buyer"
+      wl_application_status: "pending" | "approved" | "rejected"
+      wl_product_status:
+        | "draft"
+        | "pending"
+        | "active"
+        | "rejected"
+        | "out_of_stock"
       wl_role: "admin" | "supplier" | "staff" | "finance" | "viewer"
     }
     CompositeTypes: {
@@ -3203,6 +3415,14 @@ export const Constants = {
       app_role: ["admin", "moderator", "user", "staff"],
       team_invite_status: ["pending", "accepted", "revoked"],
       team_member_role: ["owner", "admin", "member", "viewer", "buyer"],
+      wl_application_status: ["pending", "approved", "rejected"],
+      wl_product_status: [
+        "draft",
+        "pending",
+        "active",
+        "rejected",
+        "out_of_stock",
+      ],
       wl_role: ["admin", "supplier", "staff", "finance", "viewer"],
     },
   },
