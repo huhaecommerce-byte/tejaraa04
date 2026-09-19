@@ -96,6 +96,7 @@ export function RetailHeader() {
   }, [location.pathname]);
 
   const isDropshippingPortal = location.pathname.startsWith('/dropshipping') || location.pathname.startsWith('/dashboard');
+  const isArabic = location.pathname === '/ar' || location.pathname.startsWith('/ar/');
   const hideShopNav = Boolean(user) && isDropshippingPortal;
   const hidePortalHeader = Boolean(user) && isDropshippingPortal;
 
