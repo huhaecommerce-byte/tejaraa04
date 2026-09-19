@@ -3,7 +3,6 @@ import { Link, useNavigate } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { AgencyAuthShell } from '@/components/agency/auth/AgencyAuthShell';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -17,8 +16,6 @@ const empty = {
   email: '',
   phone: '',
   country: 'Saudi Arabia',
-  website: '',
-  audience: '',
   password: '',
 };
 
@@ -92,14 +89,13 @@ export default function AgencyApply() {
         email: form.email.trim(),
         phone: form.phone.trim() || null,
         country: form.country.trim() || null,
-        website: form.website.trim() || null,
-        audience: form.audience.trim() || null,
         invite_code: '',
       } as never);
       if (insertError) throw insertError;
 
+      await refreshUser();
       setDone(true);
-      toast.success('Application received — we will review it shortly.');
+      toast.success('Your partner account is ready.');
     } catch (err: any) {
       toast.error(err?.message || 'Could not send your application.');
     } finally {
@@ -115,8 +111,6 @@ export default function AgencyApply() {
       email: form.email.trim(),
       phone: form.phone.trim() || null,
       country: form.country.trim() || null,
-      website: form.website.trim() || null,
-      audience: form.audience.trim() || null,
       invite_code: '',
     } as never);
     if (error) throw error;
@@ -138,7 +132,7 @@ export default function AgencyApply() {
       await saveProfile(userId);
       await refreshUser();
       setDone(true);
-      toast.success('Application received — we will review it shortly.');
+      toast.success('Your partner account is ready.');
     } catch (err: any) {
       setCode('');
       toast.error(err?.message || 'Invalid or expired code');
@@ -159,13 +153,13 @@ export default function AgencyApply() {
 
   if (done) {
     return (
-      <AgencyAuthShell eyebrow="Application complete" title="You’re in the review queue" subtitle="Our partnerships team reviews applications within two working days.">
+      <AgencyAuthShell eyebrow="Account ready" title="Welcome to the partner programme" subtitle="Your partner account is active — no approval needed.">
         <div className="text-center">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-retail-light-green text-retail-green">
             <CheckCircle2 className="h-7 w-7" />
           </div>
           <p className="text-sm leading-6 text-retail-muted">
-            You will receive an email as soon as you are approved, together with access to your personal invite link.
+            Open your partner area to copy your personal invite link and start onboarding dropshippers right away.
           </p>
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
             <Button asChild className="bg-retail-green hover:bg-retail-dark-green"><Link to="/agency/portal">Open partner area</Link></Button>
@@ -198,7 +192,7 @@ export default function AgencyApply() {
             />
             <Button className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={verifying || code.length !== 4} onClick={() => handleVerify()}>
               {verifying ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-              Confirm and send application
+              Confirm and create my account
             </Button>
             <button
               type="button"
@@ -224,7 +218,7 @@ export default function AgencyApply() {
     <AgencyAuthShell
       eyebrow="Agency & VA programme"
       title="Create your partner account"
-      subtitle="Tell us about your business and audience. Approval usually takes under two working days."
+      subtitle="Sign up in a minute and start earning — your partner account is active straight away."
       wide
       footer={<>Already a partner? <Link to="/agency/signin" className="font-semibold text-retail-green hover:underline">Sign in to your portal</Link></>}
     >
@@ -250,10 +244,6 @@ export default function AgencyApply() {
                   <Label htmlFor="country">Country</Label>
                   <Input id="country" value={form.country} onChange={(e) => set('country', e.target.value)} />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="website">Website or social profile</Label>
-                  <Input id="website" value={form.website} onChange={(e) => set('website', e.target.value)} placeholder="instagram.com/..." />
-                </div>
               </div>
 
               {!user && (
@@ -263,14 +253,9 @@ export default function AgencyApply() {
                 </div>
               )}
 
-              <div className="space-y-2">
-                <Label htmlFor="audience">How will you bring dropshippers to Tejaraa?</Label>
-                <Textarea id="audience" rows={4} value={form.audience} onChange={(e) => set('audience', e.target.value)} placeholder="Tell us about your audience, community size, client base or the services you offer sellers." />
-              </div>
-
               <Button type="submit" className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={submitting}>
                 {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                Send my application {!submitting ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
+                Create my partner account {!submitting ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
               </Button>
             </form>
     </AgencyAuthShell>
