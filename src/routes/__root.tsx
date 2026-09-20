@@ -23,6 +23,7 @@ import { installFunctionsCompat } from "@/lib/functions-compat";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
 import { LanguageGate } from "@/components/LanguageGate";
+import { PortalArabicTranslator } from "@/i18n/PortalArabicTranslator";
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
@@ -131,6 +132,7 @@ function RootComponent() {
                 <Outlet />
                 <MobileBottomNav />
                 <LanguageGate />
+                <PortalArabicTranslator />
                 <PageViewTracker />
               </CartProvider>
             </AnnouncementProvider>
