@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Outlet, Navigate, Link, useLocation } from '@/lib/router-compat';
 import { Clock, ShieldAlert, XCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -10,7 +10,9 @@ import { useAccessTier } from '@/hooks/useAccessTier';
 import { agencyNavigation } from '@/config/navigation';
 import { CommandDeck } from '@/components/layout/CommandDeck';
 import { Menu } from 'lucide-react';
+import { RetailHeader } from '@/components/retail/shell/RetailHeader';
 import { AgencyPortalHeader } from '@/components/agency/shell/AgencyPortalHeader';
+import { safeSetItem } from '@/lib/safeStorage';
 import { useLocale } from '@/i18n/LocaleProvider';
 
 const StatusCard = ({
@@ -37,8 +39,34 @@ const AgencyLayout = () => {
   const { agency, isLoading: agencyLoading } = useAgency();
   const access = useAccessTier();
   const location = useLocation();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return localStorage.getItem('aurora-panel-collapsed') === '1';
+  });
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const toggle = () => {
+    setCollapsed((c) => {
+      const next = !c;
+      safeSetItem('aurora-panel-collapsed', next ? '1' : '0');
+      return next;
+    });
+  };
+
+  useEffect(() => { setMobileOpen(false); }, [location.pathname]);
+
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerH, setHeaderH] = useState(0);
+  useEffect(() => {
+    const node = headerRef.current;
+    if (!node) return;
+    const measure = () => setHeaderH(node.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(node);
+    window.addEventListener('resize', measure);
+    return () => { ro.disconnect(); window.removeEventListener('resize', measure); };
+  }, [user]);
 
   if (isLoading || agencyLoading || access.loading) {
     return (
@@ -93,28 +121,39 @@ const AgencyLayout = () => {
   }
 
   return (
-
-    <div className="dashboard-with-retail-header retail-theme min-h-screen w-full bg-retail-page" key={location.pathname}>
-      <div className="sticky top-0 z-50">
-        <AgencyPortalHeader />
+    <div
+      className="dashboard-with-retail-header retail-theme min-h-screen w-full relative bg-gradient-to-br from-[hsl(152_30%_98%)] via-white to-[hsl(45_60%_97%)]"
+      style={{ '--dash-header-h': `${headerH}px` } as React.CSSProperties}
+    >
+      <div ref={headerRef} className="sticky top-0 z-50">
+        <RetailHeader />
       </div>
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-x-0 top-0 h-[420px] -z-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 60% at 30% 0%, hsl(152 60% 92% / 0.55) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 90% 0%, hsl(45 80% 90% / 0.4) 0%, transparent 70%)',
+        }}
+      />
       <CommandDeck
         sections={agencyNavigation}
         variant="agency"
         collapsed={collapsed}
-        onToggle={() => setCollapsed((c) => !c)}
+        onToggle={toggle}
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
       <button
         onClick={() => setMobileOpen(true)}
         aria-label={t('agency.layout.openMenu')}
-        className="lg:hidden fixed left-3 top-[76px] z-30 h-10 w-10 rounded-full bg-background/95 backdrop-blur shadow-md ring-1 ring-border/60 inline-flex items-center justify-center text-foreground/80"
+        className="lg:hidden fixed left-3 z-30 h-10 w-10 rounded-full bg-white/95 backdrop-blur shadow-md ring-1 ring-border/60 inline-flex items-center justify-center text-foreground/80 hover:bg-white"
+        style={{ top: 'calc(var(--dash-header-h, 0px) + 0.75rem)' }}
       >
         <Menu className="h-5 w-5" />
       </button>
-      <div className={`${collapsed ? 'lg:ml-[64px]' : 'lg:ml-[260px]'} flex flex-col min-h-screen transition-[margin] duration-300`}>
-        <main className="flex-1 px-3 pb-24 pt-16 md:px-6 md:pb-8 lg:pt-6">
+      <div className={`relative ${collapsed ? 'lg:ml-[64px]' : 'lg:ml-[260px]'} flex flex-col min-h-screen transition-[margin] duration-300`}>
+        <main className="flex-1 px-3 md:px-6 pt-6 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-8">
           <div className="mx-auto max-w-[1400px] space-y-4 md:space-y-6">
             {supplierBrowsing ? (
               <div className="rounded-lg border border-retail-border bg-retail-light-green/50 px-4 py-3 text-sm text-retail-dark-green">
@@ -123,7 +162,6 @@ const AgencyLayout = () => {
             ) : null}
             <Outlet />
           </div>
-
         </main>
       </div>
     </div>
