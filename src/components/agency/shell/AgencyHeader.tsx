@@ -22,7 +22,7 @@ export function AgencyHeader() {
         </RetailContainer>
       </div>
 
-      <RetailContainer className="flex h-16 items-center gap-2 sm:gap-4">
+      <RetailContainer className="relative flex h-16 items-center gap-2 sm:gap-4">
         <MobileNavDrawer
           current="agencies"
           title={t('agency.header.sheetTitle')}
@@ -35,8 +35,8 @@ export function AgencyHeader() {
           ]}
         />
 
-        <Link to="/agency" aria-label={t('agency.header.homeAria')} className="flex min-w-0 shrink items-center gap-2">
-          <BrandLogo variant="storefront" className="max-w-[150px] sm:max-w-none" />
+        <Link to="/agency" aria-label={t('agency.header.homeAria')} className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 lg:static lg:translate-x-0 lg:translate-y-0">
+          <BrandLogo variant="storefront" className="h-10 lg:h-12" />
           <span className="hidden text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green lg:inline">
             {t('agency.header.badge')}
           </span>
@@ -61,7 +61,7 @@ export function AgencyHeader() {
           })}
         </nav>
 
-        <div className="ms-auto flex shrink-0 items-center gap-2">
+        <div className="ms-auto hidden shrink-0 items-center gap-2 lg:flex">
           <Button asChild variant="outline" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex">
             <Link to="/agency/signin">{t('agency.header.partnerSignIn')}</Link>
           </Button>

@@ -46,7 +46,7 @@ export function SellerHeader() {
 
       {/* ROW 2 — main navigation */}
       <div className="relative z-20 border-b border-retail-border bg-white/95 backdrop-blur">
-        <SellerContainer className="flex h-16 items-center gap-4">
+        <SellerContainer className="relative flex h-16 items-center gap-4">
           {/* mobile menu */}
           <MobileNavDrawer
             current="selling"
@@ -76,8 +76,8 @@ export function SellerHeader() {
           />
 
 
-          <Link to="/selling" aria-label={t('selling.header.homeAria')} className="flex shrink-0 items-center gap-2">
-            <BrandLogo variant="storefront" />
+          <Link to="/selling" aria-label={t('selling.header.homeAria')} className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 lg:static lg:translate-x-0 lg:translate-y-0">
+            <BrandLogo variant="storefront" className="h-10 lg:h-12" />
             <span className="hidden text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green sm:inline">
               {t('selling.header.brandTag')}
             </span>
@@ -132,7 +132,7 @@ export function SellerHeader() {
             <Link to="/blog" aria-current={onBlogPage ? 'page' : undefined} className={deskLink(onBlogPage)}>{t('selling.header.resources')}</Link>
           </nav>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto hidden items-center gap-2 lg:flex">
             <Button asChild variant="outline" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex lg:inline-flex">
               <Link to="/selling/signin">{t('selling.header.signIn')}</Link>
             </Button>
