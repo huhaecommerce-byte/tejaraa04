@@ -64,7 +64,7 @@ function getMobileNav(t: (key: any) => string) {
 }
 
 function SignOutItem({ onSignOut, onNavigate }: { onSignOut?: () => void; onNavigate?: () => void }) {
-  const { t } = useLocale();
+  const { t, dir } = useLocale();
   if (!onSignOut) return null;
   return (
     <button
@@ -202,7 +202,7 @@ export function SupplierShell({
   }
 
   return (
-    <div className="supplier-theme min-h-screen overflow-x-clip bg-secondary/40 text-foreground">
+    <div dir={dir} className="supplier-theme min-h-screen overflow-x-clip bg-secondary/40 text-foreground">
       <div className="mx-auto flex w-full max-w-[1720px] gap-4 lg:px-6 lg:py-5">
         {/* Sidebar */}
         <aside className="sticky top-5 hidden h-[calc(100vh-2.5rem)] w-56 shrink-0 flex-col rounded-2xl border border-border bg-card p-3 shadow-card lg:flex">
