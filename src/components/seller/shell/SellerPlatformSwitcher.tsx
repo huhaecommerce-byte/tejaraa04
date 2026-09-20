@@ -37,12 +37,11 @@ export function SellerPlatformSwitcher({
       {tejaraaPlatforms.map((platform, index) => {
         const current = platform.id === currentId;
         return (
-          <div key={platform.id} className="flex min-w-0 items-center self-stretch sm:min-w-fit">
+          <div key={platform.id} className="flex min-w-0 flex-1 items-center self-stretch sm:min-w-fit sm:flex-none">
           {layout === 'inline' && index > 0 ? (
             <span aria-hidden className={cn('h-4 w-px shrink-0 self-center', onDark ? 'bg-white/25' : 'bg-retail-border')} />
           ) : null}
           <Link
-            key={platform.id}
             to={platform.to}
             onClick={onNavigate}
             aria-current={current ? 'page' : undefined}
