@@ -24,7 +24,10 @@ export function LanguageToggle({ arabicTo }: { arabicTo?: string }) {
 
   const goArabic = () => {
     setLocale('ar');
-    if (arabicTo && !onArabicUrl) navigate(arabicTo);
+    const englishLandingPath = arabicTo?.replace(/^\/ar(?=\/|$)/, '') || '/';
+    if (arabicTo && !onArabicUrl && pathname === englishLandingPath) {
+      navigate(arabicTo);
+    }
   };
 
   const goEnglish = () => {
