@@ -173,7 +173,7 @@ export function SupplierShell({
   const [bell, setBell] = useState(false);
   const [account, setAccount] = useState(false);
   const [query, setQuery] = useState("");
-  const { t } = useLocale();
+  const { t, dir } = useLocale();
   const navigate = useNavigate();
   const { isAdmin } = useAuth();
   const { companyName, contactName, application, products, orders, settings } = useSupplierWorkspace();
