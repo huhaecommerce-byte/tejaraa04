@@ -31,7 +31,7 @@ export function SellerPortalHeader() {
       {/* ROW 2 — portal identity */}
       <div className="relative z-20 border-b border-retail-border bg-white/95 backdrop-blur">
         <SellerContainer className="flex h-16 items-center justify-between gap-4">
-          <Link to="/dashboard" className="flex min-w-0 items-center gap-3">
+          <Link to="/dropshipping" className="flex min-w-0 items-center gap-3">
             <BrandLogo variant="storefront" />
             <span className="hidden h-7 w-px bg-retail-border sm:block" aria-hidden />
             <span className="hidden items-center gap-2 text-sm font-bold text-retail-dark-green sm:inline-flex">
@@ -42,7 +42,7 @@ export function SellerPortalHeader() {
           <div className="flex items-center gap-3">
             {/* Signed-in seller block — mirrors the partner portal header */}
             <div className="flex items-center gap-3 border-l border-retail-border pl-3">
-              <Link to="/dashboard/profile" className="hidden items-center gap-3 md:flex">
+              <Link to="/dropshipping/profile" className="hidden items-center gap-3 md:flex">
                 <span className="flex flex-col text-right">
                   <span className="text-xs font-medium text-retail-muted">{t('shop.hello', { name: user?.name?.split(' ')[0] ?? '' })}</span>
                   <span className="text-[11px] font-bold uppercase text-retail-green transition-colors hover:text-retail-dark-green">{t('selling.portalHeader.sellerPortal')}</span>

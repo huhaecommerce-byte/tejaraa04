@@ -6,7 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { CommandDeck } from '@/components/layout/CommandDeck';
 import { customerNavigation } from '@/config/navigation';
 import { CommandPalette } from '@/components/customer/CommandPalette';
-import { RetailHeader } from '@/components/retail/shell/RetailHeader';
+import { SellerPortalHeader } from '@/components/seller/shell/SellerPortalHeader';
 import { safeSetItem } from '@/lib/safeStorage';
 
 const CustomerLayout = () => {
@@ -78,7 +78,7 @@ const CustomerLayout = () => {
       style={{ '--dash-header-h': `${headerH}px` } as React.CSSProperties}
     >
       <div ref={headerRef} className="sticky top-0 z-50">
-        <RetailHeader />
+        <SellerPortalHeader />
       </div>
       <div
         aria-hidden
