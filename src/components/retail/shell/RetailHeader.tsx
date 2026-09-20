@@ -44,7 +44,6 @@ export function RetailHeader() {
   const [term, setTerm] = useState('');
   const [categories, setCategories] = useState<CategoryGroup[]>([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const categoryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -62,7 +61,7 @@ export function RetailHeader() {
     });
   }, []);
 
-  useEffect(() => { setMobileOpen(false); setCategoryOpen(false); }, [location.pathname]);
+  useEffect(() => { setCategoryOpen(false); }, [location.pathname]);
 
   useEffect(() => {
     const close = (event: MouseEvent) => {
