@@ -43,6 +43,24 @@ interface Balance {
   lifetime: number; pending: number; available: number; requested: number; paid: number; clients: number; orders: number;
 }
 
+interface CommissionRow {
+  id: string;
+  order_ref: string | null;
+  order_total_sar: number | null;
+  rate_percent: number | null;
+  amount_sar: number;
+  status: string;
+  reversal_reason: string | null;
+  created_at: string;
+}
+
+const commissionTone: Record<string, string> = {
+  pending: 'bg-amber-100 text-amber-800',
+  available: 'bg-emerald-100 text-emerald-800',
+  paid: 'bg-blue-100 text-blue-800',
+  reversed: 'bg-rose-100 text-rose-800',
+};
+
 export default function AgencyDetail() {
   const params = useParams();
   const id = (params as any).id as string;
