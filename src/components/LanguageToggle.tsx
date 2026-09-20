@@ -29,7 +29,10 @@ export function LanguageToggle({ arabicTo }: { arabicTo?: string }) {
 
   const goEnglish = () => {
     setLocale('en');
-    if (onArabicUrl) navigate('/');
+    if (onArabicUrl) {
+      const englishPath = pathname.replace(/^\/ar(?=\/|$)/, '') || '/';
+      navigate(englishPath);
+    }
   };
 
   return (
