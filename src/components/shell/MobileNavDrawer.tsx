@@ -95,7 +95,7 @@ export function MobileNavDrawer({
             current={current}
             layout="stacked"
             onDark={false}
-            className="grid-cols-2 gap-1.5 pt-2"
+            className="grid-cols-2 gap-1.5 pt-2 [&>a:not([aria-current=page])]:bg-white/10 [&>a:not([aria-current=page])]:text-primary-foreground [&>a:not([aria-current=page])]:hover:bg-white/20 [&>a:not([aria-current=page])]:hover:text-white"
             onNavigate={() => setOpen(false)}
           />
         </SheetHeader>
