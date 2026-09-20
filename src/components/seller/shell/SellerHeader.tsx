@@ -102,7 +102,7 @@ export function SellerHeader() {
                             isActive(page.path) ? 'bg-retail-light-green text-retail-dark-green' : 'text-retail-text'
                           } hover:bg-retail-light-green hover:text-retail-dark-green`}
                         >
-                          {page.navLabel}
+                          {t(page.navLabel)}
                         </Link>
                       </SheetClose>
                     ))}
@@ -178,7 +178,7 @@ export function SellerHeader() {
                       className="flex items-center gap-2 text-sm font-medium"
                     >
                       <page.icon className="h-4 w-4 text-retail-green" aria-hidden />
-                      {page.navLabel}
+                      {t(page.navLabel)}
                     </Link>
                   </DropdownMenuItem>
                 ))}

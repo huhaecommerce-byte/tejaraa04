@@ -23,14 +23,14 @@ export function IntegrationCard({ channel }: { channel: ChannelCard }) {
           <Icon className="h-5 w-5" aria-hidden />
         </span>
         <div className="min-w-0">
-          <h3 className="text-sm font-bold text-retail-dark-green">{name}</h3>
+          <h3 className="text-sm font-bold text-retail-dark-green">{t(name)}</h3>
           <p className="text-xs font-medium text-retail-muted">{kind}</p>
         </div>
       </div>
       <span className={cn('mt-4 inline-flex w-fit rounded-full px-2.5 py-1 text-xs font-bold', supportStyles[support])}>
         {support}
       </span>
-      <p className="mt-3 text-sm leading-6 text-retail-muted">{text}</p>
+      <p className="mt-3 text-sm leading-6 text-retail-muted">{t(text)}</p>
       <Link
         to="/selling/signup"
         className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-retail-green hover:underline"
