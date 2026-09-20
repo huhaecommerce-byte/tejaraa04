@@ -39,7 +39,7 @@ export function SupplierHeader() {
 
       {/* ROW 2 — supplier navigation */}
       <div className="relative z-20 border-b border-retail-border bg-white/95 backdrop-blur">
-        <SupplierContainer className="flex h-16 items-center gap-4">
+        <SupplierContainer className="relative flex h-16 items-center gap-4">
           <MobileNavDrawer
             current="suppliers"
             title={t('supplier.header.mobileTitle')}
@@ -55,8 +55,8 @@ export function SupplierHeader() {
           />
 
 
-          <Link to="/partners" aria-label={t('supplier.header.homeAria')} className="shrink-0">
-            <BrandLogo variant="storefront" />
+          <Link to="/partners" aria-label={t('supplier.header.homeAria')} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:static lg:translate-x-0 lg:translate-y-0">
+            <BrandLogo variant="storefront" className="h-10 lg:h-12" />
           </Link>
 
           <nav aria-label={t('supplier.header.navAria')} className="ml-2 hidden items-center gap-1 lg:flex">
