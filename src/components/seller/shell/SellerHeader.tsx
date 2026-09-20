@@ -57,90 +57,33 @@ export function SellerHeader() {
       <div className="relative z-20 border-b border-retail-border bg-white/95 backdrop-blur">
         <SellerContainer className="flex h-16 items-center gap-4">
           {/* mobile menu */}
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden" aria-label={t('selling.header.mobileMenuAria')}>
-                <Menu className="h-5 w-5" aria-hidden />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[86vw] max-w-sm overflow-y-auto p-0">
-              <SheetHeader className="border-b border-retail-border px-5 py-4 text-left">
-                <SheetTitle className="text-retail-dark-green">{t('selling.header.sheetTitle')}</SheetTitle>
-                <SheetDescription className="text-retail-muted">
-                  {t('selling.header.sheetDesc')}
-                </SheetDescription>
-              </SheetHeader>
+          <MobileNavDrawer
+            current="selling"
+            title={t('selling.header.sheetTitle')}
+            description={t('selling.header.sheetDesc')}
+            triggerLabel={t('selling.header.mobileMenuAria')}
+            groups={[
+              {
+                items: [
+                  ...(whyTejaraaItem ? [{ label: whyTejaraaItem.label, to: whyTejaraaItem.to }] : []),
+                  ...restNavItems.map((item) => ({ label: item.label, to: item.to })),
+                  { label: t('selling.header.resources'), to: '/blog' },
+                ],
+              },
+              {
+                label: t('selling.header.services'),
+                collapsible: true,
+                defaultOpen: onServicePage,
+                items: servicePages.map((page) => ({ label: t(page.navLabel), to: page.path, icon: page.icon })),
+              },
+              { items: [{ label: t('selling.header.talkToUs'), to: '/selling/contact' }] },
+            ]}
+            actions={[
+              { label: t('selling.header.startSelling'), to: '/selling/signup' },
+              { label: t('selling.header.signIn'), to: '/selling/signin', variant: 'outline' },
+            ]}
+          />
 
-              {/* Services stay collapsed by default so the menu remains compact. */}
-              <nav aria-label={t('selling.header.servicesNavAria')} className="px-3 py-3">
-                {whyTejaraaItem && (
-                  <SheetClose asChild key={whyTejaraaItem.to}>
-                    <Link
-                      to={whyTejaraaItem.to}
-                      aria-current={isActive(whyTejaraaItem.to) ? 'page' : undefined}
-                      className={drawerLink(isActive(whyTejaraaItem.to))}
-                    >
-                      {whyTejaraaItem.label}
-                    </Link>
-                  </SheetClose>
-                )}
-                <Collapsible open={servicesOpen || onServicePage} onOpenChange={setServicesOpen}>
-                  <CollapsibleTrigger className="group flex w-full items-center justify-between rounded-md px-2.5 py-2.5 text-sm font-semibold text-retail-text hover:bg-retail-light-green hover:text-retail-dark-green">
-                    {t('selling.header.services')}
-                    <ChevronDown
-                      className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180"
-                      aria-hidden
-                    />
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="grid gap-1 pl-2.5 pt-1">
-                    {servicePages.map((page) => (
-                      <SheetClose asChild key={page.path}>
-                        <Link
-                          to={page.path}
-                          aria-current={isActive(page.path) ? 'page' : undefined}
-                          className={`rounded-md px-2.5 py-2 text-sm font-medium ${
-                            isActive(page.path) ? 'bg-retail-light-green text-retail-dark-green' : 'text-retail-text'
-                          } hover:bg-retail-light-green hover:text-retail-dark-green`}
-                        >
-                          {t(page.navLabel)}
-                        </Link>
-                      </SheetClose>
-                    ))}
-                  </CollapsibleContent>
-                </Collapsible>
-              </nav>
-
-              <nav aria-label={t('selling.header.sectionsNavAria')} className="grid gap-1 border-t border-retail-border px-3 py-4">
-                {restNavItems.map((item) => (
-                  <SheetClose asChild key={item.to}>
-                    <Link
-                      to={item.to}
-                      aria-current={isActive(item.to) ? 'page' : undefined}
-                      className={drawerLink(isActive(item.to))}
-                    >
-                      {item.label}
-                    </Link>
-                  </SheetClose>
-                ))}
-                <SheetClose asChild>
-                  <Link to="/selling/signup" className={drawerLink(false)}>{t('selling.header.startSelling')}</Link>
-                </SheetClose>
-              </nav>
-
-              <div className="border-t border-retail-border px-3 py-4">
-                <p className="px-2.5 pb-2 text-xs font-bold uppercase tracking-wider text-retail-muted">{t('selling.header.platformsLabel')}</p>
-                <SellerPlatformSwitcher layout="stacked" onDark={false} onNavigate={() => setOpen(false)} />
-              </div>
-              <div className="border-t border-retail-border px-5 py-4">
-                <SheetClose asChild>
-                  <Link to="/selling/signin" className={`block ${drawerLink(false)}`}>{t('selling.header.signIn')}</Link>
-                </SheetClose>
-                <SheetClose asChild>
-                  <Link to="/selling/contact" className={`block ${drawerLink(false)}`}>{t('selling.header.talkToUs')}</Link>
-                </SheetClose>
-              </div>
-            </SheetContent>
-          </Sheet>
 
           <Link to="/selling" aria-label={t('selling.header.homeAria')} className="flex shrink-0 items-center gap-2">
             <BrandLogo variant="storefront" />
