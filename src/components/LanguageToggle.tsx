@@ -41,7 +41,7 @@ export function LanguageToggle({ arabicTo }: { arabicTo?: string }) {
   return (
     <nav
       aria-label="Language"
-      className="flex shrink-0 items-center rounded-full border border-primary-foreground/25 bg-primary-foreground/10 p-0.5 shadow-inner"
+      className="hidden shrink-0 items-center rounded-full border border-primary-foreground/25 bg-primary-foreground/10 p-0.5 shadow-inner sm:flex"
     >
       <button
         type="button"
