@@ -15,7 +15,7 @@ type Icon = ComponentType<{ className?: string; strokeWidth?: number }>;
 
 type NavItem = { label: string; icon: Icon; to: string; children?: { label: string; icon: Icon; to: string }[] };
 
-function getNavGroups(t: (key: string) => string): { label: string; items: NavItem[] }[] {
+function getNavGroups(t: (key: any) => string): { label: string; items: NavItem[] }[] {
   return [
     {
       label: t("supplier.shell.nav.catalog"),
@@ -54,7 +54,7 @@ function getNavGroups(t: (key: string) => string): { label: string; items: NavIt
   ];
 }
 
-function getMobileNav(t: (key: string) => string) {
+function getMobileNav(t: (key: any) => string) {
   return [
     { label: t("supplier.shell.nav.home"), icon: LayoutDashboard, to: "/partners/dashboard" },
     { label: t("supplier.shell.nav.products"), icon: Package, to: "/partners/products" },
