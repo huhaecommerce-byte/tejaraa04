@@ -164,7 +164,6 @@ import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id
 import { Route as AdminProductsImportRouteImport } from './routes/admin/products/import'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
 import { Route as AgencyAdminPartnersIndexRouteImport } from './routes/agency-admin/partners/index'
-import { Route as AgencyAdminPartnersIdRouteImport } from './routes/agency-admin/partners/$id'
 import { Route as AgencyPortalIndexRouteImport } from './routes/agency/portal/index'
 import { Route as AgencyPortalClientsRouteImport } from './routes/agency/portal/clients'
 import { Route as AgencyPortalEarningsRouteImport } from './routes/agency/portal/earnings'
@@ -234,6 +233,7 @@ import { Route as PartnersAdminSupplierIntegrationsRouteImport } from './routes/
 import { Route as PartnersAdminSuppliersRouteImport } from './routes/partners.admin.suppliers'
 import { Route as PartnersAdminTeamRouteImport } from './routes/partners.admin.team'
 import { Route as WalletTopupReturnRouteImport } from './routes/wallet/topup/return'
+import { Route as AgencyAdminPartnersIdIndexRouteImport } from './routes/agency-admin/partners/$id/index'
 import { Route as ApiPublicNoonEventsRouteImport } from './routes/api/public/noon/events'
 import { Route as ApiPublicNoonRunJobsRouteImport } from './routes/api/public/noon/run-jobs'
 import { Route as ApiPublicPartnerImageSplatRouteImport } from './routes/api/public/partner-image.$'
@@ -1058,11 +1058,6 @@ const AgencyAdminPartnersIndexRoute =
     path: '/partners/',
     getParentRoute: () => AgencyAdminRouteRoute,
   } as any)
-const AgencyAdminPartnersIdRoute = AgencyAdminPartnersIdRouteImport.update({
-  id: '/partners/$id',
-  path: '/partners/$id',
-  getParentRoute: () => AgencyAdminRouteRoute,
-} as any)
 const AgencyPortalIndexRoute = AgencyPortalIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -1434,6 +1429,12 @@ const WalletTopupReturnRoute = WalletTopupReturnRouteImport.update({
   path: '/wallet/topup/return',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgencyAdminPartnersIdIndexRoute =
+  AgencyAdminPartnersIdIndexRouteImport.update({
+    id: '/partners/$id/',
+    path: '/partners/$id/',
+    getParentRoute: () => AgencyAdminRouteRoute,
+  } as any)
 const ApiPublicNoonEventsRoute = ApiPublicNoonEventsRouteImport.update({
   id: '/api/public/noon/events',
   path: '/api/public/noon/events',
@@ -1753,7 +1754,6 @@ export interface FileRoutesByFullPath {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
-  '/agency-admin/partners/$id': typeof AgencyAdminPartnersIdRoute
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
@@ -1848,6 +1848,7 @@ export interface FileRoutesByFullPath {
   '/partners/admin/applications/$id': typeof PartnersAdminApplicationsIdRoute
   '/partners/admin/products/$id': typeof PartnersAdminProductsIdRoute
   '/partners/admin/suppliers/$id': typeof PartnersAdminSuppliersIdRoute
+  '/agency-admin/partners/$id/': typeof AgencyAdminPartnersIdIndexRoute
   '/partners/products/': typeof PartnersAuthProductsIndexRoute
   '/partners/admin/applications/': typeof PartnersAdminApplicationsIndexRoute
   '/partners/admin/products/': typeof PartnersAdminProductsIndexRoute
@@ -2000,7 +2001,6 @@ export interface FileRoutesByTo {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
-  '/agency-admin/partners/$id': typeof AgencyAdminPartnersIdRoute
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
@@ -2094,6 +2094,7 @@ export interface FileRoutesByTo {
   '/partners/admin/applications/$id': typeof PartnersAdminApplicationsIdRoute
   '/partners/admin/products/$id': typeof PartnersAdminProductsIdRoute
   '/partners/admin/suppliers/$id': typeof PartnersAdminSuppliersIdRoute
+  '/agency-admin/partners/$id': typeof AgencyAdminPartnersIdIndexRoute
   '/partners/products': typeof PartnersAuthProductsIndexRoute
   '/partners/admin/applications': typeof PartnersAdminApplicationsIndexRoute
   '/partners/admin/products': typeof PartnersAdminProductsIndexRoute
@@ -2257,7 +2258,6 @@ export interface FileRoutesById {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
-  '/agency-admin/partners/$id': typeof AgencyAdminPartnersIdRoute
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
@@ -2352,6 +2352,7 @@ export interface FileRoutesById {
   '/partners/admin/applications/$id': typeof PartnersAdminApplicationsIdRoute
   '/partners/admin/products/$id': typeof PartnersAdminProductsIdRoute
   '/partners/admin/suppliers/$id': typeof PartnersAdminSuppliersIdRoute
+  '/agency-admin/partners/$id/': typeof AgencyAdminPartnersIdIndexRoute
   '/partners/_auth/products/': typeof PartnersAuthProductsIndexRoute
   '/partners/admin/applications/': typeof PartnersAdminApplicationsIndexRoute
   '/partners/admin/products/': typeof PartnersAdminProductsIndexRoute
@@ -2515,7 +2516,6 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
-    | '/agency-admin/partners/$id'
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
@@ -2610,6 +2610,7 @@ export interface FileRouteTypes {
     | '/partners/admin/applications/$id'
     | '/partners/admin/products/$id'
     | '/partners/admin/suppliers/$id'
+    | '/agency-admin/partners/$id/'
     | '/partners/products/'
     | '/partners/admin/applications/'
     | '/partners/admin/products/'
@@ -2762,7 +2763,6 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
-    | '/agency-admin/partners/$id'
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
@@ -2856,6 +2856,7 @@ export interface FileRouteTypes {
     | '/partners/admin/applications/$id'
     | '/partners/admin/products/$id'
     | '/partners/admin/suppliers/$id'
+    | '/agency-admin/partners/$id'
     | '/partners/products'
     | '/partners/admin/applications'
     | '/partners/admin/products'
@@ -3018,7 +3019,6 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
-    | '/agency-admin/partners/$id'
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
@@ -3113,6 +3113,7 @@ export interface FileRouteTypes {
     | '/partners/admin/applications/$id'
     | '/partners/admin/products/$id'
     | '/partners/admin/suppliers/$id'
+    | '/agency-admin/partners/$id/'
     | '/partners/_auth/products/'
     | '/partners/admin/applications/'
     | '/partners/admin/products/'
@@ -4324,13 +4325,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgencyAdminPartnersIndexRouteImport
       parentRoute: typeof AgencyAdminRouteRoute
     }
-    '/agency-admin/partners/$id': {
-      id: '/agency-admin/partners/$id'
-      path: '/partners/$id'
-      fullPath: '/agency-admin/partners/$id'
-      preLoaderRoute: typeof AgencyAdminPartnersIdRouteImport
-      parentRoute: typeof AgencyAdminRouteRoute
-    }
     '/agency/portal/': {
       id: '/agency/portal/'
       path: '/'
@@ -4814,6 +4808,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WalletTopupReturnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agency-admin/partners/$id/': {
+      id: '/agency-admin/partners/$id/'
+      path: '/partners/$id'
+      fullPath: '/agency-admin/partners/$id/'
+      preLoaderRoute: typeof AgencyAdminPartnersIdIndexRouteImport
+      parentRoute: typeof AgencyAdminRouteRoute
+    }
     '/api/public/noon/events': {
       id: '/api/public/noon/events'
       path: '/api/public/noon/events'
@@ -5190,16 +5191,16 @@ interface AgencyAdminRouteRouteChildren {
   AgencyAdminPayoutsRoute: typeof AgencyAdminPayoutsRoute
   AgencyAdminSettingsRoute: typeof AgencyAdminSettingsRoute
   AgencyAdminIndexRoute: typeof AgencyAdminIndexRoute
-  AgencyAdminPartnersIdRoute: typeof AgencyAdminPartnersIdRoute
   AgencyAdminPartnersIndexRoute: typeof AgencyAdminPartnersIndexRoute
+  AgencyAdminPartnersIdIndexRoute: typeof AgencyAdminPartnersIdIndexRoute
 }
 
 const AgencyAdminRouteRouteChildren: AgencyAdminRouteRouteChildren = {
   AgencyAdminPayoutsRoute: AgencyAdminPayoutsRoute,
   AgencyAdminSettingsRoute: AgencyAdminSettingsRoute,
   AgencyAdminIndexRoute: AgencyAdminIndexRoute,
-  AgencyAdminPartnersIdRoute: AgencyAdminPartnersIdRoute,
   AgencyAdminPartnersIndexRoute: AgencyAdminPartnersIndexRoute,
+  AgencyAdminPartnersIdIndexRoute: AgencyAdminPartnersIdIndexRoute,
 }
 
 const AgencyAdminRouteRouteWithChildren =
