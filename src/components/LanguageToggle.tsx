@@ -49,7 +49,7 @@ export function LanguageToggle({ arabicTo }: { arabicTo?: string }) {
         aria-pressed={isArabic}
         className={isArabic ? ACTIVE_PILL : INACTIVE_PILL}
       >
-        <Globe2 className="h-3.5 w-3.5" />
+        <Globe2 className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
         العربية
       </button>
       <button
