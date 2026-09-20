@@ -19,7 +19,7 @@ export function SellerServicePage({ config }: { config: ServicePageConfig }) {
         icon={config.icon}
         title={t(config.hero.title)}
         lead={t(config.hero.lead)}
-        tags={config.hero.tags.map(t)}
+        tags={config.hero.tags.map((tag) => t(tag))}
         flow={config.process.steps.map((step) => t(step.title))}
         flowCaption={config.process.note ? t(config.process.note) : undefined}
         secondaryLabel={t(config.cta.secondaryLabel)}
@@ -60,11 +60,14 @@ export function SellerServicePage({ config }: { config: ServicePageConfig }) {
           </ol>
           {config.split ? (
             <div className="mt-7 grid gap-5 border-t border-retail-border pt-6 md:grid-cols-2">
-              {[[t('selling.svc.ui.tejaraaHandles'), config.split.tejaraa], [t('selling.svc.ui.youHandle'), config.split.you]].map(([heading, items]) => (
-                <div key={heading as string}>
-                  <h3 className="text-sm font-extrabold text-retail-dark-green">{heading as string}</h3>
+              {[
+                { heading: t('selling.svc.ui.tejaraaHandles'), items: config.split.tejaraa },
+                { heading: t('selling.svc.ui.youHandle'), items: config.split.you },
+              ].map(({ heading, items }) => (
+                <div key={heading}>
+                  <h3 className="text-sm font-extrabold text-retail-dark-green">{heading}</h3>
                   <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                    {(items as ServicePageConfig['split'] extends infer _T ? typeof config.split.tejaraa : never).map((item) => <li key={item} className="flex gap-2 text-sm leading-5 text-retail-text"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-retail-green" />{t(item)}</li>)}
+                    {items.map((item) => <li key={item} className="flex gap-2 text-sm leading-5 text-retail-text"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-retail-green" />{t(item)}</li>)}
                   </ul>
                 </div>
               ))}
