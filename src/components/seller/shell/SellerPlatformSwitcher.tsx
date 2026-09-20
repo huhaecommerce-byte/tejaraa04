@@ -32,7 +32,7 @@ export function SellerPlatformSwitcher({
   return (
     <nav
       aria-label="Tejaraa platforms"
-      className={cn(layout === 'inline' ? 'flex w-full flex-1 items-end gap-0.5 self-stretch overflow-x-auto sm:w-auto sm:flex-none sm:gap-2' : 'grid gap-1', className)}
+      className={cn(layout === 'inline' ? 'flex w-full flex-1 items-end gap-0.5 self-stretch overflow-x-hidden sm:w-auto sm:flex-none sm:overflow-x-auto sm:gap-2' : 'grid gap-1', className)}
     >
       {tejaraaPlatforms.map((platform) => {
         const current = platform.id === currentId;
