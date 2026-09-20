@@ -117,11 +117,10 @@ export function RetailHeader() {
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-retail-border bg-retail-card font-sans">
-        <div className="hidden bg-retail-dark-green text-primary-foreground md:flex">
+        <div className="flex bg-retail-dark-green text-primary-foreground">
           <RetailContainer className="flex h-11 w-full items-center justify-between gap-3 text-xs">
             <div className="flex min-w-0 items-center gap-2 self-stretch">
               <SellerPlatformSwitcher current={activePlatform === '/partners' ? 'suppliers' : activePlatform === '/agency' ? 'agencies' : activePlatform === '/selling' ? 'selling' : 'shop'} />
-              <span className="pb-2 font-bold sm:hidden">{t("shop.brand")}</span>
             </div>
             <LanguageToggle />
           </RetailContainer>
