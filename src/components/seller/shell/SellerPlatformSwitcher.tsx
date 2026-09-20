@@ -43,9 +43,9 @@ export function SellerPlatformSwitcher({
             onClick={onNavigate}
             aria-current={current ? 'page' : undefined}
             className={cn(
-              'relative shrink-0 items-center gap-1.5 font-bold tracking-tight transition-colors',
+              'relative items-center justify-center gap-1.5 font-bold tracking-tight transition-colors',
               layout === 'inline'
-                ? 'inline-flex px-1.5 py-2 text-[11px] sm:px-4 sm:text-sm lg:px-6'
+                ? 'inline-flex flex-1 px-1 py-2 text-[11px] sm:flex-none sm:px-4 sm:text-sm lg:px-6'
                 : 'flex w-full items-center rounded-lg px-3 py-3 text-sm font-bold',
               onDark
                 ? current
