@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Outlet, Navigate, Link, useLocation } from '@/lib/router-compat';
 import { Clock, ShieldAlert, XCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -55,17 +55,26 @@ const AgencyLayout = () => {
   useEffect(() => { setMobileOpen(false); }, [location.pathname]);
 
   const headerRef = useRef<HTMLDivElement>(null);
-  const [headerH, setHeaderH] = useState(0);
-  useEffect(() => {
+  // Fallback matches the rendered header height (switcher strip + identity row)
+  // so the sidebar never sits on top of the header before measurement lands.
+  const [headerH, setHeaderH] = useState(108);
+  const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
+  useIsomorphicLayoutEffect(() => {
     const node = headerRef.current;
     if (!node) return;
-    const measure = () => setHeaderH(node.offsetHeight);
+    const measure = () => setHeaderH(node.offsetHeight || 108);
     measure();
+    const raf = requestAnimationFrame(measure);
     const ro = new ResizeObserver(measure);
     ro.observe(node);
     window.addEventListener('resize', measure);
-    return () => { ro.disconnect(); window.removeEventListener('resize', measure); };
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
   }, [user]);
+
 
   if (isLoading || agencyLoading || access.loading) {
     return (

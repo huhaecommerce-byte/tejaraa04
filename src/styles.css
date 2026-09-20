@@ -390,7 +390,9 @@
   }
   .command-deck.is-collapsed { width: 64px; }
   /* Portals with a full-width header keep navigation entirely beneath it. */
-  .dashboard-with-retail-header .command-deck { top: var(--dash-header-h, 0px); }
+  .dashboard-with-retail-header .command-deck { top: var(--dash-header-h, 108px); z-index: 30; }
+  .dashboard-with-retail-header .command-deck-backdrop { top: var(--dash-header-h, 108px); }
+
   /* Mobile: off-canvas drawer */
   @media (max-width: 1023px) {
     .command-deck { transform: translateX(-100%); width: 260px !important; }
