@@ -41,10 +41,6 @@ export function AgencyPortalHeader() {
           </Link>
 
           <div className="flex items-center gap-3">
-            <Button asChild variant="outline" size="sm" className="hidden border-retail-border text-retail-dark-green lg:inline-flex">
-              <Link to="/agency">{t('agency.portalHeader.programmeSite')} <ExternalLink className="ml-2 h-3.5 w-3.5" /></Link>
-            </Button>
-
             {/* Signed-in partner block — mirrors the dropshipping portal header */}
             <div className="flex items-center gap-3 border-l border-retail-border pl-3">
               <Link to="/agency/portal/profile" className="hidden items-center gap-3 md:flex">
