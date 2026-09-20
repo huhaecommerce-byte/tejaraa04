@@ -10,7 +10,6 @@ import { useAccessTier } from '@/hooks/useAccessTier';
 import { agencyNavigation } from '@/config/navigation';
 import { CommandDeck } from '@/components/layout/CommandDeck';
 import { Menu } from 'lucide-react';
-import { RetailHeader } from '@/components/retail/shell/RetailHeader';
 import { AgencyPortalHeader } from '@/components/agency/shell/AgencyPortalHeader';
 import { safeSetItem } from '@/lib/safeStorage';
 import { useLocale } from '@/i18n/LocaleProvider';
