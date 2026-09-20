@@ -29,7 +29,6 @@ export function SellerPlatformSwitcher({
   layout = 'inline', onDark = true, className, onNavigate, current: currentId = 'selling',
 }: SellerPlatformSwitcherProps) {
   const { t } = useLocale();
-  const currentPlatform = tejaraaPlatforms.find((platform) => platform.id === currentId);
   return (
     <nav
       aria-label="Tejaraa platforms"
