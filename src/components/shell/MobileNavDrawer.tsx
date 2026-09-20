@@ -50,7 +50,7 @@ interface MobileNavDrawerProps {
 
 const itemClass = (active: boolean, accent?: boolean) =>
   cn(
-    'flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-semibold transition-colors',
+    'flex items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-[13px] font-semibold transition-colors',
     active
       ? 'bg-retail-light-green text-retail-dark-green'
       : accent
@@ -86,16 +86,16 @@ export function MobileNavDrawer({
         side={dir === 'rtl' ? 'right' : 'left'}
         className="flex w-[88vw] max-w-sm flex-col gap-0 overflow-hidden p-0"
       >
-        <SheetHeader className="shrink-0 space-y-1 bg-retail-dark-green px-5 py-4 text-left">
-          <SheetTitle className="text-base font-bold text-primary-foreground">{title}</SheetTitle>
+        <SheetHeader className="shrink-0 space-y-1 bg-retail-dark-green px-4 py-3 text-left">
+          <SheetTitle className="text-sm font-bold text-primary-foreground">{title}</SheetTitle>
           {description ? (
-            <SheetDescription className="text-xs text-primary-foreground/75">{description}</SheetDescription>
+            <SheetDescription className="text-[11px] text-primary-foreground/75">{description}</SheetDescription>
           ) : null}
           <SellerPlatformSwitcher
             current={current}
             layout="stacked"
             onDark={false}
-            className="grid-cols-2 gap-1.5 pt-2 [&>a:not([aria-current=page])]:bg-white/10 [&>a:not([aria-current=page])]:text-primary-foreground [&>a:not([aria-current=page])]:hover:bg-white/20 [&>a:not([aria-current=page])]:hover:text-white"
+            className="grid-cols-2 gap-1 pt-2"
             onNavigate={() => setOpen(false)}
           />
         </SheetHeader>
@@ -110,7 +110,7 @@ export function MobileNavDrawer({
               ) : null}
               {group.collapsible ? (
                 <Collapsible defaultOpen={group.defaultOpen}>
-                  <CollapsibleTrigger className="group flex w-full items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold text-retail-text hover:bg-retail-light-green/70 hover:text-retail-dark-green">
+                  <CollapsibleTrigger className="group flex w-full items-center justify-between rounded-lg px-2.5 py-2.5 text-[13px] font-semibold text-retail-text hover:bg-retail-light-green/70 hover:text-retail-dark-green">
                     {group.label}
                     <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" aria-hidden />
                   </CollapsibleTrigger>
