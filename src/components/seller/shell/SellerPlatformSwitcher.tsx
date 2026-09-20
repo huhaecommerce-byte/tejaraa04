@@ -67,8 +67,8 @@ export function SellerPlatformSwitcher({
             <platform.icon className={cn('h-3.5 w-3.5 shrink-0', layout === 'inline' && 'hidden sm:block')} aria-hidden />
             {layout === 'inline' ? (
               <>
-                <span className="sm:hidden">{t(`platform.short.${platform.id}` as TranslationKey)}</span>
-                <span className="hidden sm:inline">{t(platform.label)}</span>
+                <span className="lg:hidden">{t(`platform.short.${platform.id}` as TranslationKey)}</span>
+                <span className="hidden lg:inline">{t(platform.label)}</span>
               </>
             ) : (
               <span>{t(platform.label)}</span>
