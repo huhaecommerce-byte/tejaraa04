@@ -124,7 +124,7 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
         }}
       >
         {/* Brand / controls */}
-        <div className={`command-deck-brand ${variant === 'agency' ? 'is-agency' : ''}`}>
+        <div className="command-deck-brand">
           {variant !== 'customer' && variant !== 'agency' && (
             <Link to={variant === 'agency' ? '/agency/portal' : '/'} className="group" aria-label={variant === 'agency' ? 'Agency portal' : 'Home'}>
               <BrandLogo

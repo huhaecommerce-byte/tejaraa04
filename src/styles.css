@@ -389,10 +389,8 @@
     transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1), transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .command-deck.is-collapsed { width: 64px; }
-  /* Buyer dashboard: portal sits beneath the storefront header */
-  @media (min-width: 1024px) {
-    .dashboard-with-retail-header .command-deck { top: var(--dash-header-h, 0px); }
-  }
+  /* Portals with a full-width header keep navigation entirely beneath it. */
+  .dashboard-with-retail-header .command-deck { top: var(--dash-header-h, 0px); }
   /* Mobile: off-canvas drawer */
   @media (max-width: 1023px) {
     .command-deck { transform: translateX(-100%); width: 260px !important; }
@@ -410,8 +408,6 @@
     @apply relative flex items-center justify-between px-4 pt-5 pb-4;
     border-bottom: 1px solid hsl(0 0% 100% / 0.06);
   }
-  .command-deck-brand.is-agency { @apply justify-end; }
-  .command-deck.is-collapsed .command-deck-brand.is-agency { @apply justify-center; }
   .command-deck.is-collapsed .command-deck-brand { @apply px-3 justify-center; }
   .command-deck-logo {
     @apply w-8 h-8 rounded-lg flex items-center justify-center text-primary shrink-0;
