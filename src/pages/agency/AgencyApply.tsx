@@ -94,7 +94,6 @@ export default function AgencyApply() {
         contact_name: form.contact_name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim() || null,
-        invite_code: '',
       } as never);
       if (insertError) throw insertError;
 
@@ -115,7 +114,6 @@ export default function AgencyApply() {
       contact_name: form.contact_name.trim(),
       email: form.email.trim(),
       phone: form.phone.trim() || null,
-      invite_code: '',
     } as never);
     if (error) throw error;
   };
