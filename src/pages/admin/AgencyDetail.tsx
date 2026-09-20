@@ -66,6 +66,7 @@ export default function AgencyDetail() {
   const id = (params as any).id as string;
   const [agency, setAgency] = useState<Agency | null>(null);
   const [clients, setClients] = useState<ClientRow[]>([]);
+  const [commissions, setCommissions] = useState<CommissionRow[]>([]);
   const [balance, setBalance] = useState<Balance | null>(null);
   const [rate, setRate] = useState('');
   const [adjAmount, setAdjAmount] = useState('');
