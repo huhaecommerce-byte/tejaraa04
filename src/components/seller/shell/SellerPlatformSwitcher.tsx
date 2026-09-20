@@ -29,11 +29,18 @@ export function SellerPlatformSwitcher({
   layout = 'inline', onDark = true, className, onNavigate, current: currentId = 'selling',
 }: SellerPlatformSwitcherProps) {
   const { t } = useLocale();
+  const currentPlatform = tejaraaPlatforms.find((platform) => platform.id === currentId);
   return (
     <nav
       aria-label="Tejaraa platforms"
       className={cn(layout === 'inline' ? 'flex items-end gap-1 self-stretch pt-2 sm:gap-2' : 'grid gap-1', className)}
     >
+      {layout === 'inline' && currentPlatform ? (
+        <span className="inline-flex items-center gap-1.5 self-center truncate pb-2 text-xs font-bold text-white/90 sm:hidden">
+          <currentPlatform.icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          <span className="truncate">{t(currentPlatform.label)}</span>
+        </span>
+      ) : null}
       {tejaraaPlatforms.map((platform) => {
         const current = platform.id === currentId;
         return (

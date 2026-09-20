@@ -1,18 +1,14 @@
-import { useState } from 'react';
 import { Link, useLocation } from '@/lib/router-compat';
-import { ChevronDown, Menu } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { Button } from '@/components/ui/button';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-  Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger,
-} from '@/components/ui/sheet';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerPlatformSwitcher } from './SellerPlatformSwitcher';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { MobileNavDrawer } from '@/components/shell/MobileNavDrawer';
 import { servicePages } from '@/data/sellerServicePages';
 import { useLocale } from '@/i18n/LocaleProvider';
 
@@ -26,8 +22,6 @@ export function SellerHeader() {
   // "Why Tejaraa" leads the navigation, ahead of the Services menu.
   const whyTejaraaItem = navItems.find((item) => item.to === '/selling#why-tejaraa')!;
   const restNavItems = navItems.filter((item) => item.to !== '/selling#why-tejaraa');
-  const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const { pathname } = useLocation();
   const activePath = pathname.replace(/\/+$/, '') || '/';
   const onServicePage = servicePages.some((page) => page.path === activePath);
@@ -38,10 +32,7 @@ export function SellerHeader() {
     `rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-retail-light-green hover:text-retail-dark-green ${
       active ? 'bg-retail-light-green text-retail-dark-green' : 'text-retail-text'
     }`;
-  const drawerLink = (active: boolean) =>
-    `rounded-md px-2.5 py-2.5 text-sm font-semibold hover:bg-retail-light-green hover:text-retail-dark-green ${
-      active ? 'bg-retail-light-green text-retail-dark-green' : 'text-retail-text'
-    }`;
+
 
   return (
     <header dir={dir} className="sticky top-0 z-40">
