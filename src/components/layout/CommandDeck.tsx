@@ -125,12 +125,16 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
       >
         {/* Brand / controls */}
         <div className="command-deck-brand">
-          {variant !== 'customer' && variant !== 'agency' && (
-            <Link to="/" className="group" aria-label="Home">
+          {variant !== 'customer' && (
+            <Link
+              to={variant === 'agency' ? '/agency' : '/'}
+              className="group"
+              aria-label="Home"
+            >
               <BrandLogo
                 variant="sidebar"
                 collapsed={collapsed}
-                subLabel="ADMIN"
+                {...(variant === 'agency' ? {} : { subLabel: 'ADMIN' })}
               />
             </Link>
           )}
