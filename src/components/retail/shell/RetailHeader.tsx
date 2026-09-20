@@ -1,20 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ChevronRight, CircleHelp, Globe2, Handshake, Heart, Home,
-  List, LogOut, Menu, MessageCircle, Package, Search, ShoppingCart, Store, User, Wallet, Warehouse,
+  CircleHelp, Heart, Home,
+  List, LogOut, Menu, MessageCircle, Package, Search, ShoppingCart, User, Wallet, Warehouse,
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCart } from '@/contexts/CartContext';
 import { RetailContainer } from '@/components/retail/common/RetailContainer';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
+import { MobileNavDrawer, type MobileNavItem } from '@/components/shell/MobileNavDrawer';
 import { NotificationBell } from '@/components/NotificationBell';
 import { useWholesaleAccess } from '@/hooks/useWholesaleAccess';
 import { translateCategory } from '@/i18n/categoryNames';
@@ -34,13 +33,6 @@ const establishedCategoryFallbacks: CategoryGroup[] = [
   { name: 'Sports', count: 0, children: [] },
   { name: 'Automotive', count: 0, children: [] },
   { name: 'Daily needs', count: 0, children: [] },
-];
-
-const platformLinks: { label: TranslationKey; to: string; icon: typeof ShoppingCart }[] = [
-  { label: 'platform.shop', to: '/', icon: ShoppingCart },
-  { label: 'platform.selling', to: '/selling', icon: Store },
-  { label: 'platform.suppliers', to: '/partners', icon: Warehouse },
-  { label: 'platform.agencies', to: '/agency', icon: Handshake },
 ];
 
 export function RetailHeader() {
@@ -140,12 +132,7 @@ export function RetailHeader() {
           {hidePortalHeader ? (
             <RetailContainer className="flex min-h-[64px] items-center justify-between gap-3 py-2 lg:min-h-[72px]">
               <div className="flex items-center gap-2">
-                <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                  <SheetTrigger asChild><Button type="button" variant="ghost" size="icon" aria-label={t("common.openNavigation")} className="h-10 w-10 lg:hidden"><Menu className="h-5 w-5" /></Button></SheetTrigger>
-                  <SheetContent side="left" className="w-[88%] max-w-sm overflow-y-auto p-0">
-                    <MobileMenu categories={availableCategories} user={user} accountHref={accountHref} logout={logout} />
-                  </SheetContent>
-                </Sheet>
+                <RetailMobileNav categories={availableCategories} user={user} accountHref={accountHref} logout={logout} />
                 <Link to="/" aria-label={t("shop.homeAria")} className="shrink-0"><BrandLogo variant="storefront" className="max-w-[170px]" /></Link>
               </div>
 
@@ -218,12 +205,7 @@ export function RetailHeader() {
             </RetailContainer>
           ) : (
             <RetailContainer className="grid min-h-[64px] grid-cols-[1fr_auto_1fr] items-center gap-2 py-2 lg:min-h-[72px] lg:grid-cols-[auto_minmax(280px,1fr)_auto] lg:gap-3">
-              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                <SheetTrigger asChild><Button type="button" variant="ghost" size="icon" aria-label={t("common.openNavigation")} className="h-10 w-10 lg:hidden"><Menu className="h-5 w-5" /></Button></SheetTrigger>
-                <SheetContent side="left" className="w-[88%] max-w-sm overflow-y-auto p-0">
-                  <MobileMenu categories={availableCategories} user={user} accountHref={accountHref} logout={logout} />
-                </SheetContent>
-              </Sheet>
+              <RetailMobileNav categories={availableCategories} user={user} accountHref={accountHref} logout={logout} />
 
               <Link to="/" aria-label={t("shop.homeAria")} className="shrink-0 justify-self-center lg:justify-self-start"><BrandLogo variant="storefront" className="max-w-[170px]" /></Link>
 
