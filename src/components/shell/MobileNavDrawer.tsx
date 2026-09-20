@@ -91,6 +91,13 @@ export function MobileNavDrawer({
           {description ? (
             <SheetDescription className="text-xs text-primary-foreground/75">{description}</SheetDescription>
           ) : null}
+          <SellerPlatformSwitcher
+            current={current}
+            layout="stacked"
+            onDark={false}
+            className="grid-cols-2 gap-1.5 pt-2 [&>a:not([aria-current=page])]:bg-white/10 [&>a:not([aria-current=page])]:text-primary-foreground [&>a:not([aria-current=page])]:hover:bg-white/20 [&>a:not([aria-current=page])]:hover:text-white"
+            onNavigate={() => setOpen(false)}
+          />
         </SheetHeader>
 
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
@@ -132,11 +139,6 @@ export function MobileNavDrawer({
               )}
             </nav>
           ))}
-
-          <div className="border-b border-retail-border px-3 py-4">
-            <p className="px-3 pb-2 text-[11px] font-bold uppercase tracking-wider text-retail-muted">{t('common.platforms')}</p>
-            <SellerPlatformSwitcher current={current} layout="stacked" onDark={false} onNavigate={() => setOpen(false)} />
-          </div>
 
           {footer ? <div className="px-3 py-4">{footer}</div> : null}
         </div>

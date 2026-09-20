@@ -29,18 +29,11 @@ export function SellerPlatformSwitcher({
   layout = 'inline', onDark = true, className, onNavigate, current: currentId = 'selling',
 }: SellerPlatformSwitcherProps) {
   const { t } = useLocale();
-  const currentPlatform = tejaraaPlatforms.find((platform) => platform.id === currentId);
   return (
     <nav
       aria-label="Tejaraa platforms"
-      className={cn(layout === 'inline' ? 'flex items-end gap-1 self-stretch pt-2 sm:gap-2' : 'grid gap-1', className)}
+      className={cn(layout === 'inline' ? 'flex items-end gap-0.5 self-stretch overflow-x-auto sm:gap-2' : 'grid gap-1', className)}
     >
-      {layout === 'inline' && currentPlatform ? (
-        <span className="inline-flex items-center gap-1.5 self-center truncate pb-2 text-xs font-bold text-white/90 sm:hidden">
-          <currentPlatform.icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
-          <span className="truncate">{t(currentPlatform.label)}</span>
-        </span>
-      ) : null}
       {tejaraaPlatforms.map((platform) => {
         const current = platform.id === currentId;
         return (
@@ -50,8 +43,10 @@ export function SellerPlatformSwitcher({
             onClick={onNavigate}
             aria-current={current ? 'page' : undefined}
             className={cn(
-              'relative items-center gap-1.5 font-bold tracking-tight transition-colors',
-              layout === 'inline' ? 'hidden px-4 py-2 text-sm sm:inline-flex lg:px-6' : 'flex w-full items-center rounded-lg px-3 py-3 text-sm font-bold',
+              'relative shrink-0 items-center gap-1.5 font-bold tracking-tight transition-colors',
+              layout === 'inline'
+                ? 'inline-flex px-1.5 py-2 text-[11px] sm:px-4 sm:text-sm lg:px-6'
+                : 'flex w-full items-center rounded-lg px-3 py-3 text-sm font-bold',
               onDark
                 ? current
                   ? layout === 'inline'
@@ -65,8 +60,15 @@ export function SellerPlatformSwitcher({
                   : 'text-retail-muted hover:bg-retail-light-green/70 hover:text-retail-dark-green',
             )}
           >
-            <platform.icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
-            <span>{t(platform.label)}</span>
+            <platform.icon className="hidden h-3.5 w-3.5 shrink-0 sm:block" aria-hidden />
+            {layout === 'inline' ? (
+              <>
+                <span className="sm:hidden">{t(`platform.short.${platform.id}` as TranslationKey)}</span>
+                <span className="hidden sm:inline">{t(platform.label)}</span>
+              </>
+            ) : (
+              <span>{t(platform.label)}</span>
+            )}
             {current && layout === 'inline' ? <span aria-hidden className="absolute inset-x-0 -bottom-1 h-1.5 rounded-b-lg bg-retail-card" /> : null}
             {current ? <span className="sr-only">(current section)</span> : null}
           </Link>
