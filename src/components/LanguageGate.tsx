@@ -49,7 +49,7 @@ export function LanguageGate() {
 
   return (
     <Dialog open={open} onOpenChange={(next) => !next && setOpen(false)}>
-      <DialogContent className="max-w-sm text-center" showCloseButton={false}>
+      <DialogContent className="max-w-sm text-center">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
           <Globe2 className="h-6 w-6" />
         </div>
