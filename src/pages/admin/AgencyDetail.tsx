@@ -29,14 +29,6 @@ interface Agency {
   created_at: string;
 }
 
-interface ClientRow {
-  client_user_id: string;
-  display_name: string;
-  email: string | null;
-  joined_at: string;
-  orders: number;
-  earned: number;
-}
 
 interface Balance {
   lifetime: number; pending: number; available: number; requested: number; paid: number; clients: number; orders: number;
@@ -53,18 +45,11 @@ interface CommissionRow {
   created_at: string;
 }
 
-const commissionTone: Record<string, string> = {
-  pending: 'bg-amber-100 text-amber-800',
-  available: 'bg-emerald-100 text-emerald-800',
-  paid: 'bg-blue-100 text-blue-800',
-  reversed: 'bg-rose-100 text-rose-800',
-};
 
 export default function AgencyDetail() {
   const params = useParams();
   const id = (params as any).id as string;
   const [agency, setAgency] = useState<Agency | null>(null);
-  const [clients, setClients] = useState<ClientRow[]>([]);
   const [commissions, setCommissions] = useState<CommissionRow[]>([]);
   const [balance, setBalance] = useState<Balance | null>(null);
   const [rate, setRate] = useState('');
@@ -73,14 +58,12 @@ export default function AgencyDetail() {
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
-    const [{ data: a }, { data: c }, { data: b }, { data: cm }] = await Promise.all([
+    const [{ data: a }, { data: b }, { data: cm }] = await Promise.all([
       supabase.from('agency_profiles').select('*').eq('id', id).maybeSingle(),
-      supabase.rpc('admin_agency_clients' as never, { _agency_id: id } as never),
       supabase.rpc('agency_balance' as never, { _agency_id: id } as never),
       supabase.rpc('admin_agency_commissions' as never, { _agency_id: id } as never),
     ]);
     setAgency((a as Agency) || null);
-    setClients((c as unknown as ClientRow[]) || []);
     setBalance((b as unknown as Balance) || null);
     setCommissions((cm as unknown as CommissionRow[]) || []);
     setRate(a && (a as any).commission_rate != null ? String((a as any).commission_rate) : '');
