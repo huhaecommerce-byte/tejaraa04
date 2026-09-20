@@ -32,7 +32,7 @@ export function SellerPlatformSwitcher({
   return (
     <nav
       aria-label="Tejaraa platforms"
-      className={cn(layout === 'inline' ? 'flex w-full flex-1 items-end gap-0.5 self-stretch overflow-x-hidden sm:w-auto sm:flex-none sm:overflow-x-auto sm:gap-2' : 'grid gap-1', className)}
+      className={cn(layout === 'inline' ? 'flex w-full min-w-0 flex-1 items-end gap-0.5 self-stretch overflow-visible sm:w-auto sm:flex-none sm:gap-1.5' : 'grid gap-1', className)}
     >
       {tejaraaPlatforms.map((platform) => {
         const current = platform.id === currentId;
@@ -45,7 +45,7 @@ export function SellerPlatformSwitcher({
             className={cn(
               'relative items-center justify-center gap-1.5 font-bold tracking-tight transition-colors',
               layout === 'inline'
-                ? 'inline-flex flex-1 px-1 py-2 text-xs font-extrabold sm:flex-none sm:px-4 sm:text-sm sm:font-bold lg:px-6'
+                ? 'inline-flex flex-1 px-1 py-2 text-xs font-extrabold sm:flex-none sm:px-3 sm:text-sm sm:font-bold lg:px-5'
                 : 'flex w-full items-center rounded-full px-2.5 py-1.5 text-xs font-bold',
               onDark
                 ? current
@@ -67,8 +67,8 @@ export function SellerPlatformSwitcher({
             <platform.icon className={cn('h-3.5 w-3.5 shrink-0', layout === 'inline' && 'hidden sm:block')} aria-hidden />
             {layout === 'inline' ? (
               <>
-                <span className="sm:hidden">{t(`platform.short.${platform.id}` as TranslationKey)}</span>
-                <span className="hidden sm:inline">{t(platform.label)}</span>
+                <span className="lg:hidden">{t(`platform.short.${platform.id}` as TranslationKey)}</span>
+                <span className="hidden lg:inline">{t(platform.label)}</span>
               </>
             ) : (
               <span>{t(platform.label)}</span>
