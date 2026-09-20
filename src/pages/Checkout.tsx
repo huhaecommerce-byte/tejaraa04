@@ -12,7 +12,7 @@ const PRICE_LABELS: Record<string, { plan: string; cycle: string }> = {
   growth_yearly: { plan: "Growth", cycle: "Annual" },
 };
 
-class CheckoutErrorBoundary extends Component<{ children: ReactNode; t: (key: string) => string }, { hasError: boolean }> {
+class CheckoutErrorBoundary extends Component<{ children: ReactNode; t: (key: any, vars?: Record<string, string | number>) => string }, { hasError: boolean }> {
   state = { hasError: false };
   static getDerivedStateFromError() {
     return { hasError: true };

@@ -3,7 +3,7 @@ import type { SeoProduct } from '@/lib/catalogSeo.functions';
 import type { ProductDetailRowConfig } from '@/lib/productDetailRows';
 import { useLocale } from '@/i18n/LocaleProvider';
 
-function specificationValue(product: SeoProduct, key: ProductDetailRowConfig['key'], t: (key: string, vars?: Record<string, string | number>) => string) {
+function specificationValue(product: SeoProduct, key: ProductDetailRowConfig['key'], t: (key: any, vars?: Record<string, string | number>) => string) {
   switch (key) {
     case 'sku': return product.sku;
     case 'category': return [product.top_category, product.sub_category, product.detailed_category].filter(Boolean).join(' › ');

@@ -19,7 +19,7 @@ export function ProductIdentity({ product, price }: { product: SeoProduct; price
           <a href="#reviews" className="inline-flex items-center gap-1 font-semibold text-retail-text hover:text-retail-green">
             <Star className="h-4 w-4 fill-retail-gold text-retail-gold" aria-hidden="true" />
             <span>{product.rating_avg?.toFixed(1)}</span>
-            <span className="font-normal text-retail-muted">{t('shopx.product.reviews', { count: product.review_count })}</span>
+            <span className="font-normal text-retail-muted">{t('shopx.product.reviews', { count: product.review_count ?? 0 })}</span>
           </a>
         )}
         {product.sku && <span>{t('shopx.product.sku', { sku: product.sku })}</span>}

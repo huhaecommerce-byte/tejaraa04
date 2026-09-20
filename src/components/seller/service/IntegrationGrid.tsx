@@ -14,6 +14,7 @@ const supportStyles: Record<ChannelCard['support'], string> = {
 };
 
 export function IntegrationCard({ channel }: { channel: ChannelCard }) {
+  const { t } = useLocale();
   const { icon: Icon, name, kind, support, text } = channel;
   return (
     <li className="flex h-full flex-col rounded-xl border border-retail-border bg-white p-5">

@@ -8,6 +8,7 @@ import type { LucideIcon } from 'lucide-react';
 import type { FaqItem, IconItem, ProcessStep } from '@/data/sellerServicePages';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { en as enDict, type TranslationKey } from '@/i18n/dictionary';
 
 /* ── What this service is ──────────────────────────────────────── */
 export function ServiceOverview({ title, paragraphs }: { title: string; paragraphs: string[] }) {
@@ -190,8 +191,9 @@ export function ServiceTrustStrip() {
 }
 
 /* ── FAQ ───────────────────────────────────────────────────────── */
-export function ServiceFAQ({ items, title }: { items: FaqItem[]; title?: string }) {
+export function ServiceFAQ({ items, title }: { items: { q: string; a: string }[]; title?: string }) {
   const { t } = useLocale();
+  const resolve = (value: string) => (value in enDict ? t(value as TranslationKey) : value);
   const resolvedTitle = title ?? t('selling.svc.ui.faqTitle');
   return (
     <section id="faq" className="scroll-mt-24 border-t border-retail-border py-8 lg:py-9">
@@ -201,14 +203,14 @@ export function ServiceFAQ({ items, title }: { items: FaqItem[]; title?: string 
           <Accordion type="single" collapsible className="grid gap-1">
             {items.map((faq, index) => (
               <AccordionItem
-                key={faq.q}
+                key={resolve(faq.q)}
                 value={`faq-${index}`}
                 className="overflow-hidden border-b border-retail-border bg-white px-2"
               >
                 <AccordionTrigger className="py-4 text-left text-sm font-bold text-retail-dark-green hover:no-underline sm:text-base">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="pb-4 text-sm leading-6 text-retail-muted">{faq.a}</AccordionContent>
+                <AccordionContent className="pb-4 text-sm leading-6 text-retail-muted">{resolve(faq.a)}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
