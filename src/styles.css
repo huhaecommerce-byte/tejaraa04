@@ -410,6 +410,8 @@
     @apply relative flex items-center justify-between px-4 pt-5 pb-4;
     border-bottom: 1px solid hsl(0 0% 100% / 0.06);
   }
+  .command-deck-brand.is-agency { @apply justify-end; }
+  .command-deck.is-collapsed .command-deck-brand.is-agency { @apply justify-center; }
   .command-deck.is-collapsed .command-deck-brand { @apply px-3 justify-center; }
   .command-deck-logo {
     @apply w-8 h-8 rounded-lg flex items-center justify-center text-primary shrink-0;

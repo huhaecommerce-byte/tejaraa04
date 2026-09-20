@@ -123,9 +123,9 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
           if (target.closest('a') && onMobileClose) onMobileClose();
         }}
       >
-        {/* Brand */}
-        <div className="command-deck-brand">
-          {variant !== 'customer' && (
+        {/* Brand / controls */}
+        <div className={`command-deck-brand ${variant === 'agency' ? 'is-agency' : ''}`}>
+          {variant !== 'customer' && variant !== 'agency' && (
             <Link to={variant === 'agency' ? '/agency/portal' : '/'} className="group" aria-label={variant === 'agency' ? 'Agency portal' : 'Home'}>
               <BrandLogo
                 variant="sidebar"
