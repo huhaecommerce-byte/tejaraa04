@@ -24,11 +24,8 @@ function useSectionLinks() {
 export function SupplierHeader() {
   const { t } = useLocale();
   const sectionLinks = useSectionLinks();
-  const [open, setOpen] = useState(false);
   const linkClass =
     'rounded-md px-3 py-2 text-sm font-semibold text-retail-text transition-colors hover:bg-retail-light-green hover:text-retail-dark-green';
-  const drawerClass =
-    'rounded-md px-2.5 py-2.5 text-sm font-semibold text-retail-text hover:bg-retail-light-green hover:text-retail-dark-green';
 
   return (
     <header className="sticky top-0 z-40">
