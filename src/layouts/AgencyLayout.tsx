@@ -10,7 +10,6 @@ import { useAccessTier } from '@/hooks/useAccessTier';
 import { agencyNavigation } from '@/config/navigation';
 import { CommandDeck } from '@/components/layout/CommandDeck';
 import { Menu } from 'lucide-react';
-import { RetailHeader } from '@/components/retail/shell/RetailHeader';
 import { AgencyPortalHeader } from '@/components/agency/shell/AgencyPortalHeader';
 import { safeSetItem } from '@/lib/safeStorage';
 import { useLocale } from '@/i18n/LocaleProvider';
@@ -125,8 +124,8 @@ const AgencyLayout = () => {
       className="dashboard-with-retail-header retail-theme min-h-screen w-full relative bg-gradient-to-br from-[hsl(152_30%_98%)] via-white to-[hsl(45_60%_97%)]"
       style={{ '--dash-header-h': `${headerH}px` } as React.CSSProperties}
     >
-      <div ref={headerRef} className="sticky top-0 z-50">
-        <RetailHeader />
+      <div ref={headerRef} className="sticky top-0 z-50 shadow-sm">
+        <AgencyPortalHeader />
       </div>
       <div
         aria-hidden
