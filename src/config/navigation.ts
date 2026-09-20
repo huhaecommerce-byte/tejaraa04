@@ -157,6 +157,7 @@ export const adminNavigation: NavSection[] = [
         module: 'agencies',
         children: [
           { title: 'Agency Payouts', url: '/admin/agency-payouts', module: 'agencies' },
+          { title: 'Programme Settings', url: '/admin/agency-settings', module: 'agencies' },
         ],
       },
     ],

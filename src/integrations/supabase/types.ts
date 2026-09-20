@@ -5245,6 +5245,34 @@ export type Database = {
           orders: number
         }[]
       }
+      admin_agency_commissions: {
+        Args: { _agency_id: string }
+        Returns: {
+          agency_id: string
+          amount_sar: number
+          approved_at: string | null
+          client_user_id: string
+          created_at: string
+          id: string
+          order_id: string
+          order_ref: string | null
+          order_total_sar: number
+          paid_at: string | null
+          payout_request_id: string | null
+          profit_base_sar: number
+          rate_percent: number
+          reversal_reason: string | null
+          status: string
+          updated_at: string
+          usd_to_sar_rate: number | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "agency_commissions"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
       admin_list_agencies: {
         Args: { _search?: string; _status?: string }
         Returns: {
@@ -5296,6 +5324,16 @@ export type Database = {
           _admin_note?: string
           _id: string
           _reference?: string
+        }
+        Returns: Json
+      }
+      agency_admin_get_settings: { Args: never; Returns: Json }
+      agency_admin_save_settings: {
+        Args: {
+          _approval_days: number
+          _auto_approve: boolean
+          _commission_percent: number
+          _min_payout_sar: number
         }
         Returns: Json
       }
