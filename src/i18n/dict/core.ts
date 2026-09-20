@@ -27,6 +27,9 @@ export const en = {
   'common.wallet': 'Wallet',
   'common.openNavigation': 'Open navigation',
   'common.currency': 'SAR',
+  'common.platforms': 'Tejaraa platforms',
+  'common.menu': 'Menu',
+  'common.explore': 'Explore',
 
   // ---------- platform switcher ----------
   'platform.shop': 'Shop',
@@ -119,6 +122,9 @@ export const ar: Partial<Record<keyof typeof en, string>> = {
   'common.wallet': 'المحفظة',
   'common.openNavigation': 'فتح القائمة',
   'common.currency': 'ر.س',
+  'common.platforms': 'منصات تجارة',
+  'common.menu': 'القائمة',
+  'common.explore': 'استكشف',
 
   // ---------- platform switcher ----------
   'platform.shop': 'المتجر',

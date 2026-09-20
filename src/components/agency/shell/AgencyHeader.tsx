@@ -1,19 +1,16 @@
-import { useState } from 'react';
-import { Menu } from 'lucide-react';
 import { Link, useLocation } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { RetailContainer } from '@/components/retail/common/RetailContainer';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { MobileNavDrawer } from '@/components/shell/MobileNavDrawer';
 import { agencyNavLinks } from '@/data/agencyProgramme';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/i18n/LocaleProvider';
 
 export function AgencyHeader() {
   const location = useLocation();
-  const [open, setOpen] = useState(false);
   const { t } = useLocale();
 
   return (
@@ -25,10 +22,22 @@ export function AgencyHeader() {
         </RetailContainer>
       </div>
 
-      <RetailContainer className="flex h-16 items-center gap-4">
-        <Link to="/agency" aria-label={t('agency.header.homeAria')} className="flex shrink-0 items-center gap-2">
-          <BrandLogo variant="storefront" />
-          <span className="hidden text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green sm:inline">
+      <RetailContainer className="flex h-16 items-center gap-2 sm:gap-4">
+        <MobileNavDrawer
+          current="agencies"
+          title={t('agency.header.sheetTitle')}
+          description={t('agency.header.badge')}
+          triggerLabel={t('agency.header.openMenu')}
+          groups={[{ items: agencyNavLinks.map((link) => ({ label: t(link.key), to: link.to })) }]}
+          actions={[
+            { label: t('agency.header.applyToJoin'), to: '/agency/apply' },
+            { label: t('agency.header.partnerSignIn'), to: '/agency/signin', variant: 'outline' },
+          ]}
+        />
+
+        <Link to="/agency" aria-label={t('agency.header.homeAria')} className="flex min-w-0 shrink items-center gap-2">
+          <BrandLogo variant="storefront" className="max-w-[150px] sm:max-w-none" />
+          <span className="hidden text-xs font-bold uppercase tracking-[0.16em] text-retail-medium-green lg:inline">
             {t('agency.header.badge')}
           </span>
         </Link>
@@ -52,43 +61,13 @@ export function AgencyHeader() {
           })}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ms-auto flex shrink-0 items-center gap-2">
           <Button asChild variant="outline" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex">
             <Link to="/agency/signin">{t('agency.header.partnerSignIn')}</Link>
           </Button>
           <Button asChild className="bg-retail-green font-semibold text-primary-foreground hover:bg-retail-dark-green">
             <Link to="/agency/apply">{t('agency.header.applyToJoin')}</Link>
           </Button>
-
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label={t('agency.header.openMenu')} className="lg:hidden">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[280px]">
-              <SheetHeader>
-                <SheetTitle>{t('agency.header.sheetTitle')}</SheetTitle>
-              </SheetHeader>
-              <div className="mt-4 grid gap-1">
-                {agencyNavLinks.map((link) => (
-                  <SheetClose asChild key={link.to}>
-                    <Link to={link.to} className="rounded-md px-3 py-2 text-sm font-semibold text-retail-dark-green hover:bg-retail-light-green">
-                      {t(link.key)}
-                    </Link>
-                  </SheetClose>
-                ))}
-                <SheetClose asChild>
-                  <Link to="/agency/signin" className="rounded-md px-3 py-2 text-sm font-semibold text-retail-dark-green hover:bg-retail-light-green">
-                    {t('agency.header.partnerSignIn')}
-                  </Link>
-                </SheetClose>
-              </div>
-              <div className="mt-6 border-t pt-4">
-                <SellerPlatformSwitcher current="agencies" layout="stacked" onDark={false} onNavigate={() => setOpen(false)} />
-              </div>
-            </SheetContent>
-          </Sheet>
         </div>
       </RetailContainer>
     </header>
