@@ -282,18 +282,51 @@ function CategoryMegaMenu({ categories, onClose }: { categories: CategoryGroup[]
 }
 
 
-function MobileMenu({ categories, user, accountHref, logout }: { categories: CategoryGroup[]; user: ReturnType<typeof useAuth>['user']; accountHref: string; logout: () => Promise<void> }) {
-  const { t, locale, setLocale } = useLocale();
-  const [activeCategory, setActiveCategory] = useState<CategoryGroup | null>(null);
+function RetailMobileNav({ categories, user, accountHref, logout }: { categories: CategoryGroup[]; user: ReturnType<typeof useAuth>['user']; accountHref: string; logout: () => Promise<void> }) {
+  const { t, locale } = useLocale();
   const wholesale = useWholesaleAccess();
-  return <div className="min-h-full bg-retail-card">
-    <SheetHeader className="border-b border-retail-border bg-retail-dark-green p-5 text-left text-primary-foreground"><SheetTitle className="text-primary-foreground">{t('shop.brand')}</SheetTitle><SheetDescription className="text-primary-foreground/70">{user ? t('shop.hello', { name: user.name }) : t('shop.tagline')}</SheetDescription></SheetHeader>
-    {activeCategory ? <div className="p-4"><Button type="button" variant="ghost" onClick={() => setActiveCategory(null)} className="mb-4 gap-2 px-0 text-sm font-bold text-retail-green"><ChevronRight className="h-4 w-4 rotate-180" />{t('shop.backToAllCategories')}</Button><h2 className="mb-2 font-display text-lg font-bold">{activeCategory.name}</h2><nav className="divide-y divide-retail-border">{activeCategory.children.map((child) => <SheetClose asChild key={child}><Link to={`/catalog?q=${encodeURIComponent(child)}`} className="block py-3 text-sm">{child}</Link></SheetClose>)}<SheetClose asChild><Link to={`/catalog?q=${encodeURIComponent(activeCategory.name)}`} className="block py-3 text-sm font-bold text-retail-green">{t('shop.viewAllIn', { name: activeCategory.name })}</Link></SheetClose></nav></div> : <div className="p-4">
-      <div className="grid grid-cols-2 gap-2">{platformLinks.map((item) => <SheetClose asChild key={item.label}><Link to={item.to} className={`flex items-center gap-2 rounded-md border p-3 text-xs font-bold ${item.to === '/' ? 'border-retail-green bg-retail-light-green text-retail-green' : 'border-retail-border'}`}><item.icon className="h-4 w-4" />{t(item.label)}</Link></SheetClose>)}</div>
-      <section className="mt-5"><div className="flex items-center justify-between"><h2 className="text-xs font-bold uppercase text-retail-muted">{t('common.categories')}</h2><SheetClose asChild><Link to="/category" className="text-xs font-bold text-retail-green">{t('common.viewAll')}</Link></SheetClose></div><div className="mt-2 divide-y divide-retail-border">{categories.slice(0, 10).map((category) => <Button key={category.name} type="button" variant="ghost" onClick={() => setActiveCategory(category)} className="flex h-auto w-full justify-between rounded-none py-3 text-left text-sm font-semibold"><span className="truncate">{translateCategory(category.name, locale)}</span><ChevronRight className="h-4 w-4 shrink-0 text-retail-muted" /></Button>)}</div></section>
-      <nav className="mt-5 border-t border-retail-border pt-3">{user ? <><SheetClose asChild><Link to={accountHref} className="flex items-center gap-3 py-3 text-sm"><User className="h-5 w-5" />{t('common.myAccount')}</Link></SheetClose><SheetClose asChild><Link to="/account/orders" className="flex items-center gap-3 py-3 text-sm"><Package className="h-5 w-5" />{t('common.orders')}</Link></SheetClose><SheetClose asChild><Link to="/account/wishlist" className="flex items-center gap-3 py-3 text-sm"><Heart className="h-5 w-5" />{t('common.wishlist')}</Link></SheetClose>{wholesale.hasAccess && <SheetClose asChild><Link to={wholesale.portalHref} className="flex items-center gap-3 py-3 text-sm font-bold text-retail-green"><Warehouse className="h-5 w-5" />{wholesale.isConsole ? t('shop.adminPortal') : t('shop.wholesalePortal')}</Link></SheetClose>}<SheetClose asChild><Button type="button" variant="ghost" onClick={() => void logout()} className="px-0 text-sm text-retail-sale hover:text-retail-sale">{t('common.signOut')}</Button></SheetClose></> : <div className="grid grid-cols-2 gap-2"><SheetClose asChild><Button asChild><Link to="/shop/signin">{t('common.signIn')}</Link></Button></SheetClose><SheetClose asChild><Button asChild variant="outline"><Link to="/shop/signup">{t('common.createAccount')}</Link></Button></SheetClose></div>}<SheetClose asChild><Link to="/contact" className="mt-3 flex items-center gap-3 py-3 text-sm"><CircleHelp className="h-5 w-5" />{t('common.helpCenter')}</Link></SheetClose><button type="button" onClick={() => setLocale(locale === 'ar' ? 'en' : 'ar')} className="flex w-full items-center gap-3 py-3 text-left text-sm"><Globe2 className="h-5 w-5" />{locale === 'ar' ? 'English' : 'العربية'}</button></nav>
-    </div>}
-  </div>;
+
+  const accountItems: MobileNavItem[] = user
+    ? [
+        { label: t('common.myAccount'), to: accountHref, icon: User },
+        { label: t('common.orders'), to: '/account/orders', icon: Package },
+        { label: t('common.wishlist'), to: '/account/wishlist', icon: Heart },
+        ...(wholesale.hasAccess
+          ? [{ label: wholesale.isConsole ? t('shop.adminPortal') : t('shop.wholesalePortal'), to: wholesale.portalHref, icon: Warehouse, accent: true }]
+          : []),
+      ]
+    : [];
+
+  return (
+    <MobileNavDrawer
+      current="shop"
+      title={t('shop.brand')}
+      description={user ? t('shop.hello', { name: user.name }) : t('shop.tagline')}
+      triggerLabel={t('common.openNavigation')}
+      groups={[
+        {
+          label: t('common.categories'),
+          collapsible: true,
+          items: [
+            ...categories.slice(0, 10).map((category) => ({ label: translateCategory(category.name, locale), to: `/catalog?q=${encodeURIComponent(category.name)}` })),
+            { label: t('common.viewAll'), to: '/category', accent: true },
+          ],
+        },
+        ...(accountItems.length ? [{ label: t('common.account'), items: accountItems }] : []),
+        { items: [{ label: t('common.helpCenter'), to: '/contact', icon: CircleHelp }] },
+      ]}
+      actions={user ? [] : [
+        { label: t('common.signIn'), to: '/shop/signin' },
+        { label: t('common.createAccount'), to: '/shop/signup', variant: 'outline' },
+      ]}
+      footer={user ? (
+        <Button type="button" variant="ghost" onClick={() => void logout()} className="w-full justify-start gap-3 px-3 text-sm font-semibold text-retail-sale hover:text-retail-sale">
+          <LogOut className="h-4 w-4" />
+          {t('common.signOut')}
+        </Button>
+      ) : undefined}
+    />
+  );
 }
 
 function MobileBottomNav({ count }: { count: number }) {
