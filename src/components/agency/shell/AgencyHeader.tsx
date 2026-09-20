@@ -61,7 +61,7 @@ export function AgencyHeader() {
           })}
         </nav>
 
-        <div className="ms-auto flex shrink-0 items-center gap-2">
+        <div className="ms-auto hidden shrink-0 items-center gap-2 lg:flex">
           <Button asChild variant="outline" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex">
             <Link to="/agency/signin">{t('agency.header.partnerSignIn')}</Link>
           </Button>

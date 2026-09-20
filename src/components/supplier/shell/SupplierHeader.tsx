@@ -65,7 +65,7 @@ export function SupplierHeader() {
             ))}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto hidden items-center gap-2 lg:flex">
             <Button asChild variant="outline" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex">
               <Link to={supplierSignInPath}>{t('supplier.header.signIn')}</Link>
             </Button>

@@ -132,7 +132,7 @@ export function SellerHeader() {
             <Link to="/blog" aria-current={onBlogPage ? 'page' : undefined} className={deskLink(onBlogPage)}>{t('selling.header.resources')}</Link>
           </nav>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto hidden items-center gap-2 lg:flex">
             <Button asChild variant="outline" className="hidden border-retail-border font-semibold text-retail-dark-green sm:inline-flex lg:inline-flex">
               <Link to="/selling/signin">{t('selling.header.signIn')}</Link>
             </Button>
