@@ -36,6 +36,10 @@ export const en = {
   'platform.selling': 'Dropshipping & Selling Services',
   'platform.agencies': 'Agencies & VAs',
   'platform.suppliers': 'Wholesalers and Suppliers',
+  'platform.short.shop': 'Shop',
+  'platform.short.selling': 'Selling',
+  'platform.short.agencies': 'Agencies',
+  'platform.short.suppliers': 'Suppliers',
 
   // ---------- shop header ----------
   'shop.brand': 'Tejaraa Shop',
@@ -131,6 +135,10 @@ export const ar: Partial<Record<keyof typeof en, string>> = {
   'platform.selling': 'خدمات الدروب شيبنق والبيع',
   'platform.agencies': 'الوكالات والمساعدون الافتراضيون',
   'platform.suppliers': 'تجار الجملة والموردون',
+  'platform.short.shop': 'المتجر',
+  'platform.short.selling': 'البيع',
+  'platform.short.agencies': 'الوكالات',
+  'platform.short.suppliers': 'الموردون',
 
   // ---------- shop header ----------
   'shop.brand': 'متجر تجارة',
