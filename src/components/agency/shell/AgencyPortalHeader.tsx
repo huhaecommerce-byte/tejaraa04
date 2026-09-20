@@ -1,18 +1,23 @@
-import { ExternalLink, Handshake } from 'lucide-react';
-import { Link } from '@/lib/router-compat';
+import { Handshake, LogOut } from 'lucide-react';
+import { Link, useNavigate } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
-import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { useAuth } from '@/contexts/AuthContext';
 import { useLocale } from '@/i18n/LocaleProvider';
 
 /**
  * Agency portal header — mirrors SellerHeader's structure:
- * ROW 1 dark-green platform switcher strip, ROW 2 logo / portal identity row.
+ * ROW 1 dark-green platform switcher strip, ROW 2 logo / portal identity row
+ * with the signed-in partner block on the right (same as the dropshipping portal).
  */
 export function AgencyPortalHeader() {
   const { t, dir } = useLocale();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <header dir={dir}>
       {/* ROW 1 — platform switcher / utility */}
@@ -33,9 +38,34 @@ export function AgencyPortalHeader() {
               <Handshake className="h-4 w-4 text-retail-green" /> {t('agency.portalHeader.partnerPortal')}
             </span>
           </Link>
-          <Button asChild variant="outline" size="sm" className="border-retail-border text-retail-dark-green">
-            <Link to="/agency">{t('agency.portalHeader.programmeSite')} <ExternalLink className="ml-2 h-3.5 w-3.5" /></Link>
-          </Button>
+
+          <div className="flex items-center gap-3">
+            {/* Signed-in partner block — mirrors the dropshipping portal header */}
+            <div className="flex items-center gap-3 border-l border-retail-border pl-3">
+              <Link to="/agency/portal/profile" className="hidden items-center gap-3 md:flex">
+                <span className="flex flex-col text-right">
+                  <span className="text-xs font-medium text-retail-muted">{t('shop.hello', { name: user?.name?.split(' ')[0] ?? '' })}</span>
+                  <span className="text-[11px] font-bold uppercase text-retail-green transition-colors hover:text-retail-dark-green">{t('agency.portalHeader.partnerPortal')}</span>
+                </span>
+                <span className="relative rounded-full p-0.5 ring-2 ring-retail-dark-green/10 transition-transform hover:scale-105">
+                  <Avatar className="h-9 w-9 shrink-0">
+                    {user?.avatar_url && <AvatarImage src={user.avatar_url} />}
+                    <AvatarFallback className="bg-retail-light-green text-retail-dark-green text-[10px] font-bold">{(user?.name || 'U').slice(0, 2).toUpperCase()}</AvatarFallback>
+                  </Avatar>
+                  <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-retail-card bg-retail-green" aria-hidden="true" />
+                </span>
+              </Link>
+              <button
+                type="button"
+                onClick={() => { void logout().then(() => navigate('/agency/signin')); }}
+                aria-label={t("common.logout")}
+                className="group hidden h-8 items-center gap-1.5 rounded-full border border-retail-sale/25 px-2.5 text-retail-sale transition-colors hover:border-retail-sale/50 hover:bg-retail-sale/10 md:inline-flex"
+              >
+                <LogOut className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                <span className="text-[11px] font-semibold leading-none">{t("common.logout")}</span>
+              </button>
+            </div>
+          </div>
         </SellerContainer>
       </div>
     </header>

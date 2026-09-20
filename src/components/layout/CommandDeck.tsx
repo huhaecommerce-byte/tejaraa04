@@ -354,10 +354,10 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
             </Tooltip>
           )}
 
-          {/* Buyer panel keeps the account block + logout in the retail header */}
-          {variant !== 'customer' && (
+          {/* Agency portal keeps the account block + logout in its portal header */}
+          {variant === 'admin' && (
             <div className="command-deck-user">
-              <Link to={variant === 'agency' ? '/agency/portal/profile' : '/admin'} className="flex items-center gap-2.5 min-w-0 flex-1">
+              <Link to="/admin" className="flex items-center gap-2.5 min-w-0 flex-1">
                 <Avatar className="h-8 w-8 ring-2 ring-white/15 shrink-0">
                   {user?.avatar_url && <AvatarImage src={user.avatar_url} />}
                   <AvatarFallback className="bg-primary/30 text-white text-[10px] font-semibold">{initials}</AvatarFallback>
@@ -365,7 +365,7 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
                 {!collapsed && (
                   <div className="min-w-0 flex-1">
                     <div className="text-[12.5px] font-semibold text-white truncate">{user?.name || 'Profile'}</div>
-                    <div className="text-[10.5px] text-white/50 truncate capitalize">{variant === 'agency' ? 'Agency partner' : user?.role || 'user'}</div>
+                    <div className="text-[10.5px] text-white/50 truncate capitalize">{user?.role || 'user'}</div>
                   </div>
                 )}
               </Link>
