@@ -365,7 +365,7 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
                 {!collapsed && (
                   <div className="min-w-0 flex-1">
                     <div className="text-[12.5px] font-semibold text-white truncate">{user?.name || 'Profile'}</div>
-                    <div className="text-[10.5px] text-white/50 truncate capitalize">{variant === 'agency' ? 'Agency partner' : user?.role || 'user'}</div>
+                    <div className="text-[10.5px] text-white/50 truncate capitalize">{user?.role || 'user'}</div>
                   </div>
                 )}
               </Link>
