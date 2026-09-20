@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { useState, type ComponentType, type ReactNode } from "react";
 import { brandConfig } from "@/config/partnerBrand";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { BrandLogo } from "@/components/BrandLogo";
 import { useAuth } from "@/hooks/partners/useAuth";
 import { useSupplierWorkspace } from "@/hooks/partners/useSupplierWorkspace";
@@ -14,51 +15,56 @@ type Icon = ComponentType<{ className?: string; strokeWidth?: number }>;
 
 type NavItem = { label: string; icon: Icon; to: string; children?: { label: string; icon: Icon; to: string }[] };
 
-const navGroups: { label: string; items: NavItem[] }[] = [
-  {
-    label: "Catalog",
-    items: [
-      { label: "Dashboard", icon: LayoutDashboard, to: "/partners/dashboard" },
-      {
-        label: "Products",
-        icon: Package,
-        to: "/partners/products",
-        children: [{ label: "Add products", icon: Plus, to: "/partners/products/new" }],
-      },
-      {
-        label: "Import From Link",
-        icon: Link2,
-        to: "/partners/products/import",
-        children: [{ label: "Drafts", icon: FileClock, to: "/partners/products/drafts" }],
-      },
-    ],
-  },
-  {
-    label: "Sales",
-    items: [
-      { label: "Orders", icon: ShoppingCart, to: "/partners/orders" },
-      { label: "Analytics", icon: LineChart, to: "/partners/analytics" },
-    ],
-  },
-  {
-    label: "Business",
-    items: [
-      { label: "Finance", icon: CircleDollarSign, to: "/partners/finance" },
-      { label: "Verification", icon: BadgeCheck, to: "/partners/verification" },
-      { label: "Company Profile", icon: Building2, to: "/partners/profile" },
-      { label: "Settings", icon: Settings, to: "/partners/settings" },
-    ],
-  },
-];
+function getNavGroups(t: (key: string) => string): { label: string; items: NavItem[] }[] {
+  return [
+    {
+      label: t("supplier.shell.nav.catalog"),
+      items: [
+        { label: t("supplier.shell.nav.dashboard"), icon: LayoutDashboard, to: "/partners/dashboard" },
+        {
+          label: t("supplier.shell.nav.products"),
+          icon: Package,
+          to: "/partners/products",
+          children: [{ label: t("supplier.shell.nav.addProducts"), icon: Plus, to: "/partners/products/new" }],
+        },
+        {
+          label: t("supplier.shell.nav.importFromLink"),
+          icon: Link2,
+          to: "/partners/products/import",
+          children: [{ label: t("supplier.shell.nav.drafts"), icon: FileClock, to: "/partners/products/drafts" }],
+        },
+      ],
+    },
+    {
+      label: t("supplier.shell.nav.sales"),
+      items: [
+        { label: t("supplier.shell.nav.orders"), icon: ShoppingCart, to: "/partners/orders" },
+        { label: t("supplier.shell.nav.analytics"), icon: LineChart, to: "/partners/analytics" },
+      ],
+    },
+    {
+      label: t("supplier.shell.nav.business"),
+      items: [
+        { label: t("supplier.shell.nav.finance"), icon: CircleDollarSign, to: "/partners/finance" },
+        { label: t("supplier.shell.nav.verification"), icon: BadgeCheck, to: "/partners/verification" },
+        { label: t("supplier.shell.nav.companyProfile"), icon: Building2, to: "/partners/profile" },
+        { label: t("supplier.shell.nav.settings"), icon: Settings, to: "/partners/settings" },
+      ],
+    },
+  ];
+}
 
-const mobileNav = [
-  { label: "Home", icon: LayoutDashboard, to: "/partners/dashboard" },
-  { label: "Products", icon: Package, to: "/partners/products" },
-  { label: "Orders", icon: ShoppingCart, to: "/partners/orders" },
-  { label: "Finance", icon: CircleDollarSign, to: "/partners/finance" },
-] as const;
+function getMobileNav(t: (key: string) => string) {
+  return [
+    { label: t("supplier.shell.nav.home"), icon: LayoutDashboard, to: "/partners/dashboard" },
+    { label: t("supplier.shell.nav.products"), icon: Package, to: "/partners/products" },
+    { label: t("supplier.shell.nav.orders"), icon: ShoppingCart, to: "/partners/orders" },
+    { label: t("supplier.shell.nav.finance"), icon: CircleDollarSign, to: "/partners/finance" },
+  ] as const;
+}
 
 function SignOutItem({ onSignOut, onNavigate }: { onSignOut?: () => void; onNavigate?: () => void }) {
+  const { t } = useLocale();
   if (!onSignOut) return null;
   return (
     <button
@@ -67,12 +73,13 @@ function SignOutItem({ onSignOut, onNavigate }: { onSignOut?: () => void; onNavi
       className="flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
     >
       <LogOut className="h-4 w-4 shrink-0" />
-      Sign out
+      {t("supplier.shell.signOut")}
     </button>
   );
 }
 
 function StorefrontButton({ onNavigate }: { onNavigate?: () => void }) {
+  const { t } = useLocale();
   return (
     <a
       href="/"
@@ -80,13 +87,15 @@ function StorefrontButton({ onNavigate }: { onNavigate?: () => void }) {
       className="mb-4 flex items-center gap-2.5 rounded-xl bg-primary px-3 py-2.5 text-xs font-bold text-primary-foreground shadow-button transition-transform hover:translate-y-[-1px] hover:shadow-lg"
     >
       <Store className="h-4 w-4 shrink-0" />
-      Storefront
+      {t("supplier.shell.storefront")}
       <ExternalLink className="ml-auto h-3.5 w-3.5 shrink-0 opacity-80" />
     </a>
   );
 }
 
 function NavList({ onNavigate, isAdmin }: { onNavigate?: () => void; isAdmin?: boolean }) {
+  const { t } = useLocale();
+  const navGroups = getNavGroups(t);
   return (
     <nav className="space-y-4">
       <StorefrontButton onNavigate={onNavigate} />
@@ -130,7 +139,7 @@ function NavList({ onNavigate, isAdmin }: { onNavigate?: () => void; isAdmin?: b
       ))}
       {isAdmin && (
         <div>
-          <p className="mb-1.5 px-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Administration</p>
+          <p className="mb-1.5 px-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{t("supplier.shell.nav.administration")}</p>
           <ul className="space-y-0.5">
             <li>
               <Link
@@ -139,7 +148,7 @@ function NavList({ onNavigate, isAdmin }: { onNavigate?: () => void; isAdmin?: b
                 className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-accent/60 hover:text-primary"
               >
                 <ShieldCheck className="h-4 w-4 shrink-0" />
-                Admin panel
+                {t("supplier.shell.nav.adminPanel")}
               </Link>
             </li>
           </ul>
@@ -164,27 +173,28 @@ export function SupplierShell({
   const [bell, setBell] = useState(false);
   const [account, setAccount] = useState(false);
   const [query, setQuery] = useState("");
+  const { t } = useLocale();
   const navigate = useNavigate();
   const { isAdmin } = useAuth();
   const { companyName, contactName, application, products, orders, settings } = useSupplierWorkspace();
 
   const statusLabel =
-    application?.status === "approved" ? "Verified supplier"
-    : application?.status === "rejected" ? "Application rejected"
-    : application ? "Verification pending"
-    : "Supplier Account";
+    application?.status === "approved" ? t("supplier.shell.statusVerified")
+    : application?.status === "rejected" ? t("supplier.shell.statusRejected")
+    : application ? t("supplier.shell.statusPending")
+    : t("supplier.shell.statusDefault");
 
   const threshold = settings?.low_stock_threshold ?? 10;
   const notifications: { text: string; to: string }[] = [];
-  if (!application) notifications.push({ text: "Registration not submitted yet.", to: "/partners/join" });
-  else if (application.status === "pending") notifications.push({ text: "Your application is under review.", to: "/partners/verification" });
-  else if (application.status === "rejected") notifications.push({ text: "Your application was rejected — review the notes.", to: "/partners/verification" });
+  if (!application) notifications.push({ text: t("supplier.shell.notif.notSubmitted"), to: "/partners/join" });
+  else if (application.status === "pending") notifications.push({ text: t("supplier.shell.notif.underReview"), to: "/partners/verification" });
+  else if (application.status === "rejected") notifications.push({ text: t("supplier.shell.notif.rejected"), to: "/partners/verification" });
   const newOrders = orders.filter((o) => o.status === "New").length;
-  if (newOrders) notifications.push({ text: `${newOrders} new order${newOrders === 1 ? "" : "s"} awaiting confirmation.`, to: "/partners/orders" });
+  if (newOrders) notifications.push({ text: t("supplier.shell.notif.newOrders").replace("{count}", String(newOrders)).replace("{plural}", newOrders === 1 ? "" : "s"), to: "/partners/orders" });
   const lowStock = products.filter((p) => p.stock <= threshold).length;
-  if (lowStock) notifications.push({ text: `${lowStock} product${lowStock === 1 ? "" : "s"} at or below ${threshold} units.`, to: "/partners/products" });
+  if (lowStock) notifications.push({ text: t("supplier.shell.notif.lowStock").replace("{count}", String(lowStock)).replace("{plural}", lowStock === 1 ? "" : "s").replace("{threshold}", String(threshold)), to: "/partners/products" });
   const pendingProducts = products.filter((p) => p.status === "pending").length;
-  if (pendingProducts) notifications.push({ text: `${pendingProducts} listing${pendingProducts === 1 ? "" : "s"} awaiting approval.`, to: "/partners/products" });
+  if (pendingProducts) notifications.push({ text: t("supplier.shell.notif.pendingListings").replace("{count}", String(pendingProducts)).replace("{plural}", pendingProducts === 1 ? "" : "s"), to: "/partners/products" });
 
   async function signOut() {
     await supabase.auth.signOut();
@@ -202,7 +212,7 @@ export function SupplierShell({
           <div className="flex-1 overflow-y-auto hide-scrollbar"><NavList isAdmin={isAdmin} /></div>
           <div className="mt-3 rounded-card border border-border bg-accent/40 p-2.5">
             <p className="flex items-center gap-1.5 text-[11px] font-bold text-primary"><BadgeCheck className="h-3.5 w-3.5" /> {statusLabel}</p>
-            <p className="mt-0.5 text-[10px] leading-3 text-muted-foreground">{companyName || "Company details not set"}</p>
+            <p className="mt-0.5 text-[10px] leading-3 text-muted-foreground">{companyName || t("supplier.shell.companyDetailsNotSet")}</p>
           </div>
           <div className="mt-2 border-t border-border pt-2">
             <SignOutItem onSignOut={signOut} />
@@ -212,18 +222,18 @@ export function SupplierShell({
         {/* Mobile drawer */}
         {open && (
           <div className="fixed inset-0 z-50 lg:hidden">
-            <button type="button" aria-label="Close menu" onClick={() => setOpen(false)} className="absolute inset-0 bg-foreground/40" />
+            <button type="button" aria-label={t("supplier.shell.closeMenu")} onClick={() => setOpen(false)} className="absolute inset-0 bg-foreground/40" />
             <div className="absolute inset-y-0 left-0 flex w-[min(21rem,88vw)] flex-col overflow-y-auto bg-card px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-[calc(1rem+env(safe-area-inset-top))] shadow-nav">
               <div className="mb-4 flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-2">
                   <BrandLogo variant="sidebar" />
                 </Link>
-                <button type="button" aria-label="Close menu" onClick={() => setOpen(false)} className="grid h-8 w-8 place-items-center rounded-lg border border-border"><X className="h-4 w-4" /></button>
+                <button type="button" aria-label={t("supplier.shell.closeMenu")} onClick={() => setOpen(false)} className="grid h-8 w-8 place-items-center rounded-lg border border-border"><X className="h-4 w-4" /></button>
               </div>
               <div className="flex-1"><NavList onNavigate={() => setOpen(false)} isAdmin={isAdmin} /></div>
               <div className="mt-5 rounded-card border border-border bg-accent/40 p-3">
                 <p className="flex items-center gap-1.5 text-xs font-bold text-primary"><BadgeCheck className="h-4 w-4" /> {statusLabel}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{companyName || "Company details not set"}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{companyName || t("supplier.shell.companyDetailsNotSet")}</p>
               </div>
               <div className="mt-3 border-t border-border pt-2">
                 <SignOutItem onSignOut={() => { setOpen(false); signOut(); }} />
@@ -235,7 +245,7 @@ export function SupplierShell({
         {/* Main */}
         <main className="min-w-0 flex-1 pb-[calc(5.5rem+env(safe-area-inset-bottom))] lg:pb-0">
           <header className="sticky top-0 z-30 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 border-b border-border bg-card/95 px-3 pb-2.5 pt-[calc(.625rem+env(safe-area-inset-top))] backdrop-blur-xl lg:static lg:flex lg:flex-wrap lg:rounded-2xl lg:border lg:px-3 lg:py-2.5 lg:shadow-card">
-            <button type="button" aria-label="Open menu" onClick={() => setOpen(true)} className="grid h-11 w-11 place-items-center rounded-xl border border-border lg:hidden"><Menu className="h-5 w-5" /></button>
+            <button type="button" aria-label={t("supplier.shell.openMenu")} onClick={() => setOpen(true)} className="grid h-11 w-11 place-items-center rounded-xl border border-border lg:hidden"><Menu className="h-5 w-5" /></button>
             <div className="min-w-0 lg:hidden"><p className="truncate text-sm font-extrabold">{title}</p><p className="truncate text-[10px] text-muted-foreground">{companyName || brandConfig.name}</p></div>
             <form
               onSubmit={(event) => {
@@ -246,12 +256,12 @@ export function SupplierShell({
             >
               <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
               <label className="min-w-0 flex-1">
-                <span className="sr-only">Search products</span>
+                <span className="sr-only">{t("supplier.shell.searchProducts")}</span>
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search your products by name, SKU or brand…"
+                  placeholder={t("supplier.shell.searchPlaceholder")}
                   className="h-9 w-full bg-transparent text-xs outline-none placeholder:text-muted-foreground/70"
                 />
               </label>
@@ -260,7 +270,7 @@ export function SupplierShell({
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="Notifications"
+                  aria-label={t("supplier.shell.notifications")}
                   onClick={() => { setBell((v) => !v); setAccount(false); }}
                   className="relative grid h-11 w-11 place-items-center rounded-xl border border-border text-muted-foreground lg:h-9 lg:w-9"
                 >
@@ -269,7 +279,7 @@ export function SupplierShell({
                 </button>
                 {bell && (
                   <div className="fixed inset-x-3 top-[calc(4.5rem+env(safe-area-inset-top))] z-40 rounded-card border border-border bg-card p-2 shadow-nav sm:absolute sm:inset-x-auto sm:top-auto sm:right-0 sm:mt-1.5 sm:w-72">
-                    {notifications.length === 0 && <p className="px-2 py-3 text-[11px] text-muted-foreground">You are all caught up.</p>}
+                    {notifications.length === 0 && <p className="px-2 py-3 text-[11px] text-muted-foreground">{t("supplier.shell.notif.allCaughtUp")}</p>}
                     {notifications.map((item) => (
                       <Link
                         key={item.text}
@@ -292,14 +302,14 @@ export function SupplierShell({
                   <span className="grid h-6 w-6 place-items-center rounded-full bg-accent text-[10px] font-extrabold text-primary">
                     {contactName ? contactName.slice(0, 2).toUpperCase() : "—"}
                   </span>
-                  <span className="hidden text-[11px] font-bold sm:block">{contactName || "Your account"}</span>
+                  <span className="hidden text-[11px] font-bold sm:block">{contactName || t("supplier.shell.yourAccount")}</span>
                 </button>
                 {account && (
                   <div className="absolute right-0 z-40 mt-1.5 w-52 rounded-card border border-border bg-card p-1.5 shadow-nav">
-                    <Link to="/partners/profile" onClick={() => setAccount(false)} className="block rounded-lg px-2 py-2 text-[11px] font-bold text-muted-foreground hover:bg-accent/60 hover:text-primary">Company profile</Link>
-                    <Link to="/partners/settings" onClick={() => setAccount(false)} className="block rounded-lg px-2 py-2 text-[11px] font-bold text-muted-foreground hover:bg-accent/60 hover:text-primary">Settings</Link>
+                    <Link to="/partners/profile" onClick={() => setAccount(false)} className="block rounded-lg px-2 py-2 text-[11px] font-bold text-muted-foreground hover:bg-accent/60 hover:text-primary">{t("supplier.shell.companyProfile")}</Link>
+                    <Link to="/partners/settings" onClick={() => setAccount(false)} className="block rounded-lg px-2 py-2 text-[11px] font-bold text-muted-foreground hover:bg-accent/60 hover:text-primary">{t("supplier.shell.settings")}</Link>
                     <button type="button" onClick={signOut} className="flex w-full items-center gap-1.5 rounded-lg px-2 py-2 text-left text-[11px] font-bold text-destructive hover:bg-destructive/10">
-                      <LogOut className="h-3.5 w-3.5" /> Sign out
+                      <LogOut className="h-3.5 w-3.5" /> {t("supplier.shell.signOut")}
                     </button>
                   </div>
                 )}
@@ -310,7 +320,7 @@ export function SupplierShell({
           <div className="hero-surface relative mx-3 mt-3 overflow-hidden rounded-2xl px-4 py-5 text-white shadow-card lg:mx-0 lg:flex lg:flex-wrap lg:items-center lg:justify-between lg:gap-3 lg:px-6 lg:py-6">
             <div className="hero-grid absolute inset-0 opacity-15" aria-hidden="true" />
             <div className="relative">
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">{brandConfig.name} Portal</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">{brandConfig.name} {t("supplier.shell.portalSuffix")}</p>
               <h1 className="mt-1 text-lg font-extrabold sm:text-2xl">{title}</h1>
               <p className="mt-1 max-w-2xl text-[11px] text-white/80 sm:text-xs">{subtitle}</p>
             </div>
@@ -324,9 +334,9 @@ export function SupplierShell({
           <div className="mt-3 space-y-3 px-3 lg:px-0 lg:pb-6">{children}</div>
         </main>
       </div>
-      <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-border bg-card/95 px-1 pb-[env(safe-area-inset-bottom)] shadow-nav backdrop-blur-xl lg:hidden" aria-label="Supplier navigation">
-        {mobileNav.map((item) => <Link key={item.to} to={item.to} activeOptions={{ exact: item.to === "/partners/dashboard" }} className="flex min-h-16 flex-col items-center justify-center gap-1 text-[10px] font-bold text-muted-foreground" activeProps={{ className: "flex min-h-16 flex-col items-center justify-center gap-1 text-[10px] font-bold text-primary" }}><item.icon className="h-5 w-5" /><span>{item.label}</span></Link>)}
-        <button type="button" onClick={() => setOpen(true)} className="flex min-h-16 flex-col items-center justify-center gap-1 text-[10px] font-bold text-muted-foreground" aria-label="More supplier pages"><MoreHorizontal className="h-5 w-5" /><span>More</span></button>
+      <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-border bg-card/95 px-1 pb-[env(safe-area-inset-bottom)] shadow-nav backdrop-blur-xl lg:hidden" aria-label={t("supplier.shell.navigationAria")}>
+        {getMobileNav(t).map((item) => <Link key={item.to} to={item.to} activeOptions={{ exact: item.to === "/partners/dashboard" }} className="flex min-h-16 flex-col items-center justify-center gap-1 text-[10px] font-bold text-muted-foreground" activeProps={{ className: "flex min-h-16 flex-col items-center justify-center gap-1 text-[10px] font-bold text-primary" }}><item.icon className="h-5 w-5" /><span>{item.label}</span></Link>)}
+        <button type="button" onClick={() => setOpen(true)} className="flex min-h-16 flex-col items-center justify-center gap-1 text-[10px] font-bold text-muted-foreground" aria-label={t("supplier.shell.morePagesAria")}><MoreHorizontal className="h-5 w-5" /><span>{t("supplier.shell.more")}</span></button>
       </nav>
     </div>
   );

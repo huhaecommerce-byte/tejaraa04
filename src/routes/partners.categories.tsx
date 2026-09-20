@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { SUPPLIER_ORIGIN } from '@/lib/siteHosts';
 import { SupplierContentPage } from '@/components/supplier/common/SupplierContentPage';
 import { SupplierHeroPanel } from '@/components/supplier/common/SupplierPageHero';
@@ -27,22 +28,23 @@ export const Route = createFileRoute('/partners/categories')({
 });
 
 function SupplierCategoriesPage() {
+  const { t } = useLocale();
   return (
     <SupplierContentPage
-      crumbs={[{ label: 'Categories' }]}
+      crumbs={[{ label: t('supplier.pages.crumbs.categories') }]}
       currentPath="/partners/categories"
-      eyebrow="Categories of interest"
-      title="Categories we source"
-      intro="Which types of products can you offer Tejaraa? These are the categories our team reviews today, with examples of the product types that fit."
-      primary={{ label: 'Become a Supplier', to: supplierApplyRoute }}
-      secondary={{ label: 'See requirements', to: '/partners/requirements' }}
+      eyebrow={t('supplier.pages.categories.eyebrow')}
+      title={t('supplier.pages.categories.heading')}
+      intro={t('supplier.pages.categories.intro')}
+      primary={{ label: t('supplier.pages.becomeSupplier'), to: supplierApplyRoute }}
+      secondary={{ label: t('supplier.pages.seeRequirements'), to: '/partners/requirements' }}
       visual={
         <SupplierHeroPanel
-          title="Good to know"
+          title={t('supplier.pages.categories.visualTitle')}
           items={[
-            'Pick the categories you supply in the application',
-            'Multi-category suppliers can select more than one',
-            'Close to a category? Send it in for review',
+            t('supplier.pages.categories.visual1'),
+            t('supplier.pages.categories.visual2'),
+            t('supplier.pages.categories.visual3'),
           ]}
         />
       }
