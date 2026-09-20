@@ -5,6 +5,7 @@ import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHe
 import { sellerChannelCards } from '@/data/sellerServicePages';
 import type { ChannelCard } from '@/data/sellerServicePages';
 import { cn } from '@/lib/utils';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 const supportStyles: Record<ChannelCard['support'], string> = {
   'Connected integration': 'bg-retail-green text-white',
@@ -33,7 +34,7 @@ export function IntegrationCard({ channel }: { channel: ChannelCard }) {
         to="/selling/signup"
         className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-retail-green hover:underline"
       >
-        Get connected
+        {t('selling.svc.ui.getConnected')}
         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
       </Link>
     </li>
@@ -41,21 +42,23 @@ export function IntegrationCard({ channel }: { channel: ChannelCard }) {
 }
 
 export function IntegrationGrid({
-  title = 'Sales channels you can register',
-  description = 'Register the channel you sell on inside your seller account. The level of automation depends on your plan, so each card shows the support you can expect today.',
+  title,
+  description,
 }: { title?: string; description?: string }) {
+  const { t } = useLocale();
+  const resolvedTitle = title ?? t('selling.svc.ui.channelsTitle');
+  const resolvedDescription = description ?? t('selling.svc.ui.channelsDesc');
   return (
     <section id="channels" className="scroll-mt-24 py-10 lg:py-12">
       <SellerContainer>
-        <SellerSectionHeading eyebrow="Supported channels" title={title} description={description} />
+        <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowSupportedChannels')} title={resolvedTitle} description={resolvedDescription} />
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sellerChannelCards.map((channel) => (
             <IntegrationCard key={channel.name} channel={channel} />
           ))}
         </ul>
         <p className="mt-6 max-w-3xl text-xs leading-5 text-retail-muted">
-          Tejaraa is an independent service provider. Platform and marketplace names are used to describe the channels we
-          support operationally, not to claim an official partnership or endorsement.
+          {t('selling.svc.ui.channelsDisclaimer')}
         </p>
       </SellerContainer>
     </section>

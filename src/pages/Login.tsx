@@ -10,12 +10,14 @@ import { supabase } from '@/integrations/supabase/client';
 import { celebrateLogin } from '@/lib/celebrate';
 import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
 import { SellerAuthShell } from '@/components/seller/auth/SellerAuthShell';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 
 
 type Audience = 'shop' | 'dropshipping';
 
 const Login = ({ audience = 'shop' }: { audience?: Audience }) => {
+  const { t } = useLocale();
   const isDropship = audience === 'dropshipping';
   const homeDest = isDropship ? '/dropshipping' : '/account';
   const signupHref = isDropship ? '/selling/signup' : '/shop/signup';
@@ -94,31 +96,31 @@ const Login = ({ audience = 'shop' }: { audience?: Audience }) => {
       <div className="w-full max-w-md animate-scale-in">
         <div className="rounded-2xl border border-retail-border bg-retail-card shadow-sm p-6 sm:p-8">
           <div className="mb-5 lg:mb-8">
-            <h1 className="text-3xl font-extrabold tracking-tight">Welcome back</h1>
-            <p className="text-muted-foreground mt-2">Sign in to your shopping account</p>
+            <h1 className="text-3xl font-extrabold tracking-tight">{t('shopx.login.welcomeBack')}</h1>
+            <p className="text-muted-foreground mt-2">{t('shopx.login.subtitle')}</p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-3.5 lg:space-y-4">
             <div>
-              <Label htmlFor="login-email">Email</Label>
+              <Label htmlFor="login-email">{t('shopx.login.email')}</Label>
               <Input id="login-email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" required className="focus-glow rounded-xl mt-1.5 h-11 md:h-10 text-base md:text-sm" />
             </div>
             <div>
               <div className="flex items-center justify-between">
-                <Label htmlFor="login-password">Password</Label>
-                <Link to={forgotHref} className="text-xs text-primary font-medium hover:underline">Forgot password?</Link>
+                <Label htmlFor="login-password">{t('shopx.login.password')}</Label>
+                <Link to={forgotHref} className="text-xs text-primary font-medium hover:underline">{t('shopx.login.forgotPassword')}</Link>
               </div>
               <Input id="login-password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" required className="focus-glow rounded-xl mt-1.5 h-11 md:h-10 text-base md:text-sm" />
             </div>
             <button type="submit" className="btn-pill-primary w-full text-base md:text-sm group min-h-11 md:min-h-12 active:scale-[0.98] transition-transform" disabled={submitting}>
               {submitting ? (
-                <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Signing in...</span>
+                <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />{t('shopx.login.signingIn')}</span>
               ) : (
-                <>Sign In <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
+                <>{t('shopx.login.signIn')} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
               )}
             </button>
           </form>
           <p className="text-center text-sm text-muted-foreground mt-5 lg:mt-6">
-            Don't have an account? <Link to={signupHref} className="text-primary font-semibold hover:underline">Sign up</Link>
+            {t('shopx.login.noAccount')} <Link to={signupHref} className="text-primary font-semibold hover:underline">{t('shopx.login.signUp')}</Link>
           </p>
         </div>
       </div>

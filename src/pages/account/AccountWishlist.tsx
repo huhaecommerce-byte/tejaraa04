@@ -7,8 +7,10 @@ import { useFavourites } from '@/hooks/useFavourites';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { RetailProductGrid } from '@/components/retail/listing/RetailProductGrid';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export default function AccountWishlist() {
+  const { t } = useLocale();
   const { user } = useAuth();
   const { favs, loading: favLoading } = useFavourites();
   const [products, setProducts] = useState<any[]>([]);
@@ -33,9 +35,9 @@ export default function AccountWishlist() {
       <Card className="border-dashed border-retail-border">
         <CardContent className="p-10 text-center">
           <Heart className="mx-auto h-8 w-8 text-retail-muted" />
-          <p className="mt-3 text-sm font-bold text-retail-text">Your wishlist is empty</p>
-          <p className="mt-1 text-sm text-retail-muted">Tap the heart on any product to save it here.</p>
-          <Button asChild className="mt-4 font-bold"><Link to="/category">Browse categories</Link></Button>
+          <p className="mt-3 text-sm font-bold text-retail-text">{t('shopx.account.wishlistEmptyTitle')}</p>
+          <p className="mt-1 text-sm text-retail-muted">{t('shopx.account.wishlistEmptyDescription')}</p>
+          <Button asChild className="mt-4 font-bold"><Link to="/category">{t('shopx.account.browseCategories')}</Link></Button>
         </CardContent>
       </Card>
     );
@@ -45,8 +47,8 @@ export default function AccountWishlist() {
     <RetailProductGrid
       products={products}
       loading={loading || favLoading}
-      emptyTitle="Your wishlist is empty"
-      emptyDescription="Tap the heart on any product to save it here."
+      emptyTitle={t('shopx.account.wishlistEmptyTitle')}
+      emptyDescription={t('shopx.account.wishlistEmptyDescription')}
     />
   );
 }

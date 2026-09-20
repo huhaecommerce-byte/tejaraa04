@@ -3,12 +3,14 @@ import { Link } from '@/lib/router-compat';
 import { categoryPath } from '@/lib/seo/slug';
 import { categoryImageFor, formatCategoryCount, type RetailCategoryGroup } from './categoryTypes';
 import { RetailSectionHeader } from '@/components/retail/common';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export function SubcategoryStrip({ category }: { category: RetailCategoryGroup }) {
+  const { t } = useLocale();
   if (!category.subs.length) return null;
   return (
     <section className="rounded-lg border border-retail-border bg-retail-card p-3 sm:p-4">
-      <RetailSectionHeader title={`Explore ${category.name}`} actionLabel="View all" actionHref={categoryPath(category.name)} />
+      <RetailSectionHeader title={t('shopx.category.exploreDepartment', { name: category.name })} actionLabel={t('shopx.category.viewAllShort')} actionHref={categoryPath(category.name)} />
       <div className="no-scrollbar mt-3 flex snap-x gap-2 overflow-x-auto pb-1 sm:gap-3">
         {category.subs.slice(0, 10).map((subcategory) => (
           <Link key={subcategory.name} to={categoryPath(category.name, subcategory.name)} className="group grid w-[132px] shrink-0 snap-start grid-rows-[84px_auto] overflow-hidden rounded-md border border-retail-border bg-retail-page sm:w-[156px]">

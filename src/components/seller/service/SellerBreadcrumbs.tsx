@@ -1,6 +1,7 @@
 import { Link } from '@/lib/router-compat';
 import { ChevronRight } from 'lucide-react';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export interface Crumb {
   label: string;
@@ -9,7 +10,8 @@ export interface Crumb {
 
 /** Compact Seller Services breadcrumb: Seller Services > Dropshipping */
 export function SellerBreadcrumbs({ items }: { items: Crumb[] }) {
-  const trail: Crumb[] = [{ label: 'Seller Services', to: '/selling' }, ...items];
+  const { t } = useLocale();
+  const trail: Crumb[] = [{ label: t('selling.svc.ui.sellerServicesLabel'), to: '/selling' }, ...items];
   return (
     <nav aria-label="Breadcrumb" className="border-b border-retail-border bg-white">
       <SellerContainer>

@@ -7,13 +7,14 @@ import { servicePageBySlug, sellerExtraPages, sellerTrustStrip } from '@/data/se
 import type { LucideIcon } from 'lucide-react';
 import type { FaqItem, IconItem, ProcessStep } from '@/data/sellerServicePages';
 import { cn } from '@/lib/utils';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 /* ── What this service is ──────────────────────────────────────── */
 export function ServiceOverview({ title, paragraphs }: { title: string; paragraphs: string[] }) {
   return (
     <section id="overview" className="scroll-mt-24 py-10 lg:py-12">
       <SellerContainer>
-        <SellerSectionHeading eyebrow="Overview" title={title} />
+        {(() => { const { t } = useLocale(); return <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowOverview')} title={title} />; })()}
         <div className="mt-5 grid max-w-3xl gap-4">
           {paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 24)} className="text-base leading-7 text-retail-muted">{paragraph}</p>
@@ -31,7 +32,7 @@ export function SellerUseCases({
   return (
     <section id={id} className="scroll-mt-24 border-y border-retail-border bg-retail-light-green py-10 lg:py-12">
       <SellerContainer>
-        <SellerSectionHeading eyebrow="Use cases" title={title} description={description} />
+        {(() => { const { t } = useLocale(); return <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowUseCases')} title={title} description={description} />; })()}
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(({ icon: Icon, title: itemTitle, text }) => (
             <li key={itemTitle} className="rounded-xl border border-retail-border bg-white p-5">
@@ -57,7 +58,7 @@ export function ServiceProcess({
   return (
     <section id={id} className="scroll-mt-24 py-10 lg:py-12">
       <SellerContainer>
-        <SellerSectionHeading eyebrow="Process" title={title} description={note} />
+        {(() => { const { t } = useLocale(); return <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowProcess')} title={title} description={note} />; })()}
         <ol className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {steps.map((step, index) => (
             <li key={step.title} className="relative rounded-xl border border-retail-border bg-white p-5">
@@ -78,14 +79,15 @@ export function ServiceProcess({
 export function ResponsibilitySplit({
   title, tejaraa, you,
 }: { title: string; tejaraa: string[]; you: string[] }) {
+  const { t } = useLocale();
   const columns: { heading: string; items: string[]; dark: boolean }[] = [
-    { heading: 'Tejaraa handles', items: tejaraa, dark: true },
-    { heading: 'You handle', items: you, dark: false },
+    { heading: t('selling.svc.ui.tejaraaHandles'), items: tejaraa, dark: true },
+    { heading: t('selling.svc.ui.youHandle'), items: you, dark: false },
   ];
   return (
     <section id="responsibilities" className="scroll-mt-24 border-y border-retail-border bg-white py-10 lg:py-12">
       <SellerContainer>
-        <SellerSectionHeading eyebrow="Responsibilities" title={title} />
+        <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowResponsibilities')} title={title} />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {columns.map(({ heading, items, dark }) => (
             <div
@@ -114,7 +116,7 @@ export function ServiceBenefits({ title, items }: { title: string; items: IconIt
   return (
     <section id="benefits" className="scroll-mt-24 py-10 lg:py-12">
       <SellerContainer>
-        <SellerSectionHeading eyebrow="Benefits" title={title} />
+        {(() => { const { t } = useLocale(); return <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowBenefits')} title={title} />; })()}
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map(({ icon: Icon, title: itemTitle, text }) => (
             <li key={itemTitle} className="rounded-xl border border-retail-border bg-white p-5">
@@ -140,7 +142,7 @@ export function ServiceRequirements({
   return (
     <section id="requirements" className="scroll-mt-24 border-y border-retail-border bg-retail-light-green py-10 lg:py-12">
       <SellerContainer className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-        <SellerSectionHeading eyebrow="Getting ready" title={title} description={intro} />
+        {(() => { const { t } = useLocale(); return <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowGettingReady')} title={title} description={intro} />; })()}
         <div className="rounded-2xl border border-retail-border bg-white p-6">
           <ul className="grid gap-2.5">
             {items.map((item) => (
@@ -188,11 +190,13 @@ export function ServiceTrustStrip() {
 }
 
 /* ── FAQ ───────────────────────────────────────────────────────── */
-export function ServiceFAQ({ items, title = 'Frequently asked questions' }: { items: FaqItem[]; title?: string }) {
+export function ServiceFAQ({ items, title }: { items: FaqItem[]; title?: string }) {
+  const { t } = useLocale();
+  const resolvedTitle = title ?? t('selling.svc.ui.faqTitle');
   return (
     <section id="faq" className="scroll-mt-24 border-t border-retail-border py-8 lg:py-9">
       <SellerContainer>
-        <SellerSectionHeading eyebrow="FAQ" title={title} align="center" />
+        <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowFaq')} title={resolvedTitle} align="center" />
         <div className="mx-auto mt-4 max-w-3xl">
           <Accordion type="single" collapsible className="grid gap-1">
             {items.map((faq, index) => (
@@ -223,6 +227,7 @@ interface RelatedCard {
 }
 
 export function RelatedServices({ slugs, currentSlug }: { slugs: string[]; currentSlug?: string }) {
+  const { t } = useLocale();
   const cards = slugs
     .filter((slug) => slug !== currentSlug)
     .map<RelatedCard | null>((slug) => {
@@ -244,7 +249,7 @@ export function RelatedServices({ slugs, currentSlug }: { slugs: string[]; curre
   return (
     <section className="border-t border-retail-border bg-retail-page py-8">
       <SellerContainer>
-        <SellerSectionHeading eyebrow="Keep exploring" title="Related services" />
+        <SellerSectionHeading eyebrow={t('selling.svc.ui.eyebrowKeepExploring')} title={t('selling.svc.ui.relatedServices')} />
         <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map(({ path, icon: Icon, title, text }) => (
             <li key={path}>
@@ -260,7 +265,7 @@ export function RelatedServices({ slugs, currentSlug }: { slugs: string[]; curre
                 <h3 className="mt-3 text-sm font-bold text-retail-dark-green">{title}</h3>
                 <p className="mt-1 line-clamp-2 text-xs leading-5 text-retail-muted">{text}</p>
                 <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-retail-green">
-                  Learn more
+                  {t('selling.svc.ui.learnMore')}
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
                 </span>
               </Link>

@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { getStripeEnvironment } from "@/lib/stripe";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLocale } from '@/i18n/LocaleProvider';
 
 type SyncState = "verifying" | "success" | "pending" | "error";
 
 export default function CheckoutReturn() {
+  const { t } = useLocale();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const { user } = useAuth();
@@ -63,13 +65,13 @@ export default function CheckoutReturn() {
         <div className="text-center max-w-md space-y-6">
           {!sessionId ? (
             <>
-              <h1 className="text-2xl font-bold">No session found</h1>
+              <h1 className="text-2xl font-bold">{t('shopx.subscribe.noSession')}</h1>
               <p className="text-muted-foreground">
-                It looks like something went wrong. Please try again or contact support.
+                {t('shopx.subscribe.noSessionDescription')}
               </p>
               <Link to="/pricing">
                 <Button variant="outline" className="rounded-full">
-                  Back to Pricing
+                  {t('shopx.subscribe.backToPricing')}
                 </Button>
               </Link>
             </>
@@ -78,9 +80,9 @@ export default function CheckoutReturn() {
               <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
                 <Loader2 className="h-8 w-8 text-primary animate-spin" />
               </div>
-              <h1 className="text-2xl font-bold">Verifying your subscription…</h1>
+              <h1 className="text-2xl font-bold">{t('shopx.subscribe.verifying')}</h1>
               <p className="text-muted-foreground">
-                Please hold on while we activate your plan. This usually takes a few seconds.
+                {t('shopx.subscribe.verifyingDescription')}
               </p>
             </>
           ) : state === "success" ? (
@@ -89,20 +91,20 @@ export default function CheckoutReturn() {
                 <CheckCircle className="h-8 w-8 text-primary" />
               </div>
               <h1 className="text-3xl font-bold">
-                Welcome to {planName || "Growth"}! 🎉
+                {t('shopx.subscribe.welcome', { plan: planName || "Growth" })}
               </h1>
               <p className="text-muted-foreground">
-                Your subscription is now active. Enjoy your upgraded access.
+                {t('shopx.subscribe.successDescription')}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link to="/dropshipping">
                   <Button className="rounded-full gap-2">
-                    Go to Dashboard <ArrowRight className="h-4 w-4" />
+                    {t('shopx.subscribe.goToDashboard')} <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link to="/dropshipping/catalog">
                   <Button variant="outline" className="rounded-full">
-                    Browse Catalog
+                    {t('shopx.subscribe.browseCatalog')}
                   </Button>
                 </Link>
               </div>
@@ -112,22 +114,20 @@ export default function CheckoutReturn() {
               <div className="mx-auto w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center">
                 <AlertTriangle className="h-8 w-8 text-amber-600" />
               </div>
-              <h1 className="text-2xl font-bold">Payment is processing</h1>
+              <h1 className="text-2xl font-bold">{t('shopx.subscribe.pendingTitle')}</h1>
               <p className="text-muted-foreground">
-                Your payment is taking longer than usual to confirm. Refresh in a minute, or
-                contact support if the issue persists — we'll activate your plan as soon as
-                payment clears.
+                {t('shopx.subscribe.pendingDescription')}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
                   className="rounded-full"
                   onClick={() => window.location.reload()}
                 >
-                  Check again
+                  {t('shopx.subscribe.checkAgain')}
                 </Button>
                 <Link to="/contact">
                   <Button variant="outline" className="rounded-full">
-                    Contact support
+                    {t('shopx.subscribe.contactSupport')}
                   </Button>
                 </Link>
               </div>
@@ -137,14 +137,13 @@ export default function CheckoutReturn() {
               <div className="mx-auto w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center">
                 <AlertTriangle className="h-8 w-8 text-rose-600" />
               </div>
-              <h1 className="text-2xl font-bold">We couldn't verify your payment</h1>
+              <h1 className="text-2xl font-bold">{t('shopx.subscribe.errorTitle')}</h1>
               <p className="text-muted-foreground">
-                {errorMsg ||
-                  "Something went wrong while activating your subscription. If you were charged, please contact support."}
+                {errorMsg || t('shopx.subscribe.errorDescription')}
               </p>
               <Link to="/contact">
                 <Button variant="outline" className="rounded-full">
-                  Contact support
+                  {t('shopx.subscribe.contactSupport')}
                 </Button>
               </Link>
             </>

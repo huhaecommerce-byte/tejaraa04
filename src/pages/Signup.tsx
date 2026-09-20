@@ -14,6 +14,7 @@ import { trackReferralVisit } from '@/lib/referrals.functions';
 import { sendSignupOtp, verifySignupOtp } from '@/lib/signupOtp.functions';
 import { RetailPublicShell } from '@/components/retail/shell/RetailPublicShell';
 import { SellerAuthShell } from '@/components/seller/auth/SellerAuthShell';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 
 
@@ -34,6 +35,7 @@ async function applyInviteCode(code: string): Promise<{ message?: string } | nul
 }
 
 const Signup = ({ audience = 'shop' }: { audience?: Audience }) => {
+  const { t } = useLocale();
   const isDropship = audience === 'dropshipping';
   const homeDest = isDropship ? '/dropshipping' : '/account';
   const loginHref = isDropship ? '/selling/signin' : '/shop/signin';
@@ -243,7 +245,7 @@ const Signup = ({ audience = 'shop' }: { audience?: Audience }) => {
                 <Input id="signup-email" type="email" autoComplete="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-11" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="signup-password">Password</Label>
+                <Label htmlFor="signup-password">{t('shopx.signup.password')}</Label>
                 <Input id="signup-password" type="password" autoComplete="new-password" placeholder="Create a strong password" value={password} onChange={(e) => setPassword(e.target.value)} required className="h-11" />
               </div>
               <Button type="submit" className="h-11 w-full bg-retail-green font-bold hover:bg-retail-dark-green" disabled={submitting}>
@@ -270,9 +272,9 @@ const Signup = ({ audience = 'shop' }: { audience?: Audience }) => {
                   <div className="mx-auto mb-4 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
                     <MailCheck className="h-7 w-7 text-primary" />
                   </div>
-                  <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Verify your email</h1>
+                  <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">{t('shopx.signup.verifyEmail')}</h1>
                   <p className="text-muted-foreground mt-2 text-sm">
-                    Enter the 4-digit code we sent to <span className="font-semibold text-foreground">{email}</span>
+                    {t('shopx.signup.codeSentTo', { email })}
                   </p>
                 </div>
                 <div className="flex justify-center">
@@ -299,56 +301,56 @@ const Signup = ({ audience = 'shop' }: { audience?: Audience }) => {
                   className="btn-pill-primary w-full text-base md:text-sm group min-h-11 md:min-h-12 mt-5 active:scale-[0.98] transition-transform disabled:opacity-60"
                 >
                   {verifying ? (
-                    <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Verifying...</span>
+                    <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />{t('shopx.signup.verifying')}</span>
                   ) : (
-                    <>Verify & continue <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
+                    <>{t('shopx.signup.verifyAndContinue')} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
                   )}
                 </button>
                 <p className="text-center text-sm text-muted-foreground mt-5">
-                  Didn't get the code?{' '}
+                  {t('shopx.signup.didntGetCode')}{' '}
                   {resendIn > 0 ? (
-                    <span>Resend in {resendIn}s</span>
+                    <span>{t('shopx.signup.resendIn', { seconds: resendIn })}</span>
                   ) : (
                     <button type="button" onClick={() => void handleResend()} className="text-primary font-semibold hover:underline">
-                      Resend code
+                      {t('shopx.signup.resendCode')}
                     </button>
                   )}
                 </p>
                 <p className="text-center text-sm text-muted-foreground mt-2">
                   <button type="button" onClick={() => { setStep('form'); setCode(''); }} className="hover:underline">
-                    Use a different email
+                    {t('shopx.signup.useDifferentEmail')}
                   </button>
                 </p>
               </>
             ) : (
               <>
                 <div className="mb-5 lg:mb-8">
-                  <h1 className="text-3xl font-extrabold tracking-tight">Create your account</h1>
-                  <p className="text-muted-foreground mt-2">Shop with one Tejaraa account</p>
+                  <h1 className="text-3xl font-extrabold tracking-tight">{t('shopx.signup.createAccount')}</h1>
+                  <p className="text-muted-foreground mt-2">{t('shopx.signup.subtitle')}</p>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-3.5 lg:space-y-4">
                   <div>
-                    <Label htmlFor="signup-name">Full Name</Label>
+                    <Label htmlFor="signup-name">{t('shopx.signup.fullName')}</Label>
                     <Input id="signup-name" value={name} onChange={e => setName(e.target.value)} placeholder="Ahmed Al-Rashid" required className="focus-glow rounded-xl mt-1.5 h-11 md:h-10 text-base md:text-sm" />
                   </div>
                   <div>
-                    <Label htmlFor="signup-email">Email</Label>
+                    <Label htmlFor="signup-email">{t('shopx.signup.email')}</Label>
                     <Input id="signup-email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" required className="focus-glow rounded-xl mt-1.5 h-11 md:h-10 text-base md:text-sm" />
                   </div>
                   <div>
-                    <Label htmlFor="signup-password">Password</Label>
+                    <Label htmlFor="signup-password">{t('shopx.signup.password')}</Label>
                     <Input id="signup-password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" required className="focus-glow rounded-xl mt-1.5 h-11 md:h-10 text-base md:text-sm" />
                   </div>
                   <button type="submit" className="btn-pill-primary w-full text-base md:text-sm group min-h-11 md:min-h-12 active:scale-[0.98] transition-transform" disabled={submitting}>
                     {submitting ? (
-                      <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Creating account...</span>
+                      <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />{t('shopx.signup.creatingAccount')}</span>
                     ) : (
-                      <>Create Account <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
+                      <>{t('shopx.signup.createAccountButton')} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
                     )}
                   </button>
                 </form>
                 <p className="text-center text-sm text-muted-foreground mt-5 lg:mt-6">
-                  Already have an account? <Link to={loginHref} className="text-primary font-semibold hover:underline">Sign in</Link>
+                  {t('shopx.signup.haveAccount')} <Link to={loginHref} className="text-primary font-semibold hover:underline">{t('shopx.signup.signIn')}</Link>
                 </p>
               </>
             )}

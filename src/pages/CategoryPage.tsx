@@ -27,7 +27,8 @@ export default function CategoryPage({ data, locale='en', page=1, onPageChange }
 
 export function categoryJsonLd(data:CategoryPageData,locale:'en'|'ar'='en') {
   const base='https://tejaraa.com'; const prefix=locale==='ar'?'/ar':''; const path=`${prefix}${categoryPath(data.top,data.sub,data.detail)}`;
-  const crumbs=[{name:'Home',item:`${base}${prefix||'/'}`},{name:'All Categories',item:`${base}${prefix}/category`},{name:data.top,item:`${base}${prefix}${categoryPath(data.top)}`},...(data.sub?[{name:data.sub,item:`${base}${prefix}${categoryPath(data.top,data.sub)}`}]:[]),...(data.detail?[{name:data.detail,item:`${base}${prefix}${categoryPath(data.top,data.sub,data.detail)}`}]:[])];
+  const home=locale==='ar'?'الرئيسية':'Home'; const allCategories=locale==='ar'?'كل الفئات':'All Categories';
+  const crumbs=[{name:home,item:`${base}${prefix||'/'}`},{name:allCategories,item:`${base}${prefix}/category`},{name:data.top,item:`${base}${prefix}${categoryPath(data.top)}`},...(data.sub?[{name:data.sub,item:`${base}${prefix}${categoryPath(data.top,data.sub)}`}]:[]),...(data.detail?[{name:data.detail,item:`${base}${prefix}${categoryPath(data.top,data.sub,data.detail)}`}]:[])];
   return {'@context':'https://schema.org','@graph':[{'@type':'CollectionPage',name:categoryHeading(data),url:`${base}${path}`,description:categoryIntro(data,locale)},{'@type':'BreadcrumbList',itemListElement:crumbs.map((crumb,index)=>({'@type':'ListItem',position:index+1,name:crumb.name,item:crumb.item}))},{'@type':'ItemList',itemListElement:data.products.slice(0,24).map((product,index)=>({'@type':'ListItem',position:index+1,url:`${base}${prefix}${productPath(product)}`,name:product.name}))}]};
 }
 export { slugify };

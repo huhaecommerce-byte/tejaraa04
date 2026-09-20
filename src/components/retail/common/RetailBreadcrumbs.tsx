@@ -1,11 +1,13 @@
 import { ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/router-compat';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 export interface RetailBreadcrumbItem { label: string; to?: string }
 
 export function RetailBreadcrumbs({ items }: { items: RetailBreadcrumbItem[] }) {
+  const { t } = useLocale();
   return (
-    <nav aria-label="Breadcrumb" className="no-scrollbar overflow-x-auto">
+    <nav aria-label={t('shopx.common.breadcrumbAria')} className="no-scrollbar overflow-x-auto">
       <ol className="flex w-max min-w-full items-center gap-1 whitespace-nowrap text-xs text-retail-muted">
         {items.map((item, index) => (
           <li key={`${item.label}-${index}`} className="inline-flex items-center gap-1">

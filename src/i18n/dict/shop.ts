@@ -466,6 +466,33 @@ export const en = {
   'shopx.subscribe.contactSupport': 'Contact support',
   'shopx.subscribe.errorTitle': "We couldn't verify your payment",
   'shopx.subscribe.errorDescription': 'Something went wrong while activating your subscription. If you were charged, please contact support.',
+
+  // ---------- category components (extra) ----------
+  'shopx.category.allDepartmentsAria': 'All departments',
+  'shopx.category.quickCategoriesAria': 'Quick categories',
+  'shopx.category.exploreDepartment': 'Explore {name}',
+  'shopx.category.viewAllShort': 'View all',
+  'shopx.category.productsSuffixShort': 'products',
+
+  // ---------- product buy box / identity / info (extra) ----------
+  'shopx.product.availabilityInStock': 'In Stock',
+  'shopx.product.availabilityLowStock': 'Low Stock',
+  'shopx.product.availabilityOutOfStock': 'Out of Stock',
+  'shopx.product.availabilityReadyToShip': 'Ready to Ship',
+  'shopx.product.availabilityStandardDelivery': 'Standard Delivery',
+
+  // ---------- account overview / orders / wishlist (extra) ----------
+  'shopx.account.orderRefFallback': 'Order',
+  'shopx.account.itemsSuffix': 'item',
+  'shopx.account.itemsSuffixPlural': 'items',
+
+  // ---------- checkout return (subscription) ----------
+  'shopx.subscribe.sellerAccess': 'Seller access',
+  'shopx.subscribe.signInToPortal': 'Sign in to portal',
+  'shopx.product.galleryAria': 'Product gallery',
+  'shopx.product.informationAria': 'Product information',
+  'shopx.product.ratingAria': '{rating} out of 5 stars',
+  'shopx.common.breadcrumbAria': 'Breadcrumb',
 } as const;
 
 export const ar: Partial<Record<keyof typeof en, string>> = {
@@ -935,4 +962,31 @@ export const ar: Partial<Record<keyof typeof en, string>> = {
   'shopx.subscribe.contactSupport': 'تواصل مع الدعم',
   'shopx.subscribe.errorTitle': 'تعذر التحقق من دفعتك',
   'shopx.subscribe.errorDescription': 'حدث خطأ ما أثناء تفعيل اشتراكك. إذا تم خصم المبلغ، يرجى التواصل مع الدعم.',
+
+  // ---------- category components (extra) ----------
+  'shopx.category.allDepartmentsAria': 'كل الأقسام',
+  'shopx.category.quickCategoriesAria': 'فئات سريعة',
+  'shopx.category.exploreDepartment': 'اكتشف {name}',
+  'shopx.category.viewAllShort': 'عرض الكل',
+  'shopx.category.productsSuffixShort': 'منتجات',
+
+  // ---------- product buy box / identity / info (extra) ----------
+  'shopx.product.availabilityInStock': 'متوفر',
+  'shopx.product.availabilityLowStock': 'كمية محدودة',
+  'shopx.product.availabilityOutOfStock': 'غير متوفر',
+  'shopx.product.availabilityReadyToShip': 'جاهز للشحن',
+  'shopx.product.availabilityStandardDelivery': 'توصيل عادي',
+
+  // ---------- account overview / orders / wishlist (extra) ----------
+  'shopx.account.orderRefFallback': 'الطلب',
+  'shopx.account.itemsSuffix': 'منتج',
+  'shopx.account.itemsSuffixPlural': 'منتجات',
+
+  // ---------- checkout return (subscription) ----------
+  'shopx.subscribe.sellerAccess': 'دخول البائع',
+  'shopx.subscribe.signInToPortal': 'تسجيل الدخول إلى البوابة',
+  'shopx.product.galleryAria': 'معرض صور المنتج',
+  'shopx.product.informationAria': 'معلومات المنتج',
+  'shopx.product.ratingAria': '{rating} من 5 نجوم',
+  'shopx.common.breadcrumbAria': 'مسار التنقل',
 };
