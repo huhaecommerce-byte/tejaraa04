@@ -72,7 +72,7 @@ export function moduleForRoute(pathname: string, tab: string | null): AdminModul
   if (pathname.startsWith('/admin/analytics')) return 'analytics';
   if (pathname.startsWith('/admin/emails'))    return 'emails';
   if (pathname.startsWith('/admin/tickets'))   return 'tickets';
-  if (pathname.startsWith('/admin/agencies') || pathname.startsWith('/admin/agency-payouts')) return 'agencies';
+  if (pathname.startsWith('/admin/agencies') || pathname.startsWith('/admin/agency-payouts') || pathname.startsWith('/admin/agency-settings')) return 'agencies';
 
   if (pathname.startsWith('/admin/orders/'))   return 'orders';
 
