@@ -45,7 +45,7 @@ export function SellerPlatformSwitcher({
             className={cn(
               'relative shrink-0 items-center gap-1.5 font-bold tracking-tight transition-colors',
               layout === 'inline'
-                ? 'inline-flex px-2 py-2 text-xs sm:px-4 sm:text-sm lg:px-6'
+                ? 'inline-flex px-1.5 py-2 text-[11px] sm:px-4 sm:text-sm lg:px-6'
                 : 'flex w-full items-center rounded-lg px-3 py-3 text-sm font-bold',
               onDark
                 ? current
