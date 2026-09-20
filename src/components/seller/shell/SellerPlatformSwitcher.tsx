@@ -60,7 +60,7 @@ export function SellerPlatformSwitcher({
                   : 'text-retail-muted hover:bg-retail-light-green/70 hover:text-retail-dark-green',
             )}
           >
-            <platform.icon className="h-3.5 w-3.5 shrink-0" aria-hidden />
+            <platform.icon className="hidden h-3.5 w-3.5 shrink-0 sm:block" aria-hidden />
             {layout === 'inline' ? (
               <>
                 <span className="sm:hidden">{t(`platform.short.${platform.id}` as TranslationKey)}</span>
