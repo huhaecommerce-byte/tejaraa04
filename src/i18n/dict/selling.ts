@@ -1,5 +1,6 @@
 /** Dropshipping & Selling section: public pages, auth and seller portal. */
 export const en = {
+  'selling.portalHeader.sellerPortal': "Seller portal",
   'selling.hero.badge': "Seller services in Saudi Arabia",
   'selling.hero.title1': "Source, sell and fulfil ",
   'selling.hero.title2': "in one place.",
@@ -874,6 +875,7 @@ export const en = {
 } as const;
 
 export const ar: Partial<Record<keyof typeof en, string>> = {
+  'selling.portalHeader.sellerPortal': "بوابة البائع",
   'selling.hero.badge': "خدمات البائعين في السعودية",
   'selling.hero.title1': "مصادر، بيع، ونفّذ",
   'selling.hero.title2': "في مكان واحد.",
