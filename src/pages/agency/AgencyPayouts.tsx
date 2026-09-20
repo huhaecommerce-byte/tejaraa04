@@ -3,7 +3,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/customer/aux/PageHeader';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -35,7 +34,6 @@ export default function AgencyPayoutsPage() {
   const { agency, reload } = useAgency();
   const [rows, setRows] = useState<PayoutRow[]>([]);
   const [amount, setAmount] = useState('');
-  const [note, setNote] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   const load = useCallback(async () => {
@@ -56,7 +54,7 @@ export default function AgencyPayoutsPage() {
     try {
       const { data, error } = await supabase.rpc('agency_request_payout' as never, {
         _amount: amount ? Number(amount) : null,
-        _note: note || null,
+        _note: null,
         _method: null,
       } as never);
       if (error) throw error;
@@ -73,7 +71,6 @@ export default function AgencyPayoutsPage() {
       }
       toast.success(t('agency.payouts.requestSuccess', { amount: sar(res.amount) }));
       setAmount('');
-      setNote('');
       await Promise.all([load(), reload()]);
     } catch (err: any) {
       toast.error(err?.message || t('agency.payouts.errorGeneric'));
@@ -101,10 +98,6 @@ export default function AgencyPayoutsPage() {
             <div className="space-y-2">
               <Label htmlFor="amount">{t('agency.payouts.amountLabel')}</Label>
               <Input id="amount" type="number" min={0} value={amount} onChange={(e) => setAmount(e.target.value)} placeholder={String(available)} />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="note">{t('agency.payouts.noteLabel')}</Label>
-              <Textarea id="note" rows={3} value={note} onChange={(e) => setNote(e.target.value)} placeholder={t('agency.payouts.notePlaceholder')} />
             </div>
             <Button className="w-full" onClick={request} disabled={submitting || available <= 0}>
               <Wallet className="mr-2 h-4 w-4" /> {t('agency.payouts.requestButton')}

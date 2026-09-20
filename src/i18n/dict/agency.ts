@@ -435,6 +435,10 @@ export const en = {
   'agency.earnings.statusApproved': 'Ready to withdraw',
   'agency.earnings.statusPaid': 'Paid',
   'agency.earnings.statusReversed': 'Reversed',
+  'agency.earnings.showing': 'Showing {from}–{to} of {total}',
+  'agency.earnings.prev': 'Previous',
+  'agency.earnings.next': 'Next',
+  'agency.earnings.pageOf': 'Page {page} of {pages}',
 
   // ---------- portal: link ----------
   'agency.link.title': 'My invite link',
@@ -945,6 +949,10 @@ export const ar: Partial<Record<keyof typeof en, string>> = {
   'agency.earnings.statusApproved': 'جاهز للسحب',
   'agency.earnings.statusPaid': 'مدفوع',
   'agency.earnings.statusReversed': 'ملغى',
+  'agency.earnings.showing': 'عرض {from}–{to} من {total}',
+  'agency.earnings.prev': 'السابق',
+  'agency.earnings.next': 'التالي',
+  'agency.earnings.pageOf': 'صفحة {page} من {pages}',
 
   // ---------- portal: link ----------
   'agency.link.title': 'رابط دعوتي',
