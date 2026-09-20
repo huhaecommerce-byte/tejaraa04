@@ -1,21 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import AgencySettings from "@/pages/admin/AgencySettings";
-import { RequireModule } from "@/components/auth/RequireModule";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/admin/agency-settings")({
-  head: () => ({
-    meta: [
-      { title: "Agency Programme Settings — Admin — Tejaraa" },
-      { name: "robots", content: "noindex, nofollow" },
-    ],
-  }),
-  component: RouteComponent,
+  beforeLoad: () => { throw redirect({ to: "/agency-admin/settings" }); },
 });
-
-function RouteComponent() {
-  return (
-    <RequireModule module="agencies">
-      <AgencySettings />
-    </RequireModule>
-  );
-}

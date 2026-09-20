@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountRouteRouteImport } from './routes/account/route'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as AgencyRouteRouteImport } from './routes/agency/route'
+import { Route as AgencyAdminRouteRouteImport } from './routes/agency-admin/route'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -63,6 +64,9 @@ import { Route as AdminSuppliersRouteImport } from './routes/admin/suppliers'
 import { Route as AdminTicketsRouteImport } from './routes/admin/tickets'
 import { Route as AdminWarehouseRouteImport } from './routes/admin/warehouse'
 import { Route as AdminWhatsappLogsRouteImport } from './routes/admin/whatsapp-logs'
+import { Route as AgencyAdminIndexRouteImport } from './routes/agency-admin/index'
+import { Route as AgencyAdminPayoutsRouteImport } from './routes/agency-admin/payouts'
+import { Route as AgencyAdminSettingsRouteImport } from './routes/agency-admin/settings'
 import { Route as AgencyIndexRouteImport } from './routes/agency/index'
 import { Route as AgencyApplyRouteImport } from './routes/agency/apply'
 import { Route as AgencyCommissionRouteImport } from './routes/agency/commission'
@@ -159,6 +163,8 @@ import { Route as AdminProductsIndexRouteImport } from './routes/admin/products/
 import { Route as AdminProductsIdRouteImport } from './routes/admin/products/$id'
 import { Route as AdminProductsImportRouteImport } from './routes/admin/products/import'
 import { Route as AdminProductsNewRouteImport } from './routes/admin/products/new'
+import { Route as AgencyAdminPartnersIndexRouteImport } from './routes/agency-admin/partners/index'
+import { Route as AgencyAdminPartnersIdRouteImport } from './routes/agency-admin/partners/$id'
 import { Route as AgencyPortalIndexRouteImport } from './routes/agency/portal/index'
 import { Route as AgencyPortalClientsRouteImport } from './routes/agency/portal/clients'
 import { Route as AgencyPortalEarningsRouteImport } from './routes/agency/portal/earnings'
@@ -277,6 +283,11 @@ const AdminRouteRoute = AdminRouteRouteImport.update({
 const AgencyRouteRoute = AgencyRouteRouteImport.update({
   id: '/agency',
   path: '/agency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgencyAdminRouteRoute = AgencyAdminRouteRouteImport.update({
+  id: '/agency-admin',
+  path: '/agency-admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -528,6 +539,21 @@ const AdminWhatsappLogsRoute = AdminWhatsappLogsRouteImport.update({
   id: '/whatsapp-logs',
   path: '/whatsapp-logs',
   getParentRoute: () => AdminRouteRoute,
+} as any)
+const AgencyAdminIndexRoute = AgencyAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AgencyAdminRouteRoute,
+} as any)
+const AgencyAdminPayoutsRoute = AgencyAdminPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => AgencyAdminRouteRoute,
+} as any)
+const AgencyAdminSettingsRoute = AgencyAdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AgencyAdminRouteRoute,
 } as any)
 const AgencyIndexRoute = AgencyIndexRouteImport.update({
   id: '/',
@@ -1025,6 +1051,17 @@ const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
   id: '/products/new',
   path: '/products/new',
   getParentRoute: () => AdminRouteRoute,
+} as any)
+const AgencyAdminPartnersIndexRoute =
+  AgencyAdminPartnersIndexRouteImport.update({
+    id: '/partners/',
+    path: '/partners/',
+    getParentRoute: () => AgencyAdminRouteRoute,
+  } as any)
+const AgencyAdminPartnersIdRoute = AgencyAdminPartnersIdRouteImport.update({
+  id: '/partners/$id',
+  path: '/partners/$id',
+  getParentRoute: () => AgencyAdminRouteRoute,
 } as any)
 const AgencyPortalIndexRoute = AgencyPortalIndexRouteImport.update({
   id: '/',
@@ -1571,6 +1608,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRouteRouteWithChildren
   '/admin': typeof AdminRouteRouteWithChildren
   '/agency': typeof AgencyRouteRouteWithChildren
+  '/agency-admin': typeof AgencyAdminRouteRouteWithChildren
   '/dropshipping': typeof DropshippingRouteRouteWithChildren
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
@@ -1620,6 +1658,8 @@ export interface FileRoutesByFullPath {
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/agency-admin/payouts': typeof AgencyAdminPayoutsRoute
+  '/agency-admin/settings': typeof AgencyAdminSettingsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/commission': typeof AgencyCommissionRoute
   '/agency/faq': typeof AgencyFaqRoute
@@ -1698,6 +1738,7 @@ export interface FileRoutesByFullPath {
   '/shop/signup': typeof ShopSignupRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/agency-admin/': typeof AgencyAdminIndexRoute
   '/agency/': typeof AgencyIndexRoute
   '/ar/': typeof ArIndexRoute
   '/blog/': typeof BlogIndexRoute
@@ -1712,6 +1753,7 @@ export interface FileRoutesByFullPath {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/agency-admin/partners/$id': typeof AgencyAdminPartnersIdRoute
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
@@ -1777,6 +1819,7 @@ export interface FileRoutesByFullPath {
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/admin/products/': typeof AdminProductsIndexRoute
+  '/agency-admin/partners/': typeof AgencyAdminPartnersIndexRoute
   '/agency/portal/': typeof AgencyPortalIndexRoute
   '/ar/category/': typeof ArCategoryIndexRoute
   '/checkout/shop/': typeof CheckoutShopIndexRoute
@@ -1864,6 +1907,8 @@ export interface FileRoutesByTo {
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/agency-admin/payouts': typeof AgencyAdminPayoutsRoute
+  '/agency-admin/settings': typeof AgencyAdminSettingsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/commission': typeof AgencyCommissionRoute
   '/agency/faq': typeof AgencyFaqRoute
@@ -1941,6 +1986,7 @@ export interface FileRoutesByTo {
   '/shop/signup': typeof ShopSignupRoute
   '/account': typeof AccountIndexRoute
   '/admin': typeof AdminIndexRoute
+  '/agency-admin': typeof AgencyAdminIndexRoute
   '/agency': typeof AgencyIndexRoute
   '/ar': typeof ArIndexRoute
   '/blog': typeof BlogIndexRoute
@@ -1954,6 +2000,7 @@ export interface FileRoutesByTo {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/agency-admin/partners/$id': typeof AgencyAdminPartnersIdRoute
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
@@ -2018,6 +2065,7 @@ export interface FileRoutesByTo {
   '/admin/customers': typeof AdminCustomersIndexRoute
   '/admin/orders': typeof AdminOrdersIndexRoute
   '/admin/products': typeof AdminProductsIndexRoute
+  '/agency-admin/partners': typeof AgencyAdminPartnersIndexRoute
   '/agency/portal': typeof AgencyPortalIndexRoute
   '/ar/category': typeof ArCategoryIndexRoute
   '/checkout/shop': typeof CheckoutShopIndexRoute
@@ -2063,6 +2111,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRouteRouteWithChildren
   '/admin': typeof AdminRouteRouteWithChildren
   '/agency': typeof AgencyRouteRouteWithChildren
+  '/agency-admin': typeof AgencyAdminRouteRouteWithChildren
   '/dropshipping': typeof DropshippingRouteRouteWithChildren
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
@@ -2112,6 +2161,8 @@ export interface FileRoutesById {
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/admin/whatsapp-logs': typeof AdminWhatsappLogsRoute
+  '/agency-admin/payouts': typeof AgencyAdminPayoutsRoute
+  '/agency-admin/settings': typeof AgencyAdminSettingsRoute
   '/agency/apply': typeof AgencyApplyRoute
   '/agency/commission': typeof AgencyCommissionRoute
   '/agency/faq': typeof AgencyFaqRoute
@@ -2191,6 +2242,7 @@ export interface FileRoutesById {
   '/shop/signup': typeof ShopSignupRoute
   '/account/': typeof AccountIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/agency-admin/': typeof AgencyAdminIndexRoute
   '/agency/': typeof AgencyIndexRoute
   '/ar/': typeof ArIndexRoute
   '/blog/': typeof BlogIndexRoute
@@ -2205,6 +2257,7 @@ export interface FileRoutesById {
   '/admin/products/$id': typeof AdminProductsIdRoute
   '/admin/products/import': typeof AdminProductsImportRoute
   '/admin/products/new': typeof AdminProductsNewRoute
+  '/agency-admin/partners/$id': typeof AgencyAdminPartnersIdRoute
   '/agency/portal/clients': typeof AgencyPortalClientsRoute
   '/agency/portal/earnings': typeof AgencyPortalEarningsRoute
   '/agency/portal/link': typeof AgencyPortalLinkRoute
@@ -2270,6 +2323,7 @@ export interface FileRoutesById {
   '/admin/customers/': typeof AdminCustomersIndexRoute
   '/admin/orders/': typeof AdminOrdersIndexRoute
   '/admin/products/': typeof AdminProductsIndexRoute
+  '/agency-admin/partners/': typeof AgencyAdminPartnersIndexRoute
   '/agency/portal/': typeof AgencyPortalIndexRoute
   '/ar/category/': typeof ArCategoryIndexRoute
   '/checkout/shop/': typeof CheckoutShopIndexRoute
@@ -2316,6 +2370,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/admin'
     | '/agency'
+    | '/agency-admin'
     | '/dropshipping'
     | '/cart'
     | '/catalog'
@@ -2365,6 +2420,8 @@ export interface FileRouteTypes {
     | '/admin/tickets'
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
+    | '/agency-admin/payouts'
+    | '/agency-admin/settings'
     | '/agency/apply'
     | '/agency/commission'
     | '/agency/faq'
@@ -2443,6 +2500,7 @@ export interface FileRouteTypes {
     | '/shop/signup'
     | '/account/'
     | '/admin/'
+    | '/agency-admin/'
     | '/agency/'
     | '/ar/'
     | '/blog/'
@@ -2457,6 +2515,7 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
+    | '/agency-admin/partners/$id'
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
@@ -2522,6 +2581,7 @@ export interface FileRouteTypes {
     | '/admin/customers/'
     | '/admin/orders/'
     | '/admin/products/'
+    | '/agency-admin/partners/'
     | '/agency/portal/'
     | '/ar/category/'
     | '/checkout/shop/'
@@ -2609,6 +2669,8 @@ export interface FileRouteTypes {
     | '/admin/tickets'
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
+    | '/agency-admin/payouts'
+    | '/agency-admin/settings'
     | '/agency/apply'
     | '/agency/commission'
     | '/agency/faq'
@@ -2686,6 +2748,7 @@ export interface FileRouteTypes {
     | '/shop/signup'
     | '/account'
     | '/admin'
+    | '/agency-admin'
     | '/agency'
     | '/ar'
     | '/blog'
@@ -2699,6 +2762,7 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
+    | '/agency-admin/partners/$id'
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
@@ -2763,6 +2827,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/products'
+    | '/agency-admin/partners'
     | '/agency/portal'
     | '/ar/category'
     | '/checkout/shop'
@@ -2807,6 +2872,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/admin'
     | '/agency'
+    | '/agency-admin'
     | '/dropshipping'
     | '/cart'
     | '/catalog'
@@ -2856,6 +2922,8 @@ export interface FileRouteTypes {
     | '/admin/tickets'
     | '/admin/warehouse'
     | '/admin/whatsapp-logs'
+    | '/agency-admin/payouts'
+    | '/agency-admin/settings'
     | '/agency/apply'
     | '/agency/commission'
     | '/agency/faq'
@@ -2935,6 +3003,7 @@ export interface FileRouteTypes {
     | '/shop/signup'
     | '/account/'
     | '/admin/'
+    | '/agency-admin/'
     | '/agency/'
     | '/ar/'
     | '/blog/'
@@ -2949,6 +3018,7 @@ export interface FileRouteTypes {
     | '/admin/products/$id'
     | '/admin/products/import'
     | '/admin/products/new'
+    | '/agency-admin/partners/$id'
     | '/agency/portal/clients'
     | '/agency/portal/earnings'
     | '/agency/portal/link'
@@ -3014,6 +3084,7 @@ export interface FileRouteTypes {
     | '/admin/customers/'
     | '/admin/orders/'
     | '/admin/products/'
+    | '/agency-admin/partners/'
     | '/agency/portal/'
     | '/ar/category/'
     | '/checkout/shop/'
@@ -3059,6 +3130,7 @@ export interface RootRouteChildren {
   AccountRouteRoute: typeof AccountRouteRouteWithChildren
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
   AgencyRouteRoute: typeof AgencyRouteRouteWithChildren
+  AgencyAdminRouteRoute: typeof AgencyAdminRouteRouteWithChildren
   DropshippingRouteRoute: typeof DropshippingRouteRouteWithChildren
   CartRoute: typeof CartRoute
   CatalogRoute: typeof CatalogRoute
@@ -3193,6 +3265,13 @@ declare module '@tanstack/react-router' {
       path: '/agency'
       fullPath: '/agency'
       preLoaderRoute: typeof AgencyRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agency-admin': {
+      id: '/agency-admin'
+      path: '/agency-admin'
+      fullPath: '/agency-admin'
+      preLoaderRoute: typeof AgencyAdminRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -3544,6 +3623,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/whatsapp-logs'
       preLoaderRoute: typeof AdminWhatsappLogsRouteImport
       parentRoute: typeof AdminRouteRoute
+    }
+    '/agency-admin/': {
+      id: '/agency-admin/'
+      path: '/'
+      fullPath: '/agency-admin/'
+      preLoaderRoute: typeof AgencyAdminIndexRouteImport
+      parentRoute: typeof AgencyAdminRouteRoute
+    }
+    '/agency-admin/payouts': {
+      id: '/agency-admin/payouts'
+      path: '/payouts'
+      fullPath: '/agency-admin/payouts'
+      preLoaderRoute: typeof AgencyAdminPayoutsRouteImport
+      parentRoute: typeof AgencyAdminRouteRoute
+    }
+    '/agency-admin/settings': {
+      id: '/agency-admin/settings'
+      path: '/settings'
+      fullPath: '/agency-admin/settings'
+      preLoaderRoute: typeof AgencyAdminSettingsRouteImport
+      parentRoute: typeof AgencyAdminRouteRoute
     }
     '/agency/': {
       id: '/agency/'
@@ -4216,6 +4316,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/products/new'
       preLoaderRoute: typeof AdminProductsNewRouteImport
       parentRoute: typeof AdminRouteRoute
+    }
+    '/agency-admin/partners/': {
+      id: '/agency-admin/partners/'
+      path: '/partners'
+      fullPath: '/agency-admin/partners/'
+      preLoaderRoute: typeof AgencyAdminPartnersIndexRouteImport
+      parentRoute: typeof AgencyAdminRouteRoute
+    }
+    '/agency-admin/partners/$id': {
+      id: '/agency-admin/partners/$id'
+      path: '/partners/$id'
+      fullPath: '/agency-admin/partners/$id'
+      preLoaderRoute: typeof AgencyAdminPartnersIdRouteImport
+      parentRoute: typeof AgencyAdminRouteRoute
     }
     '/agency/portal/': {
       id: '/agency/portal/'
@@ -5072,6 +5186,25 @@ const AgencyRouteRouteWithChildren = AgencyRouteRoute._addFileChildren(
   AgencyRouteRouteChildren,
 )
 
+interface AgencyAdminRouteRouteChildren {
+  AgencyAdminPayoutsRoute: typeof AgencyAdminPayoutsRoute
+  AgencyAdminSettingsRoute: typeof AgencyAdminSettingsRoute
+  AgencyAdminIndexRoute: typeof AgencyAdminIndexRoute
+  AgencyAdminPartnersIdRoute: typeof AgencyAdminPartnersIdRoute
+  AgencyAdminPartnersIndexRoute: typeof AgencyAdminPartnersIndexRoute
+}
+
+const AgencyAdminRouteRouteChildren: AgencyAdminRouteRouteChildren = {
+  AgencyAdminPayoutsRoute: AgencyAdminPayoutsRoute,
+  AgencyAdminSettingsRoute: AgencyAdminSettingsRoute,
+  AgencyAdminIndexRoute: AgencyAdminIndexRoute,
+  AgencyAdminPartnersIdRoute: AgencyAdminPartnersIdRoute,
+  AgencyAdminPartnersIndexRoute: AgencyAdminPartnersIndexRoute,
+}
+
+const AgencyAdminRouteRouteWithChildren =
+  AgencyAdminRouteRoute._addFileChildren(AgencyAdminRouteRouteChildren)
+
 interface DropshippingIntegrationsRouteChildren {
   DropshippingIntegrationsIndexRoute: typeof DropshippingIntegrationsIndexRoute
   DropshippingIntegrationsNoonConnectionIdRoute: typeof DropshippingIntegrationsNoonConnectionIdRoute
@@ -5354,6 +5487,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRouteRoute: AccountRouteRouteWithChildren,
   AdminRouteRoute: AdminRouteRouteWithChildren,
   AgencyRouteRoute: AgencyRouteRouteWithChildren,
+  AgencyAdminRouteRoute: AgencyAdminRouteRouteWithChildren,
   DropshippingRouteRoute: DropshippingRouteRouteWithChildren,
   CartRoute: CartRoute,
   CatalogRoute: CatalogRoute,

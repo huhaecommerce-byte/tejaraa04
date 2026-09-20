@@ -120,7 +120,7 @@ export default function AgenciesAdmin() {
                   {rows.map((r) => (
                     <TableRow key={r.id}>
                       <TableCell>
-                        <Link to={`/admin/agencies/${r.id}`} className="font-medium hover:underline">{r.company_name}</Link>
+                        <Link to={`/agency-admin/partners/${r.id}`} className="font-medium hover:underline">{r.company_name}</Link>
                         <div className="text-xs text-muted-foreground">{r.contact_name} · {r.email}</div>
                       </TableCell>
                       <TableCell className="font-mono text-xs">{r.invite_code}</TableCell>
@@ -140,7 +140,7 @@ export default function AgenciesAdmin() {
                             <Button size="sm" variant="outline" onClick={() => decide(r.id, 'suspended')}>Suspend</Button>
                           )}
                           <Button size="sm" variant="ghost" asChild>
-                            <Link to={`/admin/agencies/${r.id}`}>Open</Link>
+                            <Link to={`/agency-admin/partners/${r.id}`}>Open</Link>
                           </Button>
                         </div>
                       </TableCell>

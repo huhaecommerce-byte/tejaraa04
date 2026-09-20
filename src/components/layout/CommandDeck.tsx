@@ -71,7 +71,7 @@ export function CommandDeck({ sections, variant = 'customer', collapsed: collaps
 
   const isItemActive = (url: string) => {
     const path = url.split('?')[0];
-    if (path === '/dropshipping' || path === '/admin') return location.pathname === path;
+    if (path === '/dropshipping' || path === '/admin' || path === '/agency-admin') return location.pathname === path;
     return location.pathname === path || location.pathname.startsWith(path + '/');
   };
 

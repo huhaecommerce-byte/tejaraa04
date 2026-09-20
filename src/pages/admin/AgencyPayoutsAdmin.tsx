@@ -107,7 +107,7 @@ export default function AgencyPayoutsAdmin() {
                   {rows.map((r) => (
                     <TableRow key={r.id}>
                       <TableCell>
-                        <Link to={`/admin/agencies/${r.agency_id}`} className="font-medium hover:underline">
+                        <Link to={`/agency-admin/partners/${r.agency_id}`} className="font-medium hover:underline">
                           {r.agency_profiles?.company_name || 'Agency'}
                         </Link>
                         <div className="text-xs text-muted-foreground">{r.agency_profiles?.email}</div>

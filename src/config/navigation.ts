@@ -152,12 +152,13 @@ export const adminNavigation: NavSection[] = [
       { title: 'Visitor Analytics', url: '/admin/analytics', icon: Activity, module: 'analytics' },
       {
         title: 'Agencies & VAs',
-        url: '/admin/agencies',
+        url: '/agency-admin',
         icon: Handshake,
         module: 'agencies',
         children: [
-          { title: 'Agency Payouts', url: '/admin/agency-payouts', module: 'agencies' },
-          { title: 'Programme Settings', url: '/admin/agency-settings', module: 'agencies' },
+          { title: 'Agencies & VAs', url: '/agency-admin/partners', module: 'agencies' },
+          { title: 'Agency Payouts', url: '/agency-admin/payouts', module: 'agencies' },
+          { title: 'Programme Settings', url: '/agency-admin/settings', module: 'agencies' },
         ],
       },
     ],
@@ -245,3 +246,28 @@ export function filterNavigationByModules(
   }
   return out;
 }
+
+/** Sidebar for the standalone Agencies & VAs admin portal (/agency-admin). */
+export const agencyAdminNavigation: NavSection[] = [
+  {
+    id: 'agency-admin',
+    label: 'Agency programme',
+    icon: Handshake,
+    accent: 'violet',
+    items: [
+      { title: 'Overview', url: '/agency-admin', icon: LayoutDashboard },
+      { title: 'Agencies & VAs', url: '/agency-admin/partners', icon: Handshake },
+      { title: 'Payout requests', url: '/agency-admin/payouts', icon: Wallet },
+      { title: 'Programme settings', url: '/agency-admin/settings', icon: Cog },
+    ],
+  },
+  {
+    id: 'agency-admin-links',
+    label: 'Elsewhere',
+    icon: Briefcase,
+    accent: 'slate',
+    items: [
+      { title: 'Main admin panel', url: '/admin', icon: Settings },
+    ],
+  },
+];
