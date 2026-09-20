@@ -20,15 +20,15 @@ export function SupplierCategoryGrid() {
             <article key={category.name} className="overflow-hidden rounded-xl border border-retail-border bg-white">
               <img
                 src={category.image}
-                alt={t('supplier.categoryGrid.altTemplate', { name: category.name })}
+                alt={t('supplier.categoryGrid.altTemplate', { name: t(category.name) })}
                 width={480}
                 height={360}
                 loading="lazy"
                 className="aspect-[4/3] w-full object-cover"
               />
               <div className="p-4">
-                <h3 className="text-sm font-bold text-retail-dark-green sm:text-base">{category.name}</h3>
-                <p className="mt-1 text-xs leading-5 text-retail-muted sm:text-sm">{category.text}</p>
+                <h3 className="text-sm font-bold text-retail-dark-green sm:text-base">{t(category.name)}</h3>
+                <p className="mt-1 text-xs leading-5 text-retail-muted sm:text-sm">{t(category.text)}</p>
               </div>
             </article>
           ))}

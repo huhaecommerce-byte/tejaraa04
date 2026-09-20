@@ -208,7 +208,7 @@ export function ServiceFAQ({ items, title }: { items: { q: string; a: string }[]
                 className="overflow-hidden border-b border-retail-border bg-white px-2"
               >
                 <AccordionTrigger className="py-4 text-left text-sm font-bold text-retail-dark-green hover:no-underline sm:text-base">
-                  {faq.q}
+                  {resolve(faq.q)}
                 </AccordionTrigger>
                 <AccordionContent className="pb-4 text-sm leading-6 text-retail-muted">{resolve(faq.a)}</AccordionContent>
               </AccordionItem>

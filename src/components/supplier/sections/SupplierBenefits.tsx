@@ -20,8 +20,8 @@ export function SupplierBenefits() {
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-retail-dark-green text-retail-gold">
                 <benefit.icon className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="mt-4 text-base font-bold text-retail-dark-green">{benefit.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-retail-muted">{benefit.text}</p>
+              <h3 className="mt-4 text-base font-bold text-retail-dark-green">{t(benefit.title)}</h3>
+              <p className="mt-2 text-sm leading-6 text-retail-muted">{t(benefit.text)}</p>
             </article>
           ))}
         </div>

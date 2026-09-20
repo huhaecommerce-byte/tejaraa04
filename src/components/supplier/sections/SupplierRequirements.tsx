@@ -21,8 +21,8 @@ export function SupplierRequirements() {
                 <item.icon className="h-5 w-5" aria-hidden />
               </span>
               <div className="min-w-0">
-                <h3 className="text-base font-bold text-retail-dark-green">{item.title}</h3>
-                <p className="mt-1.5 text-sm leading-6 text-retail-muted">{item.text}</p>
+                <h3 className="text-base font-bold text-retail-dark-green">{t(item.title)}</h3>
+                <p className="mt-1.5 text-sm leading-6 text-retail-muted">{t(item.text)}</p>
               </div>
             </article>
           ))}

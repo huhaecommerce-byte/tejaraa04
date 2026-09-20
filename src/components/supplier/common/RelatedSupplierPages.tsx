@@ -26,8 +26,8 @@ export function RelatedSupplierPages({ current, only }: { current?: string; only
               to={page.to}
               className="group rounded-xl border border-retail-border bg-retail-page p-5 transition-colors hover:border-retail-green/40 hover:bg-retail-light-green/60"
             >
-              <h3 className="text-base font-bold text-retail-dark-green">{page.label}</h3>
-              <p className="mt-1.5 text-sm leading-6 text-retail-muted">{page.blurb}</p>
+              <h3 className="text-base font-bold text-retail-dark-green">{t(page.label)}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-retail-muted">{t(page.blurb)}</p>
               <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-retail-green">
                 {t('supplier.common.readMore')}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
