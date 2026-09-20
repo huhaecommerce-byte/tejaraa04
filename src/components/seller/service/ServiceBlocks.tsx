@@ -167,6 +167,7 @@ export function ServiceRequirements({
 
 /* ── Compact trust strip (kept small on service pages) ─────────── */
 export function ServiceTrustStrip() {
+  const { t } = useLocale();
   return (
     <section className="border-y border-retail-border bg-white py-8">
       <SellerContainer>
@@ -179,8 +180,8 @@ export function ServiceTrustStrip() {
                 </span>
               ) : null}
               <span className="min-w-0">
-                <span className="block text-sm font-bold text-retail-dark-green">{title}</span>
-                <span className="mt-0.5 block text-xs leading-5 text-retail-muted">{text}</span>
+                <span className="block text-sm font-bold text-retail-dark-green">{t(title)}</span>
+                <span className="mt-0.5 block text-xs leading-5 text-retail-muted">{t(text)}</span>
               </span>
             </li>
           ))}
@@ -264,8 +265,8 @@ export function RelatedServices({ slugs, currentSlug }: { slugs: string[]; curre
                     <Icon className="h-4.5 w-4.5" aria-hidden />
                   </span>
                 ) : null}
-                <h3 className="mt-3 text-sm font-bold text-retail-dark-green">{title}</h3>
-                <p className="mt-1 line-clamp-2 text-xs leading-5 text-retail-muted">{text}</p>
+                 <h3 className="mt-3 text-sm font-bold text-retail-dark-green">{t(title as TranslationKey)}</h3>
+                 <p className="mt-1 line-clamp-2 text-xs leading-5 text-retail-muted">{t(text as TranslationKey)}</p>
                 <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-retail-green">
                   {t('selling.svc.ui.learnMore')}
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />

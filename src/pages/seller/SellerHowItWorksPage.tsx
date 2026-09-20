@@ -5,6 +5,7 @@ import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerSectionHeading } from '@/components/seller/common/SellerSectionHeading';
 import { RelatedServices, SellerBreadcrumbs, ServiceFAQ, ServiceHero, ServiceInquiryCTA } from '@/components/seller/service';
 import { sellerJourneys } from '@/data/sellerServicePages';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 const journeySteps = [
   ['Choose your business model', 'Dropshipping, sourcing, or fulfilment for stock you own.'],
@@ -34,6 +35,7 @@ const faqs = [
 ];
 
 export default function SellerHowItWorksPage() {
+  const { t } = useLocale();
   return (
     <SellerPublicShell>
       <SellerBreadcrumbs items={[{ label: 'How It Works' }]} />
@@ -58,7 +60,7 @@ export default function SellerHowItWorksPage() {
         <SellerContainer>
           <SellerSectionHeading eyebrow="Your situation" title="Find your path" description="Choose the closest starting point; every service and step remains available." />
           <ul className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-            {sellerJourneys.map(({ id, icon: Icon, title, steps, note, links }) => <li key={id} className="rounded-md border border-retail-border p-4"><div className="flex items-center gap-2"><Icon className="h-4 w-4 text-retail-green" /><h3 className="text-sm font-bold text-retail-dark-green">{title}</h3></div><p className="mt-2 text-xs leading-5 text-retail-muted">{steps.join(' → ')}</p><p className="mt-2 text-xs leading-5 text-retail-muted">{note}</p><div className="mt-3 flex flex-wrap gap-3">{links.map((link) => <Link key={link.to} to={link.to} className="text-xs font-bold text-retail-green hover:underline">{link.label}</Link>)}</div></li>)}
+            {sellerJourneys.map(({ id, icon: Icon, title, steps, note, links }) => <li key={id} className="rounded-md border border-retail-border p-4"><div className="flex items-center gap-2"><Icon className="h-4 w-4 text-retail-green" /><h3 className="text-sm font-bold text-retail-dark-green">{t(title)}</h3></div><p className="mt-2 text-xs leading-5 text-retail-muted">{steps.map((step) => t(step)).join(' → ')}</p><p className="mt-2 text-xs leading-5 text-retail-muted">{t(note)}</p><div className="mt-3 flex flex-wrap gap-3">{links.map((link) => <Link key={link.to} to={link.to} className="text-xs font-bold text-retail-green hover:underline">{t(link.label)}</Link>)}</div></li>)}
           </ul>
         </SellerContainer>
       </section>
