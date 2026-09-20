@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import AgencyDetail from "@/pages/admin/AgencyDetail";
 
-export const Route = createFileRoute("/agency-admin/partners/$id")({
+export const Route = createFileRoute("/agency-admin/partners/$id/")({
   head: () => ({
     meta: [
       { title: "Agency — Admin — Tejaraa" },

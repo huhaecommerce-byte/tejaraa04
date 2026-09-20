@@ -6,11 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/customer/aux/PageHeader';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { supabase } from '@/integrations/supabase/client';
 import { sar, num } from '@/hooks/useAgency';
 import { toast } from 'sonner';
-import { ArrowLeft, Loader2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Loader2, Receipt, Users } from 'lucide-react';
 
 interface Agency {
   id: string;
@@ -30,14 +29,6 @@ interface Agency {
   created_at: string;
 }
 
-interface ClientRow {
-  client_user_id: string;
-  display_name: string;
-  email: string | null;
-  joined_at: string;
-  orders: number;
-  earned: number;
-}
 
 interface Balance {
   lifetime: number; pending: number; available: number; requested: number; paid: number; clients: number; orders: number;
@@ -54,18 +45,11 @@ interface CommissionRow {
   created_at: string;
 }
 
-const commissionTone: Record<string, string> = {
-  pending: 'bg-amber-100 text-amber-800',
-  available: 'bg-emerald-100 text-emerald-800',
-  paid: 'bg-blue-100 text-blue-800',
-  reversed: 'bg-rose-100 text-rose-800',
-};
 
 export default function AgencyDetail() {
   const params = useParams();
   const id = (params as any).id as string;
   const [agency, setAgency] = useState<Agency | null>(null);
-  const [clients, setClients] = useState<ClientRow[]>([]);
   const [commissions, setCommissions] = useState<CommissionRow[]>([]);
   const [balance, setBalance] = useState<Balance | null>(null);
   const [rate, setRate] = useState('');
@@ -74,14 +58,12 @@ export default function AgencyDetail() {
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
-    const [{ data: a }, { data: c }, { data: b }, { data: cm }] = await Promise.all([
+    const [{ data: a }, { data: b }, { data: cm }] = await Promise.all([
       supabase.from('agency_profiles').select('*').eq('id', id).maybeSingle(),
-      supabase.rpc('admin_agency_clients' as never, { _agency_id: id } as never),
       supabase.rpc('agency_balance' as never, { _agency_id: id } as never),
       supabase.rpc('admin_agency_commissions' as never, { _agency_id: id } as never),
     ]);
     setAgency((a as Agency) || null);
-    setClients((c as unknown as ClientRow[]) || []);
     setBalance((b as unknown as Balance) || null);
     setCommissions((cm as unknown as CommissionRow[]) || []);
     setRate(a && (a as any).commission_rate != null ? String((a as any).commission_rate) : '');
@@ -209,77 +191,33 @@ export default function AgencyDetail() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardContent className="p-0">
-          <div className="border-b p-4 font-bold">Onboarded dropshippers ({num(balance?.clients)})</div>
-          {clients.length === 0 ? (
-            <p className="p-8 text-center text-sm text-muted-foreground">No dropshippers onboarded yet.</p>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Seller</TableHead>
-                  <TableHead>Joined</TableHead>
-                  <TableHead className="text-right">Orders</TableHead>
-                  <TableHead className="text-right">Commission earned</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {clients.map((c) => (
-                  <TableRow key={c.client_user_id}>
-                    <TableCell>
-                      <div className="font-medium">{c.display_name}</div>
-                      <div className="text-xs text-muted-foreground">{c.email || '—'}</div>
-                    </TableCell>
-                    <TableCell>{new Date(c.joined_at).toLocaleDateString()}</TableCell>
-                    <TableCell className="text-right">{c.orders}</TableCell>
-                    <TableCell className="text-right font-semibold">{sar(c.earned)}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </CardContent>
-      </Card>
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card>
+          <CardContent className="flex items-center justify-between gap-4 p-6">
+            <div>
+              <div className="flex items-center gap-2 font-bold"><Users className="h-4 w-4" /> Onboarded dropshippers</div>
+              <p className="mt-1 text-2xl font-black">{num(balance?.clients)}</p>
+              <p className="text-xs text-muted-foreground">Sellers linked with this invite code</p>
+            </div>
+            <Button asChild>
+              <Link to={`/agency-admin/partners/${id}/clients`}>View <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </CardContent>
+        </Card>
 
-      <Card>
-        <CardContent className="p-0">
-          <div className="border-b p-4 font-bold">Commission ledger ({commissions.length})</div>
-          {commissions.length === 0 ? (
-            <p className="p-8 text-center text-sm text-muted-foreground">No commission entries yet.</p>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Order</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Order total</TableHead>
-                  <TableHead className="text-right">Rate</TableHead>
-                  <TableHead className="text-right">Commission</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {commissions.map((c) => (
-                  <TableRow key={c.id}>
-                    <TableCell className="font-medium">{c.order_ref || '—'}</TableCell>
-                    <TableCell>{new Date(c.created_at).toLocaleDateString()}</TableCell>
-                    <TableCell>
-                      <Badge className={commissionTone[c.status] || ''}>{c.status}</Badge>
-                      {c.reversal_reason && (
-                        <div className="mt-1 text-xs text-muted-foreground">{c.reversal_reason}</div>
-                      )}
-                    </TableCell>
-                    <TableCell className="text-right">{c.order_total_sar != null ? sar(c.order_total_sar) : '—'}</TableCell>
-                    <TableCell className="text-right">{c.rate_percent != null ? `${c.rate_percent}%` : '—'}</TableCell>
-                    <TableCell className="text-right font-semibold">{sar(c.amount_sar)}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </CardContent>
-      </Card>
+        <Card>
+          <CardContent className="flex items-center justify-between gap-4 p-6">
+            <div>
+              <div className="flex items-center gap-2 font-bold"><Receipt className="h-4 w-4" /> Commission ledger</div>
+              <p className="mt-1 text-2xl font-black">{commissions.length}</p>
+              <p className="text-xs text-muted-foreground">Entries across all orders</p>
+            </div>
+            <Button asChild>
+              <Link to={`/agency-admin/partners/${id}/commissions`}>View <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </>
   );
 }
