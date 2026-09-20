@@ -150,17 +150,6 @@ export const adminNavigation: NavSection[] = [
       { title: 'Support Tickets', url: '/admin/tickets', icon: TicketIcon, badgeKey: 'tickets', module: 'tickets' },
       { title: 'Reports', url: '/admin/reports', icon: BarChart3, module: 'reports' },
       { title: 'Visitor Analytics', url: '/admin/analytics', icon: Activity, module: 'analytics' },
-      {
-        title: 'Agencies & VAs',
-        url: '/agency-admin',
-        icon: Handshake,
-        module: 'agencies',
-        children: [
-          { title: 'Agencies & VAs', url: '/agency-admin/partners', module: 'agencies' },
-          { title: 'Agency Payouts', url: '/agency-admin/payouts', module: 'agencies' },
-          { title: 'Programme Settings', url: '/agency-admin/settings', module: 'agencies' },
-        ],
-      },
     ],
   },
   {
