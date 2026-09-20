@@ -74,14 +74,16 @@ export default function AgencyDetail() {
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
-    const [{ data: a }, { data: c }, { data: b }] = await Promise.all([
+    const [{ data: a }, { data: c }, { data: b }, { data: cm }] = await Promise.all([
       supabase.from('agency_profiles').select('*').eq('id', id).maybeSingle(),
       supabase.rpc('admin_agency_clients' as never, { _agency_id: id } as never),
       supabase.rpc('agency_balance' as never, { _agency_id: id } as never),
+      supabase.rpc('admin_agency_commissions' as never, { _agency_id: id } as never),
     ]);
     setAgency((a as Agency) || null);
     setClients((c as unknown as ClientRow[]) || []);
     setBalance((b as unknown as Balance) || null);
+    setCommissions((cm as unknown as CommissionRow[]) || []);
     setRate(a && (a as any).commission_rate != null ? String((a as any).commission_rate) : '');
   }, [id]);
 
@@ -232,6 +234,45 @@ export default function AgencyDetail() {
                     <TableCell>{new Date(c.joined_at).toLocaleDateString()}</TableCell>
                     <TableCell className="text-right">{c.orders}</TableCell>
                     <TableCell className="text-right font-semibold">{sar(c.earned)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-0">
+          <div className="border-b p-4 font-bold">Commission ledger ({commissions.length})</div>
+          {commissions.length === 0 ? (
+            <p className="p-8 text-center text-sm text-muted-foreground">No commission entries yet.</p>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Order</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Order total</TableHead>
+                  <TableHead className="text-right">Rate</TableHead>
+                  <TableHead className="text-right">Commission</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {commissions.map((c) => (
+                  <TableRow key={c.id}>
+                    <TableCell className="font-medium">{c.order_ref || '—'}</TableCell>
+                    <TableCell>{new Date(c.created_at).toLocaleDateString()}</TableCell>
+                    <TableCell>
+                      <Badge className={commissionTone[c.status] || ''}>{c.status}</Badge>
+                      {c.reversal_reason && (
+                        <div className="mt-1 text-xs text-muted-foreground">{c.reversal_reason}</div>
+                      )}
+                    </TableCell>
+                    <TableCell className="text-right">{c.order_total_sar != null ? sar(c.order_total_sar) : '—'}</TableCell>
+                    <TableCell className="text-right">{c.rate_percent != null ? `${c.rate_percent}%` : '—'}</TableCell>
+                    <TableCell className="text-right font-semibold">{sar(c.amount_sar)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
