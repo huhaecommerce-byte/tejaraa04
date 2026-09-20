@@ -73,7 +73,7 @@ const AgencyLayout = () => {
       ro.disconnect();
       window.removeEventListener('resize', measure);
     };
-  });
+  }, [user]);
 
 
   if (isLoading || agencyLoading || access.loading) {
