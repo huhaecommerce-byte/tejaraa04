@@ -3,9 +3,9 @@ import { Globe2 } from 'lucide-react';
 import { useLocale } from '@/i18n/LocaleProvider';
 
 const ACTIVE_PILL =
-  'flex items-center gap-1.5 rounded-full bg-retail-card px-3 py-1 text-[11px] font-bold text-retail-dark-green shadow-sm';
+  'flex items-center gap-1 rounded-full bg-retail-card px-2 py-0.5 text-[10px] font-bold text-retail-dark-green shadow-sm sm:gap-1.5 sm:px-3 sm:py-1 sm:text-[11px]';
 const INACTIVE_PILL =
-  'flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-primary-foreground/75 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground';
+  'flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold text-primary-foreground/75 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground sm:gap-1.5 sm:px-3 sm:py-1 sm:text-[11px]';
 
 /**
  * Shared English/العربية pill toggle used across all four storefront headers
