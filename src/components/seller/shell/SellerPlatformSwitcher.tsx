@@ -51,7 +51,7 @@ export function SellerPlatformSwitcher({
             aria-current={current ? 'page' : undefined}
             className={cn(
               'relative items-center gap-1.5 font-bold tracking-tight transition-colors',
-              layout === 'inline' ? 'hidden px-4 py-2 text-sm sm:inline-flex lg:px-6' : 'grid w-full rounded-md px-2.5 py-2 text-sm font-bold',
+              layout === 'inline' ? 'hidden px-4 py-2 text-sm sm:inline-flex lg:px-6' : 'flex w-full items-center rounded-lg px-3 py-3 text-sm font-bold',
               onDark
                 ? current
                   ? layout === 'inline'
