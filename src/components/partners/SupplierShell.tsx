@@ -64,7 +64,7 @@ function getMobileNav(t: (key: any) => string) {
 }
 
 function SignOutItem({ onSignOut, onNavigate }: { onSignOut?: () => void; onNavigate?: () => void }) {
-  const { t, dir } = useLocale();
+  const { t } = useLocale();
   if (!onSignOut) return null;
   return (
     <button
@@ -79,7 +79,7 @@ function SignOutItem({ onSignOut, onNavigate }: { onSignOut?: () => void; onNavi
 }
 
 function StorefrontButton({ onNavigate }: { onNavigate?: () => void }) {
-  const { t } = useLocale();
+  const { t, dir } = useLocale();
   return (
     <a
       href="/"
