@@ -152,12 +152,13 @@ export const adminNavigation: NavSection[] = [
       { title: 'Visitor Analytics', url: '/admin/analytics', icon: Activity, module: 'analytics' },
       {
         title: 'Agencies & VAs',
-        url: '/admin/agencies',
+        url: '/agency-admin',
         icon: Handshake,
         module: 'agencies',
         children: [
-          { title: 'Agency Payouts', url: '/admin/agency-payouts', module: 'agencies' },
-          { title: 'Programme Settings', url: '/admin/agency-settings', module: 'agencies' },
+          { title: 'Agencies & VAs', url: '/agency-admin/partners', module: 'agencies' },
+          { title: 'Agency Payouts', url: '/agency-admin/payouts', module: 'agencies' },
+          { title: 'Programme Settings', url: '/agency-admin/settings', module: 'agencies' },
         ],
       },
     ],
