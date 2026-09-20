@@ -22,6 +22,7 @@ import NotFound from "@/pages/NotFound";
 import { installFunctionsCompat } from "@/lib/functions-compat";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
+import { LanguageGate } from "@/components/LanguageGate";
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
@@ -129,6 +130,7 @@ function RootComponent() {
                 {/* Required: nested routes render here. */}
                 <Outlet />
                 <MobileBottomNav />
+                <LanguageGate />
                 <PageViewTracker />
               </CartProvider>
             </AnnouncementProvider>
