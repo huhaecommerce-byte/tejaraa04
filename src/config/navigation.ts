@@ -245,3 +245,28 @@ export function filterNavigationByModules(
   }
   return out;
 }
+
+/** Sidebar for the standalone Agencies & VAs admin portal (/agency-admin). */
+export const agencyAdminNavigation: NavSection[] = [
+  {
+    id: 'agency-admin',
+    label: 'Agency programme',
+    icon: Handshake,
+    accent: 'violet',
+    items: [
+      { title: 'Overview', url: '/agency-admin', icon: LayoutDashboard },
+      { title: 'Agencies & VAs', url: '/agency-admin/partners', icon: Handshake },
+      { title: 'Payout requests', url: '/agency-admin/payouts', icon: Wallet },
+      { title: 'Programme settings', url: '/agency-admin/settings', icon: Cog },
+    ],
+  },
+  {
+    id: 'agency-admin-links',
+    label: 'Elsewhere',
+    icon: Briefcase,
+    accent: 'slate',
+    items: [
+      { title: 'Main admin panel', url: '/admin', icon: Settings },
+    ],
+  },
+];

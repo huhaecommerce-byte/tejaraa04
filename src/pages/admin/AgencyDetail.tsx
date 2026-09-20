@@ -136,7 +136,7 @@ export default function AgencyDetail() {
         subtitle={`${agency.contact_name} · ${agency.email} · code ${agency.invite_code}`}
         actions={
           <Button variant="outline" asChild>
-            <Link to="/admin/agencies"><ArrowLeft className="mr-2 h-4 w-4" /> All agencies</Link>
+            <Link to="/agency-admin/partners"><ArrowLeft className="mr-2 h-4 w-4" /> All agencies</Link>
           </Button>
         }
       />

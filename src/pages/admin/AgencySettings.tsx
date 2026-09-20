@@ -63,7 +63,7 @@ export default function AgencySettings() {
         subtitle="Defaults that apply to every Agencies & VAs partner unless a custom rate is set on their profile."
         actions={
           <Button variant="outline" asChild>
-            <Link to="/admin/agencies"><ArrowLeft className="mr-2 h-4 w-4" /> All agencies</Link>
+            <Link to="/agency-admin/partners"><ArrowLeft className="mr-2 h-4 w-4" /> All agencies</Link>
           </Button>
         }
       />
