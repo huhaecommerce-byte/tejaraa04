@@ -1,7 +1,6 @@
-import { ExternalLink, Handshake, LogOut } from 'lucide-react';
+import { Handshake, LogOut } from 'lucide-react';
 import { Link, useNavigate } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
-import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
 import { SellerPlatformSwitcher } from '@/components/seller/shell/SellerPlatformSwitcher';
