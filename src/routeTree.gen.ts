@@ -36,6 +36,7 @@ import { Route as AccountProfileRouteImport } from './routes/account/profile'
 import { Route as AccountWishlistRouteImport } from './routes/account/wishlist'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminAgencyPayoutsRouteImport } from './routes/admin/agency-payouts'
+import { Route as AdminAgencySettingsRouteImport } from './routes/admin/agency-settings'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin/analytics'
 import { Route as AdminAuditLogRouteImport } from './routes/admin/audit-log'
 import { Route as AdminCatalogHubRouteImport } from './routes/admin/catalog-hub'
@@ -391,6 +392,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AdminAgencyPayoutsRoute = AdminAgencyPayoutsRouteImport.update({
   id: '/agency-payouts',
   path: '/agency-payouts',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminAgencySettingsRoute = AdminAgencySettingsRouteImport.update({
+  id: '/agency-settings',
+  path: '/agency-settings',
   getParentRoute: () => AdminRouteRoute,
 } as any)
 const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
@@ -1587,6 +1593,7 @@ export interface FileRoutesByFullPath {
   '/account/profile': typeof AccountProfileRoute
   '/account/wishlist': typeof AccountWishlistRoute
   '/admin/agency-payouts': typeof AdminAgencyPayoutsRoute
+  '/admin/agency-settings': typeof AdminAgencySettingsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/catalog-hub': typeof AdminCatalogHubRoute
@@ -1830,6 +1837,7 @@ export interface FileRoutesByTo {
   '/account/profile': typeof AccountProfileRoute
   '/account/wishlist': typeof AccountWishlistRoute
   '/admin/agency-payouts': typeof AdminAgencyPayoutsRoute
+  '/admin/agency-settings': typeof AdminAgencySettingsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/catalog-hub': typeof AdminCatalogHubRoute
@@ -2077,6 +2085,7 @@ export interface FileRoutesById {
   '/account/profile': typeof AccountProfileRoute
   '/account/wishlist': typeof AccountWishlistRoute
   '/admin/agency-payouts': typeof AdminAgencyPayoutsRoute
+  '/admin/agency-settings': typeof AdminAgencySettingsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/catalog-hub': typeof AdminCatalogHubRoute
@@ -2329,6 +2338,7 @@ export interface FileRouteTypes {
     | '/account/profile'
     | '/account/wishlist'
     | '/admin/agency-payouts'
+    | '/admin/agency-settings'
     | '/admin/analytics'
     | '/admin/audit-log'
     | '/admin/catalog-hub'
@@ -2572,6 +2582,7 @@ export interface FileRouteTypes {
     | '/account/profile'
     | '/account/wishlist'
     | '/admin/agency-payouts'
+    | '/admin/agency-settings'
     | '/admin/analytics'
     | '/admin/audit-log'
     | '/admin/catalog-hub'
@@ -2818,6 +2829,7 @@ export interface FileRouteTypes {
     | '/account/profile'
     | '/account/wishlist'
     | '/admin/agency-payouts'
+    | '/admin/agency-settings'
     | '/admin/analytics'
     | '/admin/audit-log'
     | '/admin/catalog-hub'
@@ -3342,6 +3354,13 @@ declare module '@tanstack/react-router' {
       path: '/agency-payouts'
       fullPath: '/admin/agency-payouts'
       preLoaderRoute: typeof AdminAgencyPayoutsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/agency-settings': {
+      id: '/admin/agency-settings'
+      path: '/agency-settings'
+      fullPath: '/admin/agency-settings'
+      preLoaderRoute: typeof AdminAgencySettingsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/analytics': {
@@ -4916,6 +4935,7 @@ const AccountRouteRouteWithChildren = AccountRouteRoute._addFileChildren(
 
 interface AdminRouteRouteChildren {
   AdminAgencyPayoutsRoute: typeof AdminAgencyPayoutsRoute
+  AdminAgencySettingsRoute: typeof AdminAgencySettingsRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminAuditLogRoute: typeof AdminAuditLogRoute
   AdminCatalogHubRoute: typeof AdminCatalogHubRoute
@@ -4957,6 +4977,7 @@ interface AdminRouteRouteChildren {
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminAgencyPayoutsRoute: AdminAgencyPayoutsRoute,
+  AdminAgencySettingsRoute: AdminAgencySettingsRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminAuditLogRoute: AdminAuditLogRoute,
   AdminCatalogHubRoute: AdminCatalogHubRoute,
