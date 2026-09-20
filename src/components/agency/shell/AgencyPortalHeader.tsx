@@ -18,7 +18,7 @@ export function AgencyPortalHeader() {
       {/* ROW 1 — platform switcher / utility */}
       <div className="bg-retail-dark-green text-white">
         <SellerContainer className="flex h-11 items-center justify-between gap-3">
-          <SellerPlatformSwitcher />
+          <SellerPlatformSwitcher current="agencies" />
           <LanguageToggle />
         </SellerContainer>
       </div>
