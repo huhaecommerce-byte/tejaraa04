@@ -12,6 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { money } from '@/lib/retailPricing';
 import { cn } from '@/lib/utils';
 import type { ShippingAddress } from '@/pages/customer/AddressBook';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 type ShopOrder = {
   id: string;
@@ -35,6 +36,7 @@ const STATUS_PROGRESS: Record<string, number> = {
 };
 
 export default function AccountOverview() {
+  const { t } = useLocale();
   const { user } = useAuth();
   const { favs } = useFavourites();
   const [orders, setOrders] = useState<ShopOrder[]>([]);
@@ -93,9 +95,9 @@ export default function AccountOverview() {
     .toUpperCase() || 'U';
 
   const summaryCards = [
-    { label: 'Orders', value: orders.length, icon: Package, iconColor: 'text-retail-dark-green', to: '/account/orders' },
-    { label: 'Wishlist', value: favs.size, icon: Heart, iconColor: 'text-retail-gold', to: '/account/wishlist' },
-    { label: 'Addresses', value: addressCount, icon: MapPin, iconColor: 'text-retail-dark-green', to: '/account/addresses' },
+    { label: t('shopx.account.orders'), value: orders.length, icon: Package, iconColor: 'text-retail-dark-green', to: '/account/orders' },
+    { label: t('shopx.account.wishlist'), value: favs.size, icon: Heart, iconColor: 'text-retail-gold', to: '/account/wishlist' },
+    { label: t('shopx.account.addresses'), value: addressCount, icon: MapPin, iconColor: 'text-retail-dark-green', to: '/account/addresses' },
   ];
 
   return (
@@ -103,7 +105,7 @@ export default function AccountOverview() {
       {/* Header */}
       <header className="flex items-center justify-between gap-3">
         <h1 className="font-display text-lg font-bold text-retail-dark-green truncate">
-          Welcome, {user?.name}
+          {t('shopx.account.welcome', { name: user?.name || '' })}
         </h1>
         <Avatar className="h-9 w-9 border-2 border-retail-gold/30">
           <AvatarImage src={user?.avatar_url || ''} alt={user?.name} />
@@ -139,9 +141,9 @@ export default function AccountOverview() {
       ) : latestOrder ? (
         <section>
           <div className="mb-1.5 flex items-center justify-between">
-            <h2 className="font-display text-sm font-bold text-retail-dark-green">Latest order</h2>
+            <h2 className="font-display text-sm font-bold text-retail-dark-green">{t('shopx.account.latestOrder')}</h2>
             <Button asChild variant="ghost" size="sm" className="h-auto px-1 py-0 text-xs font-bold text-retail-gold hover:text-retail-gold">
-              <Link to="/account/orders">View all</Link>
+              <Link to="/account/orders">{t('shopx.account.viewAll')}</Link>
             </Button>
           </div>
           <Card className="border-retail-border bg-card">
@@ -166,7 +168,7 @@ export default function AccountOverview() {
                 />
               </div>
               <p className="text-[11px] text-retail-muted">
-                {latestStatus === 'delivered' ? 'Delivered' : latestStatus === 'shipped' ? 'On the way' : 'Order received'}
+                {latestStatus === 'delivered' ? t('shopx.account.delivered') : latestStatus === 'shipped' ? t('shopx.account.onTheWay') : t('shopx.account.orderReceived')}
               </p>
             </CardContent>
           </Card>
@@ -177,7 +179,7 @@ export default function AccountOverview() {
       <div className="grid gap-3 md:grid-cols-2">
         {/* Shipping address */}
         <section>
-          <h2 className="mb-1.5 font-display text-sm font-bold text-retail-dark-green">Shipping address</h2>
+          <h2 className="mb-1.5 font-display text-sm font-bold text-retail-dark-green">{t('shopx.account.shippingAddress')}</h2>
           <Card className="border-retail-border bg-card">
             <CardContent className="p-3">
               {defaultAddress ? (
@@ -195,7 +197,7 @@ export default function AccountOverview() {
                 </div>
               ) : (
                 <div className="text-center py-3">
-                  <p className="text-xs text-retail-muted">No default address saved yet.</p>
+                  <p className="text-xs text-retail-muted">{t('shopx.account.noDefaultAddress')}</p>
                 </div>
               )}
               <Button
@@ -205,7 +207,7 @@ export default function AccountOverview() {
                 className="mt-2 h-auto p-0 text-xs font-bold text-retail-gold hover:text-retail-gold"
               >
                 <Link to="/account/addresses" className="flex items-center gap-1">
-                  Manage addresses
+                  {t('shopx.account.manageAddresses')}
                   <ArrowRight className="h-3 w-3" />
                 </Link>
               </Button>
@@ -215,21 +217,21 @@ export default function AccountOverview() {
 
         {/* Account security */}
         <section>
-          <h2 className="mb-1.5 font-display text-sm font-bold text-retail-dark-green">Account security</h2>
+          <h2 className="mb-1.5 font-display text-sm font-bold text-retail-dark-green">{t('shopx.account.accountSecurity')}</h2>
           <Card className="border-retail-border bg-card">
             <CardContent className="p-3 space-y-2">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-retail-green" />
                 <span className="text-xs font-bold text-retail-dark-green">{user?.email}</span>
                 <span className="ml-auto rounded bg-retail-gold/10 px-1.5 py-0.5 text-[10px] font-bold text-retail-gold">
-                  Verified
+                  {t('shopx.account.verified')}
                 </span>
               </div>
               <p className="text-xs text-retail-muted">
-                Phone: <span className="font-medium text-retail-dark-green">{profile?.phone || 'Not added'}</span>
+                {t('shopx.account.phone')} <span className="font-medium text-retail-dark-green">{profile?.phone || t('shopx.account.notAdded')}</span>
               </p>
               <Button asChild variant="outline" size="sm" className="w-full h-8 text-xs font-bold">
-                <Link to="/account/profile">Update profile</Link>
+                <Link to="/account/profile">{t('shopx.account.updateProfile')}</Link>
               </Button>
             </CardContent>
           </Card>

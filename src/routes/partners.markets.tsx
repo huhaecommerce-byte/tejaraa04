@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { SUPPLIER_ORIGIN } from '@/lib/siteHosts';
 import { SupplierContentPage } from '@/components/supplier/common/SupplierContentPage';
 import { SupplierHeroPanel } from '@/components/supplier/common/SupplierPageHero';
@@ -27,22 +28,23 @@ export const Route = createFileRoute('/partners/markets')({
 });
 
 function SupplierMarketsPage() {
+  const { t } = useLocale();
   return (
     <SupplierContentPage
-      crumbs={[{ label: 'Markets & Channels' }]}
+      crumbs={[{ label: t('supplier.pages.crumbs.markets') }]}
       currentPath="/partners/markets"
-      eyebrow="Markets and channels"
-      title="Markets and sales channels"
-      intro="Where products from approved suppliers may be offered, and the regions our supplier partnerships cover today."
-      primary={{ label: 'Become a Supplier', to: supplierApplyRoute }}
-      secondary={{ label: 'Supply models', to: '/partners/supply-models' }}
+      eyebrow={t('supplier.pages.markets.eyebrow')}
+      title={t('supplier.pages.markets.heading')}
+      intro={t('supplier.pages.markets.intro')}
+      primary={{ label: t('supplier.pages.becomeSupplier'), to: supplierApplyRoute }}
+      secondary={{ label: t('supplier.pages.supplyModelsLink'), to: '/partners/supply-models' }}
       visual={
         <SupplierHeroPanel
-          title="Channels"
+          title={t('supplier.pages.markets.visualTitle')}
           items={[
-            'Tejaraa Shop retail customers',
-            'E-commerce sellers we supply',
-            'Business buyers in supported markets',
+            t('supplier.pages.markets.visual1'),
+            t('supplier.pages.markets.visual2'),
+            t('supplier.pages.markets.visual3'),
           ]}
         />
       }

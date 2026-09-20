@@ -3,6 +3,7 @@ import { ArrowLeft, CheckCircle2, ShieldCheck, Sparkles, Users, Zap } from 'luci
 import { Link } from '@/lib/router-compat';
 import { BrandLogo } from '@/components/BrandLogo';
 import sellerWorkspaceImage from '@/assets/seller/seller-auth-warehouse.jpg';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 interface SellerAuthShellProps {
   eyebrow: string;
@@ -13,20 +14,20 @@ interface SellerAuthShellProps {
   wide?: boolean;
 }
 
-const proofPoints = [
-  { icon: ShieldCheck, label: 'FBA & FBN compliance handled' },
-  { icon: Zap, label: 'Same-day dispatch across KSA' },
-  { icon: Users, label: '500+ sellers grow with Tejaraa' },
-];
-
 export function SellerAuthShell({ eyebrow, title, subtitle, children, footer, wide = false }: SellerAuthShellProps) {
+  const { t, dir } = useLocale();
+  const proofPoints = [
+    { icon: ShieldCheck, label: t('selling.authShell.proof1') },
+    { icon: Zap, label: t('selling.authShell.proof2') },
+    { icon: Users, label: t('selling.authShell.proof3') },
+  ];
   return (
-    <div className="retail-theme min-h-[100dvh] bg-background text-foreground">
+    <div dir={dir} className="retail-theme min-h-[100dvh] bg-background text-foreground">
       <div className="grid min-h-[100dvh] lg:grid-cols-[minmax(0,0.92fr)_minmax(560px,1.08fr)]">
         <aside className="relative hidden min-h-[100dvh] overflow-hidden bg-retail-dark-green text-primary-foreground lg:block">
           <img
             src={sellerWorkspaceImage}
-            alt="A Saudi e-commerce seller preparing orders in a fulfilment workspace"
+            alt={t('selling.authShell.imageAlt')}
             width={1408}
             height={1024}
             className="absolute inset-0 h-full w-full object-cover"
@@ -39,13 +40,13 @@ export function SellerAuthShell({ eyebrow, title, subtitle, children, footer, wi
             </Link>
             <div className="my-auto max-w-lg py-12">
               <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
-                <Sparkles className="h-4 w-4" /> Dropshipping &amp; Selling
+                <Sparkles className="h-4 w-4" /> {t('selling.authShell.badge')}
               </span>
               <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight xl:text-5xl">
-                You sell more.<br />We handle the rest.
+                {t('selling.authShell.heading1')}<br />{t('selling.authShell.heading2')}
               </h2>
               <p className="mt-5 max-w-md text-base leading-7 text-primary-foreground/80">
-                Sourcing, prep, and fulfilment from one dashboard built for Amazon and Noon sellers in Saudi Arabia.
+                {t('selling.authShell.lead')}
               </p>
               <div className="mt-8 grid gap-3">
                 {proofPoints.map((item) => (
@@ -56,21 +57,21 @@ export function SellerAuthShell({ eyebrow, title, subtitle, children, footer, wi
                 ))}
               </div>
             </div>
-            <p className="text-xs text-primary-foreground/65">© 2026 Tejaraa.com · Built for KSA sellers</p>
+            <p className="text-xs text-primary-foreground/65">{t('selling.authShell.copyright')}</p>
           </div>
         </aside>
 
         <main className="flex min-h-[100dvh] flex-col bg-retail-page px-4 py-5 sm:px-8 lg:px-10 lg:py-8 xl:px-16">
           <div className="flex items-center justify-between lg:hidden">
             <Link to="/selling"><BrandLogo variant="storefront" /></Link>
-            <Link to="/selling" aria-label="Back to selling programme" className="flex h-10 w-10 items-center justify-center rounded-md border border-retail-border bg-retail-card text-retail-dark-green">
+            <Link to="/selling" aria-label={t('selling.authShell.backAria')} className="flex h-10 w-10 items-center justify-center rounded-md border border-retail-border bg-retail-card text-retail-dark-green">
               <ArrowLeft className="h-4 w-4" />
             </Link>
           </div>
           <div className="flex flex-1 items-center justify-center py-8 lg:py-10">
             <div className={wide ? 'w-full max-w-2xl' : 'w-full max-w-md'}>
               <Link to="/selling" className="mb-7 inline-flex w-fit items-center gap-2 rounded-lg bg-primary px-3 py-2 text-xs font-bold text-primary-foreground shadow-button transition-transform hover:-translate-y-0.5">
-                <ArrowLeft className="h-4 w-4" /> Back to programme
+                <ArrowLeft className="h-4 w-4" /> {t('selling.authShell.backToProgramme')}
               </Link>
               <div className="mb-6">
                 <p className="text-xs font-bold uppercase tracking-wider text-retail-medium-green">{eyebrow}</p>
@@ -82,7 +83,7 @@ export function SellerAuthShell({ eyebrow, title, subtitle, children, footer, wi
             </div>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-retail-muted">
-            {['Free to start', 'Secure seller access', 'Built for KSA sellers'].map((item) => (
+            {[t('selling.authShell.free'), t('selling.authShell.secure'), t('selling.authShell.builtFor')].map((item) => (
               <span key={item} className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-retail-green" />{item}</span>
             ))}
           </div>

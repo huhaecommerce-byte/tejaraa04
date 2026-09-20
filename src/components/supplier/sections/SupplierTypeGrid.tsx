@@ -23,13 +23,13 @@ export function SupplierTypeGrid() {
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-retail-light-green text-retail-green">
                 <type.icon className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="mt-4 text-base font-bold text-retail-dark-green">{type.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-retail-muted">{type.text}</p>
+              <h3 className="mt-4 text-base font-bold text-retail-dark-green">{t(type.title)}</h3>
+              <p className="mt-2 text-sm leading-6 text-retail-muted">{t(type.text)}</p>
               <Link
                 to={supplierApplyPath}
                 className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-bold text-retail-green hover:underline"
               >
-                {t('supplier.typeGrid.applyPrefix', { type: type.title.toLowerCase().replace(/s$/, '') })}
+                {t('supplier.typeGrid.applyPrefix', { type: t(type.title).toLowerCase().replace(/s$/, '') })}
                 <ArrowRight className="h-3.5 w-3.5" aria-hidden />
               </Link>
             </article>

@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { SUPPLIER_ORIGIN } from '@/lib/siteHosts';
 import { SupplierContentPage } from '@/components/supplier/common/SupplierContentPage';
 import { SupplierHeroPanel } from '@/components/supplier/common/SupplierPageHero';
@@ -27,23 +28,24 @@ export const Route = createFileRoute('/partners/how-it-works')({
 });
 
 function HowItWorksPage() {
+  const { t } = useLocale();
   return (
     <SupplierContentPage
-      crumbs={[{ label: 'How It Works' }]}
+      crumbs={[{ label: t('supplier.pages.crumbs.howItWorks') }]}
       currentPath="/partners/how-it-works"
-      eyebrow="Supplier process"
-      title="How supplier partnership works"
-      intro="What happens from the moment you apply to the moment you supply orders — and what our team reviews at each stage."
-      primary={{ label: 'Become a Supplier', to: supplierApplyRoute }}
-      secondary={{ label: 'See requirements', to: '/partners/requirements' }}
+      eyebrow={t('supplier.pages.howItWorks.eyebrow')}
+      title={t('supplier.pages.howItWorks.heading')}
+      intro={t('supplier.pages.howItWorks.intro')}
+      primary={{ label: t('supplier.pages.becomeSupplier'), to: supplierApplyRoute }}
+      secondary={{ label: t('supplier.pages.seeRequirements'), to: '/partners/requirements' }}
       visual={
         <SupplierHeroPanel
-          title="The short version"
+          title={t('supplier.pages.howItWorks.visualTitle')}
           items={[
-            'Apply with your company and product details',
-            'Business and product review by our team',
-            'Commercial terms agreed with your company',
-            'Approved products onboarded and supplied',
+            t('supplier.pages.howItWorks.visual1'),
+            t('supplier.pages.howItWorks.visual2'),
+            t('supplier.pages.howItWorks.visual3'),
+            t('supplier.pages.howItWorks.visual4'),
           ]}
         />
       }

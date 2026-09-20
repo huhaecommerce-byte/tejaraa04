@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { SUPPLIER_ORIGIN } from '@/lib/siteHosts';
 import { SupplierContentPage } from '@/components/supplier/common/SupplierContentPage';
 import { SupplierHeroPanel } from '@/components/supplier/common/SupplierPageHero';
@@ -27,23 +28,24 @@ export const Route = createFileRoute('/partners/supply-models')({
 });
 
 function SupplyModelsPage() {
+  const { t } = useLocale();
   return (
     <SupplierContentPage
-      crumbs={[{ label: 'Supply Models' }]}
+      crumbs={[{ label: t('supplier.pages.crumbs.supplyModels') }]}
       currentPath="/partners/supply-models"
-      eyebrow="Ways to supply"
-      title="Supply models"
-      intro="There is more than one way to work with Tejaraa. Which one applies depends on your business, your products and what is agreed during review."
-      primary={{ label: 'Become a Supplier', to: supplierApplyRoute }}
-      secondary={{ label: 'View categories', to: '/partners/categories' }}
+      eyebrow={t('supplier.pages.supplyModels.eyebrow')}
+      title={t('supplier.pages.supplyModels.heading')}
+      intro={t('supplier.pages.supplyModels.intro')}
+      primary={{ label: t('supplier.pages.becomeSupplier'), to: supplierApplyRoute }}
+      secondary={{ label: t('supplier.pages.viewCategories'), to: '/partners/categories' }}
       visual={
         <SupplierHeroPanel
-          title="Models in use"
+          title={t('supplier.pages.supplyModels.visualTitle')}
           items={[
-            'Wholesale supply on agreed terms',
-            'Distributor and brand supply',
-            'Catalogue-based supply for wide ranges',
-            'Purchase order supply where applicable',
+            t('supplier.pages.supplyModels.visual1'),
+            t('supplier.pages.supplyModels.visual2'),
+            t('supplier.pages.supplyModels.visual3'),
+            t('supplier.pages.supplyModels.visual4'),
           ]}
         />
       }

@@ -32,8 +32,8 @@ export function SupplierProcess() {
               </div>
               <div className="min-w-0 pb-1">
                 <span className="text-xs font-bold tracking-[0.14em] text-white/50 xl:hidden">{t('supplier.process.step', { n: index + 1 })}</span>
-                <h3 className="mt-1 text-base font-bold text-white xl:mt-0">{step.title}</h3>
-                <p className="mt-1.5 text-sm leading-6 text-white/70">{step.text}</p>
+                <h3 className="mt-1 text-base font-bold text-white xl:mt-0">{t(step.title)}</h3>
+                <p className="mt-1.5 text-sm leading-6 text-white/70">{t(step.text)}</p>
               </div>
             </li>
           ))}

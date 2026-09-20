@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SellerContainer } from '@/components/seller/common/SellerContainer';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 interface ServiceHeroProps {
   icon: LucideIcon;
@@ -21,16 +22,18 @@ interface ServiceHeroProps {
  * Deliberately shorter than the /selling homepage hero.
  */
 export function ServiceHero({
-  icon: Icon, eyebrow = 'Seller service', title, lead, tags, flow, flowCaption, secondaryLabel,
+  icon: Icon, eyebrow, title, lead, tags, flow, flowCaption, secondaryLabel,
 }: ServiceHeroProps) {
+  const { t, dir } = useLocale();
+  const resolvedEyebrow = eyebrow ?? t('selling.svc.ui.eyebrowService');
   return (
-    <section className="hero-surface relative flex items-center overflow-hidden py-9 text-white lg:py-11">
+    <section dir={dir} className="hero-surface relative flex items-center overflow-hidden py-9 text-white lg:py-11">
       <div aria-hidden className="hero-grid pointer-events-none absolute inset-0 opacity-15" />
       <SellerContainer className="relative grid items-center gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-10">
         <div className="min-w-0">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-retail-gold">
             <Icon className="h-3.5 w-3.5" aria-hidden />
-            {eyebrow}
+            {resolvedEyebrow}
           </span>
           <h1 className="mt-3 text-3xl font-extrabold leading-[1.12] sm:text-4xl lg:text-[2.45rem]">
             {title}
@@ -40,7 +43,7 @@ export function ServiceHero({
           <div className="mt-5 flex flex-wrap gap-3">
             <Button asChild size="lg" className="bg-white font-semibold text-retail-dark-green hover:bg-retail-light-green">
               <Link to="/selling/signup">
-                Get Started
+                {t('selling.svc.ui.getStarted')}
                 <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden />
               </Link>
             </Button>

@@ -3,16 +3,18 @@ import { ArrowRight } from 'lucide-react';
 import { SupplierContainer } from '@/components/supplier/common/SupplierContainer';
 import { SupplierSectionHeading } from '@/components/supplier/common/SupplierSectionHeading';
 import { supplyModelDetails, supplierApprovalDisclaimer } from '@/data/supplierPages';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 /** Detailed explanation of the ways Tejaraa works with suppliers. */
 export function SupplyModelSections() {
+  const { t } = useLocale();
   return (
     <section className="bg-retail-page py-11 lg:py-14">
       <SupplierContainer>
         <SupplierSectionHeading
-          eyebrow="The models"
-          title="How Tejaraa works with suppliers"
-          description="More than one model can apply over time, depending on your products and what is agreed during review."
+          eyebrow={t('supplier.modelSections.eyebrow')}
+          title={t('supplier.modelSections.title')}
+          description={t('supplier.modelSections.description')}
         />
 
         <div className="mt-7 grid gap-4 lg:grid-cols-2">
@@ -23,15 +25,15 @@ export function SupplyModelSections() {
                   <model.icon className="h-5 w-5" aria-hidden />
                 </span>
                 <div className="min-w-0">
-                  <h3 className="text-base font-bold text-retail-dark-green">{model.title}</h3>
-                  <p className="mt-1 text-xs font-bold uppercase tracking-wider text-retail-muted">Best for</p>
-                  <p className="mt-1 text-sm leading-6 text-retail-text">{model.bestFor}</p>
-                  <p className="mt-3 text-sm leading-6 text-retail-muted">{model.intro}</p>
+                  <h3 className="text-base font-bold text-retail-dark-green">{t(model.title)}</h3>
+                  <p className="mt-1 text-xs font-bold uppercase tracking-wider text-retail-muted">{t('supplier.modelSections.bestFor')}</p>
+                  <p className="mt-1 text-sm leading-6 text-retail-text">{t(model.bestFor)}</p>
+                  <p className="mt-3 text-sm leading-6 text-retail-muted">{t(model.intro)}</p>
                   <ul className="mt-3 space-y-1.5">
                     {model.points.map((point) => (
                       <li key={point} className="flex items-start gap-2 text-sm leading-6 text-retail-text">
                         <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-retail-green" />
-                        {point}
+                        {t(point)}
                       </li>
                     ))}
                   </ul>
@@ -42,12 +44,12 @@ export function SupplyModelSections() {
         </div>
 
         <div className="mt-6 rounded-xl border border-retail-border bg-white p-5">
-          <p className="text-sm leading-6 text-retail-muted">{supplierApprovalDisclaimer}</p>
+          <p className="text-sm leading-6 text-retail-muted">{t(supplierApprovalDisclaimer)}</p>
           <Link
             to="/partners/categories"
             className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-retail-green hover:underline"
           >
-            See the categories we review
+            {t('supplier.modelSections.categoriesLink')}
             <ArrowRight className="h-3.5 w-3.5" aria-hidden />
           </Link>
         </div>

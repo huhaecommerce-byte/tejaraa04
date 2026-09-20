@@ -21,10 +21,10 @@ export function SupplierFAQ() {
           {supplierFaqs.map((faq, index) => (
             <AccordionItem key={faq.q} value={`supplier-faq-${index}`} className="border-retail-border">
               <AccordionTrigger className="py-4 text-left text-sm font-bold text-retail-dark-green hover:no-underline sm:text-base">
-                {faq.q}
+                {t(faq.q)}
               </AccordionTrigger>
               <AccordionContent className="pb-4 text-sm leading-6 text-retail-muted">
-                {faq.a}
+                {t(faq.a)}
               </AccordionContent>
             </AccordionItem>
           ))}

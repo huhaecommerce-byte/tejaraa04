@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { money } from '@/lib/retailPricing';
 import { cn } from '@/lib/utils';
+import { useLocale } from '@/i18n/LocaleProvider';
 
 type ShopOrder = {
   id: string;
@@ -26,6 +27,7 @@ type ShopOrder = {
 const FILTERS = ['all', 'pending', 'processing', 'shipped', 'delivered', 'cancelled'] as const;
 
 export default function AccountOrders() {
+  const { t } = useLocale();
   const { user } = useAuth();
   const [orders, setOrders] = useState<ShopOrder[]>([]);
   const [loading, setLoading] = useState(true);
@@ -67,7 +69,7 @@ export default function AccountOrders() {
             onClick={() => setFilter(value)}
             className="shrink-0 font-bold capitalize"
           >
-            {value}
+            {t(`shopx.account.filter${value.charAt(0).toUpperCase()}${value.slice(1)}` as any)}
           </Button>
         ))}
       </div>
@@ -78,9 +80,9 @@ export default function AccountOrders() {
         <Card className="border-dashed border-retail-border">
           <CardContent className="p-10 text-center">
             <Package className="mx-auto h-8 w-8 text-retail-muted" />
-            <p className="mt-3 text-sm font-bold text-retail-text">No orders here yet</p>
-            <p className="mt-1 text-sm text-retail-muted">Your shop purchases will appear in this list.</p>
-            <Button asChild className="mt-4 font-bold"><Link to="/catalog">Start shopping</Link></Button>
+            <p className="mt-3 text-sm font-bold text-retail-text">{t('shopx.account.noOrdersTitle')}</p>
+            <p className="mt-1 text-sm text-retail-muted">{t('shopx.account.noOrdersDescription')}</p>
+            <Button asChild className="mt-4 font-bold"><Link to="/catalog">{t('shopx.account.startShopping')}</Link></Button>
           </CardContent>
         </Card>
       ) : (
@@ -102,13 +104,13 @@ export default function AccountOrders() {
                       </Badge>
                     </div>
                     <p className="mt-1 text-xs text-retail-muted">
-                      {new Date(order.created_at).toLocaleDateString()} · {qty} item{qty === 1 ? '' : 's'} ·{' '}
-                      {order.payment_method === 'card' ? 'Card' : 'Cash on delivery'}
+                      {new Date(order.created_at).toLocaleDateString()} · {qty === 1 ? t('shopx.account.itemsCountOne', { count: qty }) : t('shopx.account.itemsCountOther', { count: qty })} ·{' '}
+                      {order.payment_method === 'card' ? t('shopx.account.card') : t('shopx.account.cod')}
                       {order.city ? ` · ${[order.city, order.region].filter(Boolean).join(', ')}` : ''}
                     </p>
                     {order.tracking_number && (
                       <p className="mt-1 inline-flex items-center gap-1.5 text-xs font-semibold text-retail-green">
-                        <Truck className="h-3.5 w-3.5" />Tracking {order.tracking_number}
+                        <Truck className="h-3.5 w-3.5" />{t('shopx.account.tracking', { number: order.tracking_number })}
                       </p>
                     )}
                   </div>

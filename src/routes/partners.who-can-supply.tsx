@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { SUPPLIER_ORIGIN } from '@/lib/siteHosts';
 import { SupplierContentPage } from '@/components/supplier/common/SupplierContentPage';
 import { SupplierHeroPanel } from '@/components/supplier/common/SupplierPageHero';
@@ -27,23 +28,24 @@ export const Route = createFileRoute('/partners/who-can-supply')({
 });
 
 function WhoCanSupplyPage() {
+  const { t } = useLocale();
   return (
     <SupplierContentPage
-      crumbs={[{ label: 'Who Can Supply' }]}
+      crumbs={[{ label: t('supplier.pages.crumbs.whoCanSupply') }]}
       currentPath="/partners/who-can-supply"
-      eyebrow="Eligibility"
-      title="Who can supply Tejaraa"
-      intro="If you hold stock or produce goods in the categories we review, you can apply. Here is how we work with each type of supplier."
-      primary={{ label: 'Become a Supplier', to: supplierApplyRoute }}
-      secondary={{ label: 'See requirements', to: '/partners/requirements' }}
+      eyebrow={t('supplier.pages.whoCanSupply.eyebrow')}
+      title={t('supplier.pages.whoCanSupply.heading')}
+      intro={t('supplier.pages.whoCanSupply.intro')}
+      primary={{ label: t('supplier.pages.becomeSupplier'), to: supplierApplyRoute }}
+      secondary={{ label: t('supplier.pages.seeRequirements'), to: '/partners/requirements' }}
       visual={
         <SupplierHeroPanel
-          title="Supplier types we consider"
+          title={t('supplier.pages.whoCanSupply.visualTitle')}
           items={[
-            'Manufacturers and brand owners',
-            'Authorised distributors',
-            'Wholesalers with multi-brand catalogues',
-            'Importers and individual traders',
+            t('supplier.pages.whoCanSupply.visual1'),
+            t('supplier.pages.whoCanSupply.visual2'),
+            t('supplier.pages.whoCanSupply.visual3'),
+            t('supplier.pages.whoCanSupply.visual4'),
           ]}
         />
       }

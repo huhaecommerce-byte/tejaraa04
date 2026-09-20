@@ -22,13 +22,13 @@ export function SupplyModelCards() {
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-retail-light-green text-retail-green">
                 <model.icon className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="mt-4 text-base font-bold text-retail-dark-green">{model.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-retail-muted">{model.best}</p>
+              <h3 className="mt-4 text-base font-bold text-retail-dark-green">{t(model.title)}</h3>
+              <p className="mt-2 text-sm leading-6 text-retail-muted">{t(model.best)}</p>
               <ul className="mt-4 space-y-2.5 border-t border-retail-border pt-4">
                 {model.points.map((point) => (
                   <li key={point} className="flex items-start gap-2.5 text-sm leading-6 text-retail-text">
                     <Check className="mt-1 h-4 w-4 shrink-0 text-retail-medium-green" aria-hidden />
-                    <span className="min-w-0">{point}</span>
+                    <span className="min-w-0">{t(point)}</span>
                   </li>
                 ))}
               </ul>

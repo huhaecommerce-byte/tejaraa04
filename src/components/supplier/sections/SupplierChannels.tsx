@@ -20,8 +20,8 @@ export function SupplierChannels() {
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-retail-light-green text-retail-green">
                 <channel.icon className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="mt-4 text-base font-bold text-retail-dark-green">{channel.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-retail-muted">{channel.text}</p>
+              <h3 className="mt-4 text-base font-bold text-retail-dark-green">{t(channel.title)}</h3>
+              <p className="mt-2 text-sm leading-6 text-retail-muted">{t(channel.text)}</p>
             </article>
           ))}
         </div>

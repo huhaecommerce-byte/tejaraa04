@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useLocale } from '@/i18n/LocaleProvider';
 import { SUPPLIER_ORIGIN } from '@/lib/siteHosts';
 import { SupplierContentPage } from '@/components/supplier/common/SupplierContentPage';
 import { SupplierHeroPanel } from '@/components/supplier/common/SupplierPageHero';
@@ -27,23 +28,24 @@ export const Route = createFileRoute('/partners/requirements')({
 });
 
 function SupplierRequirementsPage() {
+  const { t } = useLocale();
   return (
     <SupplierContentPage
-      crumbs={[{ label: 'Requirements' }]}
+      crumbs={[{ label: t('supplier.pages.crumbs.requirements') }]}
       currentPath="/partners/requirements"
-      eyebrow="What we look for"
-      title="Supplier requirements"
-      intro="Everything we ask for, and when. Nothing here is a hidden condition — documents and commercial details are requested at the stage they are needed."
-      primary={{ label: 'Become a Supplier', to: supplierApplyRoute }}
-      secondary={{ label: 'How it works', to: '/partners/how-it-works' }}
+      eyebrow={t('supplier.pages.requirements.eyebrow')}
+      title={t('supplier.pages.requirements.heading')}
+      intro={t('supplier.pages.requirements.intro')}
+      primary={{ label: t('supplier.pages.becomeSupplier'), to: supplierApplyRoute }}
+      secondary={{ label: t('supplier.pages.howItWorksLink'), to: '/partners/how-it-works' }}
       visual={
         <SupplierHeroPanel
-          title="Have these ready"
+          title={t('supplier.pages.requirements.visualTitle')}
           items={[
-            'Trade licence or company registration',
-            'Owner or authorised person ID',
-            'Product list or catalogue link',
-            'Warehouse city and address',
+            t('supplier.pages.requirements.visual1'),
+            t('supplier.pages.requirements.visual2'),
+            t('supplier.pages.requirements.visual3'),
+            t('supplier.pages.requirements.visual4'),
           ]}
         />
       }
