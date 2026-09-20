@@ -79,6 +79,7 @@ export function SellerPlatformSwitcher({
             {current && layout === 'inline' ? <span aria-hidden className="absolute inset-x-0 -bottom-1 h-1.5 rounded-b-lg bg-retail-card" /> : null}
             {current ? <span className="sr-only">(current section)</span> : null}
           </Link>
+          </div>
         );
       })}
     </nav>
