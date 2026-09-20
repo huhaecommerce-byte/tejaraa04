@@ -234,6 +234,8 @@ import { Route as PartnersAdminSuppliersRouteImport } from './routes/partners.ad
 import { Route as PartnersAdminTeamRouteImport } from './routes/partners.admin.team'
 import { Route as WalletTopupReturnRouteImport } from './routes/wallet/topup/return'
 import { Route as AgencyAdminPartnersIdIndexRouteImport } from './routes/agency-admin/partners/$id/index'
+import { Route as AgencyAdminPartnersIdClientsRouteImport } from './routes/agency-admin/partners/$id/clients'
+import { Route as AgencyAdminPartnersIdCommissionsRouteImport } from './routes/agency-admin/partners/$id/commissions'
 import { Route as ApiPublicNoonEventsRouteImport } from './routes/api/public/noon/events'
 import { Route as ApiPublicNoonRunJobsRouteImport } from './routes/api/public/noon/run-jobs'
 import { Route as ApiPublicPartnerImageSplatRouteImport } from './routes/api/public/partner-image.$'
@@ -1435,6 +1437,18 @@ const AgencyAdminPartnersIdIndexRoute =
     path: '/partners/$id/',
     getParentRoute: () => AgencyAdminRouteRoute,
   } as any)
+const AgencyAdminPartnersIdClientsRoute =
+  AgencyAdminPartnersIdClientsRouteImport.update({
+    id: '/partners/$id/clients',
+    path: '/partners/$id/clients',
+    getParentRoute: () => AgencyAdminRouteRoute,
+  } as any)
+const AgencyAdminPartnersIdCommissionsRoute =
+  AgencyAdminPartnersIdCommissionsRouteImport.update({
+    id: '/partners/$id/commissions',
+    path: '/partners/$id/commissions',
+    getParentRoute: () => AgencyAdminRouteRoute,
+  } as any)
 const ApiPublicNoonEventsRoute = ApiPublicNoonEventsRouteImport.update({
   id: '/api/public/noon/events',
   path: '/api/public/noon/events',
@@ -1828,6 +1842,8 @@ export interface FileRoutesByFullPath {
   '/dropshipping/orders/': typeof DropshippingOrdersIndexRoute
   '/dropshipping/warehouse/': typeof DropshippingWarehouseIndexRoute
   '/partners/admin/': typeof PartnersAdminIndexRoute
+  '/agency-admin/partners/$id/clients': typeof AgencyAdminPartnersIdClientsRoute
+  '/agency-admin/partners/$id/commissions': typeof AgencyAdminPartnersIdCommissionsRoute
   '/api/public/noon/events': typeof ApiPublicNoonEventsRoute
   '/api/public/noon/run-jobs': typeof ApiPublicNoonRunJobsRoute
   '/api/public/partner-image/$': typeof ApiPublicPartnerImageSplatRoute
@@ -2074,6 +2090,8 @@ export interface FileRoutesByTo {
   '/dropshipping/orders': typeof DropshippingOrdersIndexRoute
   '/dropshipping/warehouse': typeof DropshippingWarehouseIndexRoute
   '/partners/admin': typeof PartnersAdminIndexRoute
+  '/agency-admin/partners/$id/clients': typeof AgencyAdminPartnersIdClientsRoute
+  '/agency-admin/partners/$id/commissions': typeof AgencyAdminPartnersIdCommissionsRoute
   '/api/public/noon/events': typeof ApiPublicNoonEventsRoute
   '/api/public/noon/run-jobs': typeof ApiPublicNoonRunJobsRoute
   '/api/public/partner-image/$': typeof ApiPublicPartnerImageSplatRoute
@@ -2332,6 +2350,8 @@ export interface FileRoutesById {
   '/dropshipping/orders/': typeof DropshippingOrdersIndexRoute
   '/dropshipping/warehouse/': typeof DropshippingWarehouseIndexRoute
   '/partners/admin/': typeof PartnersAdminIndexRoute
+  '/agency-admin/partners/$id/clients': typeof AgencyAdminPartnersIdClientsRoute
+  '/agency-admin/partners/$id/commissions': typeof AgencyAdminPartnersIdCommissionsRoute
   '/api/public/noon/events': typeof ApiPublicNoonEventsRoute
   '/api/public/noon/run-jobs': typeof ApiPublicNoonRunJobsRoute
   '/api/public/partner-image/$': typeof ApiPublicPartnerImageSplatRoute
@@ -2590,6 +2610,8 @@ export interface FileRouteTypes {
     | '/dropshipping/orders/'
     | '/dropshipping/warehouse/'
     | '/partners/admin/'
+    | '/agency-admin/partners/$id/clients'
+    | '/agency-admin/partners/$id/commissions'
     | '/api/public/noon/events'
     | '/api/public/noon/run-jobs'
     | '/api/public/partner-image/$'
@@ -2836,6 +2858,8 @@ export interface FileRouteTypes {
     | '/dropshipping/orders'
     | '/dropshipping/warehouse'
     | '/partners/admin'
+    | '/agency-admin/partners/$id/clients'
+    | '/agency-admin/partners/$id/commissions'
     | '/api/public/noon/events'
     | '/api/public/noon/run-jobs'
     | '/api/public/partner-image/$'
@@ -3093,6 +3117,8 @@ export interface FileRouteTypes {
     | '/dropshipping/orders/'
     | '/dropshipping/warehouse/'
     | '/partners/admin/'
+    | '/agency-admin/partners/$id/clients'
+    | '/agency-admin/partners/$id/commissions'
     | '/api/public/noon/events'
     | '/api/public/noon/run-jobs'
     | '/api/public/partner-image/$'
@@ -4815,6 +4841,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgencyAdminPartnersIdIndexRouteImport
       parentRoute: typeof AgencyAdminRouteRoute
     }
+    '/agency-admin/partners/$id/clients': {
+      id: '/agency-admin/partners/$id/clients'
+      path: '/partners/$id/clients'
+      fullPath: '/agency-admin/partners/$id/clients'
+      preLoaderRoute: typeof AgencyAdminPartnersIdClientsRouteImport
+      parentRoute: typeof AgencyAdminRouteRoute
+    }
+    '/agency-admin/partners/$id/commissions': {
+      id: '/agency-admin/partners/$id/commissions'
+      path: '/partners/$id/commissions'
+      fullPath: '/agency-admin/partners/$id/commissions'
+      preLoaderRoute: typeof AgencyAdminPartnersIdCommissionsRouteImport
+      parentRoute: typeof AgencyAdminRouteRoute
+    }
     '/api/public/noon/events': {
       id: '/api/public/noon/events'
       path: '/api/public/noon/events'
@@ -5192,6 +5232,8 @@ interface AgencyAdminRouteRouteChildren {
   AgencyAdminSettingsRoute: typeof AgencyAdminSettingsRoute
   AgencyAdminIndexRoute: typeof AgencyAdminIndexRoute
   AgencyAdminPartnersIndexRoute: typeof AgencyAdminPartnersIndexRoute
+  AgencyAdminPartnersIdClientsRoute: typeof AgencyAdminPartnersIdClientsRoute
+  AgencyAdminPartnersIdCommissionsRoute: typeof AgencyAdminPartnersIdCommissionsRoute
   AgencyAdminPartnersIdIndexRoute: typeof AgencyAdminPartnersIdIndexRoute
 }
 
@@ -5200,6 +5242,8 @@ const AgencyAdminRouteRouteChildren: AgencyAdminRouteRouteChildren = {
   AgencyAdminSettingsRoute: AgencyAdminSettingsRoute,
   AgencyAdminIndexRoute: AgencyAdminIndexRoute,
   AgencyAdminPartnersIndexRoute: AgencyAdminPartnersIndexRoute,
+  AgencyAdminPartnersIdClientsRoute: AgencyAdminPartnersIdClientsRoute,
+  AgencyAdminPartnersIdCommissionsRoute: AgencyAdminPartnersIdCommissionsRoute,
   AgencyAdminPartnersIdIndexRoute: AgencyAdminPartnersIdIndexRoute,
 }
 

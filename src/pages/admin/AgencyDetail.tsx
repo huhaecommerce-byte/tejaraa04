@@ -209,77 +209,33 @@ export default function AgencyDetail() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardContent className="p-0">
-          <div className="border-b p-4 font-bold">Onboarded dropshippers ({num(balance?.clients)})</div>
-          {clients.length === 0 ? (
-            <p className="p-8 text-center text-sm text-muted-foreground">No dropshippers onboarded yet.</p>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Seller</TableHead>
-                  <TableHead>Joined</TableHead>
-                  <TableHead className="text-right">Orders</TableHead>
-                  <TableHead className="text-right">Commission earned</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {clients.map((c) => (
-                  <TableRow key={c.client_user_id}>
-                    <TableCell>
-                      <div className="font-medium">{c.display_name}</div>
-                      <div className="text-xs text-muted-foreground">{c.email || '—'}</div>
-                    </TableCell>
-                    <TableCell>{new Date(c.joined_at).toLocaleDateString()}</TableCell>
-                    <TableCell className="text-right">{c.orders}</TableCell>
-                    <TableCell className="text-right font-semibold">{sar(c.earned)}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </CardContent>
-      </Card>
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card>
+          <CardContent className="flex items-center justify-between gap-4 p-6">
+            <div>
+              <div className="flex items-center gap-2 font-bold"><Users className="h-4 w-4" /> Onboarded dropshippers</div>
+              <p className="mt-1 text-2xl font-black">{num(balance?.clients)}</p>
+              <p className="text-xs text-muted-foreground">Sellers linked with this invite code</p>
+            </div>
+            <Button asChild>
+              <Link to={`/agency-admin/partners/${id}/clients`}>View <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </CardContent>
+        </Card>
 
-      <Card>
-        <CardContent className="p-0">
-          <div className="border-b p-4 font-bold">Commission ledger ({commissions.length})</div>
-          {commissions.length === 0 ? (
-            <p className="p-8 text-center text-sm text-muted-foreground">No commission entries yet.</p>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Order</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Order total</TableHead>
-                  <TableHead className="text-right">Rate</TableHead>
-                  <TableHead className="text-right">Commission</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {commissions.map((c) => (
-                  <TableRow key={c.id}>
-                    <TableCell className="font-medium">{c.order_ref || '—'}</TableCell>
-                    <TableCell>{new Date(c.created_at).toLocaleDateString()}</TableCell>
-                    <TableCell>
-                      <Badge className={commissionTone[c.status] || ''}>{c.status}</Badge>
-                      {c.reversal_reason && (
-                        <div className="mt-1 text-xs text-muted-foreground">{c.reversal_reason}</div>
-                      )}
-                    </TableCell>
-                    <TableCell className="text-right">{c.order_total_sar != null ? sar(c.order_total_sar) : '—'}</TableCell>
-                    <TableCell className="text-right">{c.rate_percent != null ? `${c.rate_percent}%` : '—'}</TableCell>
-                    <TableCell className="text-right font-semibold">{sar(c.amount_sar)}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </CardContent>
-      </Card>
+        <Card>
+          <CardContent className="flex items-center justify-between gap-4 p-6">
+            <div>
+              <div className="flex items-center gap-2 font-bold"><Receipt className="h-4 w-4" /> Commission ledger</div>
+              <p className="mt-1 text-2xl font-black">{commissions.length}</p>
+              <p className="text-xs text-muted-foreground">Entries across all orders</p>
+            </div>
+            <Button asChild>
+              <Link to={`/agency-admin/partners/${id}/commissions`}>View <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </>
   );
 }
