@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { DollarSign, ShoppingCart, Users, Tag, Truck, TrendingUp, Activity, Package, Database, UserPlus, Sparkles, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import exportAsset from '@/assets/latesttejaraaExport.zip.asset.json';
+import { Link } from '@tanstack/react-router';
 import { BentoGrid, BentoTile } from '@/components/layout/BentoGrid';
 import { SectionRibbon } from '@/components/layout/SectionRibbon';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -126,10 +126,10 @@ const AdminDashboard = () => {
           subtitle="Live KPIs across orders, customers and labelling"
         />
         <Button asChild className="gap-2 shrink-0">
-          <a href={exportAsset.url} download="latesttejaraaExport.zip">
+          <Link to="/admin/exports">
             <Download className="h-4 w-4" />
-            Download project export
-          </a>
+            Project exports
+          </Link>
         </Button>
       </div>
       <BentoGrid>

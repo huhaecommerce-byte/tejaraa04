@@ -3,7 +3,7 @@ import {
   TicketIcon, User, Settings, Users, CreditCard, MessageSquare, Globe, Palette,
   Box, Package, LayoutGrid, Search, Inbox, BarChart3, Factory, Undo2,
   ScrollText, Boxes, Warehouse, Cog, Briefcase, Cloud, ShoppingBasket, Coins,
-  ListChecks, Activity, Webhook, Flame, Plug, Share2, Handshake,
+  ListChecks, Activity, Webhook, Flame, Plug, Share2, Handshake, FileArchive,
 } from 'lucide-react';
 
 import type { AdminModuleKey } from './adminModules';
@@ -172,6 +172,7 @@ export const adminNavigation: NavSection[] = [
           { title: 'Emails', url: '/admin/emails', module: 'emails' },
         ],
       },
+      { title: 'Project Exports', url: '/admin/exports', icon: FileArchive, module: 'settings' },
     ],
   },
   {
