@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { DollarSign, ShoppingCart, Users, Tag, Truck, TrendingUp, Activity, Package, Database, UserPlus, Sparkles } from 'lucide-react';
+import { DollarSign, ShoppingCart, Users, Tag, Truck, TrendingUp, Activity, Package, Database, UserPlus, Sparkles, Download } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import exportAsset from '@/assets/latesttejaraaExport.zip.asset.json';
 import { BentoGrid, BentoTile } from '@/components/layout/BentoGrid';
 import { SectionRibbon } from '@/components/layout/SectionRibbon';
 import { Skeleton } from '@/components/ui/skeleton';
