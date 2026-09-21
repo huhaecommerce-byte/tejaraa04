@@ -2602,6 +2602,36 @@ export type Database = {
         }
         Relationships: []
       }
+      project_export_downloads: {
+        Row: {
+          downloaded_at: string
+          downloaded_by: string | null
+          downloaded_by_email: string | null
+          export_key: string
+          file_name: string
+          id: string
+          size_bytes: number | null
+        }
+        Insert: {
+          downloaded_at?: string
+          downloaded_by?: string | null
+          downloaded_by_email?: string | null
+          export_key: string
+          file_name: string
+          id?: string
+          size_bytes?: number | null
+        }
+        Update: {
+          downloaded_at?: string
+          downloaded_by?: string | null
+          downloaded_by_email?: string | null
+          export_key?: string
+          file_name?: string
+          id?: string
+          size_bytes?: number | null
+        }
+        Relationships: []
+      }
       promo_codes: {
         Row: {
           code: string
