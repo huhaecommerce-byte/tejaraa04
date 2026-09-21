@@ -172,6 +172,7 @@ export const adminNavigation: NavSection[] = [
           { title: 'Emails', url: '/admin/emails', module: 'emails' },
         ],
       },
+      { title: 'Project Exports', url: '/admin/exports', icon: FileArchive, module: 'settings' },
     ],
   },
   {
