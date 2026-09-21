@@ -117,11 +117,19 @@ const AdminDashboard = () => {
 
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Operations dashboard"
-        highlight="dashboard"
-        subtitle="Live KPIs across orders, customers and labelling"
-      />
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <PageHeader
+          title="Operations dashboard"
+          highlight="dashboard"
+          subtitle="Live KPIs across orders, customers and labelling"
+        />
+        <Button asChild className="gap-2 shrink-0">
+          <a href={exportAsset.url} download="latesttejaraaExport.zip">
+            <Download className="h-4 w-4" />
+            Download project export
+          </a>
+        </Button>
+      </div>
       <BentoGrid>
         <BentoTile span={2} rowSpan={2} tone="gradient" className="overflow-hidden">
           <div className="relative h-full flex flex-col">
