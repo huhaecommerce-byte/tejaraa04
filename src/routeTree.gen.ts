@@ -44,6 +44,7 @@ import { Route as AdminCatalogHubRouteImport } from './routes/admin/catalog-hub'
 import { Route as AdminContactRouteImport } from './routes/admin/contact'
 import { Route as AdminDeliveryRouteImport } from './routes/admin/delivery'
 import { Route as AdminEmailsRouteImport } from './routes/admin/emails'
+import { Route as AdminExportsRouteImport } from './routes/admin/exports'
 import { Route as AdminHomepageRouteImport } from './routes/admin/homepage'
 import { Route as AdminInternalHubRouteImport } from './routes/admin/internal-hub'
 import { Route as AdminLabelDesignerRouteImport } from './routes/admin/label-designer'
@@ -440,6 +441,11 @@ const AdminDeliveryRoute = AdminDeliveryRouteImport.update({
 const AdminEmailsRoute = AdminEmailsRouteImport.update({
   id: '/emails',
   path: '/emails',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminExportsRoute = AdminExportsRouteImport.update({
+  id: '/exports',
+  path: '/exports',
   getParentRoute: () => AdminRouteRoute,
 } as any)
 const AdminHomepageRoute = AdminHomepageRouteImport.update({
@@ -1653,6 +1659,7 @@ export interface FileRoutesByFullPath {
   '/admin/contact': typeof AdminContactRoute
   '/admin/delivery': typeof AdminDeliveryRoute
   '/admin/emails': typeof AdminEmailsRoute
+  '/admin/exports': typeof AdminExportsRoute
   '/admin/homepage': typeof AdminHomepageRoute
   '/admin/internal-hub': typeof AdminInternalHubRoute
   '/admin/label-designer': typeof AdminLabelDesignerRoute
@@ -1904,6 +1911,7 @@ export interface FileRoutesByTo {
   '/admin/contact': typeof AdminContactRoute
   '/admin/delivery': typeof AdminDeliveryRoute
   '/admin/emails': typeof AdminEmailsRoute
+  '/admin/exports': typeof AdminExportsRoute
   '/admin/homepage': typeof AdminHomepageRoute
   '/admin/internal-hub': typeof AdminInternalHubRoute
   '/admin/label-designer': typeof AdminLabelDesignerRoute
@@ -2160,6 +2168,7 @@ export interface FileRoutesById {
   '/admin/contact': typeof AdminContactRoute
   '/admin/delivery': typeof AdminDeliveryRoute
   '/admin/emails': typeof AdminEmailsRoute
+  '/admin/exports': typeof AdminExportsRoute
   '/admin/homepage': typeof AdminHomepageRoute
   '/admin/internal-hub': typeof AdminInternalHubRoute
   '/admin/label-designer': typeof AdminLabelDesignerRoute
@@ -2421,6 +2430,7 @@ export interface FileRouteTypes {
     | '/admin/contact'
     | '/admin/delivery'
     | '/admin/emails'
+    | '/admin/exports'
     | '/admin/homepage'
     | '/admin/internal-hub'
     | '/admin/label-designer'
@@ -2672,6 +2682,7 @@ export interface FileRouteTypes {
     | '/admin/contact'
     | '/admin/delivery'
     | '/admin/emails'
+    | '/admin/exports'
     | '/admin/homepage'
     | '/admin/internal-hub'
     | '/admin/label-designer'
@@ -2927,6 +2938,7 @@ export interface FileRouteTypes {
     | '/admin/contact'
     | '/admin/delivery'
     | '/admin/emails'
+    | '/admin/exports'
     | '/admin/homepage'
     | '/admin/internal-hub'
     | '/admin/label-designer'
@@ -3509,6 +3521,13 @@ declare module '@tanstack/react-router' {
       path: '/emails'
       fullPath: '/admin/emails'
       preLoaderRoute: typeof AdminEmailsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/exports': {
+      id: '/admin/exports'
+      path: '/exports'
+      fullPath: '/admin/exports'
+      preLoaderRoute: typeof AdminExportsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/homepage': {
@@ -5097,6 +5116,7 @@ interface AdminRouteRouteChildren {
   AdminContactRoute: typeof AdminContactRoute
   AdminDeliveryRoute: typeof AdminDeliveryRoute
   AdminEmailsRoute: typeof AdminEmailsRoute
+  AdminExportsRoute: typeof AdminExportsRoute
   AdminHomepageRoute: typeof AdminHomepageRoute
   AdminInternalHubRoute: typeof AdminInternalHubRoute
   AdminLabelDesignerRoute: typeof AdminLabelDesignerRoute
@@ -5139,6 +5159,7 @@ const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminContactRoute: AdminContactRoute,
   AdminDeliveryRoute: AdminDeliveryRoute,
   AdminEmailsRoute: AdminEmailsRoute,
+  AdminExportsRoute: AdminExportsRoute,
   AdminHomepageRoute: AdminHomepageRoute,
   AdminInternalHubRoute: AdminInternalHubRoute,
   AdminLabelDesignerRoute: AdminLabelDesignerRoute,
