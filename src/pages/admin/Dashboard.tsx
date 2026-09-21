@@ -126,10 +126,10 @@ const AdminDashboard = () => {
           subtitle="Live KPIs across orders, customers and labelling"
         />
         <Button asChild className="gap-2 shrink-0">
-          <a href={exportAsset.url} download="latesttejaraaExport.zip">
+          <Link to="/admin/exports">
             <Download className="h-4 w-4" />
-            Download project export
-          </a>
+            Project exports
+          </Link>
         </Button>
       </div>
       <BentoGrid>
